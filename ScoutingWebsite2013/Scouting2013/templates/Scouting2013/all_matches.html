@@ -6,11 +6,41 @@
 <title>List of Matches</title>
 </head>
 
-
 <body>
+
+{% include "Scouting2013/banner.html" %}
 
 <h1> List of Matches</h1>
 
+
+<table border=1>
+ <tr>
+   <th> Match Number </th>
+   <th> Red Score </th>
+   <th> Blue Score </th>
+   <th> Team 1 </th>
+   <th> Team 2 </th>
+   <th> Team 3 </th>
+   <th> Team 4 </th>
+   <th> Team 5 </th>
+   <th> Team 6 </th>
+ </tr>
+
+{% for match in matches %}
+<tr>
+  <td> <a href="/2013/match/{{match.id}}">{{match.matchNumber}} </a></td>
+  <td> NA </td>
+  <td> NA </td>
+  <td>  </td>
+  <td>  </td>
+  <td>  </td>
+  <td>  </td>
+  <td>  </td>
+  <td>  </td>
+</tr>
+{% endfor %}
+
+</table>
 
 </body>
 
