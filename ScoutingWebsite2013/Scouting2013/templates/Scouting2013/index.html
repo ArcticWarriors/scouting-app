@@ -1,0 +1,23 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2013/style.css' %}" />
+<title>Welcome!</title>
+</head>
+
+
+<body>
+
+{{ team.teamNumber }}
+
+Scouting App Homepage
+<br><br>
+<h1>Sub-pages</h1>
+<ul>
+   <li> <a href='/2013/teams'>View All Teams</a> </li>
+   <li> <a href='/2013/match'>View All Matches</a> </li>
+</ul>
+
+</body>
+</html>
