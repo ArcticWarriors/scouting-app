@@ -111,8 +111,8 @@ def view_match(request, match_id):
 
 def view_graph(request, team_ids=[], fields=[]):
     
-    team_ids = [3, 4]
-    fields = "auton_score,high_goals"
+    team_ids = [2]
+    fields = "HighTubesHung,ScoredUberTube,BrokeBadly"
     
     team_numbers = []
     for team_id in team_ids:
