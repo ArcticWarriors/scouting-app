@@ -1,0 +1,33 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2011/style.css' %}" />
+<title>List of Teams</title>
+</head>
+
+<body>
+
+{% include "Scouting2011/banner.html" %}
+
+<h1> List of Teams</h1>
+
+<table border=1>
+	<tr>
+	</tr>
+
+{% for team in teams %}
+	
+	<tr>
+	  <td> <a href="/2011/teams/{{team.id}}">{{ team.teamNumber }}</a></td>
+	  <td> <center><a href="http://www.thebluealliance.com/team/{{ team.teamNumber }}"><img src="{% static 'Scouting2011/blue_alliance.png' %}" style="width:30px;height:30px;"/></a></center></td>
+
+	</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>

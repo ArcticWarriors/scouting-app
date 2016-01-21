@@ -1,0 +1,40 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2011/style.css' %}" />
+<title>Match</title>
+</head>
+
+{% include "Scouting2011/banner.html" %}
+
+<body>
+
+<h1>Match {{ matchNumber }}</h1>
+{{ teams}}
+
+
+{% for sr in results %}
+<h2><a href="/2011/teams/{{sr.team.id}}">Team {{sr.team.teamNumber}}</a></h2>
+
+
+<table>
+    <tr> <td> Auton Score     </td>  <td> {{ sr.auton_score }}     </td> </tr>
+    <tr> <td> Pyramid Goals   </td>  <td> {{ sr.pyramid_goals }}   </td> </tr>
+    <tr> <td> High Goals      </td>  <td> {{ sr.high_goals }}      </td> </tr>
+    <tr> <td> Mid Goals       </td>  <td> {{ sr.mid_goals }}       </td> </tr>
+    <tr> <td> Low Goals       </td>  <td> {{ sr.low_goals }}       </td> </tr>
+    <tr> <td> Missed Shots    </td>  <td> {{ sr.missed_shots }}    </td> </tr>
+    <tr> <td> Hanging Points  </td>  <td> {{ sr.hanging_points }}  </td> </tr>
+    <tr> <td> Fouls           </td>  <td> {{ sr.fouls }}           </td> </tr>
+    <tr> <td> Tech Fouls      </td>  <td> {{ sr.technical_fouls }} </td> </tr>
+    <tr> <td> Invalid Hangs   </td>  <td> {{ sr.invalid_hangs }}   </td> </tr>
+    <tr> <td> Yellow Card     </td>  <td> {{ sr.yellow_card }}     </td> </tr>
+    <tr> <td> Red Card        </td>  <td> {{ sr.red_card }}        </td> </tr>
+    <tr> <td> Broken Badly    </td>  <td> {{ sr.broke_badly }}     </td> </tr>
+</table>
+
+{% endfor %}
+
+</body>
+</html>

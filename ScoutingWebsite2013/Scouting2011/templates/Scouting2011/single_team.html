@@ -1,0 +1,38 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2011/style.css' %}" />
+<title>Team {{ teamNumber }}</title>
+</head>
+
+
+<body>
+
+{% include "Scouting2011/banner.html" %}
+
+Team {{ teamNumber }} Stats
+<br>
+<br>
+<br>
+
+<h1>Matches Scouted:</h1>
+
+{% if match_list|length == 0 %}
+No matches scouted
+{% else %}
+  <ul>
+  {% for match in match_list %}
+     <li><a href="/2011/match/{{match.id}}">{{match.matchNumber}}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if match_list|length != 0 %}
+<h1>Metrics:</h1>
+<table>
+</table>
+{% endif %}
+
+</body>
+</html>
