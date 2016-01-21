@@ -1,13 +1,7 @@
 from django.shortcuts import render
 from django.db.models import Avg, Sum
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseNotFound
 from Scouting2011.models import Team, Match
-
-import matplotlib
-matplotlib.use('agg')
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-from matplotlib.font_manager import FontProperties
 
 # Create your views here.
 
@@ -111,24 +105,37 @@ def view_match(request, match_id):
 
 def view_graph(request, team_ids=[], fields=[]):
     
-    team_ids = [2]
-    fields = "HighTubesHung,ScoredUberTube,BrokeBadly"
+    try:
+        import matplotlib
+        team_ids = [2]
+        fields = "HighTubesHung,ScoredUberTube,BrokeBadly"
+        
+        team_numbers = []
+        for team_id in team_ids:
+            team = Team.objects.get(id=team_id)
+            team_numbers.append(team.teamNumber)
+        
+        context = {"team_ids": ",".join(str(x) for x in team_ids),
+                   "team_numbers": team_numbers,
+                   "field_list": fields,
+                  }
+        
+        return render(request, 'Scouting2011/view_graph.html', context)
+    except:
+        pass
     
-    team_numbers = []
-    for team_id in team_ids:
-        team = Team.objects.get(id=team_id)
-        team_numbers.append(team.teamNumber)
+    return HttpResponseNotFound('<h1>Could not import matplot lib, cannot plot</h1>') 
     
-    context = {"team_ids": ",".join(str(x) for x in team_ids),
-               "team_numbers": team_numbers,
-               "field_list": fields,
-              }
-    
-    return render(request, 'Scouting2011/view_graph.html', context)
 
 
 def create_metrics_plot(request, team_ids, fields):
     
+    import matplotlib
+    matplotlib.use('agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    from matplotlib.font_manager import FontProperties
+
     team_ids = [str(x) for x in team_ids.split(",")]
     fields = [str(x) for x in fields.split(",")]    
     
@@ -158,3 +165,4 @@ def create_metrics_plot(request, team_ids, fields):
     canvas.print_png(response)
     
     return response
+    
