@@ -13,19 +13,19 @@ from matplotlib.font_manager import FontProperties
 
 
 def __get_team_metrics(team):
-    metrics = team.scoreresult_set.aggregate(Avg('auton_score'), 
-                                             Avg('pyramid_goals'),
-                                             Avg('high_goals'),
-                                             Avg('mid_goals'),
-                                             Avg('low_goals'),
-                                             Avg('missed_shots'),
-                                             Avg('hanging_points'),
-                                             Avg('fouls'),
-                                             Avg('technical_fouls'),
-                                             Sum('invalid_hangs'),
-                                             Sum('yellow_card'),
-                                             Sum('red_card'),
-                                             Sum('broke_badly'),
+    metrics = team.scoreresult_set.aggregate(Avg('auton_score'      ), 
+                                             Avg('pyramid_goals'    ),
+                                             Avg('high_goals'       ),
+                                             Avg('mid_goals'        ),
+                                             Avg('low_goals'        ),
+                                             Avg('missed_shots'     ),
+                                             Avg('hanging_points'   ),
+                                             Avg('fouls'            ),
+                                             Avg('technical_fouls'  ),
+                                             Sum('invalid_hangs'    ),
+                                             Sum('yellow_card'      ),
+                                             Sum('red_card'         ),
+                                             Sum('broke_badly'      ),
                                           )
     
     #Format all of the numbers.  If we haven't scouted the team, None will be returned.  Turn that into NA

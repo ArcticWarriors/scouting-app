@@ -13,7 +13,19 @@ from matplotlib.font_manager import FontProperties
 
 
 def __get_team_metrics(team):
-    metrics = team.scoreresult_set.aggregate(
+    metrics = team.scoreresult_set.aggregate(Avg('TubesDropped'    ), 
+                                             Avg('LowTubesHung'    ),
+                                             Avg('MidTubesHung'    ),
+                                             Avg('HighTubesHung'   ),
+                                             Avg('TubesRecieved'   ),
+                                             Avg('Penelties'       ),
+                                             Avg('MiniBotFinish'   ),
+                                             Avg('ScoredUberTube'  ),
+                                             Sum('DeployedMinibot' ),
+                                             Sum('WasOffensive'    ),
+                                             Sum('WasScouted'      ),
+                                             Sum('BrokeBadly'      ),
+                                             Sum('Comments'        ),
                                           )
     
     #Format all of the numbers.  If we haven't scouted the team, None will be returned.  Turn that into NA
@@ -44,8 +56,9 @@ def all_teams(request):
         team_with_avg = {"id": team.id, 
                          "teamNumber": team.teamNumber,
                          "matches_scouted": team.scoreresult_set.count(),
-                         "avgerages": metrics,
+                         "metrics": metrics,
                         }
+        
         teams_with_avg.append(team_with_avg)
 
     context = {"teams": teams_with_avg}
@@ -63,6 +76,7 @@ def view_team(request, team_id):
     for sr in this_team.scoreresult_set.all():
         match_list.append(sr.match)
     
+    print metrics
 
     context = {"id": this_team.id, 
                "teamNumber": this_team.teamNumber,
