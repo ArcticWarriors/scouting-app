@@ -9,7 +9,7 @@ from Scouting2013.models import Team, Match
 def __get_team_metrics(team):
     metrics = team.scoreresult_set.aggregate(Avg('auton_score'      ), 
                                              Avg('pyramid_goals'    ),
-                                             Avg('high_goals'       ),
+                                             Avg('higjsidih_goals'       ),
                                              Avg('mid_goals'        ),
                                              Avg('low_goals'        ),
                                              Avg('missed_shots'     ),
