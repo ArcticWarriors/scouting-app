@@ -12,6 +12,9 @@ def showForm(request):
 
     return render(request, 'Scouting2016/inputForm.html')
 
+def robot_display(request):
+    return render(request, 'Scouting2016/RobotDisplay.html')
+
 def submitForm(request):
     print request.POST
     team = Team.objects.get(teamNumber=request.POST["team_number"])

@@ -12,4 +12,5 @@ urlpatterns = [
                url(r'^$', views.index, name='index'),
                url(r'^form$', views.showForm, name='showForm'),
                url(r'^submit_form$', views.submitForm, name='submit_form'),
+               url(r'^robot_display$', views.robot_display, name='robot_display'),
               ]
