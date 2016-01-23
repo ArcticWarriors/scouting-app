@@ -5,3 +5,6 @@ from django.shortcuts import render
 def index(request):
 
     return render(request, 'Scouting2016/index.html')
+
+def robot_display(request):
+    return render(request, 'Scouting2016/RobotDisplay.html')
