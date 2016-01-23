@@ -16,20 +16,20 @@
 	<br>
 	<br>
 
-	<form action= "/2016/submit_form" method="post">
-	{% csrf_token %}
+	<form action="/2016/submit_form" method="post">
+		{% csrf_token %}
 		<table>
 			<tr>
 				<td>Team Number :</td>
-				<td><input type="number" name="team_number"></td>
+				<td><input type="number" name="team_number" value="174"></td>
 				<td>Match Number:</td>
-				<td><input type="number" name="match_number"></td>
+				<td><input type="number" name="match_number" value="25"></td>
 			</tr>
 		</table>
 
 		<table>
 			<tr>
-				<th style="width: 80px;"><em> Autnomous </em></th>
+				<th style="width: 80px;"><em> Autonomous </em></th>
 			</tr>
 			<tr>
 				<td></td>
@@ -37,7 +37,7 @@
 				<td style="width: 30px;"><input type="radio"
 					name="auto_defense" value="auto_reach_defense_yes"></td>
 				<td>Yes
-				<td style="width: 30px;"><input type="radio"
+				<td style="width: 30px;"><input type="radio" checked="checked"
 					name="auto_defense" value="auto_reach_defense_no"></td>
 				<td>No</td>
 			</tr>
@@ -85,19 +85,18 @@
 				<td></td>
 				<td></td>
 				<td>AUTO Low Goal</td>
-				<td><input type="number" name="auto_score_low"
-					value="auto_score_low"></td>
+				<td><input type="number" name="auto_score_low" value="7"></td>
 				<td style="width: 155px;">AUTO High Goal</td>
-				<td><input type="number" name="auto_score_high"
-					value="auto_score_high"></td>
+				<td><input type="number" name="auto_score_high" value="5"></td>
 
 			</tr>
 			<tr>
-				<td> </td>
-				<td> </td>
-				<td> Spy Bot?</td>
-				<td> Yes <input type="radio" name="auto_spy" value="auto_spy_yes"></td>
-				<td> No <input type="radio" name="auto_spy" value="auto_spy_no"></td>
+				<td></td>
+				<td></td>
+				<td>Spy Bot?</td>
+				<td>Yes <input type="radio" name="auto_spy"
+					value="auto_spy_yes" checked="checked"></td>
+				<td>No <input type="radio" name="auto_spy" value="auto_spy_no"></td>
 			</tr>
 		</table>
 		<br>
@@ -107,11 +106,11 @@
 				<th><em> Defenses Crossed (number of times) </em></th>
 			</tr>
 			<tr>
-				
+
 			</tr>
 
 			<tr>
-				<td><p align="right"> Category A</p></td>
+				<td><p align="right">Category A</p></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -119,12 +118,12 @@
 					src="{% static 'Scouting2016/defenseImages/Portcullis.JPG' %}"
 					style="height: 150px;" /></td>
 				<td>Portcullis :</td>
-				<td><input type="number" name="portcullis"></td>
+				<td><input type="number" name="portcullis"value="1"></td>
 				<td>Slow <input type="radio" name="slow_fast_portcullis"
-					value="slow_portcullis">
+					value="2" checked="checked">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_portcullis"
-					value="fast_portcullus">
+					value="fast_portcullus" checked="checked">
 				</td>
 			</tr>
 			<tr>
@@ -133,16 +132,16 @@
 					src="{% static 'Scouting2016/defenseImages/Cheval De Frise.JPG' %}"
 					style="width: 175px;" /></td>
 				<td>Cheval De Frise :</td>
-				<td><input type="number" name="cheval_de_frise"></td>
+				<td><input type="number" name="cheval_de_frise" value="0"></td>
 				<td>Slow <input type="radio" name="slow_fast_cheval"
 					value="slow_cheval">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_cheval"
-					value="fast_cheval">
+					value="fast_cheval" checked="checked">
 				</td>
 			</tr>
 			<tr>
-				<td><p align="right"> Category B</p></td>
+				<td><p align="right">Category B</p></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -150,9 +149,9 @@
 					src="{% static 'Scouting2016/defenseImages/Moat.JPG' %}"
 					style="width: 175px;" /></td>
 				<td>Moat :</td>
-				<td><input type="number" name="moat"></td>
+				<td><input type="number" name="moat" value="2"></td>
 				<td>Slow <input type="radio" name="slow_fast_moat"
-					value="slow_moat">
+					value="slow_moat" checked="checked">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_moat"
 					value="fast_moat">
@@ -164,7 +163,7 @@
 					src="{% static 'Scouting2016/defenseImages/Ramparts.JPG' %}"
 					style="width: 175px;" /></td>
 				<td>Ramparts :</td>
-				<td><input type="number" name="ramparts"></td>
+				<td><input type="number" name="ramparts" value="0"></td>
 				<td>Slow <input type="radio" name="slow_fast_ramparts"
 					value="slow_ramparts">
 				</td>
@@ -173,7 +172,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td><p align="right"> Category C</p></td>
+				<td><p align="right">Category C</p></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -181,7 +180,7 @@
 					src="{% static 'Scouting2016/defenseImages/Draw Bridge.JPG' %}"
 					style="height: 150px;" /></td>
 				<td>Draw Bridge :</td>
-				<td><input type="number" name="draw_bridge"></td>
+				<td><input type="number" name="draw_bridge" value="0"></td>
 				<td>Slow <input type="radio" name="slow_fast_bridge"
 					value="slow_bridge">
 				</td>
@@ -195,16 +194,16 @@
 					src="{% static 'Scouting2016/defenseImages/Sally Port.JPG' %}"
 					style="width: 175px;" /></td>
 				<td>Sally Port :</td>
-				<td><input type="number" name="sally_port"></td>
+				<td><input type="number" name="sally_port" value="4"></td>
 				<td>Slow <input type="radio" name="slow_fast_sally"
 					value="slow_sally">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_sally"
-					value="fast_sally">
+					value="fast_sally" checked="checked">
 				</td>
 			</tr>
 			<tr>
-				<td><p align="right"> Category D</p></td>
+				<td><p align="right">Category D</p></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -212,9 +211,9 @@
 					src="{% static 'Scouting2016/defenseImages/Rock Wall.JPG' %}"
 					style="width: 175px;" /></td>
 				<td>Rock Wall :</td>
-				<td><input type="number" name="rock_wall"></td>
+				<td><input type="number" name="rock_wall" value="5"></td>
 				<td>Slow <input type="radio" name="slow_fast_rock_wall"
-					value="slow_rock_wall">
+					value="slow_rock_wall" checked="checked">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_rock_wall"
 					value="fast_rock_wall">
@@ -226,16 +225,16 @@
 					src="{% static 'Scouting2016/defenseImages/Rough Terrain.JPG' %}"
 					style="width: 175px;" /></td>
 				<td>Rough Terrain :</td>
-				<td><input type="number" name="rough_terrain"></td>
+				<td><input type="number" name="rough_terrain" value="6"></td>
 				<td>Slow <input type="radio" name="slow_fast_rough"
 					value="slow_rough">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_rough"
-					value="fast_rough">
+					value="fast_rough" checked="checked">
 				</td>
 			</tr>
 			<tr>
-				<td><p align="right"> Category E</p></td>
+				<td><p align="right">Category E</p></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -243,7 +242,7 @@
 					src="{% static 'Scouting2016/defenseImages/Low Bar.JPG' %}"
 					style="width: 175px;" /></td>
 				<td>Low Bar :</td>
-				<td><input type="number" name="low_bar"></td>
+				<td><input type="number" name="low_bar" value="0"></td>
 				<td>Slow <input type="radio" name="slow_fast_low_bar"
 					value="slow_low_bar">
 				</td>
@@ -266,25 +265,25 @@
 			<tr>
 				<td></td>
 				<td>Scored Successfully</td>
-				<td><input type="number" name="low_score_successful"></td>
+				<td><input type="number" name="low_score_successful" value="5"></td>
 				<td>Scored Successfully</td>
-				<td><input type="number" name="high_score_successful">
+				<td><input type="number" name="high_score_successful" value="9">
 				</td>
 			</tr>
 
 			<tr>
 				<td></td>
 				<td>Failed</td>
-				<td><input type="number" name="low_score_fail"></td>
+				<td><input type="number" name="low_score_fail" value="0"></td>
 				<td>Failed</td>
-				<td><input type="number" name="high_score_fail"></td>
+				<td><input type="number" name="high_score_fail" value="4"></td>
 			</tr>
 			<tr>
 			</tr>
 			<tr>
 				<td></td>
 				<td><b>Tech Fouls</b></td>
-				<td><input type="number" name="score_tech_foul"></td>
+				<td><input type="number" name="score_tech_foul" value="1"></td>
 			</tr>
 		</table>
 		<br>
@@ -294,15 +293,20 @@
 			<tr>
 				<td></td>
 				<td>Scaled</td>
-				<td> <input type="radio" name="scale" value="scale_no"> No </td>
-				<td> <input type="radio" name="scale" value="scale_partial"> Attempted </td>
-				<td> <input type="radio" name="scale" value="scale_compelete"> Completed </td>
+				<td><input type="radio" name="scale_challenge" value="scale_no">
+					No</td>
+				<td><input type="radio" name="scale_challenge"
+					value="scale_partial" checked="checked"> Attempted</td>
+				<td><input type="radio" name="scale_challenge"
+					value="scale_compelete"> Completed</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>Challenged</td>
-				<td> <input type="radio" name="challenge" value="challenge_no"> No </td>
-				<td> <input type="radio" name="challenge" value="challenge_yes"> Yes </td>
+				<td><input type="radio" name="scale_challenge"
+					value="challenge_no"> No</td>
+				<td><input type="radio" name="scale_challenge"
+					value="challenge_yes"> Yes</td>
 			</tr>
 		</table>
 
