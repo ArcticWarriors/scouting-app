@@ -1,0 +1,64 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css"
+	href="{% static 'Scouting2016/style.css' %}" />
+<title>Welcome!</title>
+</head>
+
+<body>
+
+	{% include "Scouting2016/banner.html" %}
+	<h1>Team {{ team_number }}</h1>
+
+	<h2>Matches Played</h2>
+	<ul>
+		<li><a href = http://127.0.0.1:8000/2016/match_display/42>Match 42</a></li>
+		<li><a href = http://127.0.0.1:8000/2016/match_display/68>Match 68</a></li>
+	</ul>
+	<h2>Matches Won</h2>
+	<ul>
+		<li><a href = http://127.0.0.1:8000/2016/match_display/42>Match 42</a></li>
+		<li><a href = http://127.0.0.1:8000/2016/match_display/68>Match 68</a></li>
+	</ul>
+	<h2>Team Comments</h2>
+	<p>Team 174 is the very best team. They have won 1000000
+		competitions this year alone.</p>
+	<h1>Robot Statistics</h1>
+	<h2>Defenses Crossed</h2>
+	<table border="1">
+		<tr>
+			<td></td>
+			<td>Low Bar</td>
+			<td>Porticullis</td>
+			<td>Sally port</td>
+			<td>Moat</td>
+			<td>Rock wall</td>
+			<td>Rocky Terrain</td>
+			<td>Ramparts</td>
+			<td>Drawbridge</td>
+			<td>Chival de Frise</td>
+		</tr>
+		<tr>
+		<td> Number of Times Crossed</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		</tr>
+	
+	</table>
+
+<h2>Goals Scored</h2>
+Low goal scored:<br></br>
+Low goals missed:<br></br>
+High Goals scored:<br></br>
+High goals missed:<br></br>
+</body>
+</html>

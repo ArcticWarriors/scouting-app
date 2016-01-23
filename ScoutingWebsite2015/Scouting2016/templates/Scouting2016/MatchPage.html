@@ -1,0 +1,47 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css"
+	href="{% static 'Scouting2016/style.css' %}" />
+<title>Welcome!</title>
+</head>
+
+<body>
+
+	{% include "Scouting2016/banner.html" %}
+
+	<h1>Match {{ match_display }}</h1>
+	<table border="1" width="400">
+		<tr>
+			<td>Teams</td>
+			<td><a href=http://127.0.0.1:8000/2016/view_team/111>111</a></td>
+			<td><a href=http://127.0.0.1:8000/2016/view_team/222>222</a></td>
+			</td>
+			<td><a href=http://127.0.0.1:8000/2016/view_team/333>333</a></td>
+			</td>
+			<td>Vs.</td>
+			<td><a href = http://127.0.0.1:8000/2016/view_team/42>42</a></td>
+			<td><a href = http://127.0.0.1:8000/2016/view_team/444>444</a></td>
+			<td><a href = http://127.0.0.1:8000/2016/view_team/555>555</a></td>
+		</tr>
+		<tr>
+			<td>Score</td>
+			<td colspan="3">100</td>
+			<td>Vs.</td>
+			<td colspan="3">46</td>
+		</tr>
+		<tr>
+			<td>Ranking Points</td>
+			<td colspan="3">1</td>
+			<td>Vs.</td>
+			<td colspan="3">2</td>
+		</tr>
+		<tr>
+			<td>Tech. Fouls</td>
+			<td colspan="3">0</td>
+			<td>Vs.</td>
+			<td colspan="3">4</td>
+		</tr>
+</body>
+</html>

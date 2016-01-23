@@ -1,0 +1,41 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css"
+	href="{% static 'Scouting2016/style.css' %}" />
+<title>Welcome!</title>
+</head>
+<style>
+h2 {
+	text-align: center;
+}
+
+table {
+	text-align: center;
+}
+</style>
+<body>
+
+	{% include "Scouting2016/banner.html" %}
+	<h2>List of All Teams</h2>
+	<table border="1">
+		<tr>
+			<th>Team Number</th>
+			<th>Record</th>
+			<th>Tech. Fouls</th>
+		</tr>
+		<tr>
+			<td><a href=http://127.0.0.1:8000/2016/view_team/1001>1001</a></td>
+			<td>4-2</td>
+			<td>7</td>
+		</tr>
+		<tr>
+			<td><a href=http://127.0.0.1:8000/2016/view_team/683>683</a></td>
+			<td>0-6</td>
+			<td>17</td>
+		</tr>
+	</table>
+
+</body>
+</html>
