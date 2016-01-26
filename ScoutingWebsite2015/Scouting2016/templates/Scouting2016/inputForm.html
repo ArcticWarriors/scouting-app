@@ -118,12 +118,16 @@
 					src="{% static 'Scouting2016/defenseImages/Portcullis.JPG' %}"
 					style="height: 150px;" /></td>
 				<td>Portcullis :</td>
-				<td><input type="number" name="portcullis"value="1"></td>
+				<td><input type="number" name="portcullis" value="1"></td>
+				<td>Did Not Move <input type="radio"
+					name="slow_fast_portcullis" value="no_move_portcullis"
+					checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_portcullis"
-					value="2" checked="checked">
+					value="slow_portcullis">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_portcullis"
-					value="fast_portcullus" checked="checked">
+					value="fast_portcullis">
 				</td>
 			</tr>
 			<tr>
@@ -133,11 +137,14 @@
 					style="width: 175px;" /></td>
 				<td>Cheval De Frise :</td>
 				<td><input type="number" name="cheval_de_frise" value="0"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_cheval"
+					value="no_move_cheval" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_cheval"
 					value="slow_cheval">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_cheval"
-					value="fast_cheval" checked="checked">
+					value="fast_cheval">
 				</td>
 			</tr>
 			<tr>
@@ -150,8 +157,11 @@
 					style="width: 175px;" /></td>
 				<td>Moat :</td>
 				<td><input type="number" name="moat" value="2"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_moat"
+					value="no_move_moat" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_moat"
-					value="slow_moat" checked="checked">
+					value="slow_moat">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_moat"
 					value="fast_moat">
@@ -164,6 +174,9 @@
 					style="width: 175px;" /></td>
 				<td>Ramparts :</td>
 				<td><input type="number" name="ramparts" value="0"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_ramparts"
+					value="no_move_ramparts" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_ramparts"
 					value="slow_ramparts">
 				</td>
@@ -181,6 +194,9 @@
 					style="height: 150px;" /></td>
 				<td>Draw Bridge :</td>
 				<td><input type="number" name="draw_bridge" value="0"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_bridge"
+					value="no_move_bridge" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_bridge"
 					value="slow_bridge">
 				</td>
@@ -195,11 +211,14 @@
 					style="width: 175px;" /></td>
 				<td>Sally Port :</td>
 				<td><input type="number" name="sally_port" value="4"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_sally"
+					value="no_move_sally" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_sally"
 					value="slow_sally">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_sally"
-					value="fast_sally" checked="checked">
+					value="fast_sally">
 				</td>
 			</tr>
 			<tr>
@@ -212,8 +231,11 @@
 					style="width: 175px;" /></td>
 				<td>Rock Wall :</td>
 				<td><input type="number" name="rock_wall" value="5"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_rock_wall"
+					value="no_move_rock_wall" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_rock_wall"
-					value="slow_rock_wall" checked="checked">
+					value="slow_rock_wall">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_rock_wall"
 					value="fast_rock_wall">
@@ -226,11 +248,14 @@
 					style="width: 175px;" /></td>
 				<td>Rough Terrain :</td>
 				<td><input type="number" name="rough_terrain" value="6"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_rough"
+					value="no_move_rough" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_rough"
 					value="slow_rough">
 				</td>
 				<td>Fast <input type="radio" name="slow_fast_rough"
-					value="fast_rough" checked="checked">
+					value="fast_rough">
 				</td>
 			</tr>
 			<tr>
@@ -243,6 +268,9 @@
 					style="width: 175px;" /></td>
 				<td>Low Bar :</td>
 				<td><input type="number" name="low_bar" value="0"></td>
+				<td>Did Not Move <input type="radio" name="slow_fast_low_bar"
+					value="no_move_low_bar" checked="checked">
+				</td>
 				<td>Slow <input type="radio" name="slow_fast_low_bar"
 					value="slow_low_bar">
 				</td>
