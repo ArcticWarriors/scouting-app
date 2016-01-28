@@ -14,6 +14,8 @@
 	Enter scouting information team by team and submit!
 	<br>
 	<br>
+	
+	{{ slow_fast_bridge }} 
 
 	<form action="/2016/submit_form" method="post">
 		{% csrf_token %}
@@ -104,24 +106,18 @@
 				<td><img src="{% static 'Scouting2016/defenseImages/Portcullis.JPG' %}" style="height: 150px;" /></td>
 				<td>Portcullis :</td>
 				<td><input type="number" name="portcullis" value="{{portcullis}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_portcullis" value="no_move_portcullis" {% if slow_fast_portcullis == 'no_move_portcullis' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_portcullis" value="slow_portcullis" {% if slow_fast_portcullis == 'slow_portcullis' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_portcullis" value="fast_portcullis" {% if slow_fast_portcullis == 'fast_portcullis' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_portcullis" value="no_move_portcullis" {% if slow_fast_portcullis == 'no_move_portcullis' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_portcullis" value="slow_portcullis" {% if slow_fast_portcullis == 'slow_portcullis' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_portcullis" value="fast_portcullis" {% if slow_fast_portcullis == 'fast_portcullis' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Cheval De Frise.JPG' %}" style="width: 175px;" /></td>
 				<td>Cheval De Frise :</td>
 				<td><input type="number" name="cheval_de_frise" value="{{cheval_de_frise}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_cheval" value="no_move_cheval" {% if slow_fast_cheval == 'no_move_cheval' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_cheval" value="slow_cheval" {% if slow_fast_cheval == 'slow_cheval' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_cheval" value="fast_cheval" {% if slow_fast_cheval == 'fast_cheval' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_cheval" value="no_move_cheval" {% if slow_fast_cheval == 'no_move_cheval' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_cheval" value="slow_cheval" {% if slow_fast_cheval == 'slow_cheval' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_cheval" value="fast_cheval" {% if slow_fast_cheval == 'fast_cheval' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td><p align="right">Category B</p></td>
@@ -131,24 +127,18 @@
 				<td><img src="{% static 'Scouting2016/defenseImages/Moat.JPG' %}" style="width: 175px;" /></td>
 				<td>Moat :</td>
 				<td><input type="number" name="moat" value="{{moat}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_moat" value="no_move_moat" {% if slow_fast_moat == 'no_move_moat' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_moat" value="slow_moat" {% if slow_fast_moat == 'slow_moat' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_moat" value="fast_moat" {% if slow_fast_moat == 'fast_moat' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_moat" value="no_move_moat" {% if slow_fast_moat == 'no_move_moat' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_moat" value="slow_moat" {% if slow_fast_moat == 'slow_moat' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_moat" value="fast_moat" {% if slow_fast_moat == 'fast_moat' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Ramparts.JPG' %}" style="width: 175px;" /></td>
 				<td>Ramparts :</td>
 				<td><input type="number" name="ramparts" value="{{ramparts}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_ramparts" value="no_move_ramparts" {% if slow_fast_ramparts == 'no_move_ramparts' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_ramparts" value="slow_ramparts" {% if slow_fast_ramparts == 'slow_ramparts' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_ramparts" value="fast_ramparts" {% if slow_fast_ramparts == 'fast_ramparts' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_ramparts" value="no_move_ramparts" {% if slow_fast_ramparts == 'no_move_ramparts' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_ramparts" value="slow_ramparts" {% if slow_fast_ramparts == 'slow_ramparts' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_ramparts" value="fast_ramparts" {% if slow_fast_ramparts == 'fast_ramparts' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td><p align="right">Category C</p></td>
@@ -158,24 +148,18 @@
 				<td><img src="{% static 'Scouting2016/defenseImages/Draw Bridge.JPG' %}" style="height: 150px;" /></td>
 				<td>Draw Bridge :</td>
 				<td><input type="number" name="draw_bridge" value="{{draw_bridge}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_bridge" value="no_move_bridge" {% if slow_fast_bridge == 'no_move_bridge' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_bridge" value="slow_bridge" {% if slow_fast_bridge == 'slow_bridge' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_bridge" value="fast_brdige" {% if slow_fast_bridge == 'fast_brdige' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_bridge" value="no_move_bridge" {% if slow_fast_bridge == 'no_move_bridge' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_bridge" value="slow_bridge" {% if slow_fast_bridge == 'slow_bridge' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_bridge" value="fast_brdige" {% if slow_fast_bridge == 'fast_bridge' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Sally Port.JPG' %}" style="width: 175px;" /></td>
 				<td>Sally Port :</td>
 				<td><input type="number" name="sally_port" value="{{sally_port}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_sally" value="no_move_sally" {% if slow_fast_sally == 'no_move_sally' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_sally" value="slow_sally" {% if slow_fast_sally == 'slow_sally' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_sally" value="fast_sally" {% if slow_fast_sally == 'fast_sally' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_sally" value="no_move_sally" {% if slow_fast_sally == 'no_move_sally' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_sally" value="slow_sally" {% if slow_fast_sally == 'slow_sally' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_sally" value="fast_sally" {% if slow_fast_sally == 'fast_sally' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td><p align="right">Category D</p></td>
@@ -185,24 +169,18 @@
 				<td><img src="{% static 'Scouting2016/defenseImages/Rock Wall.JPG' %}" style="width: 175px;" /></td>
 				<td>Rock Wall :</td>
 				<td><input type="number" name="rock_wall" value="{{rock_wall}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_rock_wall" value="no_move_rock_wall" {% if slow_fast_rock_wall == 'no_move_rock_wall' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_rock_wall" value="slow_rock_wall" {% if slow_fast_rock_wall == 'slow_rock_wall' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_rock_wall" value="fast_rock_wall" {% if slow_fast_rock_wall == 'fast_rock_wall' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_rock_wall" value="no_move_rock_wall" {% if slow_fast_rock_wall == 'no_move_rock_wall' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_rock_wall" value="slow_rock_wall" {% if slow_fast_rock_wall == 'slow_rock_wall' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_rock_wall" value="fast_rock_wall" {% if slow_fast_rock_wall == 'fast_rock_wall' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Rough Terrain.JPG' %}" style="width: 175px;" /></td>
 				<td>Rough Terrain :</td>
 				<td><input type="number" name="rough_terrain" value="{{rough_terrain}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_rough" value="no_move_rough" {% if slow_fast_rough == 'no_move_rough' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_rough" value="slow_rough" {% if slow_fast_rough == 'slow_rough' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_rough" value="fast_rough" {% if slow_fast_rough == 'fast_rough' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_rough" value="no_move_rough" {% if slow_fast_rough == 'no_move_rough' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_rough" value="slow_rough" {% if slow_fast_rough == 'slow_rough' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_rough" value="fast_rough" {% if slow_fast_rough == 'fast_rough' %} checked="checked"{% endif %}></td>
 			</tr>
 			<tr>
 				<td><p align="right">Category E</p></td>
@@ -212,12 +190,9 @@
 				<td><img src="{% static 'Scouting2016/defenseImages/Low Bar.JPG' %}" style="width: 175px;" /></td>
 				<td>Low Bar :</td>
 				<td><input type="number" name="low_bar" value="{{low_bar}}"></td>
-				<td>Did Not Move <input type="radio" name="slow_fast_low_bar" value="no_move_low_bar" {% if slow_fast_low_bar == 'no_move_low_bar' %} checked="checked"{% endif %}>
-				</td>
-				<td>Slow <input type="radio" name="slow_fast_low_bar" value="slow_low_bar" {% if slow_fast_low_bar == 'slow_low_bar' %} checked="checked"{% endif %}>
-				</td>
-				<td>Fast <input type="radio" name="slow_fast_low_bar" value="fast_low_bar" {% if slow_fast_low_bar == 'fast_low_bar' %} checked="checked"{% endif %}>
-				</td>
+				<td>Did Not Move <input type="radio" name="slow_fast_low_bar" value="no_move_low_bar" {% if slow_fast_low_bar == 'no_move_low_bar' %} checked="checked"{% endif %}></td>
+				<td>Slow <input type="radio" name="slow_fast_low_bar" value="slow_low_bar" {% if slow_fast_low_bar == 'slow_low_bar' %} checked="checked"{% endif %}></td>
+				<td>Fast <input type="radio" name="slow_fast_low_bar" value="fast_low_bar" {% if slow_fast_low_bar == 'fast_low_bar' %} checked="checked"{% endif %}></td>
 			</tr>
 		</table>
 		<br>

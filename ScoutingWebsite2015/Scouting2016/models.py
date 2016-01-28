@@ -28,9 +28,6 @@ class ScoreResult(models.Model):
     team = models.ForeignKey(Team)
     match = models.ForeignKey(Match)
     
-    team_number = models.IntegerField()
-    match_number = models.IntegerField()
-    
     auto_score_low = models.IntegerField()
     auto_score_high = models.IntegerField()
     
@@ -42,6 +39,7 @@ class ScoreResult(models.Model):
     draw_bridge = models.IntegerField()
     moat = models.IntegerField()
     rough_terrain = models.IntegerField()
+    portcullis = models.IntegerField(default=0)
     
     score_tech_foul = models.IntegerField()
     
@@ -51,5 +49,22 @@ class ScoreResult(models.Model):
     low_score_fail = models.IntegerField()
     
     notes_text_area =models.CharField(max_length=1000)
+    
+    #new stuff below
+    auto_defense = models.CharField(max_length=50, default="")
+    auto_spy = models.CharField(max_length=50, default="")
+    
+    scale_challenge = models.CharField(max_length=50, default="")
+    
+    slow_fast_bridge = models.CharField(max_length=50, default="")
+    slow_fast_cheval = models.CharField(max_length=50, default="")
+    slow_fast_low_bar = models.CharField(max_length=50, default="")
+    slow_fast_moat = models.CharField(max_length=50, default="")
+    slow_fast_portcullis = models.CharField(max_length=50, default="")
+    slow_fast_ramparts = models.CharField(max_length=50, default="")
+    slow_fast_rock_wall = models.CharField(max_length=50, default="")
+    slow_fast_rough = models.CharField(max_length=50, default="")
+    slow_fast_sally = models.CharField(max_length=50, default="")
+    
     
     
