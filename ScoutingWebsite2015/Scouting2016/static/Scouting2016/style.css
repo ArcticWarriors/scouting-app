@@ -8,7 +8,7 @@
   margin: 0;
 }
 .nav li {
-	font-family: 'Comic Sans MS', sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   font-size: 1.2em;
   line-height: 40px;
   height: 40px;
@@ -44,20 +44,20 @@
   line-height: 50px;
   font-size: 1.4em;
 }
-body {
+body {	
 	background-color: #FFFFFF;
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 }
-
 table {
 	background-color: #C4C4C4;
 }
 
 h1 {
-	font-family: 'Comic Sans MS', sans-serif;
+	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;
 }
 
 h2 {
-	font-family: 'Comic Sans MS', sans-serif;
+	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;
 }
