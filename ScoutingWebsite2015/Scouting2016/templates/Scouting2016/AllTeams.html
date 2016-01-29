@@ -22,19 +22,26 @@ table {
 	<table border="1">
 		<tr>
 			<th>Team Number</th>
-			<th>Record</th>
-			<th>Tech. Fouls</th>
+			<th>Low goal scores</th>
+			<th>Low goal misses</th>
+			<th>High goal scores</th>
+			<th>High goal misses</th>
+			<th>Autonomous High goal</th>
+			<th>Autonomous Low goal</th>
 		</tr>
+		{% for team in teams %}
+	
 		<tr>
-			<td><a href=http://127.0.0.1:8000/2016/view_team/1001>1001</a></td>
-			<td>4-2</td>
-			<td>7</td>
+	  	<td> <a href="/2016/view_team/{{ team.teamNumber }}">{{ team.teamNumber }}</a></td>
+	  	<td> {{ team.avgerages.low_score_successful__avg }} </td>
+      	<td> {{ team.avgerages.low_score_fail__avg }} </td>
+      	<td> {{ team.avgerages.high_score_successful__avg }} </td>
+      	<td> {{ team.avgerages.high_score_fail__avg }} </td>
+      	<td> {{ team.avgerages.auto_score_low__avg }} </td>
+      	<td> {{ team.avgerages.auto_score_high__avg }} </td>
 		</tr>
-		<tr>
-			<td><a href=http://127.0.0.1:8000/2016/view_team/683>683</a></td>
-			<td>0-6</td>
-			<td>17</td>
-		</tr>
+
+		{% endfor %}
 	</table>
 
 </body>
