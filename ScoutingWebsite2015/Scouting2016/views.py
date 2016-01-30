@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.template.context_processors import request
 from Scouting2016.models import Team, Match, ScoreResult
 from django.db.models import Avg, Sum
+from django.http.response import HttpResponse
 
 # Create your views here.
 def __get_team_metrics(team):                                                                              
@@ -95,6 +96,73 @@ def show_graph(request):
     context = {}
     context['teams']=Team.objects.all()
     return render(request,'Scouting2016/showGraph.html',context)
+
+def submit_graph(request):
+    
+    teams = []
+    fields = []
+    
+    for key in request.GET:
+        try:
+            team_number = int(key)
+            teams.append(team_number)
+        except:
+            fields.append(key)
+            
+    print teams
+    print fields
+    
+    teams = ",".join(str(x) for x in teams)
+    fields = ",".join(str(x) for x in fields)
+    
+    context = {}
+    context['teams']=Team.objects.all()
+    context['graph_url'] = 'gen_graph/%s/%s' % (teams, fields)
+    return render(request,'Scouting2016/showGraph.html',context)
+
+def gen_graph(request, team_numbers, fields):
+    
+    import matplotlib
+    matplotlib.use('agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    from matplotlib.font_manager import FontProperties
+    
+    team_numbers = [int(x) for x in team_numbers.split(",")]
+    fields = fields.split(',')
+    
+    
+    f = plt.figure(figsize=(6,6))
+    legend_handles = []
+    
+    print team_numbers
+    print fields
+    for team_number in team_numbers:
+        print team_number
+        team = Team.objects.get(teamNumber=int(team_number))
+        
+        for field in fields:
+            metric = []
+            for result in team.scoreresult_set.all():
+                metric.append(getattr(result, field))
+            print field
+            hand, = plt.plot(metric, label="Team %s, %s" % (team.teamNumber, field))
+            legend_handles.append(hand)
+            
+    fontP = FontProperties()
+    fontP.set_size('small')
+    plt.legend(handles=legend_handles, prop=fontP)
+    plt.xlabel("Match")
+    
+    matplotlib.pyplot.close(f)
+    
+    canvas = FigureCanvasAgg(f)    
+    response = HttpResponse(content_type='image/png')
+    canvas.print_png(response)
+    
+    return response
+    
+    pass
 
 def robot_display(request):
     return render(request, 'Scouting2016/RobotDisplay.html')

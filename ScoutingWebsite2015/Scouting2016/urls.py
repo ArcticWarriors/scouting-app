@@ -26,5 +26,7 @@ urlpatterns = [
                url(r'^all_matches$', views.all_matches, name='all_matches'),
                url(r'^search$', views.search_page, name='edit_form'),
                url(r'^graph$',views.show_graph, name = 'show_graph'),
+               url(r'^gen_graph/(?P<team_numbers>\w+(,\w+)*)/(?P<fields>\w+(,\w+)*)$',views.gen_graph, name = 'gen_graph'),
+               url(r'^submit_graph$',views.submit_graph, name = "submit_graph")
               ]
 
