@@ -24,6 +24,17 @@ No matches scouted
      <li><a href="/2016/match_display/{{sr.match.matchNumber}}">{{sr.match.matchNumber}}</a></li>
   {% endfor %}
   </ul>
+{% endif %}
+	<h2>Pictures</h2>
+	<img src="{% static 'Scouting2016/teambotimages/'|add:team_number|add:'_1.jpg' %}" width='500'>
+	</img>
+	<br></br>
+	<img src="{% static 'Scouting2016/teambotimages/'|add:team_number|add:'_2.jpg' %}" width='500'>
+	</img>
+	<h2>Team Comments</h2>
+{% if score_result_list|length == 0 %}
+No matches scouted
+{% else %}
   
  <h2>Team Comments</h2>
   <ul>
