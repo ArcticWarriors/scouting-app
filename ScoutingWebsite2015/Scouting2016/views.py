@@ -102,8 +102,16 @@ def view_team(request, team_number):
 
 def match_display(request, match_number):
     context = {}
+
+    this_match = Match.objects.get(matchNumber=match_number)
+    
+    score_result_list = []
+    
+    for sr in this_match.scoreresult_set.all():
+        score_result_list.append(sr)
+        
+    context['score_result_list'] = score_result_list
     context['match_display'] = match_number
-    print context
     return render(request, 'Scouting2016/MatchPage.html', context)
 
 def edit_form(request, team_number, match_number):
@@ -173,7 +181,11 @@ def all_teams(request):
     return render(request, 'Scouting2016/AllTeams.html', context)
 
 def all_matches(request):
-    return render(request, 'Scouting2016/AllMatches.html')
+    matches = Match.objects.all()
+    context = {}
+    context['matches']=matches
+    
+    return render(request, 'Scouting2016/AllMatches.html',context)
 
 def submitForm(request):
     print request.POST
@@ -187,7 +199,7 @@ def submitForm(request):
     score_result = ScoreResult.objects.create(match=match, 
                                               team=team,
                                               auto_score_low = request.POST["auto_score_low"],
-                                              auto_score_high = request.POST["auto_score_high"],
+                                              auto_score_high=request.POST["auto_score_high"],
                                               cheval_de_frise = request.POST["cheval_de_frise"],
                                               ramparts = request.POST["ramparts"],
                                               sally_port = request.POST["sally_port"],

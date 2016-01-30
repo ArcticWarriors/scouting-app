@@ -5,7 +5,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
 <title>Welcome!</title>
 </head>
-
+<style>
+table {
+	text-align: center;
+}
+</style>
 <body>
 
 {% include "Scouting2016/banner.html" %}
@@ -13,21 +17,16 @@
 	<table border="1">
 		<tr>
 			<th>Match Number</th>
-			<th>Score</th>
-			<th>Red Alliance</th>
-			<th>Blue Alliance</th>
+			<th colspan = '6'>Teams</th>
 		</tr>
+		{% for match in matches %}
 		<tr>
-			<td><a href = http://127.0.0.1:8000/2016/match_display/17>Match 17</a></td>
-			<td>4-2</td>
-			<td><a href=http://127.0.0.1:8000/2016/view_team/1001>1001</a>, <a href=http://127.0.0.1:8000/2016/view_team/345>345</a> and <a href=http://127.0.0.1:8000/2016/view_team/21>21</a></td>
-			<td><a href=http://127.0.0.1:8000/2016/view_team/40>40</a>, <a href=http://127.0.0.1:8000/2016/view_team/294>294</a> and <a href=http://127.0.0.1:8000/2016/view_team/420>420</a></td>
-		<tr>
-			<td><a href = http://127.0.0.1:8000/2016/match_display/89>Match 89</a></td>
-			<td>0-6</td>
-			<td><a href=http://127.0.0.1:8000/2016/view_team/683>683</a>, <a href=http://127.0.0.1:8000/2016/view_team/990>990</a> and <a href=http://127.0.0.1:8000/2016/view_team/899>899</a></td>
-			<td><a href=http://127.0.0.1:8000/2016/view_team/344>344</a>, <a href=http://127.0.0.1:8000/2016/view_team/17>17</a> and <a href=http://127.0.0.1:8000/2016/view_team/24>24</a></td>
+	  	  <td> <a href="/2016/match_display/{{ match.matchNumber }}">{{ match.matchNumber }}</a></td>
+		  {% for sr in match.scoreresult_set.all %}
+		   <td><a href = "/2016/view_team/{{sr.team.teamNumber}}">{{sr.team.teamNumber}} </a></td>
+		   {% endfor %}
 		</tr>
+		{% endfor %}
 	</table>
 
 </body>
