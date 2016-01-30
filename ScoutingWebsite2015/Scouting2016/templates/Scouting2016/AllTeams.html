@@ -1,9 +1,8 @@
 <html>
 <head>
-
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css"
-	href="{% static 'Scouting2016/style.css' %}" />
+<script src="{% static 'Scouting2016/sorttable.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
 <title>Welcome!</title>
 </head>
 <style>
@@ -19,7 +18,7 @@ table {
 
 	{% include "Scouting2016/banner.html" %}
 	<h2>List of All Teams</h2>
-	<table border="1">
+	<table border="1" class="sortable">
 		<tr>
 			<th>Team Number</th>
 			<th>Low goal scores</th>

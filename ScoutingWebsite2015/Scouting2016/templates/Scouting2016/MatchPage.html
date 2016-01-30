@@ -1,7 +1,7 @@
 <html>
 <head>
-
 {% load staticfiles %}
+<script src="{% static 'Scouting2016/sorttable.js' %}"></script>
 <link rel="stylesheet" type="text/css"
 	href="{% static 'Scouting2016/style.css' %}" />
 <title>Welcome!</title>
@@ -22,7 +22,7 @@ table {
 
 	<h1>Match {{ match_display }}</h1>
 	<h2>Teams in Match:</h2>
-	<table border="1">
+	<table border="1" class = "sortable">
 
 		<th>Teams</th>
 		<th>Low goal scores</th>
