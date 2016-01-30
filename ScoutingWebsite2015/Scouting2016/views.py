@@ -71,26 +71,25 @@ def __get_score_result_fields():
     
     return output
 
+
+def __get_create_kargs(request):
+    
+    kargs = {}
+    
+    score_result_fields_with_default= __get_score_result_fields()
+    
+    for field_name in score_result_fields_with_default:
+        if field_name not in request.POST:
+            kargs[field_name] = score_result_fields_with_default[field_name]
+        else:
+            kargs[field_name] = request.POST[field_name]
+          
+    return kargs
     
 
 def index(request):
     
     return render(request, 'Scouting2016/index.html')
-
-def info_for_form_edit(request):
-    
-    return render(request, 'Scouting2016/info_for_form_edit.html')
-
-def showForm(request):
-    score_result = __get_score_result_fields()
-    
-    context = {}
-    context['team_number'] = 0
-    context['match_number'] = 0
-    context["sr"] = score_result
-
-    
-    return render(request, 'Scouting2016/inputForm.html', context)
 
 def robot_display(request):
     return render(request, 'Scouting2016/RobotDisplay.html')
@@ -116,20 +115,6 @@ def match_display(request, match_number):
     context['match_display'] = match_number
     print context
     return render(request, 'Scouting2016/MatchPage.html', context)
-
-def edit_form(request):
-    
-    match = Match.objects.get(matchNumber=request.GET["match_number"])
-    team = Team.objects.get(teamNumber=request.GET["team_number"])
-    
-    score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
-    
-    context = {}
-    context['team_number'] = request.GET["team_number"]
-    context['match_number'] = request.GET["match_number"]
-    context['sr'] = score_results
-    
-    return render(request, 'Scouting2016/inputForm.html', context)
 
 
 #Change^^^^^
@@ -157,55 +142,106 @@ def all_teams(request):
 def all_matches(request):
     return render(request, 'Scouting2016/AllMatches.html')
 
-def submitForm(request):
+
+def search_page(request):
+    return render(request, 'Scouting2016/index.html')
+
+
+#######################################
+# Form Stuff
+#######################################
+
+
+def info_for_form_edit(request):
+    
+    return render(request, 'Scouting2016/info_for_form_edit.html')
+
+
+def show_add_form(request):
+    score_result = __get_score_result_fields()
+    
+    context = {}
+    context['team_number'] = 1765
+    context['match_number'] = 10
+    context['submit_view'] = "/2016/submit_form"
+    context["sr"] = score_result
+
+    
+    return render(request, 'Scouting2016/inputForm.html', context)
+
+
+def show_edit_form(request):
+    
+    match = Match.objects.get(matchNumber=request.GET["match_number"])
+    team = Team.objects.get(teamNumber=request.GET["team_number"])
+    
+    score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
+    
+    context = {}
+    context['team_number'] = request.GET["team_number"]
+    context['match_number'] = request.GET["match_number"]
+    context['sr'] = score_results
+    context['submit_view'] = '/2016/submit_edit'
+    context['lock_team_and_match'] = True
+    
+    print "doing edit..."
+    
+    return render(request, 'Scouting2016/inputForm.html', context)
+
+"""
+Creates a new score result and match (if possible).  Uses the team and match number
+from the form to search for an existing score result.  If one exists, it will
+re-direct the user back to the form so they can attempt to input the data again.
+
+If the score result does not exist, a new one will be created
+"""
+def submit_new_match(request):
     team = Team.objects.get(teamNumber=request.POST["team_number"])
     if len(Match.objects.filter(matchNumber=request.POST["match_number"])) == 0:
-        print "Creating match!"
         match = Match.objects.create(matchNumber=request.POST["match_number"])
     else :
         match = Match.objects.get(matchNumber=request.POST["match_number"])
         
     available_srs = ScoreResult.objects.filter(match=match,  team=team)
-    
-    kargs = __get_create_kargs(request)
 
-    if len(available_srs) == 1:
-        score_result = available_srs[0]
+    context = {}
+    context['submit_view'] = "/2016/submit_form"
+    render_view = 'Scouting2016/inputForm.html'
+    
+    # score result with this combination already exists, don't let them add it again
+    if len(available_srs) != 0:
+        context['error_message'] = "ERROR! A combination of team %s and match %s already exists" % (team.teamNumber, match.matchNumber)
+        context['match_number'] = match.matchNumber
+        context['team_number'] = team.teamNumber
         
-        for key, value in kargs.iteritems():
-            print key, value
-#             setattr(score_result, key, value)
-#         score_result.save()
-#         print score_result
-#         score_result.update(kargs)
+        fake_score_result = {}
+        for key in request.POST:
+            fake_score_result[key] = request.POST[key]
+        context['sr'] = fake_score_result
     else:
-        print "Creating, but not really"
-        pass
-        #__create_score_result(match, team, request)
+        render_view = 'Scouting2016/MatchPage.html'
+        context['match_display'] = match.matchNumber
+        kargs = __get_create_kargs(request)
+        ScoreResult.objects.create(match=match, team=team, **kargs)
+     
+    return render(request, render_view, context)
+
+"""
+Edits an existing match.
+"""
+def edit_prev_match(request):
+    match = Match.objects.get(matchNumber=request.POST["match_number"])
+    team = Team.objects.get(teamNumber=request.POST["team_number"])
+    
+    score_result = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
+    
+    sr_fields = request.POST
+    for key, value in sr_fields.iteritems():
+        setattr(score_result, key, value)
+    score_result.save()
         
-#     kargs = __get_create_kargs(request)
-#     score_result = ScoreResult.objects.create(match=match, 
-#                                       team=team,
-#                                       **kargs)
+    context = {}
+    context['match_display'] = match.matchNumber
     
-    
-    print "Exists? %s" % available_srs
-
-    print "Adding SR: %s, %s" % (team, match)   
-    return render(request, 'Scouting2016/index.html')
-
-
-def __get_create_kargs(request):
-    
-    kargs = {}
-    
-    score_result_fields_with_default= __get_score_result_fields()
-    
-    for field_name in score_result_fields_with_default:
-        if field_name not in request.POST:
-            kargs[field_name] = score_result_fields_with_default[field_name]
-        else:
-            kargs[field_name] = request.POST[field_name]
-          
-    return kargs
+    return render(request, 'Scouting2016/MatchPage.html', context)
     

@@ -19,15 +19,17 @@ table {
 	<br>
 	<br>
  
- {{ sr.auto_defense }}
+    {% if error_message != "" %}
+    <h1 style="color:red;"> {{ error_message }} </h1>
+    {% endif %}
 	
-	<form action="/2016/submit_form" method="post">
+	<form action="{{ submit_view }}" method="post">
 		{% csrf_token %}
 		
 		<table>
 			<tr>
-				<td>Team Number :</td> <td><input type="number" name="team_number" value="{{team_number}}"></td>
-				<td>Match Number:</td> <td><input type="number" name="match_number" value="{{match_number}}"></td>
+				<td>Team Number :</td> <td><input type="number" name="team_number"  value="{{team_number}}"   {% if lock_team_and_match %} readonly {% endif %}></td>
+				<td>Match Number:</td> <td><input type="number" name="match_number" value="{{match_number}}"  {% if lock_team_and_match %} readonly {% endif %}></td>
 			</tr>
 		</table>
 

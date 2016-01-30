@@ -68,6 +68,8 @@ class ScoreResult(models.Model):
     
 
     def __str__(self):
-        return "Score Result: auto_low: %s" % self.auto_score_low
+        output = "Score Result: "
+        
+        return output
     
     
