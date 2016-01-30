@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.template.context_processors import request
-from Scouting2016.models import Team, Match, ScoreResult
+from Scouting2016.models import Team, Match, ScoreResult, TeamPictures
 from django.db.models import Avg, Sum
 
 # Create your views here.
@@ -96,6 +96,7 @@ def robot_display(request):
 
 def view_team(request, team_number):
     this_team = Team.objects.get(teamNumber=team_number)
+    picture_list = TeamPictures.objects.filter(team_id=this_team.id)
     
     metrics = __get_team_metrics(this_team)
     score_result_list = []
@@ -104,9 +105,14 @@ def view_team(request, team_number):
         score_result_list.append(sr)
     
     context = {}
-    context['team_number'] = this_team.teamNumber
+#     context['team_number'] = this_team.teamNumber
     context['metrics'] = metrics
     context['score_result_list'] = score_result_list
+    context['team_number'] = team_number
+    context['pictures']=picture_list
+    
+    print this_team.teamNumber, type(this_team.teamNumber)
+    print team_number, type(team_number)
     
     return render(request, 'Scouting2016/TeamPage.html', context)
 
