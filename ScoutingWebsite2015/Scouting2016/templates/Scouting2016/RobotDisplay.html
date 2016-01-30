@@ -11,23 +11,61 @@
 
 {% include "Scouting2016/banner.html" %}
 
-{{ team.teamNumber }}
+<center><img src="{% static 'Scouting2016/TeamPicture.jpg' %}" /></center>
+
+
+<h1>Autonomous</h1>
+Configurable autonomous modes, selected from the SmartDashboard.
+<ol>
+  <li> Select Starting position (defense 1-5 or spybot) </li>
+  <li> Select Defense </li>
+  <li> Select Mode
+    <ul>
+       <li> Do Nothing (110% accuracy rate) </li>
+       <li> Cross Defense, Score Low (camera aided) </li>
+       <li> Cross Defense, Score Low </li>
+       <li> Cross Defense </li>
+       <li> Reach Defense </li>
+    
+    </ul>
+   </li>
+</ol>
 
 <h1>Drive Train</h1>
-<p>The drive train consists of a 6-wheel tank drive.</p>
-<h1>Boulder Manipulation</h1>
-Over-roller information.
-<h1>Scaling</h1>
+<p>6 Wheel Tank Drive</p>
 <ul>
-  <li>Item </li>
-  <li> stuff </li>
-  <li>Something </li>
+  <li> 8 Inch pneumatic wheels</li>
+  <li> Single Speed Transmission - ?? feet/sec</li>
 </ul>
+
+
+<h1>Boulder Manipulation</h1>
+Over-Roller
+<ul>
+  <li> Intake motor specs</li>
+  <li> Drop down specs</li>
+</ul>
+
+
+<h1>Scaling</h1>
+Four-Bar linkage/Sliding Elevator
+<ul>
+  <li> Lift Motor Specs </li>
+  <li> Tilt Motor Spec </li>
+</ul>
+
+
 <h1 id = "drive_team">Drive Team</h1>
-<img src="{% static 'Scouting2016/TeamPicture.jpg' %}">
-</img><br></br>
-Picture from snobot.org front page, to test out images.
-<h2>Drivers</h2>
-Subgroups!
-<h2>Operators</h2>
+<img src="{% static 'Scouting2016/DriveTeam.jpg' %}" />
+<br></br>
+
+
+<h2>Driver</h2>
+
+<h2>Operator</h2>
+
+<h2>Human Player</h2>
+
+<h2>Coach</h2>
+
 </html>

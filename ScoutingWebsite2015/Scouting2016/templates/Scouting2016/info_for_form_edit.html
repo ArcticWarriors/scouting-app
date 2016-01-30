@@ -1,0 +1,29 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
+<title>Welcome!</title>
+</head>
+
+<body>
+
+	{% include "Scouting2016/banner.html" %}
+
+	<form action="/2016/edit_form" method="get">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Match Number:</td>
+				<td><input type="number" name="match_number" value="10"></td>
+			</tr>
+			<tr>
+				<td>Team Number:</td>
+				<td><input type="number" name="team_number" value="1765"></td>
+			</tr>
+		</table>
+
+		<br> <br> <input type="submit" value="Submit">
+	</form>
+</body>
+</html>

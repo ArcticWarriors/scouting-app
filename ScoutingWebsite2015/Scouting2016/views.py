@@ -6,23 +6,23 @@ from django.db.models import Avg, Sum
 # Create your views here.
 def __get_team_metrics(team):                                                                              
     metrics = team.scoreresult_set.aggregate(Avg("auto_score_low"),
-                                          Avg("auto_score_high"),
-                                           Sum("cheval_de_frise"),
-                                           Sum("ramparts"),
-                                           Sum("sally_port"),
-                                           Sum("low_bar"),
-                                           Sum("rock_wall"),
-                                           Sum("draw_bridge"),                                          
-                                           Sum("moat"),
-                                           Sum("rough_terrain"),
-                                           Sum("score_tech_foul"),
-                                           Avg("high_score_fail"),
-                                           Avg("high_score_successful"),
-                                           Avg("low_score_fail"),
-                                           Avg("low_score_successful"),
-    
-                                          
-                                          
+                                             Avg("auto_score_high"),
+                                            
+                                             Sum("cheval_de_frise"),
+                                             Sum("ramparts"),
+                                             Sum("sally_port"),
+                                             Sum("low_bar"),
+                                             Sum("rock_wall"),
+                                             Sum("draw_bridge"),                                           
+                                             Sum("moat"),
+                                             Sum("rough_terrain"),
+                                             Sum("portcullis"),
+                                             
+                                             Sum("score_tech_foul"),
+                                             Avg("high_score_fail"),
+                                             Avg("high_score_successful"),
+                                             Avg("low_score_fail"),
+                                             Avg("low_score_successful"),
                                           )
     
     #Format all of the numbers.  If we haven't scouted the team, None will be returned.  Turn that into NA
@@ -34,49 +34,62 @@ def __get_team_metrics(team):
             
     return metrics
 
+
+def __get_score_result_fields():
+    
+    output = {}
+    
+    output['auto_score_high'] = 0
+    output['auto_score_low'] = 0
+    output['cheval_de_frise'] = 0
+    output['draw_bridge'] = 0
+    output['high_score_fail'] = 0
+    output['high_score_successful'] = 0
+    output['low_bar'] = 0
+    output['low_score_fail'] = 0
+    output['low_score_successful'] = 0
+    output['moat'] = 0
+    output['notes_text_area'] = 0
+    output['ramparts'] = 0
+    output['rock_wall'] = 0
+    output['rough_terrain'] = 0
+    output['score_tech_foul'] = 0
+    output['sally_port'] = 0
+    output['portcullis'] = 0
+    output['auto_spy'] = 'yes'
+    output['auto_defense'] = 'no_reach'
+    output['scale_challenge'] = 'partial'    
+    output['slow_fast_bridge'] = 'slow'
+    output['slow_fast_cheval'] = 'fast'
+    output['slow_fast_low_bar'] = 'slow'
+    output['slow_fast_moat'] = 'slow'
+    output['slow_fast_portcullis'] = 'slow'
+    output['slow_fast_ramparts'] = 'no_move'
+    output['slow_fast_rock_wall'] = 'no_move'
+    output['slow_fast_rough'] = 'slow'
+    output['slow_fast_sally'] = 'slow'
+    
+    return output
+
+
+def __get_create_kargs(request):
+    
+    kargs = {}
+    
+    score_result_fields_with_default= __get_score_result_fields()
+    
+    for field_name in score_result_fields_with_default:
+        if field_name not in request.POST:
+            kargs[field_name] = score_result_fields_with_default[field_name]
+        else:
+            kargs[field_name] = request.POST[field_name]
+          
+    return kargs
     
 
 def index(request):
-
+    
     return render(request, 'Scouting2016/index.html')
-
-def showForm(request):
-    context = {}
-    context['auto_score_high'] = 0
-    context['auto_score_low'] = 0
-    context['cheval_de_frise'] = 0
-    context['draw_bridge'] = 0
-    context['high_score_fail'] = 0
-    context['high_score_successful'] = '0'
-    context['low_bar'] = 0
-    context['low_score_fail'] = 0
-    context['low_score_successful'] = 0
-    context['match_number'] = 1
-    context['moat'] = 0
-    context['notes_text_area'] = 0
-    context['ramparts'] = 0
-    context['rock_wall'] = 0
-    context['rough_terrain'] = 0
-    context['score_tech_foul'] = 0
-    context['team_number'] = 2000
-    
-    context['sally_port'] = 0
-    context['auto_defense'] = 'auto_cross_ramparts'
-    context['auto_spy'] = 'auto_spy_yes'
-    context['portcullis'] = 5
-    context['scale_challenge'] = 'scale_partial'    
-    context['slow_fast_bridge'] = 'slow_bridge'
-    context['slow_fast_cheval'] = 'fast_cheval'
-    context['slow_fast_low_bar'] = 'slow_low_bar'
-    context['slow_fast_moat'] = 'slow_moat'
-    context['slow_fast_portcullis'] = 'slow_portcullis'
-    context['slow_fast_ramparts'] = 'no_move_ramparts'
-    context['slow_fast_rock_wall'] = 'no_move_rock_wall'
-    context['slow_fast_rough'] = 'slow_rough'
-    context['slow_fast_sally'] = 'slow_sally'
-
-    
-    return render(request, 'Scouting2016/inputForm.html', context)
 
 def robot_display(request):
     return render(request, 'Scouting2016/RobotDisplay.html')
@@ -90,64 +103,26 @@ def view_team(request, team_number):
     for sr in this_team.scoreresult_set.all():
         score_result_list.append(sr)
     
-
-    context = { 
-               "team_number": this_team.teamNumber,
-               "metrics": metrics,
-               "score_result_list": score_result_list,
-              }
+    context = {}
+    context['team_number'] = this_team.teamNumber
+    context['metrics'] = metrics
+    context['score_result_list'] = score_result_list
     
-    context['team_number'] = team_number
     return render(request, 'Scouting2016/TeamPage.html', context)
 
 def match_display(request, match_number):
     context = {}
-    context['match_display'] = match_number
-    print context
-    return render(request, 'Scouting2016/MatchPage.html', context)
 
-def edit_form(request, team_number, match_number):
+    this_match = Match.objects.get(matchNumber=match_number)
     
-    match = Match.objects.get(matchNumber=match_number)
-    team = Team.objects.get(teamNumber=team_number)
+    score_result_list = []
     
-    score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
-    
-    context = {}
-    context['team_number'] = team_number
-    context['match_number'] = match_number
-    
-    context['auto_score_high'] = score_results.auto_score_high
-    context['auto_score_low'] = score_results.auto_score_low
-    context['cheval_de_frise'] = score_results.cheval_de_frise
-    context['draw_bridge'] = score_results.draw_bridge
-    context['high_score_fail'] = score_results.high_score_fail
-    context['high_score_successful'] = score_results.high_score_successful
-    context['low_bar'] = score_results.low_bar
-    context['low_score_fail'] = score_results.low_score_fail
-    context['low_score_successful'] = score_results.low_score_successful
-    context['moat'] = score_results.moat
-    context['notes_text_area'] = score_results.notes_text_area
-    context['ramparts'] = score_results.ramparts
-    context['rock_wall'] = score_results.rock_wall
-    context['rough_terrain'] = score_results.rough_terrain
-    context['score_tech_foul'] = score_results.score_tech_foul
-    
-    context['sally_port'] = score_results.sally_port
-    context['auto_defense'] = score_results.auto_defense
-    context['auto_spy'] = score_results.auto_spy
-    context['portcullis'] = score_results.portcullis
-    context['scale_challenge'] = score_results.scale_challenge    
-    context['slow_fast_bridge'] = score_results.slow_fast_bridge
-    context['slow_fast_cheval'] = score_results.slow_fast_cheval
-    context['slow_fast_low_bar'] = score_results.slow_fast_low_bar
-    context['slow_fast_moat'] = score_results.slow_fast_moat
-    context['slow_fast_portcullis'] = score_results.slow_fast_portcullis
-    context['slow_fast_ramparts'] = score_results.slow_fast_ramparts
-    context['slow_fast_rock_wall'] = score_results.slow_fast_rock_wall
-    context['slow_fast_rough'] = score_results.slow_fast_rough
-    context['slow_fast_sally'] = score_results.slow_fast_sally
-    return render(request, 'Scouting2016/inputForm.html', context)
+    for sr in this_match.scoreresult_set.all():
+        score_result_list.append(sr)
+        
+    context['score_result_list'] = score_result_list
+    context['match_display'] = match_number
+    return render(request, 'Scouting2016/MatchPage.html', context)
 
 
 #Change^^^^^
@@ -161,11 +136,11 @@ def all_teams(request):
         
         metrics = __get_team_metrics(team)
                 
-        team_with_avg = {"id": team.id, 
-                         "teamNumber": team.teamNumber,
-                         "matches_scouted": team.scoreresult_set.count(),
-                         "avgerages": metrics,
-                        }
+        team_with_avg = {}
+        team_with_avg["id"] = team.id
+        team_with_avg["teamNumber"] = team.teamNumber
+        team_with_avg["matches_scouted"] = team.scoreresult_set.count()
+        team_with_avg["avgerages"] = metrics
         teams_with_avg.append(team_with_avg)
 
     context = {"teams": teams_with_avg}
@@ -173,49 +148,112 @@ def all_teams(request):
     return render(request, 'Scouting2016/AllTeams.html', context)
 
 def all_matches(request):
-    return render(request, 'Scouting2016/AllMatches.html')
+    matches = Match.objects.all()
+    context = {}
+    context['matches']=matches
+    
+    return render(request, 'Scouting2016/AllMatches.html',context)
 
-def submitForm(request):
-    print request.POST
+
+def search_page(request):
+    return render(request, 'Scouting2016/index.html')
+
+
+#######################################
+# Form Stuff
+#######################################
+
+
+def info_for_form_edit(request):
+    
+    return render(request, 'Scouting2016/info_for_form_edit.html')
+
+
+def show_add_form(request):
+    score_result = __get_score_result_fields()
+    
+    context = {}
+    context['team_number'] = 1765
+    context['match_number'] = 10
+    context['submit_view'] = "/2016/submit_form"
+    context["sr"] = score_result
+
+    
+    return render(request, 'Scouting2016/inputForm.html', context)
+
+
+def show_edit_form(request):
+    
+    match = Match.objects.get(matchNumber=request.GET["match_number"])
+    team = Team.objects.get(teamNumber=request.GET["team_number"])
+    
+    score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
+    
+    context = {}
+    context['team_number'] = request.GET["team_number"]
+    context['match_number'] = request.GET["match_number"]
+    context['sr'] = score_results
+    context['submit_view'] = '/2016/submit_edit'
+    context['lock_team_and_match'] = True
+    
+    print "doing edit..."
+    
+    return render(request, 'Scouting2016/inputForm.html', context)
+
+"""
+Creates a new score result and match (if possible).  Uses the team and match number
+from the form to search for an existing score result.  If one exists, it will
+re-direct the user back to the form so they can attempt to input the data again.
+
+If the score result does not exist, a new one will be created
+"""
+def submit_new_match(request):
     team = Team.objects.get(teamNumber=request.POST["team_number"])
     if len(Match.objects.filter(matchNumber=request.POST["match_number"])) == 0:
-        print "Creating match!"
         match = Match.objects.create(matchNumber=request.POST["match_number"])
     else :
         match = Match.objects.get(matchNumber=request.POST["match_number"])
         
-    score_result = ScoreResult.objects.create(match=match, 
-                                              team=team,
-                                              auto_score_low = request.POST["auto_score_low"],
-                                              auto_score_high = request.POST["auto_score_high"],
-                                              cheval_de_frise = request.POST["cheval_de_frise"],
-                                              ramparts = request.POST["ramparts"],
-                                              sally_port = request.POST["sally_port"],
-                                              low_bar = request.POST["low_bar"],
-                                              rock_wall = request.POST["rock_wall"],
-                                              draw_bridge = request.POST["draw_bridge"],
-                                              moat = request.POST["moat"],
-                                              rough_terrain = request.POST["rough_terrain"],  
-                                              score_tech_foul = request.POST["score_tech_foul"],
-                                              high_score_fail = request.POST["high_score_fail"],
-                                              high_score_successful = request.POST["high_score_successful"],
-                                              low_score_successful = request.POST["low_score_successful"],
-                                              low_score_fail = request.POST["low_score_fail"],
-                                              notes_text_area = request.POST["notes_text_area"],
-                                              #New Stuff that needs to updated to the Model 
-                                              auto_spy = request.POST["auto_spy"],
-                                              portcullis = request.POST["portcullis"],
-                                              auto_defense = request.POST["auto_defense"],
-                                              scale_challenge = request.POST["scale_challenge"],
-                                              slow_fast_low_bar = request.POST["slow_fast_low_bar"],
-                                              slow_fast_moat = request.POST["slow_fast_moat"],
-                                              slow_fast_rock_wall = request.POST["slow_fast_rock_wall"],
-                                              slow_fast_rough = request.POST["slow_fast_rough"],
-                                              slow_fast_ramparts = request.POST["slow_fast_ramparts"],
-                                              slow_fast_portcullis = request.POST["slow_fast_portcullis"],
-                                              slow_fast_sally = request.POST["slow_fast_sally"],
-                                              slow_fast_bridge = request.POST["slow_fast_bridge"],
-                                              slow_fast_cheval = request.POST["slow_fast_cheval"],)
+    available_srs = ScoreResult.objects.filter(match=match,  team=team)
+
+    context = {}
+    context['submit_view'] = "/2016/submit_form"
+    render_view = 'Scouting2016/inputForm.html'
+    
+    # score result with this combination already exists, don't let them add it again
+    if len(available_srs) != 0:
+        context['error_message'] = "ERROR! A combination of team %s and match %s already exists" % (team.teamNumber, match.matchNumber)
+        context['match_number'] = match.matchNumber
+        context['team_number'] = team.teamNumber
         
-    print "Adding SR: %s, %s" % (team, match)   
-    return render(request, 'Scouting2016/index.html')
+        fake_score_result = {}
+        for key in request.POST:
+            fake_score_result[key] = request.POST[key]
+        context['sr'] = fake_score_result
+    else:
+        render_view = 'Scouting2016/MatchPage.html'
+        context['match_display'] = match.matchNumber
+        kargs = __get_create_kargs(request)
+        ScoreResult.objects.create(match=match, team=team, **kargs)
+     
+    return render(request, render_view, context)
+
+"""
+Edits an existing match.
+"""
+def edit_prev_match(request):
+    match = Match.objects.get(matchNumber=request.POST["match_number"])
+    team = Team.objects.get(teamNumber=request.POST["team_number"])
+    
+    score_result = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
+    
+    sr_fields = request.POST
+    for key, value in sr_fields.iteritems():
+        setattr(score_result, key, value)
+    score_result.save()
+        
+    context = {}
+    context['match_display'] = match.matchNumber
+    
+    return render(request, 'Scouting2016/MatchPage.html', context)
+    
