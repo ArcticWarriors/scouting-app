@@ -17,5 +17,8 @@ urlpatterns = [
                url (r'^match_display/(?P<match_number>[0-9]+)$', views.match_display, name = 'match_display'),
                url(r'^all_teams$', views.all_teams, name='all_teams'),
                url(r'^all_matches$', views.all_matches, name='all_matches'),
-               url(r'^match_(?P<match_number>[0-9]+)/team_(?P<team_number>[0-9]+)$', views.edit_form, name='edit_form'),
+               url(r'^pre_edit_form', views.info_for_form_edit, name='info_for_form_edit'),
+               url(r'^edit_page$', views.edit_form, name='edit_form'),
+               url(r'^search$', views.edit_form, name='edit_form'),
               ]
+

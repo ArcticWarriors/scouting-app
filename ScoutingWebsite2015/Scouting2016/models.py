@@ -66,5 +66,8 @@ class ScoreResult(models.Model):
     slow_fast_rough = models.CharField(max_length=50, default="")
     slow_fast_sally = models.CharField(max_length=50, default="")
     
+
+    def __str__(self):
+        return "Score Result: auto_low: %s" % self.auto_score_low
     
     

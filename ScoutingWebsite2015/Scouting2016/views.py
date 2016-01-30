@@ -37,43 +37,50 @@ def __get_team_metrics(team):
     
 
 def index(request):
-
+    
     return render(request, 'Scouting2016/index.html')
 
-def showForm(request):
-    context = {}
-    context['auto_score_high'] = 0
-    context['auto_score_low'] = 0
-    context['cheval_de_frise'] = 0
-    context['draw_bridge'] = 0
-    context['high_score_fail'] = 0
-    context['high_score_successful'] = '0'
-    context['low_bar'] = 0
-    context['low_score_fail'] = 0
-    context['low_score_successful'] = 0
-    context['match_number'] = 1
-    context['moat'] = 0
-    context['notes_text_area'] = 0
-    context['ramparts'] = 0
-    context['rock_wall'] = 0
-    context['rough_terrain'] = 0
-    context['score_tech_foul'] = 0
-    context['team_number'] = 2000
+def info_for_form_edit(request):
     
-    context['sally_port'] = 0
-    context['auto_defense'] = 'auto_cross_ramparts'
-    context['auto_spy'] = 'auto_spy_yes'
-    context['portcullis'] = 5
-    context['scale_challenge'] = 'scale_partial'    
-    context['slow_fast_bridge'] = 'slow_bridge'
-    context['slow_fast_cheval'] = 'fast_cheval'
-    context['slow_fast_low_bar'] = 'slow_low_bar'
-    context['slow_fast_moat'] = 'slow_moat'
-    context['slow_fast_portcullis'] = 'slow_portcullis'
-    context['slow_fast_ramparts'] = 'no_move_ramparts'
-    context['slow_fast_rock_wall'] = 'no_move_rock_wall'
-    context['slow_fast_rough'] = 'slow_rough'
-    context['slow_fast_sally'] = 'slow_sally'
+    return render(request, 'Scouting2016/info_for_form_edit.html')
+
+def showForm(request):
+    score_result = {}
+    score_result['auto_score_high'] = 0
+    score_result['auto_score_low'] = 0
+    score_result['cheval_de_frise'] = 0
+    score_result['draw_bridge'] = 0
+    score_result['high_score_fail'] = 0
+    score_result['high_score_successful'] = '0'
+    score_result['low_bar'] = 0
+    score_result['low_score_fail'] = 0
+    score_result['low_score_successful'] = 0
+    score_result['moat'] = 0
+    score_result['notes_text_area'] = 0
+    score_result['ramparts'] = 0
+    score_result['rock_wall'] = 0
+    score_result['rough_terrain'] = 0
+    score_result['score_tech_foul'] = 0
+    
+    score_result['sally_port'] = 0
+    score_result['auto_defense'] = 'auto_cross_ramparts'
+    score_result['auto_spy'] = 'yes'
+    score_result['portcullis'] = 5
+    score_result['scale_challenge'] = 'scale_partial'    
+    score_result['slow_fast_bridge'] = 'slow'
+    score_result['slow_fast_cheval'] = 'fast'
+    score_result['slow_fast_low_bar'] = 'slow'
+    score_result['slow_fast_moat'] = 'slow'
+    score_result['slow_fast_portcullis'] = 'slow'
+    score_result['slow_fast_ramparts'] = 'no_move'
+    score_result['slow_fast_rock_wall'] = 'no_move'
+    score_result['slow_fast_rough'] = 'slow'
+    score_result['slow_fast_sally'] = 'slow'
+    
+    context = {}
+    context['team_number'] = 2000
+    context['match_number'] = 1
+    context["sr"] = score_result
 
     
     return render(request, 'Scouting2016/inputForm.html', context)
@@ -106,47 +113,18 @@ def match_display(request, match_number):
     print context
     return render(request, 'Scouting2016/MatchPage.html', context)
 
-def edit_form(request, team_number, match_number):
+def edit_form(request):
     
-    match = Match.objects.get(matchNumber=match_number)
-    team = Team.objects.get(teamNumber=team_number)
+    match = Match.objects.get(matchNumber=request.POST["match_number"])
+    team = Team.objects.get(teamNumber=request.POST["team_number"])
     
     score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
     
     context = {}
-    context['team_number'] = team_number
-    context['match_number'] = match_number
+    context['team_number'] = request.POST["team_number"]
+    context['match_number'] = request.POST["match_number"]
+    context['sr'] = score_results
     
-    context['auto_score_high'] = score_results.auto_score_high
-    context['auto_score_low'] = score_results.auto_score_low
-    context['cheval_de_frise'] = score_results.cheval_de_frise
-    context['draw_bridge'] = score_results.draw_bridge
-    context['high_score_fail'] = score_results.high_score_fail
-    context['high_score_successful'] = score_results.high_score_successful
-    context['low_bar'] = score_results.low_bar
-    context['low_score_fail'] = score_results.low_score_fail
-    context['low_score_successful'] = score_results.low_score_successful
-    context['moat'] = score_results.moat
-    context['notes_text_area'] = score_results.notes_text_area
-    context['ramparts'] = score_results.ramparts
-    context['rock_wall'] = score_results.rock_wall
-    context['rough_terrain'] = score_results.rough_terrain
-    context['score_tech_foul'] = score_results.score_tech_foul
-    
-    context['sally_port'] = score_results.sally_port
-    context['auto_defense'] = score_results.auto_defense
-    context['auto_spy'] = score_results.auto_spy
-    context['portcullis'] = score_results.portcullis
-    context['scale_challenge'] = score_results.scale_challenge    
-    context['slow_fast_bridge'] = score_results.slow_fast_bridge
-    context['slow_fast_cheval'] = score_results.slow_fast_cheval
-    context['slow_fast_low_bar'] = score_results.slow_fast_low_bar
-    context['slow_fast_moat'] = score_results.slow_fast_moat
-    context['slow_fast_portcullis'] = score_results.slow_fast_portcullis
-    context['slow_fast_ramparts'] = score_results.slow_fast_ramparts
-    context['slow_fast_rock_wall'] = score_results.slow_fast_rock_wall
-    context['slow_fast_rough'] = score_results.slow_fast_rough
-    context['slow_fast_sally'] = score_results.slow_fast_sally
     return render(request, 'Scouting2016/inputForm.html', context)
 
 
@@ -176,7 +154,6 @@ def all_matches(request):
     return render(request, 'Scouting2016/AllMatches.html')
 
 def submitForm(request):
-    print request.POST
     team = Team.objects.get(teamNumber=request.POST["team_number"])
     if len(Match.objects.filter(matchNumber=request.POST["match_number"])) == 0:
         print "Creating match!"
@@ -184,38 +161,69 @@ def submitForm(request):
     else :
         match = Match.objects.get(matchNumber=request.POST["match_number"])
         
-    score_result = ScoreResult.objects.create(match=match, 
-                                              team=team,
-                                              auto_score_low = request.POST["auto_score_low"],
-                                              auto_score_high = request.POST["auto_score_high"],
-                                              cheval_de_frise = request.POST["cheval_de_frise"],
-                                              ramparts = request.POST["ramparts"],
-                                              sally_port = request.POST["sally_port"],
-                                              low_bar = request.POST["low_bar"],
-                                              rock_wall = request.POST["rock_wall"],
-                                              draw_bridge = request.POST["draw_bridge"],
-                                              moat = request.POST["moat"],
-                                              rough_terrain = request.POST["rough_terrain"],  
-                                              score_tech_foul = request.POST["score_tech_foul"],
-                                              high_score_fail = request.POST["high_score_fail"],
-                                              high_score_successful = request.POST["high_score_successful"],
-                                              low_score_successful = request.POST["low_score_successful"],
-                                              low_score_fail = request.POST["low_score_fail"],
-                                              notes_text_area = request.POST["notes_text_area"],
-                                              #New Stuff that needs to updated to the Model 
-                                              auto_spy = request.POST["auto_spy"],
-                                              portcullis = request.POST["portcullis"],
-                                              auto_defense = request.POST["auto_defense"],
-                                              scale_challenge = request.POST["scale_challenge"],
-                                              slow_fast_low_bar = request.POST["slow_fast_low_bar"],
-                                              slow_fast_moat = request.POST["slow_fast_moat"],
-                                              slow_fast_rock_wall = request.POST["slow_fast_rock_wall"],
-                                              slow_fast_rough = request.POST["slow_fast_rough"],
-                                              slow_fast_ramparts = request.POST["slow_fast_ramparts"],
-                                              slow_fast_portcullis = request.POST["slow_fast_portcullis"],
-                                              slow_fast_sally = request.POST["slow_fast_sally"],
-                                              slow_fast_bridge = request.POST["slow_fast_bridge"],
-                                              slow_fast_cheval = request.POST["slow_fast_cheval"],)
+    available_srs = ScoreResult.objects.filter(match=match,  team=team)
+    
+    kargs = __get_create_kargs(request)
+
+    if len(available_srs) == 1:
+        score_result = available_srs[0]
         
+        for key, value in kargs.iteritems():
+            setattr(score_result, key, value)
+        score_result.save()
+        print score_result
+#         score_result.update(kargs)
+    else:
+        print "Creating, but not really"
+        pass
+        #__create_score_result(match, team, request)
+        
+#     kargs = __get_create_kargs(request)
+#     score_result = ScoreResult.objects.create(match=match, 
+#                                       team=team,
+#                                       **kargs)
+    
+    
+    print "Exists? %s" % available_srs
+
     print "Adding SR: %s, %s" % (team, match)   
     return render(request, 'Scouting2016/index.html')
+
+
+def __get_create_kargs(request):
+    
+    kargs = {}
+    
+    kargs['auto_score_low'] = request.POST["auto_score_low"]
+    kargs['auto_score_high'] = request.POST["auto_score_high"]
+    kargs['cheval_de_frise'] = request.POST["cheval_de_frise"]
+    kargs['ramparts'] = request.POST["ramparts"]
+    kargs['sally_port'] = request.POST["sally_port"]
+    kargs['low_bar'] = request.POST["low_bar"]
+    kargs['rock_wall'] = request.POST["rock_wall"]
+    kargs['draw_bridge'] = request.POST["draw_bridge"]
+    kargs['moat'] = request.POST["moat"]
+    kargs['rough_terrain'] = request.POST["rough_terrain"]  
+    kargs['score_tech_foul'] = request.POST["score_tech_foul"]
+    kargs['high_score_fail'] = request.POST["high_score_fail"]
+    kargs['high_score_successful'] = request.POST["high_score_successful"]
+    kargs['low_score_successful'] = request.POST["low_score_successful"]
+    kargs['low_score_fail'] = request.POST["low_score_fail"]
+    kargs['notes_text_area'] = request.POST["notes_text_area"]
+
+    kargs['auto_spy'] = request.POST["auto_spy"]
+    kargs['portcullis'] = request.POST["portcullis"]
+    kargs['auto_defense'] = request.POST["auto_defense"]
+    kargs['scale_challenge'] = request.POST["scale_challenge"]
+    kargs['slow_fast_low_bar'] = request.POST["slow_fast_low_bar"]
+    kargs['slow_fast_moat'] = request.POST["slow_fast_moat"]
+    kargs['slow_fast_rock_wall'] = request.POST["slow_fast_rock_wall"]
+    kargs['slow_fast_rough'] = request.POST["slow_fast_rough"]
+    kargs['slow_fast_ramparts'] = request.POST["slow_fast_ramparts"]
+    kargs['slow_fast_portcullis'] = request.POST["slow_fast_portcullis"]
+    kargs['slow_fast_sally'] = request.POST["slow_fast_sally"]
+    kargs['slow_fast_bridge'] = request.POST["slow_fast_bridge"]
+    kargs['slow_fast_cheval'] = request.POST["slow_fast_cheval"]
+          
+    return kargs
+    
