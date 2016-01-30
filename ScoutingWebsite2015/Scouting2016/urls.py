@@ -26,5 +26,7 @@ urlpatterns = [
                url(r'^all_matches$', views.all_matches, name='all_matches'),
                url(r'^search$', views.search_page, name='search_page'),
                url(r'^search_results$', views.search_results, name='search_results'),
+               
+               url(r'^upload_image$', views.upload_image, name='upload_image'),
               ]
 

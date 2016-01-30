@@ -189,6 +189,9 @@ def search_results(request):
     context['results'] = results
     return render(request, 'Scouting2016/search.html', context)
 
+def upload_image(request):
+    
+    return view_team(request, 174)
 
 #######################################
 # Form Stuff

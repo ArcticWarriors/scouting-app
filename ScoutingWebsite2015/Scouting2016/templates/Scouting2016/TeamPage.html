@@ -27,7 +27,14 @@ No matches scouted
 {% endif %}
 	
 	<h2>Pictures</h2>
+	
+		<form action="/2016/upload_image">
+  			<input type="file" name={{team_name}} accept="image/*">
+  			<input type="submit">
+		</form>
+		
 	{% for picture in pictures %}
+		
 	<img src="{% static picture.path %}" width='500'>
 	<br></br>
 	{% endfor %}
