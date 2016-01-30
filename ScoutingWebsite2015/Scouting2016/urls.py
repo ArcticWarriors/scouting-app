@@ -25,5 +25,6 @@ urlpatterns = [
                url(r'^all_teams$', views.all_teams, name='all_teams'),
                url(r'^all_matches$', views.all_matches, name='all_matches'),
                url(r'^search$', views.search_page, name='edit_form'),
+               url(r'^graph$',views.show_graph, name = 'show_graph'),
               ]
 

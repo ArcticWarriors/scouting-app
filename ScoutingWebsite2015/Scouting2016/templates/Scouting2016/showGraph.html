@@ -1,0 +1,39 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css"
+	href="{% static 'Scouting2016/style.css' %}" />
+<title>Welcome!</title>
+</head>
+
+<body>
+
+	{% include "Scouting2016/banner.html" %}
+	<h2>Teams to graph</h2>
+	<ul>
+	 {% for team in teams %}
+		<li>Include team {{ team.teamNumber }}: <input type="checkbox" name="{{ team.teamNumber }}"></a></li>
+	{% endfor %}
+	</ul>
+	<h2>Statistics to graph</h2>
+	<ul>
+	<li> Auto low goal scores: <input type="checkbox" name="team.auto_score_low"> </li>
+	<li> Auto high goal scores: <input type="checkbox" name="team.auto_score_high"> </li>
+	<li> High goal scores: <input type="checkbox" name="team.high_score_successful"> </li>
+	<li> High goal misses: <input type="checkbox" name="team.high_score_fail"> </li>
+	<li> Low goal scores: <input type="checkbox" name="team.low_score_successful"> </li>
+	<li> Low goal misses: <input type="checkbox" name="team.low_score_fail"> </li>
+	<li>Tech. Fouls: <input type="checkbox" name="team.score_tech_foul"> </li>
+	<li> Cheval de Frise crosses: <input type="checkbox" name="team.cheval_de_frise"> </li>
+	<li> Ramparts: <input type="checkbox" name="team.ramparts"> </li>
+	<li> Sally port door: <input type="checkbox" name="team.sally_port"> </li>
+	<li> Low bar: <input type="checkbox" name="team.low_bar"> </li>
+	<li> Rock wall: <input type="checkbox" name="team.rock_wall"> </li>
+	<li> Drawbridge: <input type="checkbox" name="team.draw_bridge"> </li>
+	<li> Moat: <input type="checkbox" name="team.moat"> </li>
+	<li> Rough Terrain: <input type="checkbox" name="team.rough_terrain"> </li>
+	<li> Porticullis: <input type="checkbox" name="team.portcullis"> </li>
+	</ul>
+</body>
+</html>

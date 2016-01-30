@@ -91,6 +91,11 @@ def index(request):
     
     return render(request, 'Scouting2016/index.html')
 
+def show_graph(request):
+    context = {}
+    context['teams']=Team.objects.all()
+    return render(request,'Scouting2016/showGraph.html',context)
+
 def robot_display(request):
     return render(request, 'Scouting2016/RobotDisplay.html')
 
