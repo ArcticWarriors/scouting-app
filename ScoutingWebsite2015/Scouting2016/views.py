@@ -162,7 +162,32 @@ def all_matches(request):
 
 
 def search_page(request):
-    return render(request, 'Scouting2016/index.html')
+    return render(request, 'Scouting2016/search.html')
+
+
+def search_results(request):
+    context = {}
+    context['get'] = request.GET
+    score_result_fields = __get_score_result_fields()
+    
+    kargs = {}
+    for key in score_result_fields:
+        if key in request.GET and len(request.GET[key]) != 0:
+            if request.GET[key + '_value'] == '>=':
+                extension = '__gte'
+            elif request.GET[key + '_value'] == '<=' : 
+                extension = '__lte'
+            else:
+                extension = ''
+            karg_name = key + extension
+            kargs[karg_name] = request.GET[key]
+            
+    print "Our query: " + "\n".join("%s->%s" % (key, kargs[key]) for key in kargs)
+    
+    results = ScoreResult.objects.filter(**kargs)
+    
+    context['results'] = results
+    return render(request, 'Scouting2016/search.html', context)
 
 
 #######################################

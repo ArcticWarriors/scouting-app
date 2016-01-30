@@ -1,0 +1,191 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
+<title>Search</title>
+</head>
+
+<body>
+	{% include "Scouting2016/banner.html" %}
+
+	<h1>Search Specific Team</h1>
+	
+	{% if get|length != 0%}
+		{% if results|length != 0 %}
+			<table>
+			Teams that match the criteria:
+			{% for result in results %}
+				<tr>
+					<td> {{result.team.teamNumber}}</td>
+				</tr>
+			{% endfor %}
+			</table>
+		{% else %}
+			No results found!
+		{% endif %}
+	{% endif %}
+	
+	<br>
+	Enter information that meets the requirement for a team you are looking for!
+	<form action="/2016/search_results" method="get">
+		<table>
+			<tr>Average number of AUTO goals </tr>
+			<tr>
+				<td>High AUTO Goals :</td>
+				<td><select name=auto_score_high_value>
+						<option value="=">=</option>
+						<option value="<=" > <= </option>
+						<option value=">="> >= </option>
+				</select></td>
+				<td><input type="number" name="auto_score_high"></td>
+			</tr>
+			<tr>
+				<td>Low AUTO Goals:</td>
+				<td><select name=auto_score_low_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="auto_score_low"></td>
+			</tr>
+		</table>
+		<table>
+			<br>
+			<tr>Average number of goals
+			</tr>
+			<tr>
+				<td>High Goals :</td>
+				<td><select name=high_score_successful_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="high_score_successful"></td>
+			</tr>
+			<tr>
+				<td>Low Goals:</td>
+				<td><select name=low_score_successful_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="low_score_successful"></td>
+			</tr>
+		</table>
+		<br> <br>
+		<table>
+			<tr>Crossed over _______ Defense X amount of times
+			</tr>
+			<tr>
+				<td><p align="right">Category A</p></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Portcullis:</td>
+				<td><select name=portcullis_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="portcullis"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Cheval De Frise:</td>
+				<td><select name=cheval_de_frise_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="cheval_de_frise"></td>
+			</tr>
+			<tr>
+				<td><p align="right">Category B</p></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Moat:</td>
+				<td><select name=moat_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="moat"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Ramparts:</td>
+				<td><select name=ramparts_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="ramparts"></td>
+			</tr>
+			<tr>
+				<td><p align="right">Category C</p></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Draw Bridge:</td>
+				<td><select name=draw_bridge_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="draw_bridge"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Sally Port:</td>
+				<td><select name=sally_port_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="sally_port"></td>
+			</tr>
+			<tr>
+				<td><p align="right">Category D</p></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Rock Wall:</td>
+				<td><select name=rock_wall_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="rock_wall"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Rough Terrain:</td>
+				<td><select name=rough_terrain_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="rough_terrain"></td>
+			</tr>
+			<tr>
+				<td><p align="right">Category E</p></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Low Bar:</td>
+				<td><select name=low_bar_value>
+						<option value="=">=</option>
+						<option value="<="><=</option>
+						<option value=">=">>=</option>
+				</select></td>
+				<td><input type="number" name="low_bar"></td>
+			</tr>
+		</table>
+
+		<br> <br> <input type="submit" value="Submit">
+	</form>
+
+</body>
+</html>
