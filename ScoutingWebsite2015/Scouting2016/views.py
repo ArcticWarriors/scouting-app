@@ -108,9 +108,6 @@ def submit_graph(request):
             teams.append(team_number)
         except:
             fields.append(key)
-            
-    print teams
-    print fields
     
     teams = ",".join(str(x) for x in teams)
     fields = ",".join(str(x) for x in fields)
@@ -118,6 +115,7 @@ def submit_graph(request):
     context = {}
     context['teams']=Team.objects.all()
     context['graph_url'] = 'gen_graph/%s/%s' % (teams, fields)
+    
     return render(request,'Scouting2016/showGraph.html',context)
 
 def gen_graph(request, team_numbers, fields):
@@ -135,17 +133,14 @@ def gen_graph(request, team_numbers, fields):
     f = plt.figure(figsize=(6,6))
     legend_handles = []
     
-    print team_numbers
-    print fields
     for team_number in team_numbers:
-        print team_number
         team = Team.objects.get(teamNumber=int(team_number))
         
         for field in fields:
             metric = []
             for result in team.scoreresult_set.all():
                 metric.append(getattr(result, field))
-            print field
+
             hand, = plt.plot(metric, label="Team %s, %s" % (team.teamNumber, field))
             legend_handles.append(hand)
             
@@ -183,9 +178,6 @@ def view_team(request, team_number):
     context['score_result_list'] = score_result_list
     context['team_number'] = team_number
     context['pictures']=picture_list
-    
-    print this_team.teamNumber, type(this_team.teamNumber)
-    print team_number, type(team_number)
     
     return render(request, 'Scouting2016/TeamPage.html', context)
 
@@ -254,11 +246,8 @@ def search_results(request):
                 extension = ''
             karg_name = key + extension
             kargs[karg_name] = request.GET[key]
-            
-    print "Our query: " + "\n".join("%s->%s" % (key, kargs[key]) for key in kargs)
     
     results = ScoreResult.objects.filter(**kargs)
-    
     context['results'] = results
     return render(request, 'Scouting2016/search.html', context)
 
@@ -302,8 +291,6 @@ def show_edit_form(request):
     context['sr'] = score_results
     context['submit_view'] = '/2016/submit_edit'
     context['lock_team_and_match'] = True
-    
-    print "doing edit..."
     
     return render(request, 'Scouting2016/inputForm.html', context)
 
