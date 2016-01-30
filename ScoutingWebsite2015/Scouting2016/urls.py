@@ -27,6 +27,8 @@ urlpatterns = [
                url(r'^search$', views.search_page, name='edit_form'),
                url(r'^graph$',views.show_graph, name = 'show_graph'),
                url(r'^gen_graph/(?P<team_numbers>\w+(,\w+)*)/(?P<fields>\w+(,\w+)*)$',views.gen_graph, name = 'gen_graph'),
-               url(r'^submit_graph$',views.submit_graph, name = "submit_graph")
+               url(r'^submit_graph$',views.submit_graph, name = "submit_graph"),
+               url(r'^search_results$', views.search_results, name='search_results'),
+               url(r'^upload_image$', views.upload_image, name='upload_image'),
               ]
 

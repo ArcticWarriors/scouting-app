@@ -23,6 +23,12 @@ class TeamComments(models.Model):
     
     team = models.ForeignKey(Team)
     
+class TeamPictures(models.Model):
+    
+    path = models.CharField(max_length=1000)
+    
+    team = models.ForeignKey(Team)
+    
 class ScoreResult(models.Model):
     
     team = models.ForeignKey(Team)

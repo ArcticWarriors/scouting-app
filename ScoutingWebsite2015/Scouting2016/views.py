@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.template.context_processors import request
-from Scouting2016.models import Team, Match, ScoreResult
+from Scouting2016.models import Team, Match, ScoreResult, TeamPictures
 from django.db.models import Avg, Sum
 from django.http.response import HttpResponse
 
@@ -169,6 +169,7 @@ def robot_display(request):
 
 def view_team(request, team_number):
     this_team = Team.objects.get(teamNumber=team_number)
+    picture_list = TeamPictures.objects.filter(team_id=this_team.id)
     
     metrics = __get_team_metrics(this_team)
     score_result_list = []
@@ -177,9 +178,14 @@ def view_team(request, team_number):
         score_result_list.append(sr)
     
     context = {}
-    context['team_number'] = this_team.teamNumber
+#     context['team_number'] = this_team.teamNumber
     context['metrics'] = metrics
     context['score_result_list'] = score_result_list
+    context['team_number'] = team_number
+    context['pictures']=picture_list
+    
+    print this_team.teamNumber, type(this_team.teamNumber)
+    print team_number, type(team_number)
     
     return render(request, 'Scouting2016/TeamPage.html', context)
 
@@ -229,8 +235,36 @@ def all_matches(request):
 
 
 def search_page(request):
-    return render(request, 'Scouting2016/index.html')
+    return render(request, 'Scouting2016/search.html')
 
+
+def search_results(request):
+    context = {}
+    context['get'] = request.GET
+    score_result_fields = __get_score_result_fields()
+    
+    kargs = {}
+    for key in score_result_fields:
+        if key in request.GET and len(request.GET[key]) != 0:
+            if request.GET[key + '_value'] == '>=':
+                extension = '__gte'
+            elif request.GET[key + '_value'] == '<=' : 
+                extension = '__lte'
+            else:
+                extension = ''
+            karg_name = key + extension
+            kargs[karg_name] = request.GET[key]
+            
+    print "Our query: " + "\n".join("%s->%s" % (key, kargs[key]) for key in kargs)
+    
+    results = ScoreResult.objects.filter(**kargs)
+    
+    context['results'] = results
+    return render(request, 'Scouting2016/search.html', context)
+
+def upload_image(request):
+    
+    return view_team(request, 174)
 
 #######################################
 # Form Stuff
