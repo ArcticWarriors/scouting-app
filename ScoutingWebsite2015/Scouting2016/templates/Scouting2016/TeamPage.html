@@ -25,12 +25,12 @@ No matches scouted
   {% endfor %}
   </ul>
 {% endif %}
+	
 	<h2>Pictures</h2>
-	<img src="{% static 'Scouting2016/teambotimages/'|add:team_number|add:'_1.jpg' %}" width='500'>
-	</img>
+	{% for picture in pictures %}
+	<img src="{% static picture.path %}" width='500'>
 	<br></br>
-	<img src="{% static 'Scouting2016/teambotimages/'|add:team_number|add:'_2.jpg' %}" width='500'>
-	</img>
+	{% endfor %}
 	<h2>Team Comments</h2>
 {% if score_result_list|length == 0 %}
 No matches scouted
@@ -60,15 +60,12 @@ No matches scouted
     <b>Driving Defenses</b>
     <table border = "1">
     <th>  Defenses </th> <th> Total Times Crossed  </th>
-    
     <tr> <td> Ramparts      </td> <td> {{ metrics.ramparts__sum }} </td> </tr>
     <tr> <td> Moat          </td> <td> {{ metrics.moat__sum  }} </td> </tr>
     <tr> <td> Rock Wall     </td> <td> {{ metrics.rock_wall__sum  }} </td> </tr>
     <tr> <td> Rough Terrain </td> <td> {{ metrics.rough_terrain__sum  }} </td> </tr>
     <tr> <td> Low Bar       </td> <td> {{ metrics.low_bar__sum  }} </td> </tr>
-    
-  
-	</table>
+    </table>
 
 
 <h2>Goals Scored</h2>
