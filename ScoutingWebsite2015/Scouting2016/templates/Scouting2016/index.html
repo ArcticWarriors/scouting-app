@@ -16,10 +16,10 @@ Welcome to team 174 scouting website
 <h2>Our Matches:</h2>
 <ul>
 {% for match_number in scouted_matches %}
-  <li><a href="/2016/match_display/{{ match_number }}">Match {{match_number}}</a></li>
+  <li><a href="{% url 'Scouting2016:match_display' match_number %}">Match {{match_number}}</a></li>
 {% endfor %}
 {% for match_number in unscouted_matches %}
-  <li><a href="/2016/match_prediction/{{ match_number }}">Match {{match_number}} (Un-Scouted)</a></li>
+  <li><a href="{% url 'Scouting2016:match_prediction' match_number %}">Match {{match_number}} (Un-Scouted)</a></li>
 {% endfor %}
 </ul>
 

@@ -31,7 +31,7 @@ table {
 		{% for team in teams %}
 	
 		<tr>
-	  	<td> <a href="/2016/view_team/{{ team.teamNumber }}">{{ team.teamNumber }}</a></td>
+        <td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
 	  	<td> {{ team.avgerages.low_score_successful__avg }} </td>
       	<td> {{ team.avgerages.low_score_fail__avg }} </td>
       	<td> {{ team.avgerages.high_score_successful__avg }} </td>

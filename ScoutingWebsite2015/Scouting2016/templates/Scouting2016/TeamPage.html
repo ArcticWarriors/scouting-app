@@ -2,8 +2,7 @@
 <head>
 
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css"
-	href="{% static 'Scouting2016/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
 <title>Welcome!</title>
 </head>
 
@@ -21,7 +20,7 @@ No matches scouted
  <h2>Matches Scouted:</h2>
   <ul>
   {% for sr in score_result_list %}
-     <li><a href="/2016/match_display/{{sr.match.matchNumber}}">{{sr.match.matchNumber}}</a></li>
+     <li><a href="{% url 'Scouting2016:match_display' sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a></li>
   {% endfor %}
   </ul>
 {% endif %}
