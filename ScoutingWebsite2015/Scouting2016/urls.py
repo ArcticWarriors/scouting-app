@@ -27,6 +27,8 @@ urlpatterns = [
                url(r'^search$', views.search_page, name='edit_form'),
                url(r'^graph$',views.show_graph, name = 'show_graph'),
                url(r'^gen_graph/(?P<team_numbers>\w+(,\w+)*)/(?P<fields>\w+(,\w+)*)$',views.gen_graph, name = 'gen_graph'),
-               url(r'^submit_graph$',views.submit_graph, name = "submit_graph")
+               url(r'^submit_graph$',views.submit_graph, name = "submit_graph"),
+               url(r'^comparison$',views.show_comparison, name = 'comparison'),
+               url(r'^submit_compare$',views.submit_compare, name = "submit_compare"),
               ]
 

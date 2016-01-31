@@ -164,6 +164,30 @@ def gen_graph(request, team_numbers, fields):
     
     pass
 
+def show_comparison(request):
+    context = {}
+    context['teams']=Team.objects.all()
+    return render(request,'Scouting2016/showComparison.html',context)
+
+def submit_compare(request):
+    
+    teams = []
+    fields = []
+    
+    for key in request.GET:
+        try:
+            team_number = int(key)
+            teams.append(team_number)
+        except:
+            fields.append(key)
+            
+    print teams
+    print fields
+    
+    context = {}
+    context['teams']=Team.objects.all()
+    return render(request,'Scouting2016/showComparison.html',context)
+
 def robot_display(request):
     return render(request, 'Scouting2016/RobotDisplay.html')
 
