@@ -11,7 +11,6 @@
 	{% include "Scouting2016/banner.html" %}
 
 	<form action="{% url 'Scouting2016:show_edit_form' %}" method="get">
-		{% csrf_token %}
 		<table>
 			<tr>
 				<td>Match Number:</td>

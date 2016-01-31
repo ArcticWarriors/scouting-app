@@ -8,8 +8,8 @@
 
 <body>
 
-	{% include "Scouting2016/banner.html" %}
-	<h1>Team {{ team_number }}</h1>
+    {% include "Scouting2016/banner.html" %}
+    <h1>Team {{ team_number }}</h1>
 
 <h1>Matches Information:</h1>
 {% if score_result_list|length == 0 %}
@@ -24,20 +24,22 @@ No matches scouted
   {% endfor %}
   </ul>
 {% endif %}
-	
-	<h2>Pictures</h2>
-	
-		<form action="/2016/upload_image">
-  			<input type="file" name={{team_name}} accept="image/*">
-  			<input type="submit">
-		</form>
-		
-	{% for picture in pictures %}
-		
-	<img src="{% static picture.path %}" width='500'>
-	<br></br>
-	{% endfor %}
-	<h2>Team Comments</h2>
+    
+    <h2>Pictures</h2>
+    
+        <form action="{% url 'Scouting2016:upload_image' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name='team_number' value={{team_number}}>
+            <input type="file" name={{team_name}} accept="image/*">
+            <input type="submit">
+        </form>
+        
+    {% for picture in pictures %}
+        
+    <img src="{% static picture.path %}" width='500'>
+    <br></br>
+    {% endfor %}
+    <h2>Team Comments</h2>
 {% if score_result_list|length == 0 %}
 No matches scouted
 {% else %}
@@ -51,13 +53,13 @@ No matches scouted
 {% endif %}
  
 
-	<h1>Robot Statistics</h1>
-	
-	<h2>Defenses Crossed:</h2>
-	<b>Manipulative Defenses</b>
-	<table border = "1">
-	<th>  Defenses </th> <th> Total Times Crossed  </th>
-	<tr> <td> Cheval de Frise </td> <td> {{ metrics.cheval_de_frise__sum  }} </td> </tr>
+    <h1>Robot Statistics</h1>
+    
+    <h2>Defenses Crossed:</h2>
+    <b>Manipulative Defenses</b>
+    <table border = "1">
+    <th>  Defenses </th> <th> Total Times Crossed  </th>
+    <tr> <td> Cheval de Frise </td> <td> {{ metrics.cheval_de_frise__sum  }} </td> </tr>
     <tr> <td> Porticullis     </td> <td> {{ metrics.portcullis__sum  }} </td> </tr>
     <tr> <td> Sally Port      </td> <td> {{ metrics.sally_port__sum  }} </td> </tr>
     <tr> <td> Draw Bridge     </td> <td> {{ metrics.draw_bridge__sum  }} </td> </tr>

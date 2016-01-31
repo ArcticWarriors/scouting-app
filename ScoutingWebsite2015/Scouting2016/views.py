@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.db.models import Q
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
+from django.core.urlresolvers import reverse
 
 
 def __get_create_kargs(request):
@@ -47,28 +48,25 @@ def index(request):
 def show_graph(request):
     context = {}
     context['teams'] = Team.objects.all()
-    return render(request, 'Scouting2016/showGraph.html', context)
 
+    # This implies they are trying to look for a graph
+    if len(request.GET) != 0:
 
-def submit_graph(request):
+        teams = []
+        fields = []
 
-    teams = []
-    fields = []
+        for key in request.GET:
+            try:
+                team_number = int(key)
+                teams.append(team_number)
+            except:
+                fields.append(key)
 
-    for key in request.GET:
-        try:
-            team_number = int(key)
-            teams.append(team_number)
-        except:
-            fields.append(key)
-
-    context = {}
-    context['teams'] = Team.objects.all()
-    context['selected_fields'] = ",".join(fields)
-    context['selected_fields_list'] = [str(x) for x in fields]
-    context['selected_teams'] = ",".join(str(x) for x in teams)
-    context['selected_teams_list'] = teams
-    context['graph_url'] = 'gen_graph/%s/%s' % (context['selected_teams'], context['selected_fields'])
+        context['selected_fields'] = ",".join(fields)
+        context['selected_fields_list'] = [str(x) for x in fields]
+        context['selected_teams'] = ",".join(str(x) for x in teams)
+        context['selected_teams_list'] = teams
+        context['graph_url'] = 'gen_graph/%s/%s' % (context['selected_teams'], context['selected_fields'])
 
     return render(request, 'Scouting2016/showGraph.html', context)
 
@@ -205,34 +203,41 @@ def all_matches(request):
 
 
 def search_page(request):
-    return render(request, 'Scouting2016/search.html')
 
-
-def search_results(request):
     context = {}
-    context['get'] = request.GET
-    score_result_fields = ScoreResult.get_fields_with_defaults()
 
-    kargs = {}
-    for key in score_result_fields:
-        if key in request.GET and len(request.GET[key]) != 0:
-            if request.GET[key + '_value'] == '>=':
-                extension = '__gte'
-            elif request.GET[key + '_value'] == '<=':
-                extension = '__lte'
-            else:
-                extension = ''
-            karg_name = key + extension
-            kargs[karg_name] = request.GET[key]
+    # This would imply that they were on the search page, and made a request
+    if len(request.GET) != 0:
+        context['get'] = request.GET
+        score_result_fields = ScoreResult.get_fields_with_defaults()
 
-    results = ScoreResult.objects.filter(**kargs)
-    context['results'] = results
+        kargs = {}
+        for key in score_result_fields:
+            if key in request.GET and len(request.GET[key]) != 0:
+                value_key = key + '_value'
+                if value_key in request.GET:
+                    if request.GET[value_key] == '>=':
+                        extension = '__gte'
+                    elif request.GET[value_key] == '<=':
+                        extension = '__lte'
+                    else:
+                        extension = ''
+
+                    karg_name = key + extension
+                    kargs[karg_name] = request.GET[key]
+
+        if len(kargs) != 0:
+            results = ScoreResult.objects.filter(**kargs)
+            context['results'] = results
+
     return render(request, 'Scouting2016/search.html', context)
 
 
 def upload_image(request):
 
-    return view_team(request, 174)
+    team_numer = request.POST['team_number']
+
+    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_numer,)))
 
 #######################################
 # Form Stuff
@@ -291,27 +296,25 @@ def submit_new_match(request):
 
     available_srs = ScoreResult.objects.filter(match=match, team=team)
 
-    context = {}
-    context['submit_view'] = "/2016/submit_form"
-    render_view = 'Scouting2016/inputForm.html'
-
     # score result with this combination already exists, don't let them add it again
     if len(available_srs) != 0:
+        context = {}
         context['error_message'] = "ERROR! A combination of team %s and match %s already exists" % (team.teamNumber, match.matchNumber)
         context['match_number'] = match.matchNumber
         context['team_number'] = team.teamNumber
+        context['submit_view'] = "/2016/submit_form"
 
         fake_score_result = {}
         for key in request.POST:
             fake_score_result[key] = request.POST[key]
         context['sr'] = fake_score_result
+
+        return render(request, 'Scouting2016/inputForm.html', context)
     else:
-        render_view = 'Scouting2016/MatchPage.html'
-        context['match_display'] = match.matchNumber
         kargs = __get_create_kargs(request)
         ScoreResult.objects.create(match=match, team=team, **kargs)
 
-    return render(request, render_view, context)
+        return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
 
 
 def edit_prev_match(request):
@@ -332,4 +335,4 @@ def edit_prev_match(request):
     context = {}
     context['match_display'] = match.matchNumber
 
-    return render(request, 'Scouting2016/MatchPage.html', context)
+    return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
