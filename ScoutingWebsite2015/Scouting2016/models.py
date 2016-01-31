@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg, Sum
 
 # Create your models here.
 
@@ -13,6 +14,36 @@ class Match(models.Model):
 class Team(models.Model):
 
     teamNumber = models.IntegerField()
+    
+    def get_metrics(self):                                                                              
+        metrics = self.scoreresult_set.aggregate(Avg("auto_score_low"),
+                                                 Avg("auto_score_high"),
+                                                
+                                                 Sum("cheval_de_frise"),
+                                                 Sum("ramparts"),
+                                                 Sum("sally_port"),
+                                                 Sum("low_bar"),
+                                                 Sum("rock_wall"),
+                                                 Sum("draw_bridge"),                                           
+                                                 Sum("moat"),
+                                                 Sum("rough_terrain"),
+                                                 Sum("portcullis"),
+                                                 
+                                                 Sum("score_tech_foul"),
+                                                 Avg("high_score_fail"),
+                                                 Avg("high_score_successful"),
+                                                 Avg("low_score_fail"),
+                                                 Avg("low_score_successful"),
+                                              )
+        
+        #Format all of the numbers.  If we haven't scouted the team, None will be returned.  Turn that into NA
+        for key in metrics:
+            if metrics[key] == None:
+                metrics[key] = "NA"
+            elif "__avg" in key:
+                metrics[key] = "{:10.2f}".format(metrics[key])
+                
+        return metrics
 
     def __str__(self):
         return "Team %s" % self.teamNumber
@@ -72,9 +103,50 @@ class ScoreResult(models.Model):
     slow_fast_rough = models.CharField(max_length=50, default="")
     slow_fast_sally = models.CharField(max_length=50, default="")
     
-
+    @staticmethod
+    def get_fields_with_defaults():
+        
+        output = {}
+        
+        output['auto_score_high'] = 0
+        output['auto_score_low'] = 0
+        output['cheval_de_frise'] = 0
+        output['draw_bridge'] = 0
+        output['high_score_fail'] = 0
+        output['high_score_successful'] = 0
+        output['low_bar'] = 0
+        output['low_score_fail'] = 0
+        output['low_score_successful'] = 0
+        output['moat'] = 0
+        output['notes_text_area'] = 0
+        output['ramparts'] = 0
+        output['rock_wall'] = 0
+        output['rough_terrain'] = 0
+        output['score_tech_foul'] = 0
+        output['sally_port'] = 0
+        output['portcullis'] = 0
+        output['auto_spy'] = 'yes'
+        output['auto_defense'] = 'no_reach'
+        output['scale_challenge'] = 'no'
+        output['slow_fast_bridge'] = 'no_move'
+        output['slow_fast_cheval'] = 'no_move'
+        output['slow_fast_low_bar'] = 'no_move'
+        output['slow_fast_moat'] = 'no_move'
+        output['slow_fast_portcullis'] = 'no_move'
+        output['slow_fast_ramparts'] = 'no_move'
+        output['slow_fast_rock_wall'] = 'no_move'
+        output['slow_fast_rough'] = 'no_move'
+        output['slow_fast_sally'] = 'no_move'
+        
+        return output
+    
     def __str__(self):
-        output = "Score Result: "
+        output = "Score Result:\n"
+        
+        attributes = sorted(self.get_fields_with_defaults().keys())
+        for attr_name in attributes:
+            value = getattr(self, attr_name)
+            output += "  {0:25} = {1}\n".format(attr_name, value)
         
         return output
     
