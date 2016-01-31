@@ -62,6 +62,21 @@ class TeamPictures(models.Model):
     team = models.ForeignKey(Team)
 
 
+class OfficialMatch(models.Model):
+
+    matchNumber = models.IntegerField()
+
+    redTeam1 = models.IntegerField()
+    redTeam2 = models.IntegerField()
+    redTeam3 = models.IntegerField()
+    blueTeam1 = models.IntegerField()
+    blueTeam2 = models.IntegerField()
+    blueTeam3 = models.IntegerField()
+
+    redScore = models.IntegerField(default=-1)
+    blueScore = models.IntegerField(default=-1)
+
+
 class ScoreResult(models.Model):
 
     team = models.ForeignKey(Team)
