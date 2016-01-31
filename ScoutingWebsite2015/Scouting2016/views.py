@@ -4,6 +4,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
 from django.core.urlresolvers import reverse
+from django.db.models.aggregates import Avg
 
 
 def __get_create_kargs(request):
@@ -204,31 +205,42 @@ def all_matches(request):
 
 def search_page(request):
 
+    def __get_args(field_name, get):
+        value_key = field_name + "_value"
+
+        if field_name in get and value_key in get:
+            value = get[field_name]
+            sign = get[value_key]
+
+            django_value = ""
+            if sign == '>=':
+                django_value = "__gte"
+            if sign == '<=':
+                django_value = "__lte"
+
+            if len(value) != 0 and len(sign) != 0:
+                print value, django_value
+                annotate_args = field_name, Avg('scoreresult__' + field_name)
+                filter_args = "%s%s" % (field_name, django_value), value
+                return annotate_args, filter_args
+
+        return None, None
+
     context = {}
 
     # This would imply that they were on the search page, and made a request
     if len(request.GET) != 0:
         context['get'] = request.GET
-        score_result_fields = ScoreResult.get_fields_with_defaults()
 
-        kargs = {}
-        for key in score_result_fields:
-            if key in request.GET and len(request.GET[key]) != 0:
-                value_key = key + '_value'
-                if value_key in request.GET:
-                    if request.GET[value_key] == '>=':
-                        extension = '__gte'
-                    elif request.GET[value_key] == '<=':
-                        extension = '__lte'
-                    else:
-                        extension = ''
+        annotate_args = {}
+        filter_args = {}
+        for key in ScoreResult.get_fields_with_defaults():
+            annotate, filter = __get_args(key, request.GET)
+            if annotate != None and filter != None:
+                annotate_args[annotate[0]] = annotate[1]
+                filter_args[filter[0]] = filter[1]
 
-                    karg_name = key + extension
-                    kargs[karg_name] = request.GET[key]
-
-        if len(kargs) != 0:
-            results = ScoreResult.objects.filter(**kargs)
-            context['results'] = results
+        context['results'] = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
 
     return render(request, 'Scouting2016/search.html', context)
 

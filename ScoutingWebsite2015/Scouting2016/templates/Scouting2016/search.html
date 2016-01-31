@@ -13,11 +13,12 @@
 	
 	{% if get|length != 0%}
 		{% if results|length != 0 %}
-			<table>
-			Teams that match the criteria:
+			There are {{results|length}} teams matching the criteria:
+			<table border="1">
+				<tr><th>Team Number</th></tr>
 			{% for result in results %}
 				<tr>
-					<td> {{result.team.teamNumber}}</td>
+					<td> {{result.teamNumber}}</td>
 				</tr>
 			{% endfor %}
 			</table>
