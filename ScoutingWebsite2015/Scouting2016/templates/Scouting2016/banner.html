@@ -1,12 +1,13 @@
 <div class="nav">
 <ul>
- 	<li> <a href="/2016/">Home</a> </li>
-  	<li> <a href="/2016/all_teams">Team List</a></li>
- 	<li> <a href="/2016/all_matches">Matches</a></li>
- 	<li> <a href="/2016/graph">Graphing</a></li>
-    <li> <a href="/2016/robot_display">Our Robot</a> </li>
-   <li> <a href="/2016/form">Add Match</a> </li>
-    <li> <a href="/2016/pre_edit_form">Edit Match</a> </li>
+    <li> <a href="{% url 'Scouting2016:index' %}">Home</a> </li>
+    <li> <a href="{% url 'Scouting2016:all_teams' %}">Team List</a></li>
+    <li> <a href="{% url 'Scouting2016:all_matches' %}">Matches</a></li>
+    <li> <a href="{% url 'Scouting2016:show_graph' %}">Graphing</a></li>
+    <li> <a href="{% url 'Scouting2016:robot_display' %}">Our Robot</a> </li>
+    <li> <a href="{% url 'Scouting2016:showForm' %}">Add Match</a> </li>
+    <li> <a href="{% url 'Scouting2016:info_for_form_edit' %}">Edit Match</a> </li>
+    <li> <a href="{% url 'Scouting2016:search_page' %}">Search</a> </li>
     <li> <a href ="/2016/comparison">Compare</a> </li>
 </ul>
 <br>

@@ -8,12 +8,12 @@ from Scouting2016.models import *
 from Scouting2016.views import *
 import random
 import numbers
-    
-    
+
+
 def __get_score_result_fields():
-    
+
     output = {}
-    
+
     output['auto_score_high'] = 0
     output['auto_score_low'] = 0
     output['cheval_de_frise'] = 0
@@ -33,7 +33,7 @@ def __get_score_result_fields():
     output['portcullis'] = 0
     output['auto_spy'] = 'yes'
     output['auto_defense'] = 'no_reach'
-    output['scale_challenge'] = 'partial'    
+    output['scale_challenge'] = 'partial'
     output['slow_fast_bridge'] = 'slow'
     output['slow_fast_cheval'] = 'fast'
     output['slow_fast_low_bar'] = 'slow'
@@ -43,30 +43,28 @@ def __get_score_result_fields():
     output['slow_fast_rock_wall'] = 'no_move'
     output['slow_fast_rough'] = 'slow'
     output['slow_fast_sally'] = 'slow'
-    
+
     return output
-    
-    
+
+
 def __get_create_kargs():
-    
+
     kargs = {}
-    
-    score_result_fields_with_default= __get_score_result_fields()
-    
+
+    score_result_fields_with_default = __get_score_result_fields()
+
     for field_name in score_result_fields_with_default:
-        
+
         if isinstance(score_result_fields_with_default[field_name], numbers.Number):
             kargs[field_name] = random.randint(0, 6)
         else:
             kargs[field_name] = score_result_fields_with_default[field_name]
-            
-            
+
     return kargs
-        
-          
+
 
 def create_teams():
-    
+
     Team.objects.create(teamNumber=73)
     Team.objects.create(teamNumber=120)
     Team.objects.create(teamNumber=145)
@@ -109,8 +107,9 @@ def create_teams():
     Team.objects.create(teamNumber=843)
     Team.objects.create(teamNumber=3173)
 
+
 def create_matches():
-    
+
     Match.objects.create(matchNumber=1)
     Match.objects.create(matchNumber=2)
     Match.objects.create(matchNumber=3)
@@ -149,24 +148,23 @@ def create_matches():
     Match.objects.create(matchNumber=38)
     Match.objects.create(matchNumber=39)
     Match.objects.create(matchNumber=40)
-    
-    
+
+
 def create_scoreresults():
-    
+
     teams = Team.objects.all()
     matches = Match.objects.all()
-    
+
     for match in matches:
         team_indices = []
-        
+
         while len(team_indices) < 6:
             team_index = random.randint(0, len(teams) - 1)
             if team_index not in team_indices:
                 team_indices.append(team_index)
-                
+
         for i in team_indices:
             team = teams[i]
-            
+
             kargs = __get_create_kargs()
-            ScoreResult.objects.create(match=match,  team=team, **kargs)
-        
+            ScoreResult.objects.create(match=match, team=team, **kargs)

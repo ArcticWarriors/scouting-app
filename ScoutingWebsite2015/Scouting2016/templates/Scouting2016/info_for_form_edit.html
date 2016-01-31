@@ -10,8 +10,7 @@
 
 	{% include "Scouting2016/banner.html" %}
 
-	<form action="/2016/edit_form" method="get">
-		{% csrf_token %}
+	<form action="{% url 'Scouting2016:show_edit_form' %}" method="get">
 		<table>
 			<tr>
 				<td>Match Number:</td>
