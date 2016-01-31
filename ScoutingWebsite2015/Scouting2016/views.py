@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.db.models import Q
 from django.http.response import HttpResponse
-from Scouting2016.models import Team, Match, ScoreResult, TeamPictures
+from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
+    OfficialMatch
 
 
 def __get_create_kargs(request):
@@ -20,7 +22,26 @@ def __get_create_kargs(request):
 
 def index(request):
 
-    return render(request, 'Scouting2016/index.html')
+    our_team_number = 174
+
+    our_team = Team.objects.get(teamNumber=our_team_number)
+    our_scouted = Match.objects.filter(scoreresult__team__id=our_team.id)
+    our_official = OfficialMatch.objects.filter(Q(redTeam1=our_team_number) |
+                                                Q(redTeam2=our_team_number) |
+                                                Q(redTeam3=our_team_number) |
+                                                Q(blueTeam1=our_team_number) |
+                                                Q(blueTeam2=our_team_number) |
+                                                Q(blueTeam3=our_team_number))
+    all_official_numbers = set(match.matchNumber for match in our_official)
+
+    scouted_numbers = sorted([match.matchNumber for match in our_scouted])
+    unscouted_numbers = all_official_numbers.difference(scouted_numbers)
+
+    context = {}
+    context['scouted_matches'] = scouted_numbers
+    context['unscouted_matches'] = sorted([x for x in unscouted_numbers])
+
+    return render(request, 'Scouting2016/index.html', context)
 
 
 def show_graph(request):
@@ -132,6 +153,22 @@ def match_display(request, match_number):
     return render(request, 'Scouting2016/MatchPage.html', context)
 
 
+def match_prediction(request, match_number):
+
+    official_match = OfficialMatch.objects.get(matchNumber=match_number)
+
+    context = {}
+    context['match_number'] = match_number
+    context['red_team_1'] = Team.objects.get(teamNumber=official_match.redTeam1)
+    context['red_team_2'] = Team.objects.get(teamNumber=official_match.redTeam2)
+    context['red_team_3'] = Team.objects.get(teamNumber=official_match.redTeam3)
+    context['blue_team_1'] = Team.objects.get(teamNumber=official_match.blueTeam1)
+    context['blue_team_2'] = Team.objects.get(teamNumber=official_match.blueTeam2)
+    context['blue_team_3'] = Team.objects.get(teamNumber=official_match.blueTeam3)
+
+    return render(request, 'Scouting2016/MatchPrediction.html', context)
+
+
 def all_teams(request):
 
     the_teams = Team.objects.all()
@@ -156,8 +193,13 @@ def all_teams(request):
 
 def all_matches(request):
     matches = Match.objects.all()
+
+    scouted_numbers = [match.matchNumber for match in matches]
+    unscouted_matches = OfficialMatch.objects.all().exclude(matchNumber__in=scouted_numbers)
+
     context = {}
-    context['matches'] = matches
+    context['scouted_matches'] = matches
+    context['unscouted_matches'] = unscouted_matches
 
     return render(request, 'Scouting2016/AllMatches.html', context)
 

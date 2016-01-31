@@ -30,4 +30,5 @@ urlpatterns = [
                url(r'^submit_graph$', views.submit_graph, name="submit_graph"),
                url(r'^search_results$', views.search_results, name='search_results'),
                url(r'^upload_image$', views.upload_image, name='upload_image'),
-               ]
+               url(r'^match_prediction/(?P<match_number>[0-9]+)$', views.match_prediction, name='match_prediction'),
+              ]

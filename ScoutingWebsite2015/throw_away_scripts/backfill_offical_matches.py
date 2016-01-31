@@ -32,7 +32,8 @@ def create_unscouted_matches():
     teams = Team.objects.all()
     positions = ['redTeam1', 'redTeam2', 'redTeam3', 'blueTeam1', 'blueTeam2', 'blueTeam3']
 
-    for match_number in [21]:
+#     for match_number in [21]:
+    for match_number in range(41, 80, 1):
         kargs = {}
         kargs['matchNumber'] = match_number
 

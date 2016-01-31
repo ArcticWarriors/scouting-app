@@ -1,0 +1,37 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
+<title>Welcome!</title>
+</head>
+
+<body>
+
+{% include "Scouting2016/banner.html" %}
+
+<h1> Prediction for Match {{match_number}}</h1>
+
+Red Team 1 : {{ red_team_1 }} <br>
+Red Team 2 : {{ red_team_2 }} <br>
+Red Team 3 : {{ red_team_3 }} <br>
+Red Score: XXX <br>
+
+<h2> Suggested Defenses</h2>
+<h3> Best Defenses </h3>
+
+<h3> Worst Defenses </h3>
+
+<br><br>
+Blue Team 1 : {{ blue_team_1 }} <br>
+Blue Team 2 : {{ blue_team_2 }} <br>
+Blue Team 3 : {{ blue_team_3 }} <br>
+Red Score: YYY <br>
+
+<h2> Suggested Defenses</h2>
+<h3> Best Defenses </h3>
+
+<h3> Worst Defenses </h3>
+
+</body>
+</html>
