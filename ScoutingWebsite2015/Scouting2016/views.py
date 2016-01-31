@@ -109,12 +109,13 @@ def submit_graph(request):
         except:
             fields.append(key)
     
-    teams = ",".join(str(x) for x in teams)
-    fields = ",".join(str(x) for x in fields)
-    
     context = {}
     context['teams']=Team.objects.all()
-    context['graph_url'] = 'gen_graph/%s/%s' % (teams, fields)
+    context['selected_fields'] = ",".join(fields)
+    context['selected_fields_list'] = [str(x) for x in fields]
+    context['selected_teams'] = ",".join(str(x) for x in teams)
+    context['selected_teams_list'] = teams
+    context['graph_url'] = 'gen_graph/%s/%s' % (context['selected_teams'], context['selected_fields'])
     
     return render(request,'Scouting2016/showGraph.html',context)
 

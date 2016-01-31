@@ -21,27 +21,27 @@
 	<h2>Teams to graph</h2>
 	<ul>
 	 {% for team in teams %}
-		<li>Include team {{ team.teamNumber }}: <input type="checkbox" name="{{ team.teamNumber }}"></a></li>
+		<li><input type="checkbox" name="{{ team.teamNumber }}"  {% if team.teamNumber in selected_teams_list %} checked {% endif %}>Team {{ team.teamNumber }} </li>
 	{% endfor %}
 	</ul>
 	<h2>Statistics to graph</h2>
 	<ul>
-	<li> Auto low goal scores: <input type="checkbox" name="auto_score_low"> </li>
-	<li> Auto high goal scores: <input type="checkbox" name="auto_score_high"> </li>
-	<li> High goal scores: <input type="checkbox" name="high_score_successful"> </li>
-	<li> High goal misses: <input type="checkbox" name="high_score_fail"> </li>
-	<li> Low goal scores: <input type="checkbox" name="low_score_successful"> </li>
-	<li> Low goal misses: <input type="checkbox" name="low_score_fail"> </li>
-	<li>Tech. Fouls: <input type="checkbox" name="score_tech_foul"> </li>
-	<li> Cheval de Frise crosses: <input type="checkbox" name="cheval_de_frise"> </li>
-	<li> Ramparts: <input type="checkbox" name="ramparts"> </li>
-	<li> Sally port door: <input type="checkbox" name="sally_port"> </li>
-	<li> Low bar: <input type="checkbox" name="low_bar"> </li>
-	<li> Rock wall: <input type="checkbox" name="rock_wall"> </li>
-	<li> Drawbridge: <input type="checkbox" name="draw_bridge"> </li>
-	<li> Moat: <input type="checkbox" name="moat"> </li>
-	<li> Rough Terrain: <input type="checkbox" name="rough_terrain"> </li>
-	<li> Porticullis: <input type="checkbox" name="portcullis"> </li>
+	<li> <input type="checkbox" name="auto_score_low"        {%if 'auto_score_low'         in selected_fields_list %} checked {% endif %} > Auto low goal scores     </li>
+	<li> <input type="checkbox" name="auto_score_high"       {%if 'auto_score_high'        in selected_fields_list %} checked {% endif %} > Auto high goal scores    </li>
+	<li> <input type="checkbox" name="high_score_successful" {%if 'high_score_successful'  in selected_fields_list %} checked {% endif %} > High goal scores         </li>
+	<li> <input type="checkbox" name="high_score_fail"       {%if 'high_score_fail'        in selected_fields_list %} checked {% endif %} > High goal misses         </li>
+	<li> <input type="checkbox" name="low_score_successful"  {%if 'low_score_successful'   in selected_fields_list %} checked {% endif %} > Low goal scores          </li>
+	<li> <input type="checkbox" name="low_score_fail"        {%if 'low_score_fail'         in selected_fields_list %} checked {% endif %} > Low goal misses          </li>
+	<li> <input type="checkbox" name="score_tech_foul"       {%if 'score_tech_foul'        in selected_fields_list %} checked {% endif %} > Tech. Fouls              </li>
+	<li> <input type="checkbox" name="cheval_de_frise"       {%if 'cheval_de_frise'        in selected_fields_list %} checked {% endif %} > Cheval de Frise crosses  </li>
+	<li> <input type="checkbox" name="ramparts"              {%if 'ramparts'               in selected_fields_list %} checked {% endif %} > Ramparts                 </li>
+	<li> <input type="checkbox" name="sally_port"            {%if 'sally_port'             in selected_fields_list %} checked {% endif %} > Sally port door          </li>
+	<li> <input type="checkbox" name="low_bar"               {%if 'low_bar'                in selected_fields_list %} checked {% endif %} > Low bar                  </li>
+	<li> <input type="checkbox" name="rock_wall"             {%if 'rock_wall'              in selected_fields_list %} checked {% endif %} > Rock wall                </li>
+	<li> <input type="checkbox" name="draw_bridge"           {%if 'draw_bridge'            in selected_fields_list %} checked {% endif %} > Drawbridge               </li>
+	<li> <input type="checkbox" name="moat"                  {%if 'moat'                   in selected_fields_list %} checked {% endif %} > Moat                     </li>
+	<li> <input type="checkbox" name="rough_terrain"         {%if 'rough_terrain'          in selected_fields_list %} checked {% endif %} > Rough Terrain            </li>
+	<li> <input type="checkbox" name="portcullis"            {%if 'portcullis'             in selected_fields_list %} checked {% endif %} > Porticullis              </li>
 	</ul>
 	<br> </br>
 	<input type="submit" value="Submit">
