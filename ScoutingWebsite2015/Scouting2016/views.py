@@ -131,10 +131,9 @@ def show_comparison(request):
 
         context['selected_team_numbers'] = teams
         context['selected_fields_names'] = [str(x) for x in fields]
-
-        print teams
-        print fields
-
+    
+        
+     
     return render(request, 'Scouting2016/showComparison.html', context)
 
 
