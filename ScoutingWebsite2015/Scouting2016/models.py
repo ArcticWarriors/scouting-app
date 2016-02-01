@@ -139,7 +139,7 @@ class ScoreResult(models.Model):
 
         # Auto
         output['auto_score_high'] = ScoreResultMetric('auto_score_high', 'Auto High Goals', 0, "Average")
-        output['auto_score_low'] = ScoreResultMetric('auto_score_low', 'Auto High Goals', 0, "Average")
+        output['auto_score_low'] = ScoreResultMetric('auto_score_low', 'Auto Low Goals', 0, "Average")
         output['auto_defense'] = ScoreResultMetric('auto_defense', 'Auto Defense', 'no_reach', 0)
         output['auto_spy'] = ScoreResultMetric('auto_spy', 'no', 0)
 

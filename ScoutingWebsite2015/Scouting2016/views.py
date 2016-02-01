@@ -4,7 +4,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
 from django.core.urlresolvers import reverse
-from django.db.models.aggregates import Avg
+from django.db.models.aggregates import Avg, Sum
 
 
 def __get_create_kargs(request):
@@ -205,26 +205,21 @@ def all_matches(request):
 
 def search_page(request):
 
-    def __get_args(field_name, get):
-        value_key = field_name + "_value"
+    def __get_annotate_args(score_result_field):
+        if score_result_field.metric_type == "Average":
+            return score_result_field.display_name, Avg('scoreresult__' + score_result_field.field_name)
+        else:
+            return score_result_field.display_name, Sum('scoreresult__' + score_result_field.field_name)
 
-        if field_name in get and value_key in get:
-            value = get[field_name]
-            sign = get[value_key]
+    def __get_filter_args(score_result_field, sign, value):
 
-            django_value = ""
-            if sign == '>=':
-                django_value = "__gte"
-            if sign == '<=':
-                django_value = "__lte"
+        django_value = ""
+        if sign == '>=':
+            django_value = "__gte"
+        if sign == '<=':
+            django_value = "__lte"
 
-            if len(value) != 0 and len(sign) != 0:
-                print value, django_value
-                annotate_args = field_name, Avg('scoreresult__' + field_name)
-                filter_args = "%s%s" % (field_name, django_value), value
-                return annotate_args, filter_args
-
-        return None, None
+        return "%s%s" % (display_name, django_value), value
 
     context = {}
 
@@ -234,13 +229,44 @@ def search_page(request):
 
         annotate_args = {}
         filter_args = {}
-        for key in ScoreResult.get_fields():
-            annotate, filter = __get_args(key, request.GET)
-            if annotate != None and filter != None:
-                annotate_args[annotate[0]] = annotate[1]
-                filter_args[filter[0]] = filter[1]
+        good_fields = []
 
-        context['results'] = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
+        valid_fields = []
+        for score_result_field in ScoreResult.get_fields().values():
+            field_name = score_result_field.field_name
+            value_key = field_name + "_value"
+
+            if field_name in request.GET and value_key in request.GET:
+                value = request.GET[field_name]
+                sign = request.GET[value_key]
+                if len(value) != 0 and len(sign) != 0:
+
+                    valid_fields.append(score_result_field)
+                    display_name = score_result_field.display_name
+                    annotate = __get_annotate_args(score_result_field)
+                    filter_arg = __get_filter_args(score_result_field, sign, value)
+
+                    annotate_args[annotate[0]] = annotate[1]
+                    filter_args[filter_arg[0]] = filter_arg[1]
+                    good_fields.append(score_result_field)
+#
+        search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
+#
+        results = []
+
+        for result in search_results:
+            team_result = []
+            team_result.append(("Team Number", result.teamNumber))
+
+            for field in good_fields:
+                value = getattr(result, field.display_name)
+                if field.metric_type == "Average":
+                    value = "{:10.2f}".format(value)
+                team_result.append((field.display_name, value))
+
+            results.append(team_result)
+
+        context['results'] = results
 
     return render(request, 'Scouting2016/search.html', context)
 
