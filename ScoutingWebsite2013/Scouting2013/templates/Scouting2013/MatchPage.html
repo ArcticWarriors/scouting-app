@@ -10,13 +10,10 @@
 
 <body>
 
-<h1>Match {{ matchNumber }}</h1>
-{{ teams}}
+<h1>Match {{ match_display }}</h1>
 
-
-{% for sr in results %}
+{% for sr in score_result_list %}
 <h2><a href="/2013/teams/{{sr.team.id}}">Team {{sr.team.teamNumber}}</a></h2>
-
 
 <table>
     <tr> <td> Auton Score     </td>  <td> {{ sr.auton_score      }} </td> </tr>

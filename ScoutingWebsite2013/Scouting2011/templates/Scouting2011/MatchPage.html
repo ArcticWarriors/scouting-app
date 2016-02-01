@@ -10,12 +10,11 @@
 
 <body>
 
-<h1>Match {{ matchNumber }}</h1>
-{{ teams}}
+<h1>Match {{ match_display }}</h1>
 
 
-{% for sr in results %}
-<h2><a href="/2011/teams/{{sr.team.id}}">Team {{sr.team.teamNumber}}</a></h2>
+{% for sr in score_result_list %}
+<h2><a href="/2011/view_team/{{sr.team.teamNumber}}">Team {{sr.team.teamNumber}}</a></h2>
 
 
 <table>

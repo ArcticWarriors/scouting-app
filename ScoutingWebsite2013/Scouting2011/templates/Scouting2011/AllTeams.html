@@ -35,22 +35,21 @@
 {% for team in teams %}
 	
 	<tr>
-	  <td> <a href="/2011/teams/{{team.id}}">{{ team.teamNumber }}</a></td>
+	  <td> <a href="{% url 'Scouting2011:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
 	  <td> <center><a href="http://www.thebluealliance.com/team/{{ team.teamNumber }}"><img src="{% static 'Scouting2011/blue_alliance.png' %}" style="width:30px;height:30px;"/></a></center></td>
-      <td> {{ team.matches_scouted                }}</td>
-      
-      <td> {{ team.metrics.TubesDropped__avg       }}</td>
-      <td> {{ team.metrics.LowTubesHung__avg       }}</td>
-      <td> {{ team.metrics.MidTubesHung__avg       }}</td>
-      <td> {{ team.metrics.HighTubesHung__avg      }}</td>
-      <td> {{ team.metrics.TubesRecieved__avg      }}</td>
-      <td> {{ team.metrics.Penelties__avg          }}</td>
-      <td> {{ team.metrics.MiniBotFinish__avg      }}</td>
-      <td> {{ team.metrics.ScoredUberTube__avg     }}</td>
-      <td> {{ team.metrics.DeployedMinibot__sum    }}</td>
-      <td> {{ team.metrics.WasOffensive__sum       }}</td>
-      <td> {{ team.metrics.WasScouted__sum         }}</td>
-      <td> {{ team.metrics.BrokeBadly__sum         }}</td>
+      <td> {{ team.matches_scouted                }}</td>      
+      <td> {{ team.avgerages.TubesDropped__avg       }}</td>
+      <td> {{ team.avgerages.LowTubesHung__avg       }}</td>
+      <td> {{ team.avgerages.MidTubesHung__avg       }}</td>
+      <td> {{ team.avgerages.HighTubesHung__avg      }}</td>
+      <td> {{ team.avgerages.TubesRecieved__avg      }}</td>
+      <td> {{ team.avgerages.Penelties__avg          }}</td>
+      <td> {{ team.avgerages.MiniBotFinish__avg      }}</td>
+      <td> {{ team.avgerages.ScoredUberTube__avg     }}</td>
+      <td> {{ team.avgerages.DeployedMinibot__sum    }}</td>
+      <td> {{ team.avgerages.WasOffensive__sum       }}</td>
+      <td> {{ team.avgerages.WasScouted__sum         }}</td>
+      <td> {{ team.avgerages.BrokeBadly__sum         }}</td>
 	</tr>
 
 {% endfor %}

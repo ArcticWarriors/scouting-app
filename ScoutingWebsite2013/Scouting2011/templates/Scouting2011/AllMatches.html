@@ -2,13 +2,13 @@
 <head>
 
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2013/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2011/style.css' %}" />
 <title>List of Matches</title>
 </head>
 
 <body>
 
-{% include "Scouting2013/banner.html" %}
+{% include "Scouting2011/banner.html" %}
 
 <h1> List of Matches</h1>
 
@@ -26,9 +26,9 @@
    <th> Team 6 </th>
  </tr>
 
-{% for match in matches %}
+{% for match in scouted_matches %}
 <tr>
-  <td> <a href="/2013/match/{{match.id}}">{{match.matchNumber}} </a></td>
+  <td> <a href="{% url 'Scouting2011:match_display' match.matchNumber %}">{{match.matchNumber}} </a></td>
   <td> NA </td>
   <td> NA </td>
   <td>  </td>

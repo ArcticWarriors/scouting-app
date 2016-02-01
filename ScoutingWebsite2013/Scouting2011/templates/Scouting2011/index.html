@@ -13,7 +13,17 @@
 {{ team.teamNumber }}
 
 <h1>Scouting App Homepage</h1>
-Welcome to team 174 scouting website
+Welcome to team 229 scouting website
+
+<h2>Our Matches:</h2>
+<ul>
+{% for match_number in scouted_matches %}
+  <li><a href="{% url 'Scouting2011:match_display' match_number %}">Match {{match_number}}</a></li>
+{% endfor %}
+{% for match_number in unscouted_matches %}
+  <li><a href="{% url 'Scouting2011:match_prediction' match_number %}">Match {{match_number}} (Un-Scouted)</a></li>
+{% endfor %}
+</ul>
 
 </body>
 </html>

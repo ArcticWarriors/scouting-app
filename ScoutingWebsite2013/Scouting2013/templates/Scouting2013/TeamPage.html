@@ -18,17 +18,17 @@ Team {{ teamNumber }} Stats
 
 <h1>Matches Scouted:</h1>
 
-{% if match_list|length == 0 %}
+{% if score_result_list|length == 0 %}
 No matches scouted
 {% else %}
   <ul>
-  {% for match in match_list %}
-     <li><a href="/2013/match/{{match.id}}">{{match.matchNumber}}</a></li>
+  {% for sr in score_result_list %}
+     <li><a href="{% url 'Scouting2013:match_display' sr.match.matchNumber %}">{{sr.match.matchNumber}}</a></li>
   {% endfor %}
   </ul>
 {% endif %}
 
-{% if match_list|length != 0 %}
+{% if score_result_list|length != 0 %}
 <h1>Metrics:</h1>
 <table>
     <tr> <td> Avg. Auton Score      </td>  <td> {{ metrics.auton_score__avg      }} </td> </tr>

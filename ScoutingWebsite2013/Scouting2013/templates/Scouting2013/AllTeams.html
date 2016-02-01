@@ -35,7 +35,7 @@
 {% for team in teams %}
 	
 	<tr>
-	  <td> <a href="/2013/teams/{{team.id}}">{{ team.teamNumber }}</a></td>
+	  <td> <a href="/2013/view_team/{{team.teamNumber}}">{{ team.teamNumber }}</a></td>
 	  <td> <center><a href="http://www.thebluealliance.com/team/{{ team.teamNumber }}"><img src="{% static 'Scouting2013/blue_alliance.png' %}" style="width:30px;height:30px;"/></a></center></td>
 	  <td> {{ team.matches_scouted }}</td>
 	  <td> {{ team.avgerages.auton_score__avg }}     </td>
