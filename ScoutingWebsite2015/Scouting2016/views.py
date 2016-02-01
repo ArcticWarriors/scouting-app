@@ -11,11 +11,11 @@ def __get_create_kargs(request):
 
     kargs = {}
 
-    score_result_fields_with_default = ScoreResult.get_fields_with_defaults()
+    score_result_fields = ScoreResult.get_fields()
 
-    for field_name in score_result_fields_with_default:
+    for field_name in score_result_fields:
         if field_name not in request.POST:
-            kargs[field_name] = score_result_fields_with_default[field_name]
+            kargs[field_name] = score_result_fields[field_name].default
         else:
             kargs[field_name] = request.POST[field_name]
 
@@ -234,7 +234,7 @@ def search_page(request):
 
         annotate_args = {}
         filter_args = {}
-        for key in ScoreResult.get_fields_with_defaults():
+        for key in ScoreResult.get_fields():
             annotate, filter = __get_args(key, request.GET)
             if annotate != None and filter != None:
                 annotate_args[annotate[0]] = annotate[1]
@@ -262,13 +262,16 @@ def info_for_form_edit(request):
 
 
 def show_add_form(request):
-    score_result = ScoreResult.get_fields_with_defaults()
 
     context = {}
     context['team_number'] = 1765
     context['match_number'] = 10
     context['submit_view'] = "/2016/submit_form"
-    context["sr"] = score_result
+    context["sr"] = {}
+
+    score_result_fields = ScoreResult.get_fields()
+    for field_name, value in score_result_fields.iteritems():
+        context["sr"][field_name] = value.default
 
     return render(request, 'Scouting2016/inputForm.html', context)
 
