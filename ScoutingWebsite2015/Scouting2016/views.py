@@ -1,10 +1,13 @@
-from django.shortcuts import render
+import os
+
+from django.core.urlresolvers import reverse
 from django.db.models import Q
+from django.db.models.aggregates import Avg, Sum
 from django.http.response import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
-from django.core.urlresolvers import reverse
-from django.db.models.aggregates import Avg, Sum
 
 
 def __get_create_kargs(request):
@@ -274,6 +277,29 @@ def search_page(request):
 def upload_image(request):
 
     team_numer = request.POST['team_number']
+    f = request.FILES['image_name']
+
+    static_dir = 'Scouting2016/static/'
+    out_file_name = static_dir + 'Scouting2016/teambotimages/%s_{0}%s' % (team_numer, os.path.splitext(f.name)[1])
+
+    # Look for the next available number, i.e. if there are [#_0, #_1, ..., #_10], this would make the new picture #_11
+    picture_number = 0
+    found = False
+    while not found:
+        test_name = out_file_name.format(picture_number)
+        if not os.path.exists(test_name):
+            out_file_name = test_name
+            found = True
+        else:
+            picture_number += 1
+
+    team = Team.objects.get(teamNumber=team_numer)
+    TeamPictures.objects.create(team=team, path=out_file_name[len(static_dir):])
+
+    # Write the file to disk
+    with open(out_file_name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_numer,)))
 
