@@ -1,0 +1,62 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2013/style.css' %}" />
+<title>List of Teams</title>
+</head>
+
+<body>
+
+{% include "Scouting2013/banner.html" %}
+
+<h1> List of Teams</h1>
+
+<table border=1>
+	<tr>
+	  <th> Team Number         </th>
+	  <th> TBA Link            </th>
+	  <th> Matches Scouted     </th>
+	  <th> Avg. Auton Score    </th>
+	  <th> Avg. Pyramid Goals  </th>
+	  <th> Avg. High Goals     </th>
+	  <th> Avg. Mid Goals      </th>
+	  <th> Avg. Low Goals      </th>
+	  <th> Avg. Missed Shots   </th>
+	  <th> Avg. Hanging Points </th>
+	  <th> Avg. Fouls          </th>
+	  <th> Avg. Tech Fouls     </th>
+	  <th> Total Invalid Hangs </th>
+	  <th> Total Yellow Card   </th>
+	  <th> Total Red Card      </th>
+	  <th> Times Broken Badly  </th>
+	</tr>
+
+{% for team in teams %}
+	
+	<tr>
+	  <td> <a href="/2013/view_team/{{team.teamNumber}}">{{ team.teamNumber }}</a></td>
+	  <td> <center><a href="http://www.thebluealliance.com/team/{{ team.teamNumber }}"><img src="{% static 'Scouting2013/blue_alliance.png' %}" style="width:30px;height:30px;"/></a></center></td>
+	  <td> {{ team.matches_scouted }}</td>
+	  <td> {{ team.avgerages.auton_score__avg }}     </td>
+	  <td> {{ team.avgerages.pyramid_goals__avg }}   </td>
+	  <td> {{ team.avgerages.high_goals__avg }}      </td>
+	  <td> {{ team.avgerages.mid_goals__avg }}       </td>
+	  <td> {{ team.avgerages.low_goals__avg }}       </td>
+	  <td> {{ team.avgerages.missed_shots__avg }}    </td>
+	  <td> {{ team.avgerages.hanging_points__avg }}  </td>
+	  <td> {{ team.avgerages.fouls__avg }}           </td>
+	  <td> {{ team.avgerages.technical_fouls__avg }} </td>
+	  <td> {{ team.avgerages.invalid_hangs__sum }}   </td>
+	  <td> {{ team.avgerages.yellow_card__sum }}     </td>
+	  <td> {{ team.avgerages.red_card__sum }}        </td>
+	  <td> {{ team.avgerages.broke_badly__sum }}     </td>
+	</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>
