@@ -1,9 +1,10 @@
 
 <div class="nav">
 <ul>
- <li> <a href="/2011/">Home</a> </li>
- <li> <a href="/2011/teams">Teams</a> </li>
- <li> <a href="/2011/match">Matches</a> </li>
+    <li> <a href="{% url 'Scouting2011:index' %}">Home</a> </li>
+    <li> <a href="{% url 'Scouting2011:all_teams' %}">Team List</a></li>
+    <li> <a href="{% url 'Scouting2011:all_matches' %}">Matches</a></li>
+    <li> <a href="{% url 'Scouting2011:show_graph' %}">Graphing</a></li>
  
 </ul>
 <br>

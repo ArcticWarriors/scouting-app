@@ -19,7 +19,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^2011/', include('Scouting2011.urls')),
+    url(r'^2011/', include('Scouting2011.urls', namespace="Scouting2011")),
     url(r'^2013/', include('Scouting2013.urls', namespace="Scouting2013")),
     url(r'^$', include('Scouting2013.urls')),
 ]
