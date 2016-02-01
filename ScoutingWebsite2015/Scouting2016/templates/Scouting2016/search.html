@@ -2,193 +2,201 @@
 <head>
 
 {% load staticfiles %}
+<script src="{% static 'Scouting2016/sorttable.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
 <title>Search</title>
 </head>
 
 <body>
-	{% include "Scouting2016/banner.html" %}
+    {% include "Scouting2016/banner.html" %}
 
-	<h1>Search Specific Team</h1>
-	
-	{% if get|length != 0%}
-		{% if results|length != 0 %}
-			<table>
-			Teams that match the criteria:
-			{% for result in results %}
-				<tr>
-					<td> {{result.team.teamNumber}}</td>
-				</tr>
-			{% endfor %}
-			</table>
-		{% else %}
-			<p style="color:red;"> No results found! </p>
-		{% endif %}
+    <h1>Search Specific Team</h1>
+    
+    {% if get|length != 0%}
+        {% if results|length != 0 %}
+            There are {{results|length}} teams matching the criteria:
+            <table border="1" class="sortable">
+                <tr>
+                {% for field_name, _ in results.0 %}
+                  <th>{{field_name}}</th>
+                {% endfor %}
+                </tr>
+                {% for result in results %}
+                <tr>
+                  {% for _, value in result %}
+                    <td>{{value}}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p style="color:red;"> No results found! </p>
+        {% endif %}
   
     <hr>
-	{% endif %}
-	
-	<br>
-	Enter information that meets the requirement for a team you are looking for!
-	<form action="{% url 'Scouting2016:search_page' %}" method="get">
+    {% endif %}
+    
+    <br>
+    Enter information that meets the requirement for a team you are looking for!
+    <form action="{% url 'Scouting2016:search_page' %}" method="get">
  
         <br>
-        Average number of AUTO goals
-		<table>
-			<tr>
-				<td>High AUTO Goals :</td>
-				<td><select name=auto_score_high_value>
-						<option value="="     {% if get.auto_score_high_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.auto_score_high_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.auto_score_high_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="auto_score_high"  {%if get.auto_score_high %} value={{ get.auto_score_high }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td>Low AUTO Goals:</td>
-				<td><select name=auto_score_low_value>
-						<option value="="     {% if get.auto_score_low_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.auto_score_low_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.auto_score_low_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="auto_score_low"  {%if get.auto_score_low %} value={{ get.auto_score_low }} {% endif %}></td>
-			</tr>
-		</table>
+        AVERAGE number of AUTO goals:
+        <table>
+            <tr>
+                <td>High AUTO Goals :</td>
+                <td><select name=auto_score_high_value>
+                        <option value="="     {% if get.auto_score_high_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.auto_score_high_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.auto_score_high_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="auto_score_high"  {%if get.auto_score_high %} value={{ get.auto_score_high }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td>Low AUTO Goals:</td>
+                <td><select name=auto_score_low_value>
+                        <option value="="     {% if get.auto_score_low_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.auto_score_low_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.auto_score_low_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="auto_score_low"  {%if get.auto_score_low %} value={{ get.auto_score_low }} {% endif %}></td>
+            </tr>
+        </table>
   
         <br>
-        Average number of goals
-		<table>
-			<tr>
-				<td>High Goals :</td>
-				<td><select name=high_score_successful_value>
-						<option value="="     {% if get.high_score_successful_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.high_score_successful_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.high_score_successful_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="high_score_successful"  {%if get.high_score_successful %} value={{ get.high_score_successful }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td>Low Goals:</td>
-				<td><select name=low_score_successful_value>
-						<option value="="     {% if get.low_score_successful_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.low_score_successful_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.low_score_successful_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="low_score_successful"  {%if get.low_score_successful %} value={{ get.low_score_successful }} {% endif %}></td>
-			</tr>
-		</table>
-		<br> <br>
-         Crossed over _______ Defense X amount of times
-		<table>
-			<tr>
-				<td><p align="right">Category A</p></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Portcullis:</td>
-				<td><select name=portcullis_value>
-						<option value="="     {% if get.portcullis_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.portcullis_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.portcullis_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="portcullis"  {%if get.portcullis %} value={{ get.portcullis }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Cheval De Frise:</td>
-				<td><select name=cheval_de_frise_value>
-						<option value="="     {% if get.cheval_de_frise_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.cheval_de_frise_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.cheval_de_frise_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="cheval_de_frise"  {%if get.cheval_de_frise %} value={{ get.cheval_de_frise }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td><p align="right">Category B</p></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Moat:</td>
-				<td><select name=moat_value>
-						<option value="="     {% if get.moat_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.moat_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.moat_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="moat"  {%if get.moat %} value={{ get.moat }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Ramparts:</td>
-				<td><select name=ramparts_value>
-						<option value="="     {% if get.ramparts_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.ramparts_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.ramparts_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="ramparts"  {%if get.ramparts %} value={{ get.ramparts }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td><p align="right">Category C</p></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Draw Bridge:</td>
-				<td><select name=draw_bridge_value>
-						<option value="="     {% if get.draw_bridge_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.draw_bridge_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.draw_bridge_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="draw_bridge"  {%if get.draw_bridge %} value={{ get.draw_bridge }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Sally Port:</td>
-				<td><select name=sally_port_value>
-						<option value="="     {% if get.sally_port_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.sally_port_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.sally_port_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="sally_port"  {%if get.sally_port %} value={{ get.sally_port }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td><p align="right">Category D</p></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Rock Wall:</td>
-				<td><select name=rock_wall_value>
-						<option value="="     {% if get.rock_wall_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.rock_wall_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.rock_wall_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="rock_wall"  {%if get.rock_wall %} value={{ get.rock_wall }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Rough Terrain:</td>
-				<td><select name=rough_terrain_value>
-						<option value="="     {% if get.rough_terrain_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.rough_terrain_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.rough_terrain_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="rough_terrain"  {%if get.rough_terrain %} value={{ get.rough_terrain }} {% endif %}></td>
-			</tr>
-			<tr>
-				<td><p align="right">Category E</p></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Low Bar:</td>
-				<td><select name=low_bar_value>
-						<option value="="     {% if get.low_bar_value ==  "=" %} selected="selected" {% endif %} >		=	</option>
-						<option value="&lt;=" {% if get.low_bar_value == "<=" %} selected="selected" {% endif %} >	&lt;=	</option>
-						<option value="&gt;=" {% if get.low_bar_value == ">=" %} selected="selected" {% endif %} >	&gt;=	</option>
-				</select></td>
-				<td><input type="number" name="low_bar"  {%if get.low_bar %} value={{ get.low_bar }} {% endif %}></td>
-			</tr>
-		</table>
+        AVERAGE number of goals:
+        <table>
+            <tr>
+                <td>High Goals :</td>
+                <td><select name=high_score_successful_value>
+                        <option value="="     {% if get.high_score_successful_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.high_score_successful_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.high_score_successful_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="high_score_successful"  {%if get.high_score_successful %} value={{ get.high_score_successful }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td>Low Goals:</td>
+                <td><select name=low_score_successful_value>
+                        <option value="="     {% if get.low_score_successful_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.low_score_successful_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.low_score_successful_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="low_score_successful"  {%if get.low_score_successful %} value={{ get.low_score_successful }} {% endif %}></td>
+            </tr>
+        </table>
+        <br> <br>
+         TOTAL defense crosses:
+        <table>
+            <tr>
+                <td><p align="right">Category A</p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Portcullis:</td>
+                <td><select name=portcullis_value>
+                        <option value="="     {% if get.portcullis_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.portcullis_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.portcullis_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="portcullis"  {%if get.portcullis %} value={{ get.portcullis }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Cheval De Frise:</td>
+                <td><select name=cheval_de_frise_value>
+                        <option value="="     {% if get.cheval_de_frise_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.cheval_de_frise_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.cheval_de_frise_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="cheval_de_frise"  {%if get.cheval_de_frise %} value={{ get.cheval_de_frise }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td><p align="right">Category B</p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Moat:</td>
+                <td><select name=moat_value>
+                        <option value="="     {% if get.moat_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.moat_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.moat_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="moat"  {%if get.moat %} value={{ get.moat }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Ramparts:</td>
+                <td><select name=ramparts_value>
+                        <option value="="     {% if get.ramparts_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.ramparts_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.ramparts_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="ramparts"  {%if get.ramparts %} value={{ get.ramparts }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td><p align="right">Category C</p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Draw Bridge:</td>
+                <td><select name=draw_bridge_value>
+                        <option value="="     {% if get.draw_bridge_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.draw_bridge_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.draw_bridge_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="draw_bridge"  {%if get.draw_bridge %} value={{ get.draw_bridge }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Sally Port:</td>
+                <td><select name=sally_port_value>
+                        <option value="="     {% if get.sally_port_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.sally_port_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.sally_port_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="sally_port"  {%if get.sally_port %} value={{ get.sally_port }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td><p align="right">Category D</p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Rock Wall:</td>
+                <td><select name=rock_wall_value>
+                        <option value="="     {% if get.rock_wall_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.rock_wall_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.rock_wall_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="rock_wall"  {%if get.rock_wall %} value={{ get.rock_wall }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Rough Terrain:</td>
+                <td><select name=rough_terrain_value>
+                        <option value="="     {% if get.rough_terrain_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.rough_terrain_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.rough_terrain_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="rough_terrain"  {%if get.rough_terrain %} value={{ get.rough_terrain }} {% endif %}></td>
+            </tr>
+            <tr>
+                <td><p align="right">Category E</p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Low Bar:</td>
+                <td><select name=low_bar_value>
+                        <option value="="     {% if get.low_bar_value ==  "=" %} selected="selected" {% endif %} >        =    </option>
+                        <option value="&lt;=" {% if get.low_bar_value == "<=" %} selected="selected" {% endif %} >    &lt;=    </option>
+                        <option value="&gt;=" {% if get.low_bar_value == ">=" %} selected="selected" {% endif %} >    &gt;=    </option>
+                </select></td>
+                <td><input type="number" name="low_bar"  {%if get.low_bar %} value={{ get.low_bar }} {% endif %}></td>
+            </tr>
+        </table>
 
-		<br> <br> <input type="submit" value="Submit">
-	</form>
+        <br> <br> <input type="submit" value="Submit">
+    </form>
 
 </body>
 </html>

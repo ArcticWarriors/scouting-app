@@ -4,17 +4,18 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
 from django.core.urlresolvers import reverse
+from django.db.models.aggregates import Avg, Sum
 
 
 def __get_create_kargs(request):
 
     kargs = {}
 
-    score_result_fields_with_default = ScoreResult.get_fields_with_defaults()
+    score_result_fields = ScoreResult.get_fields()
 
-    for field_name in score_result_fields_with_default:
+    for field_name in score_result_fields:
         if field_name not in request.POST:
-            kargs[field_name] = score_result_fields_with_default[field_name]
+            kargs[field_name] = score_result_fields[field_name].default
         else:
             kargs[field_name] = request.POST[field_name]
 
@@ -229,31 +230,68 @@ def all_matches(request):
 
 def search_page(request):
 
+    def __get_annotate_args(score_result_field):
+        if score_result_field.metric_type == "Average":
+            return score_result_field.display_name, Avg('scoreresult__' + score_result_field.field_name)
+        else:
+            return score_result_field.display_name, Sum('scoreresult__' + score_result_field.field_name)
+
+    def __get_filter_args(score_result_field, sign, value):
+
+        django_value = ""
+        if sign == '>=':
+            django_value = "__gte"
+        if sign == '<=':
+            django_value = "__lte"
+
+        return "%s%s" % (display_name, django_value), value
+
     context = {}
 
     # This would imply that they were on the search page, and made a request
     if len(request.GET) != 0:
         context['get'] = request.GET
-        score_result_fields = ScoreResult.get_fields_with_defaults()
 
-        kargs = {}
-        for key in score_result_fields:
-            if key in request.GET and len(request.GET[key]) != 0:
-                value_key = key + '_value'
-                if value_key in request.GET:
-                    if request.GET[value_key] == '>=':
-                        extension = '__gte'
-                    elif request.GET[value_key] == '<=':
-                        extension = '__lte'
-                    else:
-                        extension = ''
+        annotate_args = {}
+        filter_args = {}
+        good_fields = []
 
-                    karg_name = key + extension
-                    kargs[karg_name] = request.GET[key]
+        valid_fields = []
+        for score_result_field in ScoreResult.get_fields().values():
+            field_name = score_result_field.field_name
+            value_key = field_name + "_value"
 
-        if len(kargs) != 0:
-            results = ScoreResult.objects.filter(**kargs)
-            context['results'] = results
+            if field_name in request.GET and value_key in request.GET:
+                value = request.GET[field_name]
+                sign = request.GET[value_key]
+                if len(value) != 0 and len(sign) != 0:
+
+                    valid_fields.append(score_result_field)
+                    display_name = score_result_field.display_name
+                    annotate = __get_annotate_args(score_result_field)
+                    filter_arg = __get_filter_args(score_result_field, sign, value)
+
+                    annotate_args[annotate[0]] = annotate[1]
+                    filter_args[filter_arg[0]] = filter_arg[1]
+                    good_fields.append(score_result_field)
+#
+        search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
+#
+        results = []
+
+        for result in search_results:
+            team_result = []
+            team_result.append(("Team Number", result.teamNumber))
+
+            for field in good_fields:
+                value = getattr(result, field.display_name)
+                if field.metric_type == "Average":
+                    value = "{:10.2f}".format(value)
+                team_result.append((field.display_name, value))
+
+            results.append(team_result)
+
+        context['results'] = results
 
     return render(request, 'Scouting2016/search.html', context)
 
@@ -275,13 +313,16 @@ def info_for_form_edit(request):
 
 
 def show_add_form(request):
-    score_result = ScoreResult.get_fields_with_defaults()
 
     context = {}
     context['team_number'] = 1765
     context['match_number'] = 10
     context['submit_view'] = "/2016/submit_form"
-    context["sr"] = score_result
+    context["sr"] = {}
+
+    score_result_fields = ScoreResult.get_fields()
+    for field_name, value in score_result_fields.iteritems():
+        context["sr"][field_name] = value.default
 
     return render(request, 'Scouting2016/inputForm.html', context)
 
