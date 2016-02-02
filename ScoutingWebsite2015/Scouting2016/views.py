@@ -8,6 +8,17 @@ from django.db.models.aggregates import Avg, Sum
 
 
 def __get_create_kargs(request):
+    """
+    Fill out a list of kargs based on the given request and its POST arguments.
+    Will iterate over all of the allowable ScoreResult fields, and will add an
+    item into the kargs dicitionary for each one, using the fields default value
+    if it is not present in POST.  The result will be a dictionary of
+    field_name -> integer value
+
+    @param request: The request containing the POST dictionary
+
+    @return: A dictionary containing field -> value pairs
+    """
 
     kargs = {}
 
@@ -20,6 +31,76 @@ def __get_create_kargs(request):
             kargs[field_name] = request.POST[field_name]
 
     return kargs
+
+
+def __create_filtered_team_metrics(search_results, good_fields):
+    """
+    Iterates over a set of annotates results from a team search.
+    Using the good_fields parameters, it will fill out the results
+    field.  The result will look like this
+
+    [
+      [('Team Number', 174), ('SR Field 1', 2.50), ('SR Field 2', 8.78)]
+      [('Team Number', 229), ('SR Field 1', 0.00), ('SR Field 2', 2.90)]
+    ]
+
+    This way, you can iterate over all of the results and populate the
+    template with the field name and field value
+    """
+
+    results = []
+
+    for result in search_results:
+        team_result = []
+        team_result.append(("Team Number", result.teamNumber))
+
+        for field in good_fields:
+            value = getattr(result, field.display_name)
+            if field.metric_type == "Average":
+                value = "{:10.2f}".format(value)
+            team_result.append((field.display_name, value))
+
+        results.append(team_result)
+
+    return results
+
+
+def __get_annotate_args(score_result_field):
+    """
+    Gets the argument pair that can be used in a model.annotate() call.
+    Will call either the Avg() annotation, or the Sum() annotation.  The re-named
+    field will be the score result fields display name
+
+    Example Output:
+    ("Total Score", Avg('scoreresult__total_score'))
+
+    """
+
+    if score_result_field.metric_type == "Average":
+        return score_result_field.display_name, Avg('scoreresult__' + score_result_field.field_name)
+    else:
+        return score_result_field.display_name, Sum('scoreresult__' + score_result_field.field_name)
+
+
+def __get_filter_args(score_result_field, sign, value):
+    """
+    Gets the arguments that can be used in a model.fiter() call.
+    Based on the given sign, this will append the display name
+    of the score result with the appropriate filter extension
+
+    Examples:
+       "TotalScore__lte" # sign is >=
+       "TotalScore__gte" # sign is <=
+       "TotalScore"      # sign is =
+   """
+
+    django_value = ""
+    if sign == '>=':
+        django_value = "__gte"
+    if sign == '<=':
+        django_value = "__lte"
+
+    return "%s%s" % (score_result_field.display_name, django_value), value
 
 
 def index(request):
@@ -205,22 +286,6 @@ def all_matches(request):
 
 def search_page(request):
 
-    def __get_annotate_args(score_result_field):
-        if score_result_field.metric_type == "Average":
-            return score_result_field.display_name, Avg('scoreresult__' + score_result_field.field_name)
-        else:
-            return score_result_field.display_name, Sum('scoreresult__' + score_result_field.field_name)
-
-    def __get_filter_args(score_result_field, sign, value):
-
-        django_value = ""
-        if sign == '>=':
-            django_value = "__gte"
-        if sign == '<=':
-            django_value = "__lte"
-
-        return "%s%s" % (display_name, django_value), value
-
     context = {}
 
     # This would imply that they were on the search page, and made a request
@@ -232,6 +297,8 @@ def search_page(request):
         good_fields = []
 
         valid_fields = []
+
+        # For each available field, check if the GET request has the field AND the field sign
         for score_result_field in ScoreResult.get_fields().values():
             field_name = score_result_field.field_name
             value_key = field_name + "_value"
@@ -239,10 +306,11 @@ def search_page(request):
             if field_name in request.GET and value_key in request.GET:
                 value = request.GET[field_name]
                 sign = request.GET[value_key]
+
+                # If it does have both fields, make sure they are not empty.  If they are empty, they are worthless
                 if len(value) != 0 and len(sign) != 0:
 
                     valid_fields.append(score_result_field)
-                    display_name = score_result_field.display_name
                     annotate = __get_annotate_args(score_result_field)
                     filter_arg = __get_filter_args(score_result_field, sign, value)
 
@@ -250,23 +318,26 @@ def search_page(request):
                     filter_args[filter_arg[0]] = filter_arg[1]
                     good_fields.append(score_result_field)
 #
+        """
+        BLACK MAGIC ALERT!!!
+
+        Looking at this by itself makes seemingly no sense, but here is an example of what
+        you might run from the command line to get the desired results:
+
+        search_results = Team.objects.all().annotate(HighAuto_MyName=Avg("scoreresult__auto_score_high")).filter(HighAuto_MyName__gte=5)
+
+        The first call, annotate, will create the average results that we will want to filter on.  We can re-name the result
+        to "HighAuto_MyName" so that we can use it later.
+
+        The second call, filter, will use the name we created earlier, "HighAuto_MyName" to run a greater-than-or-equal-to comparison,
+        and give us a list of the teams that pass the requirements
+
+        search_results now contains a list of the teams that passed the filter.  Furthermore, since we re-named our field during the
+        annotate phase, a new, fake field has been added to our team object.  We could do search_results[0].HighAuto_MyName to print
+        out how many high auto goals the team scores on average
+        """
         search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
-#
-        results = []
-
-        for result in search_results:
-            team_result = []
-            team_result.append(("Team Number", result.teamNumber))
-
-            for field in good_fields:
-                value = getattr(result, field.display_name)
-                if field.metric_type == "Average":
-                    value = "{:10.2f}".format(value)
-                team_result.append((field.display_name, value))
-
-            results.append(team_result)
-
-        context['results'] = results
+        context['results'] = __create_filtered_team_metrics(search_results, good_fields)
 
     return render(request, 'Scouting2016/search.html', context)
 
