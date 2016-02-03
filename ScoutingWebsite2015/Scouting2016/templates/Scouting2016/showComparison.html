@@ -11,51 +11,28 @@
 
 	{% include "Scouting2016/banner.html" %} 
  
- 
-	{% if selected_fields_names|length != 0 %}
-	<table border = "1" class="sortable">
-		  <th> Teams </th>
-		 {%if 'auto_score_low'         in selected_fields_names %}<th> Auto low scores  </th> {% endif %} 
-		 {%if 'auto_score_high'        in selected_fields_names %}<th> Auto high scores </th> {% endif %} 
-		 {%if 'high_score_successful'  in selected_fields_names %}<th> High goal scores </th> {% endif %} 
-		 {%if 'high_score_fail'        in selected_fields_names %}<th> High goal misses </th> {% endif %}
-		 {%if 'low_score_successful'   in selected_fields_names %}<th> Low goal scores  </th> {% endif %}
-		 {%if 'low_score_fail'         in selected_fields_names %}<th> Low goal misses  </th> {% endif %}
-		 {%if 'score_tech_foul'        in selected_fields_names %}<th> Tech. Fouls      </th> {% endif %}				
-		 {%if 'cheval_de_frise'        in selected_fields_names %}<th> Cheval de Frise  </th> {% endif %}
-		 {%if 'ramparts'               in selected_fields_names %}<th> Ramparts         </th> {% endif %}
-		 {%if 'sally_port'             in selected_fields_names %}<th> Sally port Door  </th> {% endif %}
-		 {%if 'low_bar'                in selected_fields_names %}<th> Low Bar          </th> {% endif %}
-		 {%if 'rock_wall'              in selected_fields_names %}<th> Rock wall        </th> {% endif %}
-		 {%if 'draw_bridge'            in selected_fields_names %}<th> Drawbridge       </th> {% endif %}
-		 {%if 'moat'                   in selected_fields_names %}<th> Moat             </th> {% endif %}
-		 {%if 'rough_terrain'          in selected_fields_names %}<th> Rough Terrain    </th> {% endif %}
-		 {%if 'portcullis'             in selected_fields_names %}<th> Porticullis      </th> {% endif %}
 
-		 {% for team in selected_team_numbers %}
-		 <tr> 
-		 <td> {{team.teamNumber}} </td>
-		 {%if 'auto_score_low'         in selected_fields_names %}<td> {{team.auto_score_low}}        </td> {% endif %} 
-		 {%if 'auto_score_high'        in selected_fields_names %}<td> {{team.auto_score_high}}       </td> {% endif %} 
-		 {%if 'high_score_successful'  in selected_fields_names %}<td> {{team.high_score_successful}} </td> {% endif %} 
-		 {%if 'high_score_fail'        in selected_fields_names %}<td> {{team.high_score_fails}}      </td> {% endif %}
-		 {%if 'low_score_successful'   in selected_fields_names %}<td> {{team.low_score_successful}}  </td> {% endif %}
-		 {%if 'low_score_fail'         in selected_fields_names %}<td> {{team.low_score_fails}}       </td> {% endif %}
-		 {%if 'score_tech_foul'        in selected_fields_names %}<td> {{team.score_tech_foul}}       </td> {% endif %}				
-		 {%if 'cheval_de_frise'        in selected_fields_names %}<td> {{team.cheval_de_frise}}       </td> {% endif %}
-		 {%if 'ramparts'               in selected_fields_names %}<td> {{team.ramparts}}              </td> {% endif %}
-		 {%if 'sally_port'             in selected_fields_names %}<td> {{team.sally_port}}            </td> {% endif %}
-		 {%if 'low_bar'                in selected_fields_names %}<td> {{team.low_bar}}               </td> {% endif %}
-		 {%if 'rock_wall'              in selected_fields_names %}<td> {{team.rock_wall}}             </td> {% endif %}
-		 {%if 'draw_bridge'            in selected_fields_names %}<td> {{team.draw_bridge}}           </td> {% endif %}
-		 {%if 'moat'                   in selected_fields_names %}<td> {{team.moat}}                  </td> {% endif %}
-		 {%if 'rough_terrain'          in selected_fields_names %}<td> {{team.rough_terrain}}         </td> {% endif %}
-		 {%if 'portcullis'             in selected_fields_names %}<td> {{team.portcullis}}            </td> {% endif %} 
-		 </tr>
-		 {% endfor %}
-		 
-	</table>
-	{% endif %}
+    {% if results != None %}
+        {% if results|length != 0 %}
+            <table border="1" class="sortable">
+                <tr>
+                {% for field_name, _ in results.0 %}
+                  <th>{{field_name}}</th>
+                {% endfor %}
+                </tr>
+                {% for result in results %}
+                <tr>
+                  {% for _, value in result %}
+                    <td>{{value}}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p style="color:red;"> No results found! </p>
+        {% endif %}
+  
+    {% endif %}
 
 	<form action="{% url 'Scouting2016:comparison' %}" method="get">
 		<h2>Teams to graph</h2>
