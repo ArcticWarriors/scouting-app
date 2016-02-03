@@ -27,10 +27,10 @@ No matches scouted
     
     <h2>Pictures</h2>
     
-        <form action="{% url 'Scouting2016:upload_image' %}" method="POST">
+        <form action="{% url 'Scouting2016:upload_image' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name='team_number' value={{team_number}}>
-            <input type="file" name={{team_name}} accept="image/*">
+            <input type="file" name='image_name' accept="image/*">
             <input type="submit">
         </form>
         
