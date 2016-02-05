@@ -197,6 +197,59 @@ def gen_graph(request, team_numbers, fields):
     pass
 
 
+def show_comparison(request):
+
+    context = {}
+    context['teams'] = Team.objects.all()
+
+    if len(request.GET) != 0:
+
+        teams = []
+        fields = []
+
+        for key in request.GET:
+            try:
+                team_number = int(key)
+                teams.append(team_number)
+            except:
+                fields.append(key)
+
+        context['selected_team_numbers'] = teams
+        context['selected_fields_names'] = [str(x) for x in fields]
+
+    # This would imply that they were on the search page, and made a request
+    if len(request.GET) != 0:
+        context['get'] = request.GET
+
+        annotate_args = {}
+        good_fields = []
+
+        valid_fields = []
+
+        # For each available field, check if the GET request has the field AND the field sign
+        for score_result_field in ScoreResult.get_fields().values():
+            field_name = score_result_field.field_name
+
+            if field_name in request.GET:
+                value = request.GET[field_name]
+
+                # If it does have both fields, make sure they are not empty.  If they are empty, they are worthless
+                if len(value) != 0:
+
+                    valid_fields.append(score_result_field)
+                    annotate = __get_annotate_args(score_result_field)
+
+                    annotate_args[annotate[0]] = annotate[1]
+                    good_fields.append(score_result_field)
+
+        search_results = Team.objects.filter(teamNumber__in=teams).annotate(**annotate_args)
+        context['results'] = __create_filtered_team_metrics(search_results, good_fields)
+
+
+
+    return render(request, 'Scouting2016/showComparison.html', context)
+
+
 def robot_display(request):
     return render(request, 'Scouting2016/RobotDisplay.html')
 

@@ -88,7 +88,6 @@ class ScoreResult(models.Model):
     yellow_card = models.BooleanField()
     red_card = models.BooleanField()
     broke_badly = models.BooleanField()
-
     @staticmethod
     def get_fields():
 
