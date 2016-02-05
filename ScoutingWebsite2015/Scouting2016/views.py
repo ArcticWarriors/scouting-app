@@ -305,7 +305,9 @@ def search_page(request):
         for score_result_field in ScoreResult.get_fields().values():
             field_name = score_result_field.field_name
             value_key = field_name + "_value"
-
+            
+            if field_name == 'scale_challenge' or field_name == 'auto_defense':
+                continue
             if field_name in request.GET and value_key in request.GET:
                 value = request.GET[field_name]
                 sign = request.GET[value_key]
@@ -320,7 +322,8 @@ def search_page(request):
                     annotate_args[annotate[0]] = annotate[1]
                     filter_args[filter_arg[0]] = filter_arg[1]
                     good_fields.append(score_result_field)
-#
+
+                
         """
         BLACK MAGIC ALERT!!!
 
@@ -340,11 +343,40 @@ def search_page(request):
         out how many high auto goals the team scores on average
         """
         search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
-        context['results'] = __create_filtered_team_metrics(search_results, good_fields)
+        team_numbers = [team_result.teamNumber for team_result in search_results]
 
+        filtered_results = __create_filtered_team_metrics(search_results, good_fields)
+
+        if 'scale_challenge' in request.GET:
+            filtered_results = search_result_filter(request, team_numbers, filtered_results, 'scale_challenge')
+
+        if 'auto_defense' in request.GET:
+            filtered_results = search_result_filter(request, team_numbers, filtered_results, 'auto_defense')
+
+        context['results'] = filtered_results
     return render(request, 'Scouting2016/search.html', context)
 
+def search_result_filter(request, team_numbers, filtered_results, parameter):
 
+    if parameter in request.GET:
+        kargs = {}
+        kargs[parameter] = request.GET[parameter]
+        all_teams_that_passes_parameter = ScoreResult.objects.filter(team__teamNumber__in=team_numbers).filter(**kargs)
+
+    print all_teams_that_passes_parameter
+    team_that_passes_parameter = [sr.team.teamNumber for sr in all_teams_that_passes_parameter]
+    final_result = []
+    for team_score_results in filtered_results:
+        team_tuple = team_score_results[0]
+        this_team_number = team_tuple[1]
+
+        if this_team_number in team_that_passes_parameter:
+            final_result.append(team_score_results)
+#             print "Team %s passed" % (team_score_results)
+#         else:
+#             print "Team %s failed" % (this_team_number)
+
+    return final_result
 def upload_image(request):
 
     team_numer = request.POST['team_number']
