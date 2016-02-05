@@ -5,33 +5,54 @@
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
 <title>Welcome!</title>
 </head>
+<style>
+
+</style>
 
 <body>
 
 {% include "Scouting2016/banner.html" %}
 
 <h1> Prediction for Match {{match_number}}</h1>
+<h2><u>Red Alliance</u></h2>
+<ul>
+	<li> {{ red_team_1 }} </li>
+	<li> {{ red_team_2 }} </li>
+	<li> {{ red_team_3 }} </li>
+</ul>
+<br>
 
-Red Team 1 : {{ red_team_1 }} <br>
-Red Team 2 : {{ red_team_2 }} <br>
-Red Team 3 : {{ red_team_3 }} <br>
-Red Score: XXX <br>
+<table border="1">
+	<th> Defense </th>
+	<th> Times crossed </th>
+	{% for defense_name, value in red_sorted %}
+	<tr>
+	<td>{{defense_name}}</td> <td> {{value}} </td>
+	</tr>
+	{% endfor %}
+	
+</table>
+<br>
 
-<h2> Suggested Defenses</h2>
-<h3> Best Defenses </h3>
 
-<h3> Worst Defenses </h3>
+<h2><u> Blue Alliance</u></h2>
+<ul>
+	<li> {{ blue_team_1 }} </li>
+	<li> {{ blue_team_2 }} </li>
+	<li> {{ blue_team_3 }} </li>
+</ul>
+<br>
 
-<br><br>
-Blue Team 1 : {{ blue_team_1 }} <br>
-Blue Team 2 : {{ blue_team_2 }} <br>
-Blue Team 3 : {{ blue_team_3 }} <br>
-Red Score: YYY <br>
+<table border="1">
+	<th> Defense </th>
+	<th> Times crossed </th>
+	{% for defense_name, value in blue_sorted %}
+	<tr>
+	<td>{{defense_name}}</td> <td> {{value}} </td>
+	</tr>
+	{% endfor %}
+</table>
 
-<h2> Suggested Defenses</h2>
-<h3> Best Defenses </h3>
-
-<h3> Worst Defenses </h3>
 
 </body>
 </html>

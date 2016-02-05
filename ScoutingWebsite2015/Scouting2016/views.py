@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
+import operator
 
 
 def __get_create_kargs(request):
@@ -235,8 +236,36 @@ def match_display(request, match_number):
     context['match_display'] = match_number
     return render(request, 'Scouting2016/MatchPage.html', context)
 
+def get_defense_names():
+    
+    defenses = []
+    defenses.append('portcullis')
+    defenses.append('cheval_de_frise')
+    defenses.append('sally_port')
+    defenses.append('draw_bridge')
+    defenses.append('ramparts')
+    defenses.append('moat')
+    defenses.append('rock_wall')
+    defenses.append('rough_terrain')
+
+    return defenses
+
+
+def get_defense_stats(teamNumber):
+
+    defenses = get_defense_names()
+
+    results = {}
+
+    for defense in defenses:
+        results[defense] = ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
+
+
+
+    return results
 
 def match_prediction(request, match_number):
+
 
     official_match = OfficialMatch.objects.get(matchNumber=match_number)
 
@@ -249,7 +278,35 @@ def match_prediction(request, match_number):
     context['blue_team_2'] = Team.objects.get(teamNumber=official_match.blueTeam2)
     context['blue_team_3'] = Team.objects.get(teamNumber=official_match.blueTeam3)
 
+    red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
+    blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
+
+    red_results = {x: 0 for x in get_defense_names()}
+    blue_results = {x: 0 for x in get_defense_names()}
+
+    for team in red_teams:
+        team_results = get_defense_stats(team)
+        for defense in get_defense_names():
+            red_results[defense] += team_results[defense]
+
+    for team in blue_teams:
+        team_results = get_defense_stats(team)
+        for defense in get_defense_names():
+            blue_results[defense] += team_results[defense]
+
+    print red_results
+    print blue_results
+
+    red_sorted = sorted(red_results.items(), key=operator.itemgetter(1), reverse=True)
+    blue_sorted = sorted(blue_results.items(), key=operator.itemgetter(1), reverse=True)
+
+    print red_sorted
+
+    context['red_sorted'] = red_sorted
+    context['blue_sorted'] = blue_sorted
+
     return render(request, 'Scouting2016/MatchPrediction.html', context)
+
 
 
 def all_teams(request):
