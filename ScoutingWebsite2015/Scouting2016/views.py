@@ -341,6 +341,11 @@ def match_display(request, match_number):
 
 def get_defense_names():
     
+    """
+    This function has no request, its only purpose is to keep a list of defenses which can be
+    pulled as a function for other places, such as get_defense_stats
+    it will give this list of defenses to whatever calls it
+    """
     defenses = []
     defenses.append('portcullis')
     defenses.append('cheval_de_frise')
@@ -356,6 +361,13 @@ def get_defense_names():
 
 def get_defense_stats(teamNumber):
 
+    """
+    this page will get the statistics of all defense crosses (stored above) for any team requested
+    this is used in conjunction with match_prediction to decide which defenses the teams can cross
+    cross the best and worst, which is useful for deciding which defenses to select
+    @param teamNumber is the number of the team which defense crosses are being selectec
+    """
+
     defenses = get_defense_names()
 
     results = {}
@@ -368,6 +380,16 @@ def get_defense_stats(teamNumber):
     return results
 
 def match_prediction(request, match_number):
+
+    """
+    This page is displayed when a match which has not happened yet would be requested
+    the page is useful for upcoming matches, as it can display which defenses each ALLIANCE
+    crosses the most and the least (ecxluding the low bar, since it will always be on the field
+    and is irrelevant for our purposes) by obtaining information from get_defnese_stats, and addimg
+    the total crosses from each team into a grand total. This total is then sorted into a ranked
+    list by using the sorted() function with reverse=true.
+    @param match_number is the match which is being predicted.
+    """
 
 
     official_match = OfficialMatch.objects.get(matchNumber=match_number)
@@ -414,6 +436,12 @@ def match_prediction(request, match_number):
 
 def all_teams(request):
 
+    """
+    When requested, will show a list of all the teams that have been in a match,
+    or will be in a match. This also shows some average scoring statistics of each team,
+    so it is necessary to obtain their metrics data.
+    """
+
     the_teams = Team.objects.all()
 
     teams_with_avg = []
@@ -435,6 +463,12 @@ def all_teams(request):
 
 
 def all_matches(request):
+
+    """
+    will show a list of all matches, both scouted already and unscouted (upcoming)
+    Will show all teams in each match, and display them into two tables of each variety
+    """
+
     matches = Match.objects.all()
 
     scouted_numbers = [match.matchNumber for match in matches]
@@ -539,6 +573,11 @@ def search_result_filter(request, team_numbers, filtered_results, parameter):
 
     return final_result
 def upload_image(request):
+
+    """
+    Pictures can be uploaded from the users devices to the server and posts them to the team's
+    respective team page
+    """
 
     team_numer = request.POST['team_number']
     f = request.FILES['image_name']
