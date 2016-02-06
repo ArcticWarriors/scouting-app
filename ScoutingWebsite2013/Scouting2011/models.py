@@ -73,7 +73,6 @@ class ScoreResult(models.Model):
     WasScouted        = models.BooleanField()
     BrokeBadly        = models.BooleanField()
     Comments          = models.CharField(max_length=1000)
-
     @staticmethod
     def get_fields():
 

@@ -194,6 +194,31 @@
                 <td><input type="number" name="low_bar"  {%if get.low_bar %} value={{ get.low_bar }} {% endif %}></td>
             </tr>
         </table>
+        <br>
+        Other Criteria's:        
+        <table>
+        	<tr>
+        		<td> SCALE or CHALLENGE </td>
+        	</tr>
+        	<tr>
+        		<td> </td>
+        		<td> Can it SCALE?</td>
+        		<td> <input type="radio" name="scale_challenge" value="complete"> Yes it can!</td>
+        	</tr>
+        	<tr>
+        		<td> </td>
+        		<td> Can it CHALLENGE? </td>
+        		<td> <input type="radio" name="scale_challenge" value="yes"> Yes it can!</td>
+        	</tr>
+        	<tr>
+        		<td> AUTO REACH or CROSS </td>
+        	</tr>
+        	<tr>
+        		<td> </td>
+        		<td> Can it REACH a defense in AUTO? </td>
+        		<td> <input type="radio" name="auto_defense" value="reached"> Yes it can!</td>
+        	</tr>
+        </table>
 
         <br> <br> <input type="submit" value="Submit">
     </form>
