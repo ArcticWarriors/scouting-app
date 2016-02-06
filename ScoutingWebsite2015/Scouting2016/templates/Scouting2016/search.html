@@ -29,8 +29,12 @@ It is capable of sorting any tables which contain
                 </tr>
                 {% for result in results %}
                 <tr>
-                  {% for _, value in result %}
+                  {% for field_name, value in result %}
+                  {% if field_name == "Team Number" %}
+                 <td> <a href="{% url 'Scouting2016:view_team' value %}">{{ value }} </a></td>
+                    {% else %}
                     <td>{{value}}</td>
+                    {% endif %}
                   {% endfor %}
                 </tr>
                 {% endfor %}

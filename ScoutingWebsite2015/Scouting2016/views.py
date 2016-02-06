@@ -505,6 +505,7 @@ def search_page(request):
         search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
         team_numbers = [team_result.teamNumber for team_result in search_results]
 
+
         filtered_results = __create_filtered_team_metrics(search_results, good_fields)
 
         if 'scale_challenge' in request.GET:
