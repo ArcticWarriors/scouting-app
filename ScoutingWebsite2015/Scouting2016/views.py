@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
+import operator
 
 
 def __get_create_kargs(request):
@@ -338,8 +339,36 @@ def match_display(request, match_number):
     context['match_display'] = match_number
     return render(request, 'Scouting2016/MatchPage.html', context)
 
+def get_defense_names():
+    
+    defenses = []
+    defenses.append('portcullis')
+    defenses.append('cheval_de_frise')
+    defenses.append('sally_port')
+    defenses.append('draw_bridge')
+    defenses.append('ramparts')
+    defenses.append('moat')
+    defenses.append('rock_wall')
+    defenses.append('rough_terrain')
+
+    return defenses
+
+
+def get_defense_stats(teamNumber):
+
+    defenses = get_defense_names()
+
+    results = {}
+
+    for defense in defenses:
+        results[defense] = ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
+
+
+
+    return results
 
 def match_prediction(request, match_number):
+
 
     official_match = OfficialMatch.objects.get(matchNumber=match_number)
 
@@ -352,7 +381,35 @@ def match_prediction(request, match_number):
     context['blue_team_2'] = Team.objects.get(teamNumber=official_match.blueTeam2)
     context['blue_team_3'] = Team.objects.get(teamNumber=official_match.blueTeam3)
 
+    red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
+    blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
+
+    red_results = {x: 0 for x in get_defense_names()}
+    blue_results = {x: 0 for x in get_defense_names()}
+
+    for team in red_teams:
+        team_results = get_defense_stats(team)
+        for defense in get_defense_names():
+            red_results[defense] += team_results[defense]
+
+    for team in blue_teams:
+        team_results = get_defense_stats(team)
+        for defense in get_defense_names():
+            blue_results[defense] += team_results[defense]
+
+    print red_results
+    print blue_results
+
+    red_sorted = sorted(red_results.items(), key=operator.itemgetter(1), reverse=True)
+    blue_sorted = sorted(blue_results.items(), key=operator.itemgetter(1), reverse=True)
+
+    print red_sorted
+
+    context['red_sorted'] = red_sorted
+    context['blue_sorted'] = blue_sorted
+
     return render(request, 'Scouting2016/MatchPrediction.html', context)
+
 
 
 def all_teams(request):
@@ -408,7 +465,9 @@ def search_page(request):
         for score_result_field in ScoreResult.get_fields().values():
             field_name = score_result_field.field_name
             value_key = field_name + "_value"
-
+            
+            if field_name == 'scale_challenge' or field_name == 'auto_defense':
+                continue
             if field_name in request.GET and value_key in request.GET:
                 value = request.GET[field_name]
                 sign = request.GET[value_key]
@@ -423,7 +482,8 @@ def search_page(request):
                     annotate_args[annotate[0]] = annotate[1]
                     filter_args[filter_arg[0]] = filter_arg[1]
                     good_fields.append(score_result_field)
-#
+
+                
         """
         BLACK MAGIC ALERT!!!
 
@@ -443,11 +503,40 @@ def search_page(request):
         out how many high auto goals the team scores on average
         """
         search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
-        context['results'] = __create_filtered_team_metrics(search_results, good_fields)
+        team_numbers = [team_result.teamNumber for team_result in search_results]
 
+        filtered_results = __create_filtered_team_metrics(search_results, good_fields)
+
+        if 'scale_challenge' in request.GET:
+            filtered_results = search_result_filter(request, team_numbers, filtered_results, 'scale_challenge')
+
+        if 'auto_defense' in request.GET:
+            filtered_results = search_result_filter(request, team_numbers, filtered_results, 'auto_defense')
+
+        context['results'] = filtered_results
     return render(request, 'Scouting2016/search.html', context)
 
+def search_result_filter(request, team_numbers, filtered_results, parameter):
 
+    if parameter in request.GET:
+        kargs = {}
+        kargs[parameter] = request.GET[parameter]
+        all_teams_that_passes_parameter = ScoreResult.objects.filter(team__teamNumber__in=team_numbers).filter(**kargs)
+
+    print all_teams_that_passes_parameter
+    team_that_passes_parameter = [sr.team.teamNumber for sr in all_teams_that_passes_parameter]
+    final_result = []
+    for team_score_results in filtered_results:
+        team_tuple = team_score_results[0]
+        this_team_number = team_tuple[1]
+
+        if this_team_number in team_that_passes_parameter:
+            final_result.append(team_score_results)
+#             print "Team %s passed" % (team_score_results)
+#         else:
+#             print "Team %s failed" % (this_team_number)
+
+    return final_result
 def upload_image(request):
 
     team_numer = request.POST['team_number']

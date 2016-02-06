@@ -11,9 +11,26 @@ table {
 }
 </style>
 <body>
-
+	
 	{% include "Scouting2016/banner.html" %} 
-
+	
+	<script>
+		function incrementValue(a)
+		{
+		    var value = parseInt(document.getElementById(a).value, 10);
+		    value = isNaN(value) ? 0 : value;
+		    value++;
+		    document.getElementById(a).value = value;
+		}
+		function decrementValue(a)
+		{
+		    var value = parseInt(document.getElementById(a).value, 10);
+		    value = isNaN(value) ? 0 : value;
+		    value--;
+		    document.getElementById(a).value = value;
+		}
+	</script>
+	
 	<h1>Scouting Form</h1>
 	Enter scouting information team by team and submit!
 	<br>
@@ -80,9 +97,15 @@ table {
 				<td></td>
 				<td></td>
 				<td>AUTO Low Goal</td>
-				<td><input type="number" name="auto_score_low" value="{{sr.auto_score_low}}"></td>
+				<td><button type="button" onclick="decrementValue('auto_score_low')">-</button> 
+				<input type="number" id = "auto_score_low" name="auto_score_low" value="{{sr.auto_score_low}}">
+				<button type="button" onclick="incrementValue('auto_score_low')">+</button>
+				</td>
 				<td style="width: 155px;">AUTO High Goal</td>
-				<td><input type="number" name="auto_score_high" value="{{sr.auto_score_high}}"></td>
+				<td><button type="button" onclick="decrementValue('auto_score_high')">-</button>
+				<input type="number" id = "auto_score_high" name="auto_score_high" value="{{sr.auto_score_high}}">
+				<button type="button" onclick="incrementValue('auto_score_high')">+</button>
+				</td>
 
 			</tr>
 			<tr>
@@ -111,7 +134,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Portcullis.JPG' %}" style="height: 150px;" /></td>
 				<td>Portcullis :</td>
-				<td><input type="number" name="portcullis" value="{{sr.portcullis}}"></td>
+				<td><button type="button" onclick="decrementValue('portcullis')">-</button>
+				<input type="number" id = "portcullis" name="portcullis" value="{{sr.portcullis}}">
+				<button type="button" onclick="incrementValue('portcullis')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_portcullis" value="no_move_portcullis" {% if sr.slow_fast_portcullis == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_portcullis" value="slow" {% if sr.slow_fast_portcullis == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_portcullis" value="fast" {% if sr.slow_fast_portcullis == 'fast' %} checked="checked"{% endif %}></td>
@@ -120,7 +146,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Cheval De Frise.JPG' %}" style="width: 175px;" /></td>
 				<td>Cheval De Frise :</td>
-				<td><input type="number" name="cheval_de_frise" value="{{sr.cheval_de_frise}}"></td>
+				<td><button type="button" onclick="decrementValue('cheval_de_frise')">-</button>
+				<input type="number" id = "cheval_de_frise" name="cheval_de_frise" value="{{sr.cheval_de_frise}}">
+				<button type="button" onclick="incrementValue('cheval_de_frise')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_cheval" value="no_move_cheval" {% if sr.slow_fast_cheval == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_cheval" value="slow" {% if sr.slow_fast_cheval == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_cheval" value="fast" {% if sr.slow_fast_cheval == 'fast' %} checked="checked"{% endif %}></td>
@@ -132,7 +161,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Moat.JPG' %}" style="width: 175px;" /></td>
 				<td>Moat :</td>
-				<td><input type="number" name="moat" value="{{sr.moat}}"></td>
+				<td><button type="button" onclick="decrementValue('moat')">-</button>
+				<input type="number" id = "moat" name="moat" value="{{sr.moat}}">
+				<button type="button" onclick="incrementValue('moat')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_moat" value="no_move_moat" {% if sr.slow_fast_moat == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_moat" value="slow" {% if sr.slow_fast_moat == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_moat" value="fast" {% if sr.slow_fast_moat == 'fast' %} checked="checked"{% endif %}></td>
@@ -141,7 +173,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Ramparts.JPG' %}" style="width: 175px;" /></td>
 				<td>Ramparts :</td>
-				<td><input type="number" name="ramparts" value="{{sr.ramparts}}"></td>
+				<td><button type="button" onclick="decrementValue('ramparts')">-</button>
+				<input type="number" id ="ramparts" name="ramparts" value="{{sr.ramparts}}">
+				<button type="button" onclick="incrementValue('ramparts')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_ramparts" value="no_move_ramparts" {% if sr.slow_fast_ramparts == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_ramparts" value="slow" {% if sr.slow_fast_ramparts == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_ramparts" value="fast" {% if sr.slow_fast_ramparts == 'fast' %} checked="checked"{% endif %}></td>
@@ -153,7 +188,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Draw Bridge.JPG' %}" style="height: 150px;" /></td>
 				<td>Draw Bridge :</td>
-				<td><input type="number" name="draw_bridge" value="{{sr.draw_bridge}}"></td>
+				<td><button type="button" onclick="decrementValue('draw_bridge')">-</button>
+				<input type="number" id = "draw_bridge" name="draw_bridge" value="{{sr.draw_bridge}}">
+				<button type="button" onclick="incrementValue('draw_bridge')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_bridge" value="no_move_bridge" {% if sr.slow_fast_bridge == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_bridge" value="slow" {% if sr.slow_fast_bridge == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_bridge" value="fast" {% if sr.slow_fast_bridge == 'fast' %} checked="checked"{% endif %}></td>
@@ -162,7 +200,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Sally Port.JPG' %}" style="width: 175px;" /></td>
 				<td>Sally Port :</td>
-				<td><input type="number" name="sally_port" value="{{sr.sally_port}}"></td>
+				<td><button type="button" onclick="decrementValue('sally_port')">-</button>
+				<input type="number" id = "sally_port" name="sally_port" value="{{sr.sally_port}}">
+				<button type="button" onclick="incrementValue('sally_port')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_sally" value="no_move_sally" {% if sr.slow_fast_sally == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_sally" value="slow" {% if sr.slow_fast_sally == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_sally" value="fast" {% if sr.slow_fast_sally == 'fast' %} checked="checked"{% endif %}></td>
@@ -174,7 +215,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Rock Wall.JPG' %}" style="width: 175px;" /></td>
 				<td>Rock Wall :</td>
-				<td><input type="number" name="rock_wall" value="{{sr.rock_wall}}"></td>
+				<td><button type="button" onclick="decrementValue('rock_wall')">-</button>
+				<input type="number" id="rock_wall" name="rock_wall" value="{{sr.rock_wall}}">
+				<button type="button" onclick="incrementValue('rock_wall')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_rock_wall" value="no_move_rock_wall" {% if sr.slow_fast_rock_wall == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_rock_wall" value="slow_rock_wall" {% if sr.slow_fast_rock_wall == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_rock_wall" value="fast" {% if sr.slow_fast_rock_wall == 'fast' %} checked="checked"{% endif %}></td>
@@ -183,7 +227,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Rough Terrain.JPG' %}" style="width: 175px;" /></td>
 				<td>Rough Terrain :</td>
-				<td><input type="number" name="rough_terrain" value="{{sr.rough_terrain}}"></td>
+				<td><button type="button" onclick="decrementValue('rough_terrain')">-</button>
+				<input type="number" id = "rough_terrain" name="rough_terrain" value="{{sr.rough_terrain}}">
+				<button type="button" onclick="incrementValue('rough_terrain')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_rough" value="no_move_rough" {% if sr.slow_fast_rough == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_rough" value="slow" {% if sr.slow_fast_rough == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_rough" value="fast" {% if sr.slow_fast_rough == 'fast' %} checked="checked"{% endif %}></td>
@@ -195,7 +242,10 @@ table {
 				<td></td>
 				<td><img src="{% static 'Scouting2016/defenseImages/Low Bar.JPG' %}" style="width: 175px;" /></td>
 				<td>Low Bar :</td>
-				<td><input type="number" name="low_bar" value="{{sr.low_bar}}"></td>
+				<td><button type="button" onclick="decrementValue('low_bar')">-</button>
+				<input type="number" id ="low_bar" name="low_bar" value="{{sr.low_bar}}">
+				<button type="button" onclick="incrementValue('low_bar')">+</button>
+				</td>
 				<td>Did Not Move <input type="radio" name="slow_fast_low_bar" value="no_move_low_bar" {% if sr.slow_fast_low_bar == 'no_move' %} checked="checked"{% endif %}></td>
 				<td>Slow <input type="radio" name="slow_fast_low_bar" value="slow_low_bar" {% if sr.slow_fast_low_bar == 'slow' %} checked="checked"{% endif %}></td>
 				<td>Fast <input type="radio" name="slow_fast_low_bar" value="fast" {% if sr.slow_fast_low_bar == 'fast' %} checked="checked"{% endif %}></td>
@@ -215,24 +265,39 @@ table {
 			<tr>
 				<td></td>
 				<td>Scored Successfully</td>
-				<td><input type="number" name="low_score_successful" value="{{sr.low_score_successful}}"></td>
+				<td><button type="button" onclick="decrementValue('low_score_successful')">-</button>
+				<input type="number" id = "low_score_successful" name="low_score_successful" value="{{sr.low_score_successful}}">
+				<button type="button" onclick="incrementValue('low_score_successful')">+</button>
+				</td>
 				<td>Scored Successfully</td>
-				<td><input type="number" id="high_score_successful" name="high_score_successful" value="{{sr.high_score_successful}}"></td>
+				<td><button type="button" onclick="decrementValue('high_score_successful')">-</button>
+				<input type="number" id="high_score_successful" name="high_score_successful" value="{{sr.high_score_successful}}">
+				<button type="button" onclick="incrementValue('high_score_successful')">+</button>
+				</td>
 			</tr>
 
 			<tr>
 				<td></td>
 				<td>Failed</td>
-				<td><input type="number" name="low_score_fail" value="{{sr.low_score_fail}}"></td>
+				<td><button type="button" onclick="decrementValue('low_score_fail')">-</button>
+				<input type="number" id="low_score_fail" name="low_score_fail" value="{{sr.low_score_fail}}">
+				<button type="button" onclick="incrementValue('low_score_fail')">+</button>
+				</td>
 				<td>Failed</td>
-				<td><input type="number" name="high_score_fail" value="{{sr.high_score_fail}}"></td>
+				<td><button type="button" onclick="decrementValue('high_score_fail')">-</button>
+				<input type="number" id = "high_score_fail" name="high_score_fail" value="{{sr.high_score_fail}}">
+				<button type="button" onclick="incrementValue('high_score_fail')">+</button>
+				</td>
 			</tr>
 			<tr>
 			</tr>
 			<tr>
 				<td></td>
 				<td><b>Tech Fouls</b></td>
-				<td><input type="number" name="score_tech_foul" value="{{sr.score_tech_foul}}"></td>
+				<td><button type="button" onclick="decrementValue('score_tech_foul')">-</button>
+				<input type="number" id="score_tech_foul" name="score_tech_foul" value="{{sr.score_tech_foul}}">
+				<button type="button" onclick="incrementValue('score_tech_foul')">+</button>
+				</td>
 			</tr>
 		</table>
 		<br>
@@ -258,4 +323,3 @@ table {
 		<br> <br> <input type="submit" value="Submit">
 	</form>
 </body>
-</html>
