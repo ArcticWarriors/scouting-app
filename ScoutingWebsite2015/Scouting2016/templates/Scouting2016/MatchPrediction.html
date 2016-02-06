@@ -16,9 +16,9 @@
 <h1> Prediction for Match {{match_number}}</h1>
 <h2><u>Red Alliance</u></h2>
 <ul>
-	<li> {{ red_team_1 }} </li>
-	<li> {{ red_team_2 }} </li>
-	<li> {{ red_team_3 }} </li>
+	<li> <a href="{% url 'Scouting2016:view_team' red_team_1.teamNumber %}">{{ red_team_1.teamNumber }} </a></li>
+	<li> <a href="{% url 'Scouting2016:view_team' red_team_2.teamNumber %}">{{ red_team_2.teamNumber }} </a></li>
+	<li> <a href="{% url 'Scouting2016:view_team' red_team_3.teamNumber %}">{{ red_team_3.teamNumber }} </a></li>
 </ul>
 <br>
 
@@ -37,9 +37,9 @@
 
 <h2><u> Blue Alliance</u></h2>
 <ul>
-	<li> {{ blue_team_1 }} </li>
-	<li> {{ blue_team_2 }} </li>
-	<li> {{ blue_team_3 }} </li>
+	<li> <a href="{% url 'Scouting2016:view_team' blue_team_1.teamNumber %}">{{ blue_team_1.teamNumber }} </a></li>
+	<li> <a href="{% url 'Scouting2016:view_team' blue_team_2.teamNumber %}">{{ blue_team_2.teamNumber }} </a></li>
+	<li> <a href="{% url 'Scouting2016:view_team' blue_team_3.teamNumber %}">{{ blue_team_3.teamNumber }} </a></li>
 </ul>
 <br>
 
