@@ -355,7 +355,7 @@ def get_defense_names():
     defenses.append('moat')
     defenses.append('rock_wall')
     defenses.append('rough_terrain')
-
+#   defenses.append('dragon_fire')
     return defenses
 
 
