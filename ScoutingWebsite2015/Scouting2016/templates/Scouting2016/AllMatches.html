@@ -17,7 +17,7 @@ table {
 	<table border="1">
 		<tr>
 			<th>Match Number</th>
-			<th colspan = '6'>Teams</th>
+			<th colspan = '6'>Teams in match</th>
 		</tr>
 		{% for match in scouted_matches %}
 		<tr>
@@ -29,7 +29,7 @@ table {
 		{% endfor %}
 	</table>
  
-<h2>Un-Scouted Matches</h2>
+<h2>UnScouted Matches</h2>
 
  <table border="1">
   <tr>
@@ -43,13 +43,13 @@ table {
   </tr>
   {% for match in unscouted_matches %}
   <tr>
-      <td> <a href="{% url 'Scouting2016:match_prediction' match.matchNumber %}">{{ match.matchNumber }}</a></td>
-      <td> <a href="{% url 'Scouting2016:view_team' match.redTeam1 %}">{{ match.redTeam1 }}</a></td>
-      <td> <a href="{% url 'Scouting2016:view_team' match.redTeam2 %}">{{ match.redTeam2 }}</a></td>
-      <td> <a href="{% url 'Scouting2016:view_team' match.redTeam3 %}">{{ match.redTeam3 }}</a></td>
-      <td> <a href="{% url 'Scouting2016:view_team' match.blueTeam1 %}">{{ match.blueTeam1 }}</a></td>
-      <td> <a href="{% url 'Scouting2016:view_team' match.blueTeam2 %}">{{ match.blueTeam2 }}</a></td>
-      <td> <a href="{% url 'Scouting2016:view_team' match.blueTeam3 %}">{{ match.blueTeam3 }}</a></td>
+      <td> <a href="{% url 'Scouting2016:match_prediction' match.matchNumber %}">{{ match.matchNumber }} </a></td>
+      <td> <a href="{% url 'Scouting2016:view_team' match.redTeam1  %}">{{ match.redTeam1 }}             </a></td>
+      <td> <a href="{% url 'Scouting2016:view_team' match.redTeam2  %}">{{ match.redTeam2 }}             </a></td>
+      <td> <a href="{% url 'Scouting2016:view_team' match.redTeam3  %}">{{ match.redTeam3 }}             </a></td>
+      <td> <a href="{% url 'Scouting2016:view_team' match.blueTeam1 %}">{{ match.blueTeam1 }}            </a></td>
+      <td> <a href="{% url 'Scouting2016:view_team' match.blueTeam2 %}">{{ match.blueTeam2 }}            </a></td>
+      <td> <a href="{% url 'Scouting2016:view_team' match.blueTeam3 %}">{{ match.blueTeam3 }}            </a></td>
   </tr>
   {% endfor %}
  </table>
