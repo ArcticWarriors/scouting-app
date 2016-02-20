@@ -9,6 +9,7 @@ from django.shortcuts import render
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
 from django.template.context_processors import request
+import operator
 
 
 def __get_create_kargs(request):
@@ -135,7 +136,10 @@ def show_graph(request):
     context = {}
     context['teams'] = Team.objects.all()
 
-    # This implies they are trying to look for a graph
+    """
+    request.GET contains all the information of which checkboxes are checked.
+    If no checkboxes are checked, the length will be zero and the graphing script will not run
+    """
     if len(request.GET) != 0:
 
         teams = []
@@ -153,11 +157,21 @@ def show_graph(request):
         context['selected_teams'] = ",".join(str(x) for x in teams)
         context['selected_teams_list'] = teams
         context['graph_url'] = 'gen_graph/%s/%s' % (context['selected_teams'], context['selected_fields'])
-
+        """
+        graph_url calls the gen_graph function to graph all the teams and the fields using matplotlib
+        selected_teams and selected_fields are joined together into a single string which can be
+        placed into the URL
+        """
     return render(request, 'Scouting2016/showGraph.html', context)
 
 
 def gen_graph(request, team_numbers, fields):
+
+    """
+    @param team_numbers is the list of all checked team numbers on the show_graph page.
+    @param fields is the list of all checked fields on the show_graph page
+    these two parameters determine what is graphed and displayed on the page
+    """
 
     import matplotlib
     matplotlib.use('agg')
@@ -192,6 +206,11 @@ def gen_graph(request, team_numbers, fields):
     canvas = FigureCanvasAgg(f)
     response = HttpResponse(content_type='image/png')
     canvas.print_png(response)
+    """
+    gen_graph will create an image of whatever fields are selected with show_graph's request.GET
+    it uses matplotlib to graph numbers on the Y axis and matches on the X axis
+    Each field will be displayed with a different line color
+    """
 
     return response
 
@@ -218,7 +237,7 @@ def show_comparison(request):
         context['selected_team_numbers'] = teams
         context['selected_fields_names'] = [str(x) for x in fields]
 
-    # This would imply that they were on the search page, and made a request
+    # This would imply that they were on the comparison page, and made a request
     if len(request.GET) != 0:
         context['get'] = request.GET
 
@@ -234,7 +253,10 @@ def show_comparison(request):
             if field_name in request.GET:
                 value = request.GET[field_name]
 
-                # If it does have both fields, make sure they are not empty.  If they are empty, they are worthless
+                """
+                Grabs whatever field names are requested, and if any fields are requested the
+                following command blocks will be used
+                """
                 if len(value) != 0:
 
                     valid_fields.append(score_result_field)
@@ -243,21 +265,41 @@ def show_comparison(request):
                     annotate_args[annotate[0]] = annotate[1]
                     good_fields.append(score_result_field)
 
+        """
+        The filter function will grab score results for all teams requested, exclusively
+        all that will be passed on to the page is the teams and fields asked for.
+        """
         search_results = Team.objects.filter(teamNumber__in=teams).annotate(**annotate_args)
         context['results'] = __create_filtered_team_metrics(search_results, good_fields)
 
-
-
     return render(request, 'Scouting2016/showComparison.html', context)
 
-
 def robot_display(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
     return render(request, 'Scouting2016/RobotDisplay.html')
 
-
 def view_team(request, team_number):
+
+    """
+    This page will show detailed information on any team requested.
+    Users are able to view total defense crosses for the team, along with more permanent field
+    elements ( high goal, autonomous scores, tech fouls, etc) with a per match average
+    @param team_number is the team number for the team requested to be displayed
+    """
+
     this_team = Team.objects.get(teamNumber=team_number)
     picture_list = TeamPictures.objects.filter(team_id=this_team.id)
+
+    """
+    The page will return a list of score results stored in the database. Score results are stored in
+    either sums or averages, as defined in the model. The page is also able to upload and store pictures,
+    using a naming convention of picture_### to store and display all avalable pictures on the website itself.
+    """
 
     metrics = this_team.get_metrics()
     score_result_list = []
@@ -276,6 +318,15 @@ def view_team(request, team_number):
 
 
 def match_display(request, match_number):
+
+    """
+    This page will display any requested match. This page can be accessed through many places,
+    such as the list of all matches, or when viewing any team's individual matches.
+    @param match_number is the number of the match being displayed
+    This page uses score results to show each team in the match, along with its statistics
+    during just that match, not the overall average or sum as team in view_team
+    """
+
     context = {}
 
     this_match = Match.objects.get(matchNumber=match_number)
@@ -289,8 +340,58 @@ def match_display(request, match_number):
     context['match_display'] = match_number
     return render(request, 'Scouting2016/MatchPage.html', context)
 
+def get_defense_names():
+    
+    """
+    This function has no request, its only purpose is to keep a list of defenses which can be
+    pulled as a function for other places, such as get_defense_stats
+    it will give this list of defenses to whatever calls it
+    """
+    defenses = []
+    defenses.append('portcullis')
+    defenses.append('cheval_de_frise')
+    defenses.append('sally_port')
+    defenses.append('draw_bridge')
+    defenses.append('ramparts')
+    defenses.append('moat')
+    defenses.append('rock_wall')
+    defenses.append('rough_terrain')
+
+    return defenses
+
+
+def get_defense_stats(teamNumber):
+
+    """
+    this page will get the statistics of all defense crosses (stored above) for any team requested
+    this is used in conjunction with match_prediction to decide which defenses the teams can cross
+    cross the best and worst, which is useful for deciding which defenses to select
+    @param teamNumber is the number of the team which defense crosses are being selectec
+    """
+
+    defenses = get_defense_names()
+
+    results = {}
+
+    for defense in defenses:
+        results[defense] = ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
+
+
+
+    return results
 
 def match_prediction(request, match_number):
+
+    """
+    This page is displayed when a match which has not happened yet would be requested
+    the page is useful for upcoming matches, as it can display which defenses each ALLIANCE
+    crosses the most and the least (ecxluding the low bar, since it will always be on the field
+    and is irrelevant for our purposes) by obtaining information from get_defnese_stats, and addimg
+    the total crosses from each team into a grand total. This total is then sorted into a ranked
+    list by using the sorted() function with reverse=true.
+    @param match_number is the match which is being predicted.
+    """
+
 
     official_match = OfficialMatch.objects.get(matchNumber=match_number)
 
@@ -303,10 +404,44 @@ def match_prediction(request, match_number):
     context['blue_team_2'] = Team.objects.get(teamNumber=official_match.blueTeam2)
     context['blue_team_3'] = Team.objects.get(teamNumber=official_match.blueTeam3)
 
+    red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
+    blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
+
+    red_results = {x: 0 for x in get_defense_names()}
+    blue_results = {x: 0 for x in get_defense_names()}
+
+    for team in red_teams:
+        team_results = get_defense_stats(team)
+        for defense in get_defense_names():
+            red_results[defense] += team_results[defense]
+
+    for team in blue_teams:
+        team_results = get_defense_stats(team)
+        for defense in get_defense_names():
+            blue_results[defense] += team_results[defense]
+
+    print red_results
+    print blue_results
+
+    red_sorted = sorted(red_results.items(), key=operator.itemgetter(1), reverse=True)
+    blue_sorted = sorted(blue_results.items(), key=operator.itemgetter(1), reverse=True)
+
+    print red_sorted
+
+    context['red_sorted'] = red_sorted
+    context['blue_sorted'] = blue_sorted
+
     return render(request, 'Scouting2016/MatchPrediction.html', context)
 
 
+
 def all_teams(request):
+
+    """
+    When requested, will show a list of all the teams that have been in a match,
+    or will be in a match. This also shows some average scoring statistics of each team,
+    so it is necessary to obtain their metrics data.
+    """
 
     the_teams = Team.objects.all()
 
@@ -329,6 +464,12 @@ def all_teams(request):
 
 
 def all_matches(request):
+
+    """
+    will show a list of all matches, both scouted already and unscouted (upcoming)
+    Will show all teams in each match, and display them into two tables of each variety
+    """
+
     matches = Match.objects.all()
 
     scouted_numbers = [match.matchNumber for match in matches]
@@ -399,6 +540,7 @@ def search_page(request):
         search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
         team_numbers = [team_result.teamNumber for team_result in search_results]
 
+
         filtered_results = __create_filtered_team_metrics(search_results, good_fields)
 
         if 'scale_challenge' in request.GET:
@@ -432,6 +574,11 @@ def search_result_filter(request, team_numbers, filtered_results, parameter):
 
     return final_result
 def upload_image(request):
+
+    """
+    Pictures can be uploaded from the users devices to the server and posts them to the team's
+    respective team page
+    """
 
     team_numer = request.POST['team_number']
     f = request.FILES['image_name']
