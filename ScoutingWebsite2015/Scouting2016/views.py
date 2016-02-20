@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
+from django.template.context_processors import request
 
 
 def __get_create_kargs(request):
@@ -559,3 +560,7 @@ def edit_prev_match(request):
     context['match_display'] = match.matchNumber
 
     return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
+
+def user_auth(request):
+
+    return render(request, 'Scouting2016/userAuth.html')
