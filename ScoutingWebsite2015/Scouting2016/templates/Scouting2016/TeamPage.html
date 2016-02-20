@@ -47,13 +47,14 @@ No matches scouted
 {% if score_result_list|length == 0 %}
 No matches scouted
 {% else %}
-  
- <h2>Team Comments</h2>
+
   <ul>
   {% for sr in score_result_list %}
      {%if sr.notes_text_area != "" %}<li>{{sr.notes_text_area}}</li>{% endif %}
   {% endfor %}
   </ul>
+  
+  
 {% endif %}
  
 
@@ -64,7 +65,7 @@ No matches scouted
     <table border = "1">
     <th>  Defenses </th> <th> Total Times Crossed  </th>
     <tr> <td> Cheval de Frise </td> <td> {{ metrics.cheval_de_frise__sum  }} </td> </tr>
-    <tr> <td> Porticullis     </td> <td> {{ metrics.portcullis__sum  }} </td> </tr>
+    <tr> <td> Portcullis      </td> <td> {{ metrics.portcullis__sum  }} </td> </tr>
     <tr> <td> Sally Port      </td> <td> {{ metrics.sally_port__sum  }} </td> </tr>
     <tr> <td> Draw Bridge     </td> <td> {{ metrics.draw_bridge__sum  }} </td> </tr>
     </table>
