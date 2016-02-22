@@ -10,7 +10,6 @@
 <body>
 
 	{% include "Scouting2016/banner.html" %} 
- 
 
     {% if results != None %}
         {% if results|length != 0 %}
@@ -53,7 +52,7 @@
 			<li> <input type="checkbox" name="low_score_successful"  {%if 'low_score_successful'   in selected_fields_names %} checked {% endif %} > Low goal scores          </li>
 			<li> <input type="checkbox" name="low_score_fail"        {%if 'low_score_fail'         in selected_fields_names %} checked {% endif %} > Low goal misses          </li>
 			<li> <input type="checkbox" name="score_tech_foul"       {%if 'score_tech_foul'        in selected_fields_names %} checked {% endif %} > Tech. Fouls              </li>
-			<li> <input type="checkbox" name="cheval_de_frise"       {%if 'cheval_de_frise'        in selected_fields_names %} checked {% endif %} > Cheval de Frise crosses  </li>
+			<li> <input type="checkbox" name="cheval_de_frise"       {%if 'cheval_de_frise'        in selected_fields_names %} checked {% endif %} > Cheval de Frise          </li>
 			<li> <input type="checkbox" name="ramparts"              {%if 'ramparts'               in selected_fields_names %} checked {% endif %} > Ramparts                 </li>
 			<li> <input type="checkbox" name="sally_port"            {%if 'sally_port'             in selected_fields_names %} checked {% endif %} > Sally port door          </li>
 			<li> <input type="checkbox" name="low_bar"               {%if 'low_bar'                in selected_fields_names %} checked {% endif %} > Low bar                  </li>
@@ -61,7 +60,7 @@
 			<li> <input type="checkbox" name="draw_bridge"           {%if 'draw_bridge'            in selected_fields_names %} checked {% endif %} > Drawbridge               </li>
 			<li> <input type="checkbox" name="moat"                  {%if 'moat'                   in selected_fields_names %} checked {% endif %} > Moat                     </li>
 			<li> <input type="checkbox" name="rough_terrain"         {%if 'rough_terrain'          in selected_fields_names %} checked {% endif %} > Rough Terrain            </li>
-			<li> <input type="checkbox" name="portcullis"            {%if 'portcullis'             in selected_fields_names %} checked {% endif %} > Porticullis              </li>
+			<li> <input type="checkbox" name="portcullis"            {%if 'portcullis'             in selected_fields_names %} checked {% endif %} > Portcullis               </li>
 		</ul>
 		<br> </br> <input type="submit" value="Submit">
 	</form>
