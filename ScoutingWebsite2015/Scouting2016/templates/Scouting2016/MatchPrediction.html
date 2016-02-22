@@ -24,14 +24,21 @@
 <br>
 
 <table border="1">
-	<th> Defense </th>
-	<th> Times crossed </th>
-	{% for defense_name, value in red_sorted %}
-	<tr>
-	<td>{{defense_name}}</td> <td> {{value}} </td>
-	</tr>
-	{% endfor %}
-	
+  <th> Category </th>
+  <th> Best Defense </th>
+  <th> Crossed </th>
+  <th> Worst Defense </th>
+  <th> Crossed </th>
+  {% for category_name, value in red_defenses %}
+  <tr>
+    <td><center>{% if audience_defense == category_name %} <b>{% endif %}{{category_name}}</center></td>
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.0.0}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.0.1}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.1.0}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.1.1}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+  </tr>
+  {% endfor %}
+
 </table>
 <br>
 
@@ -45,13 +52,20 @@
 <br>
 
 <table border="1">
-	<th> Defense </th>
-	<th> Times crossed </th>
-	{% for defense_name, value in blue_sorted %}
-	<tr>
-	<td>{{defense_name}}</td> <td> {{value}} </td>
-	</tr>
-	{% endfor %}
+  <th> Category </th>
+  <th> Best Defense </th>
+  <th> Crossed </th>
+  <th> Worst Defense </th>
+  <th> Crossed </th>
+  {% for category_name, value in blue_defenses %}
+  <tr>
+    <td><center>{% if audience_defense == category_name %} <b>{% endif %}{{category_name}}</center></td>
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.0.0}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.0.1}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.1.0}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+    <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.1.1}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
+  </tr>
+  {% endfor %}
 </table>
 
 

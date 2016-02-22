@@ -342,27 +342,7 @@ def match_display(request, match_number):
     return render(request, 'Scouting2016/MatchPage.html', context)
 
 
-def get_defense_names():
-
-    """
-    This function has no request, its only purpose is to keep a list of defenses which can be
-    pulled as a function for other places, such as get_defense_stats
-    it will give this list of defenses to whatever calls it
-    """
-    defenses = []
-    defenses.append('portcullis')
-    defenses.append('cheval_de_frise')
-    defenses.append('sally_port')
-    defenses.append('draw_bridge')
-    defenses.append('ramparts')
-    defenses.append('moat')
-    defenses.append('rock_wall')
-    defenses.append('rough_terrain')
-#   defenses.append('dragon_fire')
-    return defenses
-
-
-def get_defense_stats(teamNumber):
+def append_defense_stats(teamNumber, stat_map):
 
     """
     this page will get the statistics of all defense crosses (stored above) for any team requested
@@ -371,14 +351,35 @@ def get_defense_stats(teamNumber):
     @param teamNumber is the number of the team which defense crosses are being selectec
     """
 
-    defenses = get_defense_names()
+    defenses = {}
+    defenses['A'] = ('portcullis', 'cheval_de_frise')
+    defenses['B'] = ('moat', 'ramparts')
+    defenses['C'] = ('draw_bridge', 'sally_port')
+    defenses['D'] = ('rock_wall', 'rough_terrain')
 
+    for category in defenses:
+
+        if category not in stat_map:
+            stat_map[category] = {}
+
+        for defense in defenses[category]:
+            if defense not in stat_map[category]:
+                stat_map[category][defense] = 0
+
+            stat_map[category][defense] += ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
+
+
+def get_sorted_defense_stats(teamNumbers):
     results = {}
 
-    for defense in defenses:
-        results[defense] = ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
+    for team in teamNumbers:
+        append_defense_stats(team, results)
 
-    return results
+    for category in results:
+        results[category] = sorted(results[category].items(), key=operator.itemgetter(1), reverse=True)
+        print
+
+    return sorted(results.items())
 
 
 def match_prediction(request, match_number):
@@ -403,33 +404,26 @@ def match_prediction(request, match_number):
     context['blue_team_1'] = Team.objects.get(teamNumber=official_match.blueTeam1)
     context['blue_team_2'] = Team.objects.get(teamNumber=official_match.blueTeam2)
     context['blue_team_3'] = Team.objects.get(teamNumber=official_match.blueTeam3)
+    context['audience_defense'] = official_match.audienceSelectionCategory
 
     red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
     blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
 
-    red_results = {x: 0 for x in get_defense_names()}
-    blue_results = {x: 0 for x in get_defense_names()}
+#     red_results = {}
 
-    for team in red_teams:
-        team_results = get_defense_stats(team)
-        for defense in get_defense_names():
-            red_results[defense] += team_results[defense]
+#     for team in blue_teams:
+#         append_defense_stats(team, blue_results)
+#
+#     print "\n\n"
+#     print red_results
+#     print blue_results
 
-    for team in blue_teams:
-        team_results = get_defense_stats(team)
-        for defense in get_defense_names():
-            blue_results[defense] += team_results[defense]
+#     red_sorted = sorted(red_results.items(), key=operator.itemgetter(1), reverse=True)
+#     blue_sorted = sorted(blue_results.items(), key=operator.itemgetter(1), reverse=True)
+#     print red_sorted
 
-    print red_results
-    print blue_results
-
-    red_sorted = sorted(red_results.items(), key=operator.itemgetter(1), reverse=True)
-    blue_sorted = sorted(blue_results.items(), key=operator.itemgetter(1), reverse=True)
-
-    print red_sorted
-
-    context['red_sorted'] = red_sorted
-    context['blue_sorted'] = blue_sorted
+    context['red_defenses'] = get_sorted_defense_stats(red_teams)
+    context['blue_defenses'] = get_sorted_defense_stats(blue_teams)
 
     return render(request, 'Scouting2016/MatchPrediction.html', context)
 
