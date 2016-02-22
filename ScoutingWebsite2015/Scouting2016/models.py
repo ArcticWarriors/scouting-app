@@ -88,6 +88,8 @@ class OfficialMatch(models.Model):
     redScore = models.IntegerField(default=-1)
     blueScore = models.IntegerField(default=-1)
 
+    audienceSelectionCategory = models.CharField(max_length=1, default='A')
+
 
 class ScoreResult(models.Model):
 
