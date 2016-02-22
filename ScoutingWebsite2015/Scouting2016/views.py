@@ -8,7 +8,6 @@ from django.shortcuts import render
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
     OfficialMatch
-from django.template.context_processors import request
 import operator
 
 
@@ -274,6 +273,7 @@ def show_comparison(request):
 
     return render(request, 'Scouting2016/showComparison.html', context)
 
+
 def robot_display(request):
 
     """
@@ -282,6 +282,7 @@ def robot_display(request):
     """
 
     return render(request, 'Scouting2016/RobotDisplay.html')
+
 
 def view_team(request, team_number):
 
@@ -340,8 +341,9 @@ def match_display(request, match_number):
     context['match_display'] = match_number
     return render(request, 'Scouting2016/MatchPage.html', context)
 
+
 def get_defense_names():
-    
+
     """
     This function has no request, its only purpose is to keep a list of defenses which can be
     pulled as a function for other places, such as get_defense_stats
@@ -376,9 +378,8 @@ def get_defense_stats(teamNumber):
     for defense in defenses:
         results[defense] = ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
 
-
-
     return results
+
 
 def match_prediction(request, match_number):
 
@@ -391,7 +392,6 @@ def match_prediction(request, match_number):
     list by using the sorted() function with reverse=true.
     @param match_number is the match which is being predicted.
     """
-
 
     official_match = OfficialMatch.objects.get(matchNumber=match_number)
 
@@ -432,7 +432,6 @@ def match_prediction(request, match_number):
     context['blue_sorted'] = blue_sorted
 
     return render(request, 'Scouting2016/MatchPrediction.html', context)
-
 
 
 def all_teams(request):
@@ -500,7 +499,7 @@ def search_page(request):
         for score_result_field in ScoreResult.get_fields().values():
             field_name = score_result_field.field_name
             value_key = field_name + "_value"
-            
+
             if field_name == 'scale_challenge' or field_name == 'auto_defense':
                 continue
             if field_name in request.GET and value_key in request.GET:
@@ -518,7 +517,6 @@ def search_page(request):
                     filter_args[filter_arg[0]] = filter_arg[1]
                     good_fields.append(score_result_field)
 
-                
         """
         BLACK MAGIC ALERT!!!
 
@@ -540,7 +538,6 @@ def search_page(request):
         search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
         team_numbers = [team_result.teamNumber for team_result in search_results]
 
-
         filtered_results = __create_filtered_team_metrics(search_results, good_fields)
 
         if 'scale_challenge' in request.GET:
@@ -551,6 +548,7 @@ def search_page(request):
 
         context['results'] = filtered_results
     return render(request, 'Scouting2016/search.html', context)
+
 
 def search_result_filter(request, team_numbers, filtered_results, parameter):
 
@@ -573,6 +571,8 @@ def search_result_filter(request, team_numbers, filtered_results, parameter):
 #             print "Team %s failed" % (this_team_number)
 
     return final_result
+
+
 def upload_image(request):
 
     """
@@ -707,6 +707,7 @@ def edit_prev_match(request):
     context['match_display'] = match.matchNumber
 
     return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
+
 
 def user_auth(request):
 
