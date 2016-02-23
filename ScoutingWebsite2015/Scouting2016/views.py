@@ -342,42 +342,15 @@ def match_display(request, match_number):
     return render(request, 'Scouting2016/MatchPage.html', context)
 
 
-def append_defense_stats(teamNumber, stat_map):
-
-    """
-    this page will get the statistics of all defense crosses (stored above) for any team requested
-    this is used in conjunction with match_prediction to decide which defenses the teams can cross
-    cross the best and worst, which is useful for deciding which defenses to select
-    @param teamNumber is the number of the team which defense crosses are being selectec
-    """
-
-    defenses = {}
-    defenses['A'] = ('portcullis', 'cheval_de_frise')
-    defenses['B'] = ('moat', 'ramparts')
-    defenses['C'] = ('draw_bridge', 'sally_port')
-    defenses['D'] = ('rock_wall', 'rough_terrain')
-
-    for category in defenses:
-
-        if category not in stat_map:
-            stat_map[category] = {}
-
-        for defense in defenses[category]:
-            if defense not in stat_map[category]:
-                stat_map[category][defense] = 0
-
-            stat_map[category][defense] += ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
-
-
-def get_sorted_defense_stats(teamNumbers):
+def get_sorted_defense_stats(team_numbers):
     results = {}
 
-    for team in teamNumbers:
-        append_defense_stats(team, results)
+    for team_number in team_numbers:
+        team = Team.objects.get(teamNumber=team_number)
+        team.get_defense_stats(results)
 
     for category in results:
         results[category] = sorted(results[category].items(), key=operator.itemgetter(1), reverse=True)
-        print
 
     return sorted(results.items())
 
@@ -409,21 +382,12 @@ def match_prediction(request, match_number):
     red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
     blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
 
-#     red_results = {}
-
-#     for team in blue_teams:
-#         append_defense_stats(team, blue_results)
-#
-#     print "\n\n"
-#     print red_results
-#     print blue_results
-
-#     red_sorted = sorted(red_results.items(), key=operator.itemgetter(1), reverse=True)
-#     blue_sorted = sorted(blue_results.items(), key=operator.itemgetter(1), reverse=True)
-#     print red_sorted
+    red_prediction, blue_prediction = official_match.predict_score()
 
     context['red_defenses'] = get_sorted_defense_stats(red_teams)
     context['blue_defenses'] = get_sorted_defense_stats(blue_teams)
+    context['red_prediction'] = red_prediction
+    context['blue_prediction'] = blue_prediction
 
     return render(request, 'Scouting2016/MatchPrediction.html', context)
 
