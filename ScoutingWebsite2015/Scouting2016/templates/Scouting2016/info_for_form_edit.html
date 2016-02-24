@@ -3,23 +3,45 @@
 
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
-<title>Welcome!</title>
+<title>Scouting Form - Edit</title>
 </head>
 
 <body>
 
 	{% include "Scouting2016/banner.html" %}
+	
+	<script>
+	function incrementValue(a)
+	{
+	    var value = parseInt(document.getElementById(a).value, 10);
+	    value = isNaN(value) ? 0 : value;
+	    value++;
+	    document.getElementById(a).value = value;
+	}
+	function decrementValue(a)
+	{
+	    var value = parseInt(document.getElementById(a).value, 10);
+	    value = isNaN(value) ? 0 : value;
+	    value--;
+	    document.getElementById(a).value = value;
+	}
+	</script>
 
-	<form action="/2016/edit_form" method="get">
-		{% csrf_token %}
+	<form action="{% url 'Scouting2016:show_edit_form' %}" method="get">
 		<table>
 			<tr>
 				<td>Match Number:</td>
-				<td><input type="number" name="match_number" value="10"></td>
+				<td> <button type="button" onclick="decrementValue('match_number')">-</button> 
+					 <input type="number" id = "match_number" name="match_number" value="10">  
+					 <button type="button" onclick="incrementValue('match_number')">+</button> 
+				</td>
 			</tr>
 			<tr>
 				<td>Team Number:</td>
-				<td><input type="number" name="team_number" value="1765"></td>
+				<td><button type="button" onclick="decrementValue('team_number')">-</button>
+				<input type="number" id="team_number" name="team_number" value="1765">
+				<button type="button" onclick="incrementValue('team_number')">+</button>
+				</td>
 			</tr>
 		</table>
 

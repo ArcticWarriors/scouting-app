@@ -1,0 +1,47 @@
+<html>
+<head>
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2013/style.css' %}" />
+<title>Welcome!</title>
+</head>
+
+<body>
+
+	{% include "Scouting2013/banner.html" %}
+	
+
+{% if graph_url != "" %}
+<img src="{{graph_url}}" />
+{% endif %}
+	
+	
+	<form action="{% url 'Scouting2013:show_graph' %}" method="get">
+	<h2>Teams to graph</h2>
+	<ul>
+	 {% for team in teams %}
+		<li><input type="checkbox" name="{{ team.teamNumber }}"  {% if team.teamNumber in selected_teams_list %} checked {% endif %}>Team {{ team.teamNumber }} </li>
+	{% endfor %}
+	</ul>
+	<h2>Statistics to graph</h2>
+ {{ selected_field_list }}
+	<ul>
+	<li> <input type="checkbox" name="auton_score"     {% if 'auton_score'     in selected_fields_list %} checked {% endif %} > auton_score      </li>
+	<li> <input type="checkbox" name="pyramid_goals"   {% if 'pyramid_goals'   in selected_fields_list %} checked {% endif %} > pyramid_goals    </li>
+	<li> <input type="checkbox" name="high_goals"      {% if 'high_goals'      in selected_fields_list %} checked {% endif %} > high_goals       </li>
+	<li> <input type="checkbox" name="mid_goals"       {% if 'mid_goals'       in selected_fields_list %} checked {% endif %} > mid_goals        </li>
+	<li> <input type="checkbox" name="low_goals"       {% if 'low_goals'       in selected_fields_list %} checked {% endif %} > low_goals        </li>
+	<li> <input type="checkbox" name="missed_shots"    {% if 'missed_shots'    in selected_fields_list %} checked {% endif %} > missed_shots     </li>
+	<li> <input type="checkbox" name="hanging_points"  {% if 'hanging_points'  in selected_fields_list %} checked {% endif %} > hanging_points   </li>
+	<li> <input type="checkbox" name="fouls"           {% if 'fouls'           in selected_fields_list %} checked {% endif %} > fouls            </li>
+	<li> <input type="checkbox" name="technical_fouls" {% if 'technical_fouls' in selected_fields_list %} checked {% endif %} > technical_fouls  </li>
+	<li> <input type="checkbox" name="invalid_hangs"   {% if 'invalid_hangs'   in selected_fields_list %} checked {% endif %} > invalid_hangs    </li>
+	<li> <input type="checkbox" name="yellow_card"     {% if 'yellow_card'     in selected_fields_list %} checked {% endif %} > yellow_card      </li>
+	<li> <input type="checkbox" name="red_card"        {% if 'red_card'        in selected_fields_list %} checked {% endif %} > red_card         </li>
+	<li> <input type="checkbox" name="broke_badly"     {% if 'broke_badly'     in selected_fields_list %} checked {% endif %} > broke_badly      </li>
+	</ul>
+	<br> </br>
+	<input type="submit" value="Submit">
+	</form>
+</body>
+</html>

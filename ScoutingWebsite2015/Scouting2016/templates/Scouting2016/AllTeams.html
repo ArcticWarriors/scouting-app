@@ -2,8 +2,14 @@
 <head>
 {% load staticfiles %}
 <script src="{% static 'Scouting2016/sorttable.js' %}"></script>
+<!-- 
+This script is found in 2016/static/scouting2016/sorttable.js
+It is capable of sorting any tables which contain
+ class = "sortable" 
+ This script can be used on the webpage by clicking the table header you'd like to sort
+ -->
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
-<title>Welcome!</title>
+<title>Team List</title>
 </head>
 <style>
 h2 {
@@ -25,13 +31,13 @@ table {
 			<th>Low goal misses</th>
 			<th>High goal scores</th>
 			<th>High goal misses</th>
-			<th>Autonomous High goal</th>
 			<th>Autonomous Low goal</th>
+			<th>Autonomous High goal</th>
 		</tr>
 		{% for team in teams %}
 	
 		<tr>
-	  	<td> <a href="/2016/view_team/{{ team.teamNumber }}">{{ team.teamNumber }}</a></td>
+        <td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
 	  	<td> {{ team.avgerages.low_score_successful__avg }} </td>
       	<td> {{ team.avgerages.low_score_fail__avg }} </td>
       	<td> {{ team.avgerages.high_score_successful__avg }} </td>
