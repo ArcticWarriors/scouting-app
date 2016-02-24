@@ -26,6 +26,32 @@ class Team(models.Model):
 
     teamNumber = models.IntegerField()
 
+    homepage = models.CharField(max_length=1000)
+
+    teamOrganized = models.CharField(max_length=1000)
+
+    teamLikeable = models.CharField(max_length=1000)
+
+    teamSwag = models.CharField(max_length=1000)
+
+    teamAwards = models.CharField(max_length=1000)
+
+    teamAbilities = models.CharField(max_length=1000)
+
+    teamAlliances = models.CharField(max_length=1000)
+
+    teamAlly174 = models.CharField(max_length=3)
+
+    teamOperational = models.CharField(max_length=3)
+
+    teamOperationProblems = models.CharField(max_length=1000)
+
+    teamFirstYear = models.CharField(max_length=3)
+
+
+
+
+
     def get_metrics(self):
         metrics = self.scoreresult_set.aggregate(Avg("auto_score_low"),
                                                  Avg("auto_score_high"),
@@ -67,6 +93,7 @@ class TeamComments(models.Model):
     team = models.ForeignKey(Team)
 
 
+
 class TeamPictures(models.Model):
 
     path = models.CharField(max_length=1000)
@@ -87,6 +114,8 @@ class OfficialMatch(models.Model):
 
     redScore = models.IntegerField(default=-1)
     blueScore = models.IntegerField(default=-1)
+
+
 
 
 class ScoreResult(models.Model):

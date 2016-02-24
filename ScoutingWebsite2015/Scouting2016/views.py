@@ -706,3 +706,18 @@ def edit_prev_match(request):
     context['match_display'] = match.matchNumber
 
     return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
+    # Pit stuff
+
+
+def show_add_pit(request):
+
+
+    context = {}
+    context['submit_pit'] = "/2016/submit_pit"
+    return render(request, 'Scouting2016/pitForm.html', context)
+
+def submit_new_pit(request):
+
+    team = Team.objects.get(teamNumber=request.POST["team_number"])
+
+    return render(request)

@@ -4,12 +4,17 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
 <title>Team {{ team_number }}</title>
+
 </head>
 
 <body>
 
     {% include "Scouting2016/banner.html" %}
     <h1>Team {{ team_number }}</h1>
+    Bookmark?
+    <form>
+	<input type="radio" name="marked" value="yes">Yes <input type="radio" name="marked" value="no">No  <input type="submit">
+	</form>
 
 <h1>Matches Information:</h1>
 {% if score_result_list|length == 0 %}
