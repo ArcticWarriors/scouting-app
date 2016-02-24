@@ -31,4 +31,5 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^upload_image$', views.upload_image, name='upload_image'),
                url(r'^match_prediction/(?P<match_number>[0-9]+)$', views.match_prediction, name='match_prediction'),
                url(r'^comparison$', views.show_comparison, name='comparison'),
+               url(r'^User_Authentification', views.user_auth, name='userAuth'),
                ]

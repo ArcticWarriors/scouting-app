@@ -6,8 +6,7 @@ from django.db.models.aggregates import Avg, Sum
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, \
-    OfficialMatch
+from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch
 import operator
 
 
@@ -273,6 +272,7 @@ def show_comparison(request):
 
     return render(request, 'Scouting2016/showComparison.html', context)
 
+
 def robot_display(request):
 
     """
@@ -281,6 +281,7 @@ def robot_display(request):
     """
 
     return render(request, 'Scouting2016/RobotDisplay.html')
+
 
 def view_team(request, team_number):
 
@@ -339,45 +340,19 @@ def match_display(request, match_number):
     context['match_display'] = match_number
     return render(request, 'Scouting2016/MatchPage.html', context)
 
-def get_defense_names():
-    
-    """
-    This function has no request, its only purpose is to keep a list of defenses which can be
-    pulled as a function for other places, such as get_defense_stats
-    it will give this list of defenses to whatever calls it
-    """
-    defenses = []
-    defenses.append('portcullis')
-    defenses.append('cheval_de_frise')
-    defenses.append('sally_port')
-    defenses.append('draw_bridge')
-    defenses.append('ramparts')
-    defenses.append('moat')
-    defenses.append('rock_wall')
-    defenses.append('rough_terrain')
 
-    return defenses
-
-
-def get_defense_stats(teamNumber):
-
-    """
-    this page will get the statistics of all defense crosses (stored above) for any team requested
-    this is used in conjunction with match_prediction to decide which defenses the teams can cross
-    cross the best and worst, which is useful for deciding which defenses to select
-    @param teamNumber is the number of the team which defense crosses are being selectec
-    """
-
-    defenses = get_defense_names()
-
+def get_sorted_defense_stats(team_numbers):
     results = {}
 
-    for defense in defenses:
-        results[defense] = ScoreResult.objects.filter(team__teamNumber=teamNumber).aggregate(Sum(defense))[defense + "__sum"]
+    for team_number in team_numbers:
+        team = Team.objects.get(teamNumber=team_number)
+        team.get_defense_stats(results)
 
+    for category in results:
+        results[category] = sorted(results[category].items(), key=operator.itemgetter(1), reverse=True)
 
+    return sorted(results.items())
 
-    return results
 
 def match_prediction(request, match_number):
 
@@ -391,7 +366,6 @@ def match_prediction(request, match_number):
     @param match_number is the match which is being predicted.
     """
 
-
     official_match = OfficialMatch.objects.get(matchNumber=match_number)
 
     context = {}
@@ -402,36 +376,19 @@ def match_prediction(request, match_number):
     context['blue_team_1'] = Team.objects.get(teamNumber=official_match.blueTeam1)
     context['blue_team_2'] = Team.objects.get(teamNumber=official_match.blueTeam2)
     context['blue_team_3'] = Team.objects.get(teamNumber=official_match.blueTeam3)
+    context['audience_defense'] = official_match.audienceSelectionCategory
 
     red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
     blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
 
-    red_results = {x: 0 for x in get_defense_names()}
-    blue_results = {x: 0 for x in get_defense_names()}
+    red_prediction, blue_prediction = official_match.predict_score()
 
-    for team in red_teams:
-        team_results = get_defense_stats(team)
-        for defense in get_defense_names():
-            red_results[defense] += team_results[defense]
-
-    for team in blue_teams:
-        team_results = get_defense_stats(team)
-        for defense in get_defense_names():
-            blue_results[defense] += team_results[defense]
-
-    print red_results
-    print blue_results
-
-    red_sorted = sorted(red_results.items(), key=operator.itemgetter(1), reverse=True)
-    blue_sorted = sorted(blue_results.items(), key=operator.itemgetter(1), reverse=True)
-
-    print red_sorted
-
-    context['red_sorted'] = red_sorted
-    context['blue_sorted'] = blue_sorted
+    context['red_defenses'] = get_sorted_defense_stats(red_teams)
+    context['blue_defenses'] = get_sorted_defense_stats(blue_teams)
+    context['red_prediction'] = red_prediction
+    context['blue_prediction'] = blue_prediction
 
     return render(request, 'Scouting2016/MatchPrediction.html', context)
-
 
 
 def all_teams(request):
@@ -499,7 +456,7 @@ def search_page(request):
         for score_result_field in ScoreResult.get_fields().values():
             field_name = score_result_field.field_name
             value_key = field_name + "_value"
-            
+
             if field_name == 'scale_challenge' or field_name == 'auto_defense':
                 continue
             if field_name in request.GET and value_key in request.GET:
@@ -517,7 +474,6 @@ def search_page(request):
                     filter_args[filter_arg[0]] = filter_arg[1]
                     good_fields.append(score_result_field)
 
-                
         """
         BLACK MAGIC ALERT!!!
 
@@ -539,7 +495,6 @@ def search_page(request):
         search_results = Team.objects.all().annotate(**annotate_args).filter(**filter_args)
         team_numbers = [team_result.teamNumber for team_result in search_results]
 
-
         filtered_results = __create_filtered_team_metrics(search_results, good_fields)
 
         if 'scale_challenge' in request.GET:
@@ -550,6 +505,7 @@ def search_page(request):
 
         context['results'] = filtered_results
     return render(request, 'Scouting2016/search.html', context)
+
 
 def search_result_filter(request, team_numbers, filtered_results, parameter):
 
@@ -572,6 +528,8 @@ def search_result_filter(request, team_numbers, filtered_results, parameter):
 #             print "Team %s failed" % (this_team_number)
 
     return final_result
+
+
 def upload_image(request):
 
     """
@@ -706,6 +664,7 @@ def edit_prev_match(request):
     context['match_display'] = match.matchNumber
 
     return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
+
     # Pit stuff
 
 
@@ -721,3 +680,9 @@ def submit_new_pit(request):
     team = Team.objects.get(teamNumber=request.POST["team_number"])
 
     return render(request)
+
+    # User Auth
+
+def user_auth(request):
+
+    return render(request, 'Scouting2016/userAuth.html')

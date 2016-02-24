@@ -6,7 +6,11 @@
 <title>Team {{ team_number }}</title>
 
 </head>
-
+<style>
+table {
+	text-align: center;
+}
+</style>
 <body>
 
     {% include "Scouting2016/banner.html" %}
@@ -29,7 +33,7 @@ No matches scouted
   {% endfor %}
   </ul>
 {% endif %}
-    
+     	
     <h2>Pictures</h2>
     
         <form action="{% url 'Scouting2016:upload_image' %}" method="POST" enctype="multipart/form-data">
@@ -48,13 +52,14 @@ No matches scouted
 {% if score_result_list|length == 0 %}
 No matches scouted
 {% else %}
-  
- <h2>Team Comments</h2>
+
   <ul>
   {% for sr in score_result_list %}
      {%if sr.notes_text_area != "" %}<li>{{sr.notes_text_area}}</li>{% endif %}
   {% endfor %}
   </ul>
+  
+  
 {% endif %}
  
 
@@ -62,32 +67,34 @@ No matches scouted
     
     <h2>Defenses Crossed:</h2>
     <b>Manipulative Defenses</b>
+    
     <table border = "1">
     <th>  Defenses </th> <th> Total Times Crossed  </th>
     <tr> <td> Cheval de Frise </td> <td> {{ metrics.cheval_de_frise__sum  }} </td> </tr>
-    <tr> <td> Porticullis     </td> <td> {{ metrics.portcullis__sum  }} </td> </tr>
-    <tr> <td> Sally Port      </td> <td> {{ metrics.sally_port__sum  }} </td> </tr>
-    <tr> <td> Draw Bridge     </td> <td> {{ metrics.draw_bridge__sum  }} </td> </tr>
+    <tr> <td> Portcullis      </td> <td> {{ metrics.portcullis__sum  }} </td>      </tr>
+    <tr> <td> Sally Port      </td> <td> {{ metrics.sally_port__sum  }} </td>      </tr>
+    <tr> <td> Draw Bridge     </td> <td> {{ metrics.draw_bridge__sum  }} </td>     </tr>
     </table>
+    
     <br></br>
     <b>Driving Defenses</b>
+    
     <table border = "1">
     <th>  Defenses </th> <th> Total Times Crossed  </th>
-    <tr> <td> Ramparts      </td> <td> {{ metrics.ramparts__sum }} </td> </tr>
-    <tr> <td> Moat          </td> <td> {{ metrics.moat__sum  }} </td> </tr>
-    <tr> <td> Rock Wall     </td> <td> {{ metrics.rock_wall__sum  }} </td> </tr>
+    <tr> <td> Ramparts      </td> <td> {{ metrics.ramparts__sum }} </td>       </tr>
+    <tr> <td> Moat          </td> <td> {{ metrics.moat__sum  }} </td>          </tr>
+    <tr> <td> Rock Wall     </td> <td> {{ metrics.rock_wall__sum  }} </td>     </tr>
     <tr> <td> Rough Terrain </td> <td> {{ metrics.rough_terrain__sum  }} </td> </tr>
-    <tr> <td> Low Bar       </td> <td> {{ metrics.low_bar__sum  }} </td> </tr>
+    <tr> <td> Low Bar       </td> <td> {{ metrics.low_bar__sum  }} </td>       </tr>
     </table>
 
+	<h2>Goals Scored</h2>
 
-<h2>Goals Scored</h2>
-<table border = "1">
-<tr><th></th><th>Average Scored</th><th>Average Missed</th><th>Autonomous</th></tr>
-<tr><td>Low Goal</td><td> {{ metrics.low_score_successful__avg }} </td><td>  {{ metrics.low_score_fail__avg }}  </td><td> {{metrics.auto_score_low__avg}} </td></tr>
-<tr><td>High Goal</td><td> {{ metrics.high_score_successful__avg }} </td><td>  {{ metrics.high_score_fail__avg }}  </td><td> {{metrics.auto_score_high__avg}} </td></tr>
+	<table border = "1">
+	<tr><th></th><th>Average Scored</th><th>Average Missed</th><th>Autonomous</th></tr>
+	<tr><td>Low Goal</td><td> {{ metrics.low_score_successful__avg }} </td><td>  {{ metrics.low_score_fail__avg }}  </td><td> {{metrics.auto_score_low__avg}} </td>    </tr>
+	<tr><td>High Goal</td><td> {{ metrics.high_score_successful__avg }} </td><td>  {{ metrics.high_score_fail__avg }}  </td><td> {{metrics.auto_score_high__avg}} </td></tr>
 </table>
-
 
 <h2>Additional Info.</h2>
 <b><big>Tech fouls: {{metrics.score_tech_foul__sum}}</big></b>
