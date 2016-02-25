@@ -670,18 +670,15 @@ def edit_prev_match(request):
 
 def show_add_pit(request):
 
-
     context = {}
     context['submit_pit'] = "/2016/submit_pit"
     return render(request, 'Scouting2016/pitForm.html', context)
 
-def submit_new_pit(request):
 
-    team = Team.objects.get(teamNumber=request.POST["team_number"])
+def submit_new_pit(request):
 
     return render(request)
 
-    # User Auth
 
 def user_auth(request):
 
