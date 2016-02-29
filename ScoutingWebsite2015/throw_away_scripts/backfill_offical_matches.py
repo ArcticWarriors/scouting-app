@@ -4,10 +4,8 @@ Created on Jan 29, 2016
 @author: PJ
 '''
 
-from Scouting2016.models import *
-from Scouting2016.views import *
+from Scouting2016.models import OfficialMatch, Match, Team
 import random
-import numbers
 
 
 def create_scoreresults():

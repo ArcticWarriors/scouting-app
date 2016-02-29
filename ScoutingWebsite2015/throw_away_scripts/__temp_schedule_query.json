@@ -1,0 +1,43 @@
+{
+    "Schedule":[
+        {
+            "description":"Playoff Quarterfinal 1",
+            "field":"Primary",
+            "matchNumber":1,
+            "startTime":"2016-03-15T14:00:00",
+            "tournamentLevel":"Playoff",
+            "Teams":[
+                {
+                    "number":101,
+                    "station":"Blue1",
+                    "surrogate":false
+                },
+                {
+                    "number":102,
+                    "station":"Blue2",
+                    "surrogate":false
+                },
+                {
+                    "number":103,
+                    "station":"Blue3",
+                    "surrogate":true
+                },
+                {   
+                    "number":104,
+                    "station":"Red1",
+                    "surrogate":false
+                },
+                {
+                    "number":105,
+                    "station":"Red2",
+                    "surrogate":false
+                },
+                {
+                    "number":106,
+                    "station":"Red3",
+                    "surrogate":false
+                }
+            ]
+        }
+    ]
+}
