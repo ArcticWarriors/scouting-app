@@ -170,6 +170,19 @@ class OfficialMatch(models.Model):
 
         return red_score, blue_score
 
+    def __str__(self):
+        output = ""
+        output += "Official Match #%s\n" % self.matchNumber
+
+        attributes = sorted(self.__dict__)
+        attributes.remove("_state")
+        attributes.remove("id")
+        for attr_name in attributes:
+            value = getattr(self, attr_name)
+            output += "  {0:25} = {1}\n".format(attr_name, value)
+
+        return output
+
 
 class ScoreResult(models.Model):
 

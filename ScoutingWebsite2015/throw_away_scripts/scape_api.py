@@ -3,8 +3,25 @@ Created on Feb 28, 2016
 
 @author: PJ
 '''
+
+#############################################################
+# Load django settings so this can be run as a one-off script
+#############################################################
+import os
+import sys
+from django.core.wsgi import get_wsgi_application
+
+os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
+proj_path = os.path.abspath("..")
+sys.path.append(proj_path)
+application = get_wsgi_application()
+
+#############################################################
+
+
 import json
 from urllib2 import Request, urlopen
+from Scouting2016.models import OfficialMatch
 
 
 def scrape_schedule(event_code, start):
@@ -48,13 +65,35 @@ def scrape_match_results(event_code, start):
     scores_info = json.loads(response_body)["MatchScores"]
     for match_info in scores_info:
         match_number = match_info["matchNumber"]
-        print match_number,
+
+        official_match = OfficialMatch.objects.get(matchNumber=match_number)
 
         for alliance_info in match_info["Alliances"]:
             color = alliance_info["alliance"]
-            print color, alliance_info["position1crossings"],
+            if color == "Red":
+                official_match.redAutoBouldersLow = alliance_info["autoBouldersLow"]
+                official_match.redAutoBouldersHigh = alliance_info["autoBouldersHigh"]
+                official_match.redTeleBouldersLow = alliance_info["teleopBouldersLow"]
+                official_match.redTeleBouldersHigh = alliance_info["teleopBouldersHigh"]
+                official_match.redTowerFaceA = alliance_info["towerFaceA"]
+                official_match.redTowerFaceB = alliance_info["towerFaceB"]
+                official_match.redTowerFaceC = alliance_info["towerFaceC"]
+                official_match.redFouls = alliance_info["foulCount"]
+                official_match.redTechFouls = alliance_info["techFoulCount"]
+            elif color == "Blue":
+                official_match.blueAutoBouldersLow = alliance_info["autoBouldersLow"]
+                official_match.blueAutoBouldersHigh = alliance_info["autoBouldersHigh"]
+                official_match.blueTeleBouldersLow = alliance_info["teleopBouldersLow"]
+                official_match.blueTeleBouldersHigh = alliance_info["teleopBouldersHigh"]
+                official_match.blueTowerFaceA = alliance_info["towerFaceA"]
+                official_match.blueTowerFaceB = alliance_info["towerFaceB"]
+                official_match.blueTowerFaceC = alliance_info["towerFaceC"]
+                official_match.blueFouls = alliance_info["foulCount"]
+                official_match.blueTechFouls = alliance_info["techFoulCount"]
+            else:
+                print "OH NOES!"
 
-        print
+        official_match.save()
 
 
 event_code = "NYROC"
