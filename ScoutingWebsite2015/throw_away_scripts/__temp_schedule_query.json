@@ -1,41 +1,3004 @@
 {
-    "Schedule":[
+    "Schedule": [
         {
-            "description":"Playoff Quarterfinal 1",
-            "field":"Primary",
-            "matchNumber":1,
-            "startTime":"2016-03-15T14:00:00",
-            "tournamentLevel":"Playoff",
-            "Teams":[
+            "description": "Qualification 1",
+            "field": "Primary",
+            "matchNumber": 1,
+            "tournamantLevel": "Qualification",
+            "Teams": [
                 {
-                    "number":101,
-                    "station":"Blue1",
-                    "surrogate":false
+                    "station": "Red1",
+                    "number": 1559,
+                    "surrogate": "false"
                 },
                 {
-                    "number":102,
-                    "station":"Blue2",
-                    "surrogate":false
+                    "station": "Red2",
+                    "number": 3951,
+                    "surrogate": "false"
                 },
                 {
-                    "number":103,
-                    "station":"Blue3",
-                    "surrogate":true
-                },
-                {   
-                    "number":104,
-                    "station":"Red1",
-                    "surrogate":false
+                    "station": "Red3",
+                    "number": 378,
+                    "surrogate": "false"
                 },
                 {
-                    "number":105,
-                    "station":"Red2",
-                    "surrogate":false
+                    "station": "Blue1",
+                    "number": 120,
+                    "surrogate": "false"
                 },
                 {
-                    "number":106,
-                    "station":"Red3",
-                    "surrogate":false
+                    "station": "Blue2",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1511,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 2",
+            "field": "Primary",
+            "matchNumber": 2,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1765,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1591,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 3",
+            "field": "Primary",
+            "matchNumber": 3,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3613,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 250,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3044,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 4",
+            "field": "Primary",
+            "matchNumber": 4,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1518,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3951,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 229,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 5",
+            "field": "Primary",
+            "matchNumber": 5,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 250,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1591,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1511,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 7",
+            "field": "Primary",
+            "matchNumber": 7,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3613,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1765,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 8",
+            "field": "Primary",
+            "matchNumber": 8,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 229,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1405,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 9",
+            "field": "Primary",
+            "matchNumber": 9,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 229,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 639,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 10",
+            "field": "Primary",
+            "matchNumber": 10,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1765,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1507,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 11",
+            "field": "Primary",
+            "matchNumber": 11,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3613,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3951,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3799,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 12",
+            "field": "Primary",
+            "matchNumber": 12,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3687,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1450,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 229,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 578,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 13",
+            "field": "Primary",
+            "matchNumber": 13,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 229,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3613,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 14",
+            "field": "Primary",
+            "matchNumber": 14,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1765,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 15",
+            "field": "Primary",
+            "matchNumber": 15,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1518,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 229,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 16",
+            "field": "Primary",
+            "matchNumber": 16,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 191,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 17",
+            "field": "Primary",
+            "matchNumber": 17,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 378,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 18",
+            "field": "Primary",
+            "matchNumber": 18,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1591,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3799,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 19",
+            "field": "Primary",
+            "matchNumber": 19,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1765,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 20",
+            "field": "Primary",
+            "matchNumber": 20,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 73,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 22",
+            "field": "Primary",
+            "matchNumber": 22,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3951,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1511,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 23",
+            "field": "Primary",
+            "matchNumber": 23,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 229,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 24",
+            "field": "Primary",
+            "matchNumber": 24,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3613,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1511,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 25",
+            "field": "Primary",
+            "matchNumber": 25,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3181,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 843,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 26",
+            "field": "Primary",
+            "matchNumber": 26,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 250,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1518,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 27",
+            "field": "Primary",
+            "matchNumber": 27,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1591,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 28",
+            "field": "Primary",
+            "matchNumber": 28,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1507,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 29",
+            "field": "Primary",
+            "matchNumber": 29,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3173,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 30",
+            "field": "Primary",
+            "matchNumber": 30,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3181,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 639,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 31",
+            "field": "Primary",
+            "matchNumber": 31,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3173,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 32",
+            "field": "Primary",
+            "matchNumber": 32,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1765,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1518,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 4093,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 33",
+            "field": "Primary",
+            "matchNumber": 33,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1518,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3842,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 34",
+            "field": "Primary",
+            "matchNumber": 34,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1518,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 73,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 35",
+            "field": "Primary",
+            "matchNumber": 35,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3181,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 36",
+            "field": "Primary",
+            "matchNumber": 36,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3181,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1591,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 174,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 37",
+            "field": "Primary",
+            "matchNumber": 37,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1450,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 378,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 38",
+            "field": "Primary",
+            "matchNumber": 38,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3157,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 39",
+            "field": "Primary",
+            "matchNumber": 39,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1765,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1405,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 40",
+            "field": "Primary",
+            "matchNumber": 40,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1765,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3687,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3015,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 6",
+            "field": "Primary",
+            "matchNumber": 6,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1765,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3687,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3173,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 21",
+            "field": "Primary",
+            "matchNumber": 21,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 2172,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 41",
+            "field": "Primary",
+            "matchNumber": 41,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3687,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 42",
+            "field": "Primary",
+            "matchNumber": 42,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1518,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 43",
+            "field": "Primary",
+            "matchNumber": 43,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 73,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 44",
+            "field": "Primary",
+            "matchNumber": 44,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 145,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 45",
+            "field": "Primary",
+            "matchNumber": 45,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 250,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 4093,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 46",
+            "field": "Primary",
+            "matchNumber": 46,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3613,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3173,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 47",
+            "field": "Primary",
+            "matchNumber": 47,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3687,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3613,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1450,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 48",
+            "field": "Primary",
+            "matchNumber": 48,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1518,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 2053,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 49",
+            "field": "Primary",
+            "matchNumber": 49,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1450,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 50",
+            "field": "Primary",
+            "matchNumber": 50,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3838,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 51",
+            "field": "Primary",
+            "matchNumber": 51,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 843,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 52",
+            "field": "Primary",
+            "matchNumber": 52,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3687,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 53",
+            "field": "Primary",
+            "matchNumber": 53,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3613,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 54",
+            "field": "Primary",
+            "matchNumber": 54,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1450,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 250,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1511,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 55",
+            "field": "Primary",
+            "matchNumber": 55,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3181,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1507,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 56",
+            "field": "Primary",
+            "matchNumber": 56,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3687,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 174,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 250,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1126,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 57",
+            "field": "Primary",
+            "matchNumber": 57,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 2172,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 58",
+            "field": "Primary",
+            "matchNumber": 58,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3951,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1450,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 229,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 59",
+            "field": "Primary",
+            "matchNumber": 59,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 2228,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 60",
+            "field": "Primary",
+            "matchNumber": 60,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3181,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 61",
+            "field": "Primary",
+            "matchNumber": 61,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3951,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1511,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 62",
+            "field": "Primary",
+            "matchNumber": 62,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3687,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 63",
+            "field": "Primary",
+            "matchNumber": 63,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 145,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 64",
+            "field": "Primary",
+            "matchNumber": 64,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3799,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3181,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 65",
+            "field": "Primary",
+            "matchNumber": 65,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1405,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4124,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3687,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 66",
+            "field": "Primary",
+            "matchNumber": 66,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3687,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1551,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 67",
+            "field": "Primary",
+            "matchNumber": 67,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3613,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 4203,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 68",
+            "field": "Primary",
+            "matchNumber": 68,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 145,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 843,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 69",
+            "field": "Primary",
+            "matchNumber": 69,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 639,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 843,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3157,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 70",
+            "field": "Primary",
+            "matchNumber": 70,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4203,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3157,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 73,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3003,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 71",
+            "field": "Primary",
+            "matchNumber": 71,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1551,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3181,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 145,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 72",
+            "field": "Primary",
+            "matchNumber": 72,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3687,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 229,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 191,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3842,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1126,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 73",
+            "field": "Primary",
+            "matchNumber": 73,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 229,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1551,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 74",
+            "field": "Primary",
+            "matchNumber": 74,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3181,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 1126,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3015,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 191,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 75",
+            "field": "Primary",
+            "matchNumber": 75,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 4093,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 3173,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3951,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 3838,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 76",
+            "field": "Primary",
+            "matchNumber": 76,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2053,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 2228,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 2340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1551,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 77",
+            "field": "Primary",
+            "matchNumber": 77,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 2172,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 3951,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 1518,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 1511,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 2340,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 78",
+            "field": "Primary",
+            "matchNumber": 78,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3838,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1559,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 340,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 229,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 578,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 1405,
+                    "surrogate": "false"
+                }
+            ]
+        },
+        {
+            "description": "Qualification 79",
+            "field": "Primary",
+            "matchNumber": 79,
+            "tournamantLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "number": 3044,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red2",
+                    "number": 1507,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Red3",
+                    "number": 120,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue1",
+                    "number": 378,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue2",
+                    "number": 3003,
+                    "surrogate": "false"
+                },
+                {
+                    "station": "Blue3",
+                    "number": 73,
+                    "surrogate": "false"
                 }
             ]
         }

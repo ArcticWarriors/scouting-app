@@ -134,8 +134,25 @@ class OfficialMatch(models.Model):
     blueTeam2 = models.IntegerField()
     blueTeam3 = models.IntegerField()
 
-    redScore = models.IntegerField(default=-1)
-    blueScore = models.IntegerField(default=-1)
+    redAutoBouldersLow = models.IntegerField(default=-1)
+    redAutoBouldersHigh = models.IntegerField(default=-1)
+    redTeleBouldersLow = models.IntegerField(default=-1)
+    redTeleBouldersHigh = models.IntegerField(default=-1)
+    redTowerFaceA = models.CharField(max_length=20, default='none')
+    redTowerFaceB = models.CharField(max_length=20, default='none')
+    redTowerFaceC = models.CharField(max_length=20, default='none')
+    redFouls = models.IntegerField(default=-1)
+    redTechFouls = models.IntegerField(default=-1)
+
+    blueAutoBouldersLow = models.IntegerField(default=-1)
+    blueAutoBouldersHigh = models.IntegerField(default=-1)
+    blueTeleBouldersLow = models.IntegerField(default=-1)
+    blueTeleBouldersHigh = models.IntegerField(default=-1)
+    blueTowerFaceA = models.CharField(max_length=20, default='none')
+    blueTowerFaceB = models.CharField(max_length=20, default='none')
+    blueTowerFaceC = models.CharField(max_length=20, default='none')
+    blueFouls = models.IntegerField(default=-1)
+    blueTechFouls = models.IntegerField(default=-1)
 
     audienceSelectionCategory = models.CharField(max_length=1, default='A')
 
