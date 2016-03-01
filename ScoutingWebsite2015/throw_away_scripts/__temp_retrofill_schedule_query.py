@@ -51,9 +51,9 @@ def __get_alliance_sr(color, sr1, sr2, sr3):
     auto_defense_lookup['no_reach'] = "None"
 
     tower_lookup = {}
-    tower_lookup['complete'] = "Both"
-    tower_lookup['yes'] = "Challenged"
-    tower_lookup['partial'] = "None"
+    tower_lookup['scale'] = "Both"
+    tower_lookup['challenge'] = "Challenged"
+    tower_lookup['no_points'] = "None"
 
     score_results = collections.OrderedDict()
     score_results["alliance"] = color
