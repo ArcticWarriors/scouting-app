@@ -127,12 +127,12 @@ class OfficialMatch(models.Model):
 
     matchNumber = models.IntegerField()
 
-    redTeam1 = models.IntegerField()
-    redTeam2 = models.IntegerField()
-    redTeam3 = models.IntegerField()
-    blueTeam1 = models.IntegerField()
-    blueTeam2 = models.IntegerField()
-    blueTeam3 = models.IntegerField()
+    redTeam1 = models.ForeignKey(Team, related_name='red1')
+    redTeam2 = models.ForeignKey(Team, related_name='red2')
+    redTeam3 = models.ForeignKey(Team, related_name='red3')
+    blueTeam1 = models.ForeignKey(Team, related_name='blue1')
+    blueTeam2 = models.ForeignKey(Team, related_name='blue2')
+    blueTeam3 = models.ForeignKey(Team, related_name='blue3')
 
     redAutoBouldersLow = models.IntegerField(default=-1)
     redAutoBouldersHigh = models.IntegerField(default=-1)
@@ -160,13 +160,13 @@ class OfficialMatch(models.Model):
         red_score = 0
         blue_score = 0
 
-        red_score += Team.objects.get(teamNumber=self.redTeam1).get_average_score()
-        red_score += Team.objects.get(teamNumber=self.redTeam2).get_average_score()
-        red_score += Team.objects.get(teamNumber=self.redTeam3).get_average_score()
+        red_score += self.redTeam1.get_average_score()
+        red_score += self.redTeam2.get_average_score()
+        red_score += self.redTeam3.get_average_score()
 
-        blue_score += Team.objects.get(teamNumber=self.blueTeam1).get_average_score()
-        blue_score += Team.objects.get(teamNumber=self.blueTeam2).get_average_score()
-        blue_score += Team.objects.get(teamNumber=self.blueTeam3).get_average_score()
+        blue_score += self.blueTeam1.get_average_score()
+        blue_score += self.blueTeam2.get_average_score()
+        blue_score += self.blueTeam3.get_average_score()
 
         return red_score, blue_score
 
@@ -190,16 +190,16 @@ class ScoreResult(models.Model):
     match = models.ForeignKey(Match)
 
     # Auton
-    auto_defense = models.CharField(max_length=50, default="")
-    auto_spy = models.CharField(max_length=50, default="")
+    auto_defense = models.CharField(max_length=50)
+    auto_spy = models.CharField(max_length=50)
     auto_score_low = models.IntegerField()
     auto_score_high = models.IntegerField()
 
     # Ball Manipulation
     high_score_fail = models.IntegerField()
     high_score_successful = models.IntegerField()
-    low_score_successful = models.IntegerField()
     low_score_fail = models.IntegerField()
+    low_score_successful = models.IntegerField()
 
     # Defense Crosses
     portcullis = models.IntegerField()
@@ -213,18 +213,18 @@ class ScoreResult(models.Model):
     low_bar = models.IntegerField()
 
     # Defense Cross Speed
-    slow_fast_bridge = models.CharField(max_length=50, default="")
-    slow_fast_cheval = models.CharField(max_length=50, default="")
-    slow_fast_low_bar = models.CharField(max_length=50, default="")
-    slow_fast_moat = models.CharField(max_length=50, default="")
-    slow_fast_portcullis = models.CharField(max_length=50, default="")
-    slow_fast_ramparts = models.CharField(max_length=50, default="")
-    slow_fast_rock_wall = models.CharField(max_length=50, default="")
-    slow_fast_rough = models.CharField(max_length=50, default="")
-    slow_fast_sally = models.CharField(max_length=50, default="")
+    slow_fast_bridge = models.CharField(max_length=50)
+    slow_fast_cheval = models.CharField(max_length=50)
+    slow_fast_low_bar = models.CharField(max_length=50)
+    slow_fast_moat = models.CharField(max_length=50)
+    slow_fast_portcullis = models.CharField(max_length=50)
+    slow_fast_ramparts = models.CharField(max_length=50)
+    slow_fast_rock_wall = models.CharField(max_length=50)
+    slow_fast_rough = models.CharField(max_length=50)
+    slow_fast_sally = models.CharField(max_length=50)
 
     # General
-    scale_challenge = models.CharField(max_length=50, default="")
+    scale_challenge = models.CharField(max_length=50)
     score_tech_foul = models.IntegerField()
 
     # Comments
