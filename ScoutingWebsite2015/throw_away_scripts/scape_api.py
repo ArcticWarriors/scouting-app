@@ -9,7 +9,9 @@ Created on Feb 28, 2016
 #############################################################
 import os
 import sys
+
 from django.core.wsgi import get_wsgi_application
+
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
 proj_path = os.path.abspath("..")
@@ -18,55 +20,106 @@ application = get_wsgi_application()
 
 #############################################################
 
-
 import json
 from urllib2 import Request, urlopen
-from Scouting2016.models import OfficialMatch
+
+from Scouting2016.models import OfficialMatch, Team
+from throw_away_scripts.api_key import get_encoded_key
+
+
+__api_website = "https://frc-api.firstinspires.org/v2.0/"
+
+
+def read_url_and_dump(url, headers, output_file):
+    request = Request(url, headers=headers)
+    response_body = urlopen(request).read()
+
+    json_struct = json.loads(response_body)
+
+    with open(output_file, 'w') as f:
+        json.dump(json_struct, f, indent=4, separators=(',', ': '))
+
+    return json_struct
+
+
+def read_local_copy(input_file):
+    with open(input_file, 'r') as f:
+        response_body = f.read()
+
+    json_struct = json.loads(response_body)
+
+    return json_struct
 
 
 def scrape_schedule(event_code, start):
     tourny_level = "Qualification"
 
-    url = "https://private-anon-92454c480-frcevents2.apiary-mock.com/v2.0/2016/schedule/{0}?tournamentLevel={1}&start={2}".format(event_code, tourny_level, start)
+    url = __api_website + "/2016/schedule/{0}?tournamentLevel={1}&start={2}".format(event_code, tourny_level, start)
 
-    headers = {'Accept': 'application/json'}
-    request = Request(url, headers=headers)
+    headers = {}
+    headers['Accept'] = 'application/json'
+    headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-    # response_body = urlopen(request).read()
-    with open('__temp_schedule_query.json', 'r') as f:
-        response_body = f.read()
+    local_file = '__temp_schedule_query.json'
+    json_struct = read_url_and_dump(url, headers, local_file)
+#     json_struct = read_local_copy(local_file)
 
-    schedule_info = json.loads(response_body)["Schedule"]
-
-    # print response_body
+    schedule_info = json_struct["Schedule"]
 
     for match_info in schedule_info:
         match_number = match_info["matchNumber"]
-        teams = []
+
+        red_teams = []
+        blue_teams = []
+
         for team_info in match_info["Teams"]:
-            teams.append(team_info["number"])
-        print match_number, teams
+            team, _ = Team.objects.get_or_create(teamNumber=team_info["teamNumber"])
+            if "Red" in team_info["station"]:
+                red_teams.append(team)
+            else:
+                blue_teams.append(team)
+
+        official_search = OfficialMatch.objects.filter(matchNumber=match_number)
+        if len(official_search) == 0:
+            official_match = OfficialMatch.objects.create(matchNumber=match_number,
+                                                          redTeam1=red_teams[0],
+                                                          redTeam2=red_teams[1],
+                                                          redTeam3=red_teams[2],
+                                                          blueTeam1=blue_teams[0],
+                                                          blueTeam2=blue_teams[1],
+                                                          blueTeam3=blue_teams[2])
+        else:
+            official_match = official_search[0]
+            official_match.redTeam1 = red_teams[0]
+            official_match.redTeam2 = red_teams[1]
+            official_match.redTeam3 = red_teams[2]
+            official_match.blueTeam1 = blue_teams[0]
+            official_match.blueTeam2 = blue_teams[1]
+            official_match.blueTeam3 = blue_teams[2]
+            official_match.save()
+
+        print match_number, red_teams, blue_teams
 
 
 def scrape_match_results(event_code, start):
     tourny_level = "Qualification"
     season = "2016"
 
-    url = "https://private-anon-92454c480-frcevents2.apiary-mock.com/v2.0/{0}/scores/{1}/{2}?start={3}".format(season, event_code, tourny_level, start)
-
+    url = __api_website + "/{0}/scores/{1}/{2}?start={3}".format(season, event_code, tourny_level, start)
     headers = {'Accept': 'application/json'}
-    request = Request(url, headers=headers)
+    headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-#     response_body = urlopen(request).read()
-#     print response_body
-    with open('__temp_scoreresult_query.json', 'r') as f:
-        response_body = f.read()
+    local_file = '__temp_scoreresult_query.json'
+#     json_struct = read_url_and_dump(url, headers, local_file)
+    json_struct = read_local_copy(local_file)
 
-    scores_info = json.loads(response_body)["MatchScores"]
+    scores_info = json_struct["MatchScores"]
     for match_info in scores_info:
         match_number = match_info["matchNumber"]
+        audience_defense = match_info["AudienceGroup"][-1]
 
         official_match = OfficialMatch.objects.get(matchNumber=match_number)
+        official_match.audienceSelectionCategory = audience_defense
 
         for alliance_info in match_info["Alliances"]:
             color = alliance_info["alliance"]
@@ -96,7 +149,7 @@ def scrape_match_results(event_code, start):
         official_match.save()
 
 
-event_code = "NYROC"
+event_code = "SCMB"
 match_start = 0
 
 # scrape_schedule(event_code, match_start)

@@ -55,6 +55,9 @@ class Team(models.Model):
         defenses['C'] = ('draw_bridge', 'sally_port')
         defenses['D'] = ('rock_wall', 'rough_terrain')
 
+        no_results = len(self.scoreresult_set.all()) == 0
+        print "no results: %s" % no_results
+
         for category in defenses:
 
             if category not in stat_map:
@@ -63,17 +66,25 @@ class Team(models.Model):
             for defense in defenses[category]:
                 if defense not in stat_map[category]:
                     stat_map[category][defense] = 0
-                stat_map[category][defense] += self.scoreresult_set.aggregate(Sum(defense))[defense + "__sum"]
+
+                if no_results:
+                    stat_map[category][defense] += 0
+                else:
+                    stat_map[category][defense] += self.scoreresult_set.aggregate(Sum(defense))[defense + "__sum"]
 
         return stat_map
 
     def get_average_score(self):
         the_sum = 0
         score_results = self.scoreresult_set.all()
-        for sr in score_results:
-            the_sum += sr.calculate_total_score()
 
-        return the_sum / len(score_results)
+        if len(score_results) == 0:
+            return 0
+        else:
+            for sr in score_results:
+                the_sum += sr.calculate_total_score()
+
+            return the_sum / len(score_results)
 
     def get_metrics(self):
         metrics = self.scoreresult_set.aggregate(Avg("auto_score_low"),
