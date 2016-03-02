@@ -61,8 +61,8 @@ def scrape_schedule(event_code, start):
     headers['Authorization'] = 'Basic ' + get_encoded_key()
 
     local_file = '__temp_schedule_query.json'
-    json_struct = read_url_and_dump(url, headers, local_file)
-#     json_struct = read_local_copy(local_file)
+#     json_struct = read_url_and_dump(url, headers, local_file)
+    json_struct = read_local_copy(local_file)
 
     schedule_info = json_struct["Schedule"]
 
@@ -152,5 +152,5 @@ def scrape_match_results(event_code, start):
 event_code = "SCMB"
 match_start = 0
 
-# scrape_schedule(event_code, match_start)
+scrape_schedule(event_code, match_start)
 scrape_match_results(event_code, match_start)
