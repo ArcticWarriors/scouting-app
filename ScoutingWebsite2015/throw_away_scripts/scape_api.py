@@ -113,6 +113,27 @@ def scrape_match_results(event_code, start):
 #     json_struct = read_url_and_dump(url, headers, local_file)
     json_struct = read_local_copy(local_file)
 
+    defense_name_lookup = {}
+    defense_name_lookup["A_Portcullis"] = "portcullis"
+    defense_name_lookup["A_ChevalDeFrise"] = "cheval_de_frise"
+    defense_name_lookup["B_Moat"] = "moat"
+    defense_name_lookup["B_Ramparts"] = "ramparts"
+    defense_name_lookup["C_Drawbridge"] = "draw_bridge"
+    defense_name_lookup["C_SallyPort"] = "sally_port"
+    defense_name_lookup["D_RockWall"] = "rock_wall"
+    defense_name_lookup["D_RoughTerrain"] = "rough_terrain"
+    defense_name_lookup["NotSpecified"] = "NA"
+
+#     defenses['portcullis'] = 0
+#     defenses['cheval_de_frise'] = 0
+#     defenses['moat'] = 0
+#     defenses['ramparts'] = 0
+#     defenses['draw_bridge'] = 0
+#     defenses['sally_port'] = 0
+#     defenses['rock_wall'] = 0
+#     defenses['rough_terrain'] = 0
+#     defenses['low_bar'] = 0
+
     scores_info = json_struct["MatchScores"]
     for match_info in scores_info:
         match_number = match_info["matchNumber"]
@@ -133,6 +154,17 @@ def scrape_match_results(event_code, start):
                 official_match.redTowerFaceC = alliance_info["towerFaceC"]
                 official_match.redFouls = alliance_info["foulCount"]
                 official_match.redTechFouls = alliance_info["techFoulCount"]
+
+                official_match.redDefense2Name = defense_name_lookup[alliance_info["position2"]]
+                official_match.redDefense3Name = defense_name_lookup[alliance_info["position3"]]
+                official_match.redDefense4Name = defense_name_lookup[alliance_info["position4"]]
+                official_match.redDefense5Name = defense_name_lookup[alliance_info["position5"]]
+                official_match.redDefense1Crossings = alliance_info["position1crossings"]
+                official_match.redDefense2Crossings = alliance_info["position2crossings"]
+                official_match.redDefense3Crossings = alliance_info["position3crossings"]
+                official_match.redDefense4Crossings = alliance_info["position4crossings"]
+                official_match.redDefense5Crossings = alliance_info["position5crossings"]
+
             elif color == "Blue":
                 official_match.blueAutoBouldersLow = alliance_info["autoBouldersLow"]
                 official_match.blueAutoBouldersHigh = alliance_info["autoBouldersHigh"]
@@ -143,14 +175,25 @@ def scrape_match_results(event_code, start):
                 official_match.blueTowerFaceC = alliance_info["towerFaceC"]
                 official_match.blueFouls = alliance_info["foulCount"]
                 official_match.blueTechFouls = alliance_info["techFoulCount"]
+
+                official_match.blueDefense2Name = defense_name_lookup[alliance_info["position2"]]
+                official_match.blueDefense3Name = defense_name_lookup[alliance_info["position3"]]
+                official_match.blueDefense4Name = defense_name_lookup[alliance_info["position4"]]
+                official_match.blueDefense5Name = defense_name_lookup[alliance_info["position5"]]
+                official_match.blueDefense1Crossings = alliance_info["position1crossings"]
+                official_match.blueDefense2Crossings = alliance_info["position2crossings"]
+                official_match.blueDefense3Crossings = alliance_info["position3crossings"]
+                official_match.blueDefense4Crossings = alliance_info["position4crossings"]
+                official_match.blueDefense5Crossings = alliance_info["position5crossings"]
             else:
                 print "OH NOES!"
 
         official_match.save()
+        print official_match.matchNumber
 
 
 event_code = "SCMB"
 match_start = 0
 
-scrape_schedule(event_code, match_start)
+# scrape_schedule(event_code, match_start)
 scrape_match_results(event_code, match_start)
