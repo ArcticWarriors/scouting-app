@@ -24,7 +24,7 @@ import json
 from urllib2 import Request, urlopen
 
 from Scouting2016.models import OfficialMatch, Team
-from throw_away_scripts.api_key import get_encoded_key
+from api_scraper.api_key import get_encoded_key
 
 
 __api_website = "https://frc-api.firstinspires.org/v2.0/"
