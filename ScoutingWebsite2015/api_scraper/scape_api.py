@@ -197,6 +197,16 @@ def scrape_match_results(event_code, start, use_saved_values):
         official_match.save()
         print official_match.matchNumber
 
+
+def add_snobot():
+    query = Team.objects.filter(teamNumber=174)
+    if len(query) == 0:
+        team = Team.objects.all()[0]
+        team.teamNumber = 174
+        team.save()
+        print "Adding 174 to regional"
+
+
 # Week 1
 event_codes = []
 event_codes.append("ONTO2")
@@ -218,8 +228,9 @@ event_codes.append("CTWAT")
 event_codes.append("WAAMV")
 event_codes.append("WASPO")
 match_start = 0
-use_saved_values = False
+use_saved_values = True
 
 for ec in event_codes:
-    scrape_schedule(ec, match_start, use_saved_values)
-    scrape_match_results(ec, match_start, use_saved_values)
+#     scrape_schedule(ec, match_start, use_saved_values)
+#     scrape_match_results(ec, match_start, use_saved_values)
+    add_snobot()

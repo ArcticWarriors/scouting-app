@@ -576,7 +576,7 @@ def info_for_form_edit(request):
 def show_add_form(request):
 
     context = {}
-    context['team_number'] = 1765
+    context['team_number'] = 1
     context['match_number'] = 10
     context['submit_view'] = "/2016/submit_form"
     context["sr"] = {}
