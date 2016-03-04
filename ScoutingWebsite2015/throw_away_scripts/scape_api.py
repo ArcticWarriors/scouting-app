@@ -51,7 +51,7 @@ def read_local_copy(input_file):
     return json_struct
 
 
-def scrape_schedule(event_code, start):
+def scrape_schedule(event_code, start, use_saved_values):
     tourny_level = "Qualification"
 
     url = __api_website + "/2016/schedule/{0}?tournamentLevel={1}&start={2}".format(event_code, tourny_level, start)
@@ -60,9 +60,12 @@ def scrape_schedule(event_code, start):
     headers['Accept'] = 'application/json'
     headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-    local_file = '__temp_schedule_query.json'
-#     json_struct = read_url_and_dump(url, headers, local_file)
-    json_struct = read_local_copy(local_file)
+    local_file = '../api_queries/{0}_schedule_query.json'.format(event_code)
+
+    if use_saved_values:
+        json_struct = read_local_copy(local_file)
+    else:
+        json_struct = read_url_and_dump(url, headers, local_file)
 
     schedule_info = json_struct["Schedule"]
 
@@ -101,7 +104,7 @@ def scrape_schedule(event_code, start):
         print match_number, red_teams, blue_teams
 
 
-def scrape_match_results(event_code, start):
+def scrape_match_results(event_code, start, use_saved_values):
     tourny_level = "Qualification"
     season = "2016"
 
@@ -109,9 +112,12 @@ def scrape_match_results(event_code, start):
     headers = {'Accept': 'application/json'}
     headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-    local_file = '__temp_scoreresult_query.json'
-#     json_struct = read_url_and_dump(url, headers, local_file)
-    json_struct = read_local_copy(local_file)
+    local_file = '../api_queries/{0}_scoreresult_query.json'.format(event_code)
+
+    if use_saved_values:
+        json_struct = read_local_copy(local_file)
+    else:
+        json_struct = read_url_and_dump(url, headers, local_file)
 
     defense_name_lookup = {}
     defense_name_lookup["A_Portcullis"] = "portcullis"
@@ -191,9 +197,27 @@ def scrape_match_results(event_code, start):
         official_match.save()
         print official_match.matchNumber
 
-
-event_code = "SCMB"
+# Week 1
+# event_code = "ONTO2"
+# event_code = "ISTA"  # No results
+# event_code = "MNDU"  # No results
+event_code = "MNDU2"
+# event_code = "SCMB"
+# event_code = "CASD"  # No results
+# event_code = "VAHAY"  # No results
+# event_code = "MIKET"  # No results
+# event_code = "MISOU"  # No results
+# event_code = "MISTA"  # No results
+# event_code = "MIWAT"  # No results
+# event_code = "PAHAT"  # No results
+# event_code = "NJFLA"  # No results
+# event_code = "NCMCL"  # No results
+# event_code = "NHGRS"  # No results
+# event_code = "CTWAT"  # No results
+# event_code = "WAAMV"  # No results
+# event_code = "WASPO"  # No results
 match_start = 0
+use_saved_values = True
 
-# scrape_schedule(event_code, match_start)
-scrape_match_results(event_code, match_start)
+scrape_schedule(event_code, match_start, use_saved_values)
+scrape_match_results(event_code, match_start, use_saved_values)
