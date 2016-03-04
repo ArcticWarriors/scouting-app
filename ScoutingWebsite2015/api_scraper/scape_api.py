@@ -198,26 +198,28 @@ def scrape_match_results(event_code, start, use_saved_values):
         print official_match.matchNumber
 
 # Week 1
-# event_code = "ONTO2"
-# event_code = "ISTA"  # No results
-# event_code = "MNDU"  # No results
-event_code = "MNDU2"
-# event_code = "SCMB"
-# event_code = "CASD"  # No results
-# event_code = "VAHAY"  # No results
-# event_code = "MIKET"  # No results
-# event_code = "MISOU"  # No results
-# event_code = "MISTA"  # No results
-# event_code = "MIWAT"  # No results
-# event_code = "PAHAT"  # No results
-# event_code = "NJFLA"  # No results
-# event_code = "NCMCL"  # No results
-# event_code = "NHGRS"  # No results
-# event_code = "CTWAT"  # No results
-# event_code = "WAAMV"  # No results
-# event_code = "WASPO"  # No results
+event_codes = []
+event_codes.append("ONTO2")
+event_codes.append("ISTA")
+event_codes.append("MNDU")
+event_codes.append("MNDU2")
+event_codes.append("SCMB")
+event_codes.append("CASD")
+event_codes.append("VAHAY")
+event_codes.append("MIKET")
+event_codes.append("MISOU")
+event_codes.append("MISTA")
+event_codes.append("MIWAT")
+event_codes.append("PAHAT")
+event_codes.append("NJFLA")
+event_codes.append("NCMCL")
+event_codes.append("NHGRS")
+event_codes.append("CTWAT")
+event_codes.append("WAAMV")
+event_codes.append("WASPO")
 match_start = 0
-use_saved_values = True
+use_saved_values = False
 
-scrape_schedule(event_code, match_start, use_saved_values)
-scrape_match_results(event_code, match_start, use_saved_values)
+for ec in event_codes:
+    scrape_schedule(ec, match_start, use_saved_values)
+    scrape_match_results(ec, match_start, use_saved_values)
