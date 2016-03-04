@@ -91,23 +91,23 @@ def __populate_defense(official_match, color, team_index):
         defense4Name = official_match.redDefense4Name
         defense5Name = official_match.redDefense5Name
 
-        if defense1Name != "NA" and official_match.redDefense1Crossings <= team_index:
+        if defense1Name != "NA" and official_match.redDefense1Crossings > team_index:
             defenses[defense1Name] = 1
             defenses_speed['slow_fast_' + defense1Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense2Name != "NA" and official_match.redDefense2Crossings <= team_index:
+        if defense2Name != "NA" and official_match.redDefense2Crossings > team_index:
             defenses[defense2Name] = 1
             defenses_speed['slow_fast_' + defense2Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense3Name != "NA" and official_match.redDefense3Crossings <= team_index:
+        if defense3Name != "NA" and official_match.redDefense3Crossings > team_index:
             defenses[defense3Name] = 1
             defenses_speed['slow_fast_' + defense3Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense4Name != "NA" and official_match.redDefense4Crossings <= team_index:
+        if defense4Name != "NA" and official_match.redDefense4Crossings > team_index:
             defenses[defense4Name] = 1
             defenses_speed['slow_fast_' + defense4Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense5Name != "NA" and official_match.redDefense5Crossings <= team_index:
+        if defense5Name != "NA" and official_match.redDefense5Crossings > team_index:
             defenses[defense5Name] = 1
             defenses_speed['slow_fast_' + defense5Name] = fast_slow_lookup[random.randint(0, 1)]
 
@@ -118,27 +118,25 @@ def __populate_defense(official_match, color, team_index):
         defense4Name = official_match.blueDefense4Name
         defense5Name = official_match.blueDefense5Name
 
-        if defense1Name != "NA" and official_match.blueDefense1Crossings <= team_index:
+        if defense1Name != "NA" and official_match.blueDefense1Crossings > team_index:
             defenses[defense1Name] = 1
             defenses_speed['slow_fast_' + defense1Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense2Name != "NA" and official_match.blueDefense2Crossings <= team_index:
+        if defense2Name != "NA" and official_match.blueDefense2Crossings > team_index:
             defenses[defense2Name] = 1
             defenses_speed['slow_fast_' + defense2Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense3Name != "NA" and official_match.blueDefense3Crossings <= team_index:
+        if defense3Name != "NA" and official_match.blueDefense3Crossings > team_index:
             defenses[defense3Name] = 1
             defenses_speed['slow_fast_' + defense3Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense4Name != "NA" and official_match.blueDefense4Crossings <= team_index:
+        if defense4Name != "NA" and official_match.blueDefense4Crossings > team_index:
             defenses[defense4Name] = 1
             defenses_speed['slow_fast_' + defense4Name] = fast_slow_lookup[random.randint(0, 1)]
 
-        if defense5Name != "NA" and official_match.blueDefense5Crossings <= team_index:
+        if defense5Name != "NA" and official_match.blueDefense5Crossings > team_index:
             defenses[defense5Name] = 1
             defenses_speed['slow_fast_' + defense5Name] = fast_slow_lookup[random.randint(0, 1)]
-
-    print defenses
 
     return defenses, defenses_speed
 
