@@ -3,27 +3,37 @@ Created on Feb 28, 2016
 
 @author: PJ
 '''
+import subprocess
+import os
 
 #############################################################
 # Load django settings so this can be run as a one-off script
 #############################################################
-import os
-import sys
 
-from django.core.wsgi import get_wsgi_application
-
-
-os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
-proj_path = os.path.abspath("..")
-sys.path.append(proj_path)
-application = get_wsgi_application()
+def reload_django(event_code, database_path):
+    import os
+    import sys
+    
+    with open('../ScoutingWebsite/database_path.py', 'w') as f:
+        f.write("database_path = '" + database_path + "/%s.sqlite3'" % event_code)
+    cur_dir = os.getcwd()
+    os.chdir("..")
+    subprocess.call(["python", "manage.py", "migrate"])
+    os.chdir(cur_dir)
+    
+    from django.core.wsgi import get_wsgi_application
+    
+    
+    os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
+    proj_path = os.path.abspath("..")
+    sys.path.append(proj_path)
+    application = get_wsgi_application()
 
 #############################################################
 
 import json
 from urllib2 import Request, urlopen
 
-from Scouting2016.models import OfficialMatch, Team
 from api_scraper.api_key import get_encoded_key
 
 
@@ -43,6 +53,7 @@ def read_url_and_dump(url, headers, output_file):
 
 
 def read_local_copy(input_file):
+    print os.path.abspath(input_file)
     with open(input_file, 'r') as f:
         response_body = f.read()
 
@@ -51,7 +62,8 @@ def read_local_copy(input_file):
     return json_struct
 
 
-def scrape_schedule(event_code, start, use_saved_values):
+def scrape_schedule(event_code, start, use_saved_values, json_path):
+    from Scouting2016.models import OfficialMatch, Team
     tourny_level = "Qualification"
 
     url = __api_website + "/2016/schedule/{0}?tournamentLevel={1}&start={2}".format(event_code, tourny_level, start)
@@ -60,7 +72,7 @@ def scrape_schedule(event_code, start, use_saved_values):
     headers['Accept'] = 'application/json'
     headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-    local_file = '../api_queries/{0}_schedule_query.json'.format(event_code)
+    local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
 
     if use_saved_values:
         json_struct = read_local_copy(local_file)
@@ -104,7 +116,8 @@ def scrape_schedule(event_code, start, use_saved_values):
         print match_number, red_teams, blue_teams
 
 
-def scrape_match_results(event_code, start, use_saved_values):
+def scrape_match_results(event_code, start, use_saved_values, json_path):
+    from Scouting2016.models import OfficialMatch, Team
     tourny_level = "Qualification"
     season = "2016"
 
@@ -112,7 +125,7 @@ def scrape_match_results(event_code, start, use_saved_values):
     headers = {'Accept': 'application/json'}
     headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-    local_file = '../api_queries/{0}_scoreresult_query.json'.format(event_code)
+    local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
 
     if use_saved_values:
         json_struct = read_local_copy(local_file)
@@ -198,7 +211,8 @@ def scrape_match_results(event_code, start, use_saved_values):
         print official_match.matchNumber
 
 
-def add_snobot():
+def add_snobot():    
+    from Scouting2016.models import OfficialMatch, Team
     query = Team.objects.filter(teamNumber=174)
     if len(query) == 0:
         team = Team.objects.all()[0]
@@ -229,8 +243,11 @@ event_codes.append("WAAMV")
 event_codes.append("WASPO")
 match_start = 0
 use_saved_values = True
+sql_path = "__api_scraping_results/database/week1"
+json_path = "../__api_scraping_results/json/week1"
 
 for ec in event_codes:
-#     scrape_schedule(ec, match_start, use_saved_values)
-#     scrape_match_results(ec, match_start, use_saved_values)
+    reload_django(ec, sql_path)
+    scrape_schedule(ec, match_start, use_saved_values, json_path)
+    scrape_match_results(ec, match_start, use_saved_values, json_path)
     add_snobot()

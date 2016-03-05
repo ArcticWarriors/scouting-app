@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from ScoutingWebsite import database_path
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'ScoutingWebsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'a_test_databases/SCMB.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, database_path.database_path),
     }
 }
 
