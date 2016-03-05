@@ -112,12 +112,12 @@ def index(request):
 
     our_team = Team.objects.get(teamNumber=our_team_number)
     our_scouted = Match.objects.filter(scoreresult__team__id=our_team.id)
-    our_official = OfficialMatch.objects.filter(Q(redTeam1=our_team_number) |
-                                                Q(redTeam2=our_team_number) |
-                                                Q(redTeam3=our_team_number) |
-                                                Q(blueTeam1=our_team_number) |
-                                                Q(blueTeam2=our_team_number) |
-                                                Q(blueTeam3=our_team_number))
+    our_official = OfficialMatch.objects.filter(Q(redTeam1__teamNumber=our_team_number) |
+                                                Q(redTeam2__teamNumber=our_team_number) |
+                                                Q(redTeam3__teamNumber=our_team_number) |
+                                                Q(blueTeam1__teamNumber=our_team_number) |
+                                                Q(blueTeam2__teamNumber=our_team_number) |
+                                                Q(blueTeam3__teamNumber=our_team_number))
     all_official_numbers = set(match.matchNumber for match in our_official)
 
     scouted_numbers = sorted([match.matchNumber for match in our_scouted])
@@ -341,11 +341,10 @@ def match_display(request, match_number):
     return render(request, 'Scouting2016/MatchPage.html', context)
 
 
-def get_sorted_defense_stats(team_numbers):
+def get_sorted_defense_stats(teams):
     results = {}
 
-    for team_number in team_numbers:
-        team = Team.objects.get(teamNumber=team_number)
+    for team in teams:
         team.get_defense_stats(results)
 
     for category in results:
@@ -370,12 +369,12 @@ def match_prediction(request, match_number):
 
     context = {}
     context['match_number'] = match_number
-    context['red_team_1'] = Team.objects.get(teamNumber=official_match.redTeam1)
-    context['red_team_2'] = Team.objects.get(teamNumber=official_match.redTeam2)
-    context['red_team_3'] = Team.objects.get(teamNumber=official_match.redTeam3)
-    context['blue_team_1'] = Team.objects.get(teamNumber=official_match.blueTeam1)
-    context['blue_team_2'] = Team.objects.get(teamNumber=official_match.blueTeam2)
-    context['blue_team_3'] = Team.objects.get(teamNumber=official_match.blueTeam3)
+    context['red_team_1'] = official_match.redTeam1
+    context['red_team_2'] = official_match.redTeam2
+    context['red_team_3'] = official_match.redTeam3
+    context['blue_team_1'] = official_match.blueTeam1
+    context['blue_team_2'] = official_match.blueTeam2
+    context['blue_team_3'] = official_match.blueTeam3
     context['audience_defense'] = official_match.audienceSelectionCategory
 
     red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
@@ -577,7 +576,7 @@ def info_for_form_edit(request):
 def show_add_form(request):
 
     context = {}
-    context['team_number'] = 1765
+    context['team_number'] = 1
     context['match_number'] = 10
     context['submit_view'] = "/2016/submit_form"
     context["sr"] = {}
@@ -670,18 +669,15 @@ def edit_prev_match(request):
 
 def show_add_pit(request):
 
-
     context = {}
     context['submit_pit'] = "/2016/submit_pit"
     return render(request, 'Scouting2016/pitForm.html', context)
 
-def submit_new_pit(request):
 
-    team = Team.objects.get(teamNumber=request.POST["team_number"])
+def submit_new_pit(request):
 
     return render(request)
 
-    # User Auth
 
 def user_auth(request):
 
