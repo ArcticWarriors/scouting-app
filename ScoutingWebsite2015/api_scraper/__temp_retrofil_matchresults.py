@@ -11,7 +11,7 @@ import random
 # Load django settings so this can be run as a one-off script
 #############################################################
 
-def reload_django(event_code):
+def reload_django(event_code, database_path):
     import os
     import sys
     import subprocess
@@ -19,7 +19,7 @@ def reload_django(event_code):
     from django.core.wsgi import get_wsgi_application
     
     with open('../ScoutingWebsite/database_path.py', 'w') as f:
-        f.write("database_path = 'a_test_databases/week1/%s.sqlite3'" % event_code)    
+        f.write("database_path = '" + database_path + "/%s.sqlite3'" % event_code)    
     
     os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
     proj_path = os.path.abspath("..")
@@ -254,29 +254,28 @@ def populate_matchresults():
 
 # Week 1
 event_codes = []
-event_codes.append("ONTO2")
-event_codes.append("ISTA")
-event_codes.append("MNDU")
-event_codes.append("MNDU2")
+# event_codes.append("ONTO2")
+# event_codes.append("ISTA")
+# event_codes.append("MNDU")
+# event_codes.append("MNDU2")
 event_codes.append("SCMB")
-event_codes.append("CASD")
-event_codes.append("VAHAY")
-event_codes.append("MIKET")
-event_codes.append("MISOU")
-event_codes.append("MISTA")
-event_codes.append("MIWAT")
-event_codes.append("PAHAT")
-event_codes.append("NJFLA")
-event_codes.append("NCMCL")
-event_codes.append("NHGRS")
-event_codes.append("CTWAT")
-event_codes.append("WAAMV")
-event_codes.append("WASPO")
-match_start = 0
-use_saved_values = True
+# event_codes.append("CASD")
+# event_codes.append("VAHAY")
+# event_codes.append("MIKET")
+# event_codes.append("MISOU")
+# event_codes.append("MISTA")
+# event_codes.append("MIWAT")
+# event_codes.append("PAHAT")
+# event_codes.append("NJFLA")
+# event_codes.append("NCMCL")
+# event_codes.append("NHGRS")
+# event_codes.append("CTWAT")
+# event_codes.append("WAAMV")
+# event_codes.append("WASPO")
+database_path = "__api_scraping_results/database/week1"
 
 for ec in event_codes:
-    reload_django(ec)
+    reload_django(ec, database_path)
     populate_matchresults()
 
 

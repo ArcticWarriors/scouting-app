@@ -5,15 +5,21 @@ Created on Feb 28, 2016
 '''
 import subprocess
 import os
-import sys
 
 #############################################################
 # Load django settings so this can be run as a one-off script
 #############################################################
 
-def reload_django():
+def reload_django(event_code, database_path):
     import os
     import sys
+    
+    with open('../ScoutingWebsite/database_path.py', 'w') as f:
+        f.write("database_path = '" + database_path + "/%s.sqlite3'" % event_code)
+    cur_dir = os.getcwd()
+    os.chdir("..")
+    subprocess.call(["python", "manage.py", "migrate"])
+    os.chdir(cur_dir)
     
     from django.core.wsgi import get_wsgi_application
     
@@ -47,6 +53,7 @@ def read_url_and_dump(url, headers, output_file):
 
 
 def read_local_copy(input_file):
+    print os.path.abspath(input_file)
     with open(input_file, 'r') as f:
         response_body = f.read()
 
@@ -55,7 +62,7 @@ def read_local_copy(input_file):
     return json_struct
 
 
-def scrape_schedule(event_code, start, use_saved_values):
+def scrape_schedule(event_code, start, use_saved_values, json_path):
     from Scouting2016.models import OfficialMatch, Team
     tourny_level = "Qualification"
 
@@ -65,7 +72,7 @@ def scrape_schedule(event_code, start, use_saved_values):
     headers['Accept'] = 'application/json'
     headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-    local_file = '../api_queries/{0}_schedule_query.json'.format(event_code)
+    local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
 
     if use_saved_values:
         json_struct = read_local_copy(local_file)
@@ -109,7 +116,7 @@ def scrape_schedule(event_code, start, use_saved_values):
         print match_number, red_teams, blue_teams
 
 
-def scrape_match_results(event_code, start, use_saved_values):
+def scrape_match_results(event_code, start, use_saved_values, json_path):
     from Scouting2016.models import OfficialMatch, Team
     tourny_level = "Qualification"
     season = "2016"
@@ -118,7 +125,7 @@ def scrape_match_results(event_code, start, use_saved_values):
     headers = {'Accept': 'application/json'}
     headers['Authorization'] = 'Basic ' + get_encoded_key()
 
-    local_file = '../api_queries/{0}_scoreresult_query.json'.format(event_code)
+    local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
 
     if use_saved_values:
         json_struct = read_local_copy(local_file)
@@ -236,15 +243,11 @@ event_codes.append("WAAMV")
 event_codes.append("WASPO")
 match_start = 0
 use_saved_values = True
+sql_path = "__api_scraping_results/database/week1"
+json_path = "../__api_scraping_results/json/week1"
 
 for ec in event_codes:
-    with open('../ScoutingWebsite/database_path.py', 'w') as f:
-        f.write("database_path = 'a_test_databases/week1/%s.sqlite3'" % ec)
-    cur_dir = os.getcwd()
-    os.chdir("..")
-    subprocess.call(["python", "manage.py", "migrate"])
-    os.chdir(cur_dir)
-    reload_django()
-    scrape_schedule(ec, match_start, use_saved_values)
-    scrape_match_results(ec, match_start, use_saved_values)
+    reload_django(ec, sql_path)
+    scrape_schedule(ec, match_start, use_saved_values, json_path)
+    scrape_match_results(ec, match_start, use_saved_values, json_path)
     add_snobot()

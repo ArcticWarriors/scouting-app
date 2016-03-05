@@ -1,1 +1,1 @@
-database_path = 'a_test_databases/week1/WASPO.sqlite3'
+database_path = '__api_scraping_results/database/week1/SCMB.sqlite3'
