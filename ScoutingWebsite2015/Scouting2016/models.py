@@ -26,27 +26,27 @@ class Team(models.Model):
 
     teamNumber = models.IntegerField()
 
-    homepage = models.CharField(max_length=1000)
+    homepage = models.CharField(max_length=1000, default="")
 
-    teamOrganized = models.CharField(max_length=1000)
+    teamOrganized = models.CharField(max_length=1000, default="")
 
-    teamLikeable = models.CharField(max_length=1000)
+    teamLikeable = models.CharField(max_length=1000, default="")
 
-    teamSwag = models.CharField(max_length=1000)
+    teamSwag = models.CharField(max_length=1000, default="")
 
-    teamAwards = models.CharField(max_length=1000)
+    teamAwards = models.CharField(max_length=1000, default="")
 
-    teamAbilities = models.CharField(max_length=1000)
+    teamAbilities = models.CharField(max_length=1000, default="")
 
-    teamAlliances = models.CharField(max_length=1000)
+    teamAlliances = models.CharField(max_length=1000, default="")
 
-    teamAlly174 = models.CharField(max_length=3)
+    teamAlly174 = models.CharField(max_length=3, default="")
 
-    teamOperational = models.CharField(max_length=3)
+    teamOperational = models.CharField(max_length=3, default="")
 
-    teamOperationProblems = models.CharField(max_length=1000)
+    teamOperationProblems = models.CharField(max_length=1000, default="")
 
-    teamFirstYear = models.CharField(max_length=3)
+    teamFirstYear = models.CharField(max_length=3, default="")
 
     def get_defense_stats(self, stat_map=None):
         """
