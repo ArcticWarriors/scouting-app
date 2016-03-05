@@ -108,26 +108,7 @@ def __get_filter_args(score_result_field, sign, value):
 
 def index(request):
 
-    our_team_number = 174
-
-    our_team = Team.objects.get(teamNumber=our_team_number)
-    our_scouted = Match.objects.filter(scoreresult__team__id=our_team.id)
-    our_official = OfficialMatch.objects.filter(Q(redTeam1__teamNumber=our_team_number) |
-                                                Q(redTeam2__teamNumber=our_team_number) |
-                                                Q(redTeam3__teamNumber=our_team_number) |
-                                                Q(blueTeam1__teamNumber=our_team_number) |
-                                                Q(blueTeam2__teamNumber=our_team_number) |
-                                                Q(blueTeam3__teamNumber=our_team_number))
-    all_official_numbers = set(match.matchNumber for match in our_official)
-
-    scouted_numbers = sorted([match.matchNumber for match in our_scouted])
-    unscouted_numbers = all_official_numbers.difference(scouted_numbers)
-
-    context = {}
-    context['scouted_matches'] = scouted_numbers
-    context['unscouted_matches'] = sorted([x for x in unscouted_numbers])
-
-    return render(request, 'Scouting2016/index.html', context)
+    return render(request, 'Scouting2016/index.html')
 
 
 def show_graph(request):

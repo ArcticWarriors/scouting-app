@@ -41,11 +41,15 @@ table {
 }
 
 h1 {
-	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;
 }
 
 h2 {
-	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;
+}
+@font-face {
+  font-family: Orbitron;
+	src: url(/static/Scouting2016/fonts/Orbitron/Orbitron-Medium.ttf);
 }
