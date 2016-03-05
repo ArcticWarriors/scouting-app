@@ -294,7 +294,6 @@ def view_team(request, team_number):
 
     this_team = Team.objects.get(teamNumber=team_number)
     picture_list = TeamPictures.objects.filter(team_id=this_team.id)
-
     """
     The page will return a list of score results stored in the database. Score results are stored in
     either sums or averages, as defined in the model. The page is also able to upload and store pictures,
@@ -309,6 +308,7 @@ def view_team(request, team_number):
 
     context = {}
 #     context['team_number'] = this_team.teamNumber
+    context['team'] = this_team
     context['metrics'] = metrics
     context['score_result_list'] = score_result_list
     context['team_number'] = team_number
@@ -667,16 +667,32 @@ def edit_prev_match(request):
     # Pit stuff
 
 
-def show_add_pit(request):
+def show_add_pit(request, team_number):
 
     context = {}
+    context['team'] = Team.objects.get(teamNumber=team_number)
     context['submit_pit'] = "/2016/submit_pit"
     return render(request, 'Scouting2016/pitForm.html', context)
 
 
 def submit_new_pit(request):
+    teamNumber = request.POST['team_number']
+    team = Team.objects.get(teamNumber=teamNumber)
+    team.homepage = request.POST['notes_homepage']
+    team.teamOrganized = request.POST['notes_organized']
+    team.teamLikeable = request.POST['notes_openness']
+    team.teamSwag = request.POST['notes_swag']
+    team.teamAwards = request.POST['notes_awards']
+    team.teamAbilities = request.POST['notes_abiltiies']
+    team.teamAlliances = request.POST['notes_alliances']
+    team.teamAlly174 = request.POST['ally_174']
+    team.teamOperational = request.POST['function']
+    team.teamOperationProblems = request.POST['notes_functionality']
+    team.teamFirstYear = request.POST['first_year']
+    team.save()
 
-    return render(request)
+
+    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))
 
 
 def user_auth(request):

@@ -18,6 +18,7 @@ table {
 
     {% include "Scouting2016/banner.html" %}
     <h1>Team {{ team_number }}</h1>
+    <B> Homepage: </B> <a href = "http://{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
     Bookmark?
     <form>
 	<input type="radio" name="marked" value="yes">Yes <input type="radio" name="marked" value="no">No  <input type="submit">
@@ -102,5 +103,23 @@ No matches scouted
 <h2>Additional Info.</h2>
 <b><big>Tech fouls: {{metrics.score_tech_foul__sum}}</big></b>
 
+<h2> Pit Scouting </h2>
+
+<a href = "/2016/pit_form/{{team_number}}">Add or edit pit info</a><br>
+<b> Was the team organized? </b><br>
+{{team.teamOrganized}}<br>
+<b> Was the team likeable?  </b><br>
+{{team.teamLikeable}}<br>
+<b> Did the team have swag? </b><br>
+{{team.teamSwag}}<br>
+<b> What could the robot do?</b><br>
+{{team.teamAbilities}}<br>
+<b> Who was considering allying them? </b><br>
+{{team.teamAlliances}}<br>
+<b> Would they ally us? :</b> {{team.teamAlly174}}<br>
+<b> Was it their first year? :</b> {{team.teamFirstYear}}<br>
+<b> Was their robot operational? :</b> {{team.teamOperational}}<br>
+<b> Any operation problems? :</b> <br>
+{{team.teamOperationProblems}}<br>
 </body>
 </html>

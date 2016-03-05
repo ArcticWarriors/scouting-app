@@ -25,6 +25,7 @@ class Match(models.Model):
 class Team(models.Model):
 
     teamNumber = models.IntegerField()
+
     homepage = models.CharField(max_length=1000)
     teamOrganized = models.CharField(max_length=1000)
     teamLikeable = models.CharField(max_length=1000)

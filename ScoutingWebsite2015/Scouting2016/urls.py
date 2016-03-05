@@ -17,7 +17,7 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^submit_form$', views.submit_new_match, name='show_add_form'),
                url(r'^submit_edit$', views.edit_prev_match, name='edit_form'),
                # Pit Form
-               url(r'^pit_form$', views.show_add_pit, name='show_add_pit'),
+               url(r'^pit_form/(?P<team_number>[0-9]+)$', views.show_add_pit, name='show_add_pit'),
                url(r'^submit_pit$', views.submit_new_pit, name='submit_new_pit'),
                # Normal Pages
                url(r'^robot_display$', views.robot_display, name='robot_display'),
