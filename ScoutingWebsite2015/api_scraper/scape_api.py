@@ -3,27 +3,31 @@ Created on Feb 28, 2016
 
 @author: PJ
 '''
+import subprocess
+import os
+import sys
 
 #############################################################
 # Load django settings so this can be run as a one-off script
 #############################################################
-import os
-import sys
 
-from django.core.wsgi import get_wsgi_application
-
-
-os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
-proj_path = os.path.abspath("..")
-sys.path.append(proj_path)
-application = get_wsgi_application()
+def reload_django():
+    import os
+    import sys
+    
+    from django.core.wsgi import get_wsgi_application
+    
+    
+    os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
+    proj_path = os.path.abspath("..")
+    sys.path.append(proj_path)
+    application = get_wsgi_application()
 
 #############################################################
 
 import json
 from urllib2 import Request, urlopen
 
-from Scouting2016.models import OfficialMatch, Team
 from api_scraper.api_key import get_encoded_key
 
 
@@ -52,6 +56,7 @@ def read_local_copy(input_file):
 
 
 def scrape_schedule(event_code, start, use_saved_values):
+    from Scouting2016.models import OfficialMatch, Team
     tourny_level = "Qualification"
 
     url = __api_website + "/2016/schedule/{0}?tournamentLevel={1}&start={2}".format(event_code, tourny_level, start)
@@ -105,6 +110,7 @@ def scrape_schedule(event_code, start, use_saved_values):
 
 
 def scrape_match_results(event_code, start, use_saved_values):
+    from Scouting2016.models import OfficialMatch, Team
     tourny_level = "Qualification"
     season = "2016"
 
@@ -198,7 +204,8 @@ def scrape_match_results(event_code, start, use_saved_values):
         print official_match.matchNumber
 
 
-def add_snobot():
+def add_snobot():    
+    from Scouting2016.models import OfficialMatch, Team
     query = Team.objects.filter(teamNumber=174)
     if len(query) == 0:
         team = Team.objects.all()[0]
@@ -231,6 +238,13 @@ match_start = 0
 use_saved_values = True
 
 for ec in event_codes:
-#     scrape_schedule(ec, match_start, use_saved_values)
-#     scrape_match_results(ec, match_start, use_saved_values)
+    with open('../ScoutingWebsite/database_path.py', 'w') as f:
+        f.write("database_path = 'a_test_databases/week1/%s.sqlite3'" % ec)
+    cur_dir = os.getcwd()
+    os.chdir("..")
+    subprocess.call(["python", "manage.py", "migrate"])
+    os.chdir(cur_dir)
+    reload_django()
+    scrape_schedule(ec, match_start, use_saved_values)
+    scrape_match_results(ec, match_start, use_saved_values)
     add_snobot()
