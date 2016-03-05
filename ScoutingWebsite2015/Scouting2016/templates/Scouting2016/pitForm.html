@@ -9,51 +9,42 @@
 
 {% include "Scouting2016/banner.html" %}
 <form action="{{ submit_pit }}" method="post">
+	{% csrf_token %}
 		<p> Which team's pit was visited?												 </p>
-		<input type="number" name="team_number"  value="{{team_number}}"> 
+		<input type="number" name="team_number"  value="{{team.teamNumber}}"> 
 		<p> What is the team's home page?												 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_homepage" 
-		placeholder="Ex. www.snobot.org">
-		</textarea>
-		</textarea>
+		placeholder="Ex. www.snobot.org">{{team.homepage}}</textarea>
 		<p> Was the team pit functional? Have they been organized? 		 				 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_organized" 
-		placeholder="">
-		</textarea>
+		placeholder="Forget about the robot, how was the team? Was the pit nice and neat and stuff?">{{team.teamOrganized}}</textarea>
 		<p> Was the team amicable and open?												 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_openness" 
-		placeholder="">
-		</textarea>
+		placeholder="Hold information about the team, and their team members">{{team.teamLikeable}}</textarea>
 		<p> How much swag does the team have? Are they lame? 							 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_swag" 
-		placeholder="Include all swag / lameness factors.">
-		</textarea>
+		placeholder="Include all swag / lameness factors.">{{team.teamSwag}}</textarea>
 		<p> Has the team won awards in the past? 										 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_awards" 
-		placeholder="Include all awards won">
-		</textarea>
+		placeholder="Include all awards won">{{team.teamAwards}}</textarea>
 		<p> What could their robot do?    												 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_abiltiies" 
-		placeholder="Include all abilties of the robot, including strengths and weaknesses">
-		</textarea>
+		placeholder="Include all abilties of the robot, including strengths and weaknesses">{{team.teamAbilities}}</textarea>
 		<p> What teams were considering an alliance with this team?						 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_alliances" 
-		placeholder="Please list all teams, incluiding name and mumber.">
-		</textarea>
+		placeholder="Please list all teams, incluiding name and mumber.">{{team.teamAlliances}}</textarea>
 		<p> Is the team considering an alliance with us? 								 </p>
-		<input type="radio" name="ally_174" value="yes">Yes
-		<input type="radio" name="ally_174" value="no">No
+		<input type="radio" name="ally_174" value="yes"{% if team.teamAlly174 == 'yes' %} checked="checked"{% endif %}>Yes
+		<input type="radio" name="ally_174" value="no"{% if team.teamAlly174 == 'no' %} checked="checked"{% endif %}>No
 		<p> Is this the team's first year? Are they new?								 </p>
-		<input type="radio" name = "first_year" value = "yes">Yes
-		<input type="radio" name = "first_year" value = "no">No
+		<input type="radio" name = "first_year" value = "yes"{% if team.teamFirstYear == 'yes' %} checked="checked"{% endif %}>Yes
+		<input type="radio" name = "first_year" value = "no"{% if team.teamFirstYear == 'no' %} checked="checked"{% endif %}>No
 		<p> Was their robot functional?													 </p>
-		<input type="radio" name = "function" value = "yes">Yes
-		<input type="radio" name = "function" value = "no">No		
+		<input type="radio" name = "function" value = "yes"{% if team.teamOperational == 'yes' %} checked="checked"{% endif %}>Yes
+		<input type="radio" name = "function" value = "no"{% if team.teamOperational == 'no' %} checked="checked"{% endif %}>No		
 		<p> If no, what was the problem?									 </p>
 		<textarea rows="8" cols="75" wrap="soft" name="notes_functionality" 
-		placeholder="Include what was broken, if anything, and how quickly any problems
-		were being fixed.">
-		</textarea>
+		placeholder="Include what was broken, if anything, and how quickly any problems were being fixed.">{{team.teamOperationProblems}}</textarea>
 		<br> <br> <input type="submit" value="Submit">
 </form>		
 </body>
