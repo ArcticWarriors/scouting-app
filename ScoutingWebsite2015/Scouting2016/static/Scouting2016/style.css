@@ -1,5 +1,6 @@
-
-
+div .navbar {
+  text-align: center;
+}
 .nav ul {
   list-style: none;
 	background-color: #1024AD;
@@ -10,9 +11,9 @@
 .nav li {
   font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
   font-size: 1.2em;
-  line-height: 40px;
-  height: 40px;
-  border-bottom: 1px solid #888;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 10px;
 }
  
 .nav a {
@@ -30,19 +31,6 @@
   background-color: #fff;
   color: #444;
   cursor: default;
-}
- 
-.nav li {
-  display: inline-block;
-  margin-right: -4px;
-}
-
-.nav li {
-  width: 120px;
-  border-bottom: none;
-  height: 50px;
-  line-height: 50px;
-  font-size: 1.4em;
 }
 body {	
 	background-color: #FFFFFF;
