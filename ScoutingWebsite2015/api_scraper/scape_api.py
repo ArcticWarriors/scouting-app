@@ -6,28 +6,27 @@ Created on Feb 28, 2016
 import subprocess
 import os
 
+
 #############################################################
 # Load django settings so this can be run as a one-off script
 #############################################################
-
 def reload_django(event_code, database_path):
     import os
     import sys
-    
+
     with open('../ScoutingWebsite/database_path.py', 'w') as f:
         f.write("database_path = '" + database_path + "/%s.sqlite3'" % event_code)
     cur_dir = os.getcwd()
     os.chdir("..")
     subprocess.call(["python", "manage.py", "migrate"])
     os.chdir(cur_dir)
-    
+
     from django.core.wsgi import get_wsgi_application
-    
-    
+
     os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
     proj_path = os.path.abspath("..")
     sys.path.append(proj_path)
-    application = get_wsgi_application()
+    _ = get_wsgi_application()
 
 #############################################################
 
@@ -38,6 +37,15 @@ from api_scraper.api_key import get_encoded_key
 
 
 __api_website = "https://frc-api.firstinspires.org/v2.0/"
+
+
+def get_header():
+
+    headers = {}
+    headers['Accept'] = 'application/json'
+    headers['Authorization'] = 'Basic ' + get_encoded_key()
+
+    return headers
 
 
 def read_url_and_dump(url, headers, output_file):
@@ -53,7 +61,6 @@ def read_url_and_dump(url, headers, output_file):
 
 
 def read_local_copy(input_file):
-    print os.path.abspath(input_file)
     with open(input_file, 'r') as f:
         response_body = f.read()
 
@@ -62,22 +69,46 @@ def read_local_copy(input_file):
     return json_struct
 
 
-def scrape_schedule(event_code, start, use_saved_values, json_path):
+def download_team_info(event_code, json_path, season="2016"):
+
+    url = __api_website + "/{0}/teams?eventCode={1}".format(season, event_code)
+    local_file = json_path + '/{0}_team_query.json'.format(event_code)
+    read_url_and_dump(url, get_header(), local_file)
+
+
+def download_matchresult_info(event_code, start, json_path, season="2016", tourny_level="Qualification"):
+    url = __api_website + "/{0}/scores/{1}/{2}?start={3}".format(season, event_code, tourny_level, start)
+    local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
+    read_url_and_dump(url, get_header(), local_file)
+
+
+def download_schedule(event_code, start, json_path, season="2016", tourny_level="Qualification"):
+    url = __api_website + "/{0}/schedule/{1}?tournamentLevel={2}&start={3}".format(season, event_code, tourny_level, start)
+    local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
+    read_url_and_dump(url, get_header(), local_file)
+
+
+def update_team_info(event_code, json_path):
+    from Scouting2016.models import Team
+
+    local_file = json_path + '/{0}_team_query.json'.format(event_code)
+    json_struct = read_local_copy(local_file)
+
+    for team_info in json_struct["teams"]:
+        team_number = team_info["teamNumber"]
+
+        team = Team.objects.get(teamNumber=team_number)
+        team.homepage = team_info["website"] if team_info["website"] != None else "NA"
+        team.teamFirstYear = team_info["rookieYear"]
+        team.save()
+        print "Updating info for team %s" % team_number
+
+
+def update_schedule(event_code, json_path):
     from Scouting2016.models import OfficialMatch, Team
-    tourny_level = "Qualification"
-
-    url = __api_website + "/2016/schedule/{0}?tournamentLevel={1}&start={2}".format(event_code, tourny_level, start)
-
-    headers = {}
-    headers['Accept'] = 'application/json'
-    headers['Authorization'] = 'Basic ' + get_encoded_key()
 
     local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
-
-    if use_saved_values:
-        json_struct = read_local_copy(local_file)
-    else:
-        json_struct = read_url_and_dump(url, headers, local_file)
+    json_struct = read_local_copy(local_file)
 
     schedule_info = json_struct["Schedule"]
 
@@ -113,24 +144,14 @@ def scrape_schedule(event_code, start, use_saved_values, json_path):
             official_match.blueTeam3 = blue_teams[2]
             official_match.save()
 
-        print match_number, red_teams, blue_teams
+        print "Creating scheduled match %s with red team=%s, blue teams=%s" % (match_number, red_teams, blue_teams)
 
 
-def scrape_match_results(event_code, start, use_saved_values, json_path):
-    from Scouting2016.models import OfficialMatch, Team
-    tourny_level = "Qualification"
-    season = "2016"
-
-    url = __api_website + "/{0}/scores/{1}/{2}?start={3}".format(season, event_code, tourny_level, start)
-    headers = {'Accept': 'application/json'}
-    headers['Authorization'] = 'Basic ' + get_encoded_key()
+def update_matchresults(event_code, json_path):
+    from Scouting2016.models import OfficialMatch
 
     local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
-
-    if use_saved_values:
-        json_struct = read_local_copy(local_file)
-    else:
-        json_struct = read_url_and_dump(url, headers, local_file)
+    json_struct = read_local_copy(local_file)
 
     defense_name_lookup = {}
     defense_name_lookup["A_Portcullis"] = "portcullis"
@@ -142,16 +163,6 @@ def scrape_match_results(event_code, start, use_saved_values, json_path):
     defense_name_lookup["D_RockWall"] = "rock_wall"
     defense_name_lookup["D_RoughTerrain"] = "rough_terrain"
     defense_name_lookup["NotSpecified"] = "NA"
-
-#     defenses['portcullis'] = 0
-#     defenses['cheval_de_frise'] = 0
-#     defenses['moat'] = 0
-#     defenses['ramparts'] = 0
-#     defenses['draw_bridge'] = 0
-#     defenses['sally_port'] = 0
-#     defenses['rock_wall'] = 0
-#     defenses['rough_terrain'] = 0
-#     defenses['low_bar'] = 0
 
     scores_info = json_struct["MatchScores"]
     for match_info in scores_info:
@@ -208,11 +219,11 @@ def scrape_match_results(event_code, start, use_saved_values, json_path):
                 print "OH NOES!"
 
         official_match.save()
-        print official_match.matchNumber
+        print "Adding stats to official match %s" % official_match.matchNumber
 
 
-def add_snobot():    
-    from Scouting2016.models import OfficialMatch, Team
+def add_snobot():
+    from Scouting2016.models import Team
     query = Team.objects.filter(teamNumber=174)
     if len(query) == 0:
         team = Team.objects.all()[0]
@@ -223,31 +234,40 @@ def add_snobot():
 
 # Week 1
 event_codes = []
-# event_codes.append("ONTO2")
-# event_codes.append("ISTA")
-# event_codes.append("MNDU")
-# event_codes.append("MNDU2")
+event_codes.append("ONTO2")
+event_codes.append("ISTA")
+event_codes.append("MNDU")
+event_codes.append("MNDU2")
 event_codes.append("SCMB")
-# event_codes.append("CASD")
-# event_codes.append("VAHAY")
-# event_codes.append("MIKET")
-# event_codes.append("MISOU")
-# event_codes.append("MISTA")
-# event_codes.append("MIWAT")
-# event_codes.append("PAHAT")
-# event_codes.append("NJFLA")
-# event_codes.append("NCMCL")
-# event_codes.append("NHGRS")
-# event_codes.append("CTWAT")
-# event_codes.append("WAAMV")
-# event_codes.append("WASPO")
+event_codes.append("CASD")
+event_codes.append("VAHAY")
+event_codes.append("MIKET")
+event_codes.append("MISOU")
+event_codes.append("MISTA")
+event_codes.append("MIWAT")
+event_codes.append("PAHAT")
+event_codes.append("NJFLA")
+event_codes.append("NCMCL")
+event_codes.append("NHGRS")
+event_codes.append("CTWAT")
+event_codes.append("WAAMV")
+event_codes.append("WASPO")
+
 match_start = 0
-use_saved_values = True
+download_results = True
+update_database = False
 sql_path = "__api_scraping_results/database/week1"
 json_path = "../__api_scraping_results/json/week1"
 
 for ec in event_codes:
-    reload_django(ec, sql_path)
-    scrape_schedule(ec, match_start, use_saved_values, json_path)
-    scrape_match_results(ec, match_start, use_saved_values, json_path)
-    add_snobot()
+    if download_results:
+        print "Downloading results for regional %s" % ec
+        download_matchresult_info(ec, match_start, json_path)
+        download_schedule(ec, match_start, json_path)
+        download_team_info(ec, json_path)
+
+    if update_database:
+        update_schedule(ec, json_path)
+        update_matchresults(ec, json_path)
+        update_team_info(ec, json_path)
+        add_snobot()
