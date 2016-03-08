@@ -7,16 +7,16 @@
 <script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
 <script src="{% static 'Scouting2016/site.js' %}"></script>
+<title>Robot Info</title>\
 <style>
-  .colmd4pictemp {
+.gridpic {
   padding-top:60%;
   width:85%;
-  background-color:#004cff;
   display: block;
   margin: 0 auto;
-}</style>
-<title>Robot Info</title>
-
+  background-size: cover
+}
+</style>
 </head>
 
 <body>
@@ -30,16 +30,13 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div class="colmd4pictemp">
-        </div>
+        <div style="background-image:url({% static 'Scouting2016/ourbot_overroller' %});" class="gridpic"></div>
       </div>
       <div class="col-md-4">
-        <div class="colmd4pictemp">
-        </div>
+        <div style="background-image:url({% static 'Scouting2016/ourbot_tower' %})" class="gridpic"></div>
       </div>
       <div class="col-md-4">
-        <div class="colmd4pictemp">
-        </div>
+        <div style="background-image:url({% static 'Scouting2016/ourbot_bot' %})" class="gridpic"></div>
       </div>
     </div>
     <div class="row">
