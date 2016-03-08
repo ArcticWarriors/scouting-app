@@ -15,18 +15,15 @@ div .navbar {
   line-height: 50px;
   margin-right: 10px;
 }
- 
 .nav a {
   text-decoration: none;
   color: #fff;
   display: block;
   transition: .3s background-color;
 }
- 
 .nav a:hover {
   background-color: #005f5f;
 }
- 
 .nav a.active {
   background-color: #fff;
   color: #444;
@@ -37,15 +34,10 @@ body {
 	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
 	margin: 10px;
 }
-table {
-	background-color: #C4C4C4;
-}
-
 h1 {
 	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;
 }
-
 h2 {
 	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;

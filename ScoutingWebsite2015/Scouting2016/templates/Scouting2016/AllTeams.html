@@ -17,41 +17,50 @@ It is capable of sorting any tables which contain
 </head>
 <style>
 h2 {
-	text-align: center;
+	display: inline;
 }
-
-table {
+table, th {
 	text-align: center;
 }
 </style>
 <body>
 
 	{% include "Scouting2016/banner.html" %}
-	<h2>List of All Teams</h2>
-	<table border="1" class="sortable">
-		<tr>
-			<th>Team Number</th>
-			<th>Low goal scores</th>
-			<th>Low goal misses</th>
-			<th>High goal scores</th>
-			<th>High goal misses</th>
-			<th>Autonomous Low goal</th>
-			<th>Autonomous High goal</th>
-		</tr>
-		{% for team in teams %}
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="overflow:auto;">
+				<h2>List of All Teams</h2>
+				<div class="btn-group pull-right">
+					<a href="#" class="btn btn-default colSelect">Select Columns</a>
+					<a href="#" class="btn btn-default">Graph Data</a>
+				</div>
+			</div>
+			<table class="sortable table table-hover no-manual-sort">
+				<tr>
+					<th>Team Number</th>
+					<th>Low goal scores</th>
+					<th>Low goal misses</th>
+					<th>High goal scores</th>
+					<th>High goal misses</th>
+					<th>Autonomous Low goal</th>
+					<th>Autonomous High goal</th>
+				</tr>
+				{% for team in teams %}
+
+				<tr>
+						<td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
+					<td> {{ team.avgerages.low_score_successful__avg }} </td>
+						<td> {{ team.avgerages.low_score_fail__avg }} </td>
+						<td> {{ team.avgerages.high_score_successful__avg }} </td>
+						<td> {{ team.avgerages.high_score_fail__avg }} </td>
+						<td> {{ team.avgerages.auto_score_low__avg }} </td>
+						<td> {{ team.avgerages.auto_score_high__avg }} </td>
+				</tr>
+
+				{% endfor %}
+			</table>
+		</div>
+	</div>
 	
-		<tr>
-        <td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
-	  	<td> {{ team.avgerages.low_score_successful__avg }} </td>
-      	<td> {{ team.avgerages.low_score_fail__avg }} </td>
-      	<td> {{ team.avgerages.high_score_successful__avg }} </td>
-      	<td> {{ team.avgerages.high_score_fail__avg }} </td>
-      	<td> {{ team.avgerages.auto_score_low__avg }} </td>
-      	<td> {{ team.avgerages.auto_score_high__avg }} </td>
-		</tr>
-
-		{% endfor %}
-	</table>
-
 </body>
 </html>
