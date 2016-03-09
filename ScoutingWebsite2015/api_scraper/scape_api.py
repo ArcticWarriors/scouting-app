@@ -5,6 +5,8 @@ Created on Feb 28, 2016
 '''
 import subprocess
 import os
+from api_scraper import get_users
+from django.contrib.auth.models import User, Group
 
 
 #############################################################
@@ -232,30 +234,45 @@ def add_snobot():
         print "Adding 174 to regional"
 
 
+def add_users():
+    for user_info in get_users.get_users():
+        user_search = User.objects.filter(username=user_info['username'])
+        if len(user_search) == 1:
+            user = user_search[0]
+        else:
+            user = User.objects.create_user(username=user_info['username'], password=user_info["password"])
+
+        for group_name in user_info["groups"]:
+            group, _ = Group.objects.get_or_create(name=group_name)
+            if not user.groups.filter(name=group_name).exists():
+                group.user_set.add(user)
+                group.save()
+
+
 # Week 1
 event_codes = []
 event_codes.append("ONTO2")
-event_codes.append("ISTA")
-event_codes.append("MNDU")
-event_codes.append("MNDU2")
-event_codes.append("SCMB")
-event_codes.append("CASD")
-event_codes.append("VAHAY")
-event_codes.append("MIKET")
-event_codes.append("MISOU")
-event_codes.append("MISTA")
-event_codes.append("MIWAT")
-event_codes.append("PAHAT")
-event_codes.append("NJFLA")
-event_codes.append("NCMCL")
-event_codes.append("NHGRS")
-event_codes.append("CTWAT")
-event_codes.append("WAAMV")
-event_codes.append("WASPO")
+# event_codes.append("ISTA")
+# event_codes.append("MNDU")
+# event_codes.append("MNDU2")
+# event_codes.append("SCMB")
+# event_codes.append("CASD")
+# event_codes.append("VAHAY")
+# event_codes.append("MIKET")
+# event_codes.append("MISOU")
+# event_codes.append("MISTA")
+# event_codes.append("MIWAT")
+# event_codes.append("PAHAT")
+# event_codes.append("NJFLA")
+# event_codes.append("NCMCL")
+# event_codes.append("NHGRS")
+# event_codes.append("CTWAT")
+# event_codes.append("WAAMV")
+# event_codes.append("WASPO")
 
 match_start = 0
-download_results = True
-update_database = False
+download_results = False
+update_database = True
 sql_path = "__api_scraping_results/database/week1"
 json_path = "../__api_scraping_results/json/week1"
 
@@ -265,9 +282,13 @@ for ec in event_codes:
         download_matchresult_info(ec, match_start, json_path)
         download_schedule(ec, match_start, json_path)
         download_team_info(ec, json_path)
-
     if update_database:
-        update_schedule(ec, json_path)
-        update_matchresults(ec, json_path)
-        update_team_info(ec, json_path)
+        reload_django(ec, sql_path)
+#         update_schedule(ec, json_path)
+#         update_matchresults(ec, json_path)
+#         update_team_info(ec, json_path)
         add_snobot()
+        add_users()
+
+#     reload_django(ec, sql_path)
+#     add_users()
