@@ -16,6 +16,10 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^pre_edit_form', views.info_for_form_edit, name='info_for_form_edit'),
                url(r'^submit_form$', views.submit_new_match, name='show_add_form'),
                url(r'^submit_edit$', views.edit_prev_match, name='edit_form'),
+               url(r'^showLogin/$', views.showLogin, name='showLogin'),
+               url(r'^log_user_out$', views.log_user_out, name='log_user_out'),
+
+               url(r'^auth_login$', views.auth_login, name='auth_login'),
                # Pit Form
                url(r'^pit_form/(?P<team_number>[0-9]+)$', views.show_add_pit, name='show_add_pit'),
                url(r'^submit_pit$', views.submit_new_pit, name='submit_new_pit'),
@@ -31,5 +35,4 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^upload_image$', views.upload_image, name='upload_image'),
                url(r'^match_prediction/(?P<match_number>[0-9]+)$', views.match_prediction, name='match_prediction'),
                url(r'^comparison$', views.show_comparison, name='comparison'),
-               url(r'^User_Authentification', views.user_auth, name='userAuth'),
                ]

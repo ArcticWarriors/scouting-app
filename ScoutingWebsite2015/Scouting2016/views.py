@@ -1,13 +1,18 @@
 import os
 
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.db.models import Q
 from django.db.models.aggregates import Avg, Sum
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch
 import operator
+from django.contrib.auth.decorators import login_required, permission_required
+
+
+login_reverse = reverse_lazy('Scouting2016:showLogin')
 
 
 def __get_create_kargs(request):
@@ -549,11 +554,42 @@ def upload_image(request):
 #######################################
 
 
+def showLogin(request):
+
+    return render(request, 'Scouting2016/login.html')
+
+
+def log_user_out(request):
+    logout(request)
+
+    return HttpResponseRedirect(reverse('Scouting2016:showLogin'))
+
+
+def auth_login(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    good_redirect = request.POST.get('next', '/2016')
+    bad_redirect = 'Scouting2016:showLogin'
+    print good_redirect
+
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            return HttpResponseRedirect(good_redirect)
+        else:
+            return HttpResponseRedirect(reverse(bad_redirect))
+    else:
+        return HttpResponseRedirect(reverse(bad_redirect))
+
+
+@permission_required('auth.can_modify_model', login_url=login_reverse)
 def info_for_form_edit(request):
 
     return render(request, 'Scouting2016/info_for_form_edit.html')
 
 
+@permission_required('auth.can_modify_model', login_url=login_reverse)
 def show_add_form(request):
 
     context = {}
@@ -648,6 +684,7 @@ def edit_prev_match(request):
     # Pit stuff
 
 
+@permission_required('auth.can_modify_model', login_url=login_reverse)
 def show_add_pit(request, team_number):
 
     context = {}
@@ -672,10 +709,4 @@ def submit_new_pit(request):
     team.teamFirstYear = request.POST['first_year']
     team.save()
 
-
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))
-
-
-def user_auth(request):
-
-    return render(request, 'Scouting2016/userAuth.html')

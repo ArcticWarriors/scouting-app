@@ -19,10 +19,19 @@
             <li> <a href="{% url 'Scouting2016:all_teams' %}">Team List</a></li>
             <li> <a href="{% url 'Scouting2016:all_matches' %}">Matches</a></li>
             <li> <a href="{% url 'Scouting2016:show_graph' %}">Graphing</a></li>
-            <li> <a href="{% url 'Scouting2016:showForm' %}">Add Match</a> </li>
-            <li> <a href="{% url 'Scouting2016:info_for_form_edit' %}">Edit Match</a> </li>
+            <li> <a href="{% url 'Scouting2016:robot_display' %}">Our Robot</a> </li>
             <li> <a href="{% url 'Scouting2016:search_page' %}">Search</a> </li>
             <li> <a href ="/2016/comparison">Compare</a> </li>
+            {% if "auth.can_modify_model" in perms %}
+            <li> <a href="{% url 'Scouting2016:showForm' %}">Add Match</a> </li>
+            <li> <a href="{% url 'Scouting2016:info_for_form_edit' %}">Edit Match</a> </li>
+            <li> <a href="{% url 'Scouting2016:log_user_out' %}">Logout</a> </li>
+            {% elif user.is_authenticated %}
+            <li> <a href="{% url 'Scouting2016:log_user_out' %}">Logout</a> </li>
+            {% else %}
+            <li> <a href="{% url 'Scouting2016:showLogin' %}">Log In</a> </li>
+            {% endif %}
+          </ul>
         </div>
       </div>
     </nav>

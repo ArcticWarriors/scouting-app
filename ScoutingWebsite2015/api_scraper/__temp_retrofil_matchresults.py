@@ -5,6 +5,9 @@ Created on Mar 1, 2016
 '''
 import collections
 import random
+import sys
+import os
+import subprocess
 
 
 #############################################################
@@ -12,19 +15,16 @@ import random
 #############################################################
 
 def reload_django(event_code, database_path):
-    import os
-    import sys
-    import subprocess
-    
+
     from django.core.wsgi import get_wsgi_application
-    
+
     with open('../ScoutingWebsite/database_path.py', 'w') as f:
-        f.write("database_path = '" + database_path + "/%s.sqlite3'" % event_code)    
-    
+        f.write("database_path = '" + database_path + "/%s.sqlite3'" % event_code)
+
     os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
     proj_path = os.path.abspath("..")
     sys.path.append(proj_path)
-    application = get_wsgi_application()
+    _ = get_wsgi_application()
 
 
 def __populate_sr(auto_low, auto_high, tele_low, tele_high, tech_foul, challenge_string, defense_lookup, defense_speed_lookup):
@@ -163,11 +163,9 @@ def __save_sr(match, team, **kargs):
         pass
 
 
-def populate_matchresults():
+def populate_matchresults(max_match_number):
 
     from Scouting2016.models import OfficialMatch, Match
-
-    max_match_number = 50
 #     max_match_number = 1
 
     for official_match in OfficialMatch.objects.all():
@@ -254,28 +252,43 @@ def populate_matchresults():
 
 # Week 1
 event_codes = []
-# event_codes.append("ONTO2")
-# event_codes.append("ISTA")
-# event_codes.append("MNDU")
-# event_codes.append("MNDU2")
+event_codes.append("ONTO2")
+event_codes.append("ISTA")
+event_codes.append("MNDU")
+event_codes.append("MNDU2")
 event_codes.append("SCMB")
-# event_codes.append("CASD")
-# event_codes.append("VAHAY")
-# event_codes.append("MIKET")
-# event_codes.append("MISOU")
-# event_codes.append("MISTA")
-# event_codes.append("MIWAT")
-# event_codes.append("PAHAT")
-# event_codes.append("NJFLA")
-# event_codes.append("NCMCL")
-# event_codes.append("NHGRS")
-# event_codes.append("CTWAT")
-# event_codes.append("WAAMV")
-# event_codes.append("WASPO")
+event_codes.append("CASD")
+event_codes.append("VAHAY")
+event_codes.append("MIKET")
+event_codes.append("MISOU")
+event_codes.append("MISTA")
+event_codes.append("MIWAT")
+event_codes.append("PAHAT")
+event_codes.append("NJFLA")
+event_codes.append("NCMCL")
+event_codes.append("NHGRS")
+event_codes.append("CTWAT")
+event_codes.append("WAAMV")
+event_codes.append("WASPO")
 database_path = "__api_scraping_results/database/week1"
 
-for ec in event_codes:
-    reload_django(ec, database_path)
-    populate_matchresults()
 
+if len(sys.argv) <= 1:
+    for ec in event_codes:
+        reload_django(ec, database_path)
+        subprocess.call(['python', sys.argv[0], ec, database_path, "50"])
+else:
+    from django.core.wsgi import get_wsgi_application
 
+    event_code = sys.argv[1]
+    databse_path = sys.argv[2]
+    max_match_number = int(sys.argv[3])
+#     json_path = sys.argv[3]
+
+    os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
+    proj_path = os.path.abspath("..")
+    sys.path.append(proj_path)
+    _ = get_wsgi_application()
+
+    reload_django(event_code, databse_path)
+    populate_matchresults(max_match_number)

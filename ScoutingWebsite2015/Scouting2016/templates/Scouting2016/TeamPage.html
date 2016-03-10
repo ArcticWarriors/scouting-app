@@ -19,7 +19,7 @@ table {
 
     {% include "Scouting2016/banner.html" %}
     <h1>Team {{ team_number }}</h1>
-    <B> Homepage: </B> <a href = "http://{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
+    <B> Homepage: </B> <a href = "{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
     Bookmark?
     <form>
 	<input type="radio" name="marked" value="yes">Yes <input type="radio" name="marked" value="no">No  <input type="submit">
@@ -39,20 +39,24 @@ No matches scouted
   </ul>
 {% endif %}
      	
-    <h2>Pictures</h2>
+  <h2>Pictures</h2>
     
-        <form action="{% url 'Scouting2016:upload_image' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name='team_number' value={{team_number}}>
-            <input type="file" name='image_name' accept="image/*">
-            <input type="submit">
-        </form>
-        
-    {% for picture in pictures %}
-        
+    {% if "auth.can_add_pictures" in perms %}
+    <form action="{% url 'Scouting2016:upload_image' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name='team_number' value={{team_number}}>
+        <input type="file" name='image_name' accept="image/*">
+        <input type="submit">
+    </form>
+    {% endif %}
+    {% if pictures|length != 0 %}
+      {% for picture in pictures %}
     <img src="{% static picture.path %}" width='500'>
     <br></br>
-    {% endfor %}
+      {% endfor %}
+    {% else %}
+    No pictures available
+    {% endif %}
     <h2>Team Comments</h2>
 {% if score_result_list|length == 0 %}
 No matches scouted
