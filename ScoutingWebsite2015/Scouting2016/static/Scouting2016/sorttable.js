@@ -89,75 +89,81 @@ sorttable = {
 	      // make it clickable to sort
 	      headrow[i].sorttable_columnindex = i;
 	      headrow[i].sorttable_tbody = table.tBodies[0];
-	      dean_addEvent(headrow[i],"click", sorttable.innerSortFunction = function(e) {
+	      dean_addEvent(headrow[i],"click", sorttable.innerSortFunction = function(e, manualSortReverse) {
+					if (this.parentNode.parentNode.parentNode.className.search("no-manual-sort") == -1 || manualSortReverse !== undefined) {
+						if (manualSortReverse === undefined) {
+							if (this.className.search(/\bsorttable_sorted\b/) != -1) {
+								// if we're already sorted by this column, just
+								// reverse the table, which is quicker
+								sorttable.reverse(this.sorttable_tbody);
+								this.className = this.className.replace('sorttable_sorted',
+																												'sorttable_sorted_reverse');
+								this.removeChild(document.getElementById('sorttable_sortfwdind'));
+								sortrevind = document.createElement('span');
+								sortrevind.id = "sorttable_sortrevind";
+								sortrevind.innerHTML = stIsIE ? '&nbsp<font face="webdings">5</font>' : '&nbsp;&#x25B4;';
+								this.appendChild(sortrevind);
+								return;
+							}
+							if (this.className.search(/\bsorttable_sorted_reverse\b/) != -1) {
+								// if we're already sorted by this column in reverse, just
+								// re-reverse the table, which is quicker
+								sorttable.reverse(this.sorttable_tbody);
+								this.className = this.className.replace('sorttable_sorted_reverse',
+																												'sorttable_sorted');
+								this.removeChild(document.getElementById('sorttable_sortrevind'));
+								sortfwdind = document.createElement('span');
+								sortfwdind.id = "sorttable_sortfwdind";
+								sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+								this.appendChild(sortfwdind);
+								return;
+							}
 
-          if (this.className.search(/\bsorttable_sorted\b/) != -1) {
-            // if we're already sorted by this column, just
-            // reverse the table, which is quicker
-            sorttable.reverse(this.sorttable_tbody);
-            this.className = this.className.replace('sorttable_sorted',
-                                                    'sorttable_sorted_reverse');
-            this.removeChild(document.getElementById('sorttable_sortfwdind'));
-            sortrevind = document.createElement('span');
-            sortrevind.id = "sorttable_sortrevind";
-            sortrevind.innerHTML = stIsIE ? '&nbsp<font face="webdings">5</font>' : '&nbsp;&#x25B4;';
-            this.appendChild(sortrevind);
-            return;
-          }
-          if (this.className.search(/\bsorttable_sorted_reverse\b/) != -1) {
-            // if we're already sorted by this column in reverse, just
-            // re-reverse the table, which is quicker
-            sorttable.reverse(this.sorttable_tbody);
-            this.className = this.className.replace('sorttable_sorted_reverse',
-                                                    'sorttable_sorted');
-            this.removeChild(document.getElementById('sorttable_sortrevind'));
-            sortfwdind = document.createElement('span');
-            sortfwdind.id = "sorttable_sortfwdind";
-            sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
-            this.appendChild(sortfwdind);
-            return;
-          }
+							// remove sorttable_sorted classes
+							theadrow = this.parentNode;
+							forEach(theadrow.childNodes, function(cell) {
+								if (cell.nodeType == 1) { // an element
+									cell.className = cell.className.replace('sorttable_sorted_reverse','');
+									cell.className = cell.className.replace('sorttable_sorted','');
+								}
+							});
+							sortfwdind = document.getElementById('sorttable_sortfwdind');
+							if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
+							sortrevind = document.getElementById('sorttable_sortrevind');
+							if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
 
-          // remove sorttable_sorted classes
-          theadrow = this.parentNode;
-          forEach(theadrow.childNodes, function(cell) {
-            if (cell.nodeType == 1) { // an element
-              cell.className = cell.className.replace('sorttable_sorted_reverse','');
-              cell.className = cell.className.replace('sorttable_sorted','');
-            }
-          });
-          sortfwdind = document.getElementById('sorttable_sortfwdind');
-          if (sortfwdind) { sortfwdind.parentNode.removeChild(sortfwdind); }
-          sortrevind = document.getElementById('sorttable_sortrevind');
-          if (sortrevind) { sortrevind.parentNode.removeChild(sortrevind); }
+							this.className += ' sorttable_sorted';
+							sortfwdind = document.createElement('span');
+							sortfwdind.id = "sorttable_sortfwdind";
+							sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
+							this.appendChild(sortfwdind);
+						}
 
-          this.className += ' sorttable_sorted';
-          sortfwdind = document.createElement('span');
-          sortfwdind.id = "sorttable_sortfwdind";
-          sortfwdind.innerHTML = stIsIE ? '&nbsp<font face="webdings">6</font>' : '&nbsp;&#x25BE;';
-          this.appendChild(sortfwdind);
+						// build an array to sort. This is a Schwartzian transform thing,
+						// i.e., we "decorate" each row with the actual sort key,
+						// sort based on the sort keys, and then put the rows back in order
+						// which is a lot faster because you only do getInnerText once per row
+						row_array = [];
+						col = this.sorttable_columnindex;
+						rows = this.sorttable_tbody.rows;
+						for (var j=0; j<rows.length; j++) {
+							row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
+						}
+						/* If you want a stable sort, uncomment the following line */
+						//sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
+						/* and comment out this one */
+						row_array.sort(this.sorttable_sortfunction);
+						if (manualSortReverse === true) {
+							row_array.reverse();
+						}
 
-	        // build an array to sort. This is a Schwartzian transform thing,
-	        // i.e., we "decorate" each row with the actual sort key,
-	        // sort based on the sort keys, and then put the rows back in order
-	        // which is a lot faster because you only do getInnerText once per row
-	        row_array = [];
-	        col = this.sorttable_columnindex;
-	        rows = this.sorttable_tbody.rows;
-	        for (var j=0; j<rows.length; j++) {
-	          row_array[row_array.length] = [sorttable.getInnerText(rows[j].cells[col]), rows[j]];
-	        }
-	        /* If you want a stable sort, uncomment the following line */
-	        //sorttable.shaker_sort(row_array, this.sorttable_sortfunction);
-	        /* and comment out this one */
-	        row_array.sort(this.sorttable_sortfunction);
+						tb = this.sorttable_tbody;
+						for (var j=0; j<row_array.length; j++) {
+							tb.appendChild(row_array[j][1]);
+						}
 
-	        tb = this.sorttable_tbody;
-	        for (var j=0; j<row_array.length; j++) {
-	          tb.appendChild(row_array[j][1]);
-	        }
-
-	        delete row_array;
+						delete row_array;
+					}
 	      });
 	    }
     }
@@ -169,7 +175,7 @@ sorttable = {
     for (var i=0; i<table.tBodies[0].rows.length; i++) {
       text = sorttable.getInnerText(table.tBodies[0].rows[i].cells[column]);
       if (text != '') {
-        if (text.match(/^-?[£$¤]?[\d,.]+%?$/)) {
+        if (text.match(/^-?[ï¿½$ï¿½]?[\d,.]+%?$/)) {
           return sorttable.sort_numeric;
         }
         // check for a date: dd/mm/yyyy or dd/mm/yy
