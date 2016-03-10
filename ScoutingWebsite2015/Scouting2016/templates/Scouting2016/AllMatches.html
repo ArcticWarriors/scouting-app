@@ -17,15 +17,22 @@ table {
 <body>
 
 {% include "Scouting2016/banner.html" %}
+
+
 <h2>Scouted Matches</h2>
 	<table border="1">
 		<tr>
 			<th>Match Number</th>
+            <th>Valid Data</th>
 			<th colspan = '6'>Teams in match</th>
 		</tr>
 		{% for match in scouted_matches %}
 		<tr>
           <td> <a href="{% url 'Scouting2016:match_display' match.matchNumber %}">{{ match.matchNumber }}</a></td>
+           {% if match.validity == "Yes" %}  <td style='background: green; color: white'> 
+           {% elif match.validity == "No" %} <td style='background: red; color: white'> 
+           {% else %}                        <td> 
+           {% endif %}{{match.validity}}     </td>
 		   {% for sr in match.scoreresult_set.all %}
            <td> <a href="{% url 'Scouting2016:view_team' sr.team.teamNumber %}">{{ sr.team.teamNumber }}</a></td>
 		   {% endfor %}

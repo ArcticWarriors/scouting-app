@@ -2,6 +2,56 @@ from django.db import models
 from django.db.models import Avg, Sum
 
 
+def __get_alliance_results(match, teams,):
+    high_goals = 0
+    low_goals = 0
+    error = False
+    for team in teams:
+        sr_search = match.scoreresult_set.filter(team__teamNumber=team.teamNumber)
+        if len(sr_search) != 0:
+            sr = sr_search[0]
+            high_goals += sr.high_score_successful
+            low_goals += sr.low_score_successful
+        else:
+            error = True
+
+    return high_goals, low_goals, error
+
+
+def validate_match(match, official_match):
+
+    red_teams, blue_teams = official_match.get_alliance_teams()
+
+    red_high_goals, red_low_goals, red_error = __get_alliance_results(match, red_teams)
+    blue_high_goals, blue_low_goals, blue_error = __get_alliance_results(match, blue_teams)
+
+    invalid_results = {}
+
+    if red_error:
+        expected = [team.teamNumber for team in red_teams]
+        all_teams = [sr.team.teamNumber for sr in match.scoreresult_set.all()]
+        invalid_results["Red Teams"] = (expected, all_teams)
+
+    if blue_error:
+        expected = [team.teamNumber for team in blue_teams]
+        all_teams = [sr.team.teamNumber for sr in match.scoreresult_set.all()]
+        invalid_results["Blue Teams"] = (expected, all_teams)
+
+    if red_high_goals != official_match.redTeleBouldersHigh:
+        invalid_results["Red High Goals"] = (red_high_goals, official_match.redTeleBouldersHigh)
+
+    if red_low_goals != official_match.redTeleBouldersLow:
+        invalid_results["Red Low Goals"] = (red_low_goals, official_match.redTeleBouldersLow)
+
+    if blue_high_goals != official_match.blueTeleBouldersHigh:
+        invalid_results["Blue Low Goals"] = (blue_high_goals, official_match.blueTeleBouldersHigh)
+
+    if blue_low_goals != official_match.blueTeleBouldersLow:
+        invalid_results["Blue Low Goals"] = (blue_low_goals, official_match.blueTeleBouldersLow)
+
+    return len(invalid_results) == 0, invalid_results
+
+
 class ScoreResultMetric:
 
     def __init__(self, field_name, display_name, default, metric_type=None):
@@ -186,6 +236,20 @@ class OfficialMatch(models.Model):
     blueTechFouls = models.IntegerField(default=-1)
 
     audienceSelectionCategory = models.CharField(max_length=1, default='A')
+
+    def get_alliance_teams(self):
+        red_teams = []
+        blue_teams = []
+
+        red_teams.append(self.redTeam1)
+        red_teams.append(self.redTeam2)
+        red_teams.append(self.redTeam3)
+
+        blue_teams.append(self.blueTeam1)
+        blue_teams.append(self.blueTeam2)
+        blue_teams.append(self.blueTeam3)
+
+        return red_teams, blue_teams
 
     def predict_score(self):
         red_score = 0

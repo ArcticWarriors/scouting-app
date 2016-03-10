@@ -28,8 +28,31 @@ table {
 <body>
 
 	{% include "Scouting2016/banner.html" %}
+ 
+ 
+   {% if official_mismatch != None %}
+   <center>
+   <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
+   <table border=1>
+     <tr>
+       <td> Field </td>
+       <td> Expected </td>
+       <td> Actual </td>
+     </tr>
+     {% for field, results in official_mismatch.items %}
+     <tr>
+       <td> {{ field }} </td>
+       <td> {{ results.0 }} </td>
+       <td> {{ results.1 }} </td>
+     </tr>
+     {% endfor %}
+   </table>
+   </center>
+   {% endif %}
+ 
+ 
 
-	<h1>Match {{ match_display }}</h1>
+ <h1>Match {{ match_display }}</h1>
 	<h2>Scoring Stats.</h2>
 	<table border="1" class = "sortable">
 
