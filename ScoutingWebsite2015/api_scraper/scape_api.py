@@ -5,7 +5,6 @@ Created on Feb 28, 2016
 '''
 import subprocess
 from api_scraper import get_users
-from django.contrib.auth.models import User, Group
 
 
 #############################################################
@@ -76,10 +75,10 @@ def download_schedule(event_code, start, json_path, season="2016", tourny_level=
 # Week 1
 event_codes = []
 # event_codes.append("ONTO2")
-event_codes.append("ISTA")
+# event_codes.append("ISTA")
 # event_codes.append("MNDU")
 # event_codes.append("MNDU2")
-# event_codes.append("SCMB")
+event_codes.append("SCMB")
 # event_codes.append("CASD")
 # event_codes.append("VAHAY")
 # event_codes.append("MIKET")

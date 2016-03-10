@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch
 import operator
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 login_reverse = reverse_lazy('Scouting2016:showLogin')
@@ -602,13 +602,13 @@ def auth_login(request):
         return HttpResponseRedirect(reverse(bad_redirect))
 
 
-@login_required(login_url=login_reverse)
+@permission_required('auth.can_modify_model', login_url=login_reverse)
 def info_for_form_edit(request):
 
     return render(request, 'Scouting2016/info_for_form_edit.html')
 
 
-@login_required(login_url=login_reverse)
+@permission_required('auth.can_modify_model', login_url=login_reverse)
 def show_add_form(request):
 
     context = {}
@@ -703,6 +703,7 @@ def edit_prev_match(request):
     # Pit stuff
 
 
+@permission_required('auth.can_modify_model', login_url=login_reverse)
 def show_add_pit(request, team_number):
 
     context = {}
