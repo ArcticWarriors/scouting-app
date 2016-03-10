@@ -6,6 +6,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
 <script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
+<script src="{% static 'Scouting2016/site.js' %}"></script>
+<style>
+  .colmd4pictemp {
+  padding-top:60%;
+  width:85%;
+  background-color:#004cff;
+  display: block;
+  margin: 0 auto;
+}</style>
 <title>Robot Info</title>
 
 </head>
@@ -13,73 +22,168 @@
 <body>
 
 {% include "Scouting2016/banner.html" %}
-
-<center><img src="{% static 'Scouting2016/TeamPicture.jpg' %}" /></center>
-
-
-<h1>Overview</h1>
-<ul>
-  <li>Can cross over driving defenses in Tele-Op and autonomous (B.Moat, B.Ramparts, D.Rock Wall, D.Rough Terrain, E.Low bar)</li>
-  <li>Can manipulate and drive over Cheval De Frise in Tele-Op</li>
-  <li>Can assist in Category C defenses (Draw Bridge, Sally Port)</li>
-  <li>Can scale tower in ~12 seconds (time includes line up, attach, and hang)
-  <li>Can select between multiple defenses and create new ones on the fly</li>
-  <li>Can score boulders in the low goal</li>
-</ul>
-
-
-<h1>Autonomous</h1>
-Configurable autonomous modes, selected from the SmartDashboard.
-<ol>
-  <li> Select Starting position (defense 1-5 or spybot) </li>
-  <li> Select Defense </li>
-  <li> Select Mode
-    <ul>
-       <li> Do Nothing (110% accuracy rate) </li>
-       <li> Cross Defense, Score Low (camera aided) </li>
-       <li> Cross Defense, Score Low </li>
-       <li> Cross Defense </li>
-       <li> Reach Defense </li>
-    
-    </ul>
-   </li>
-</ol>
-
-<h1>Drive Train</h1>
-<p>6 Wheel Tank Drive</p>
-<ul>
-  <li> 8 Inch pneumatic wheels</li>
-  <li> Single Speed Transmission - ?? feet/sec</li>
-</ul>
-
-
-<h1>Boulder Manipulation</h1>
-Over-Roller
-<ul>
-  <li> Intake motor specs</li>
-  <li> Drop down specs</li>
-</ul>
-
-
-<h1>Scaling</h1>
-Four-Bar linkage/Sliding Elevator
-<ul>
-  <li> Lift Motor Specs </li>
-  <li> Tilt Motor Spec </li>
-</ul>
-
-
-<h1 id = "drive_team">Drive Team</h1>
-<img src="{% static 'Scouting2016/DriveTeam.jpg' %}" />
-<br></br>
-
-
-<h2>Driver</h2>
-
-<h2>Operator</h2>
-
-<h2>Human Player</h2>
-
-<h2>Coach</h2>
-
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1 class="text-center">
+        Our Robot
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="colmd4pictemp">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="colmd4pictemp">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="colmd4pictemp">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-12 col-md-6">
+        <h2 id="" class="text-center">
+          Overview
+        </h2>
+        <ul class="list-group">
+          <li class="list-group-item">
+            Can cross over driving defenses in Tele-Op and autonomous (B.Moat, B.Ramparts,
+            D.Rock Wall, D.Rough Terrain, E.Low bar)
+          </li>
+          <li class="list-group-item">
+            Can manipulate and drive over Cheval De Frise in Tele-Op
+          </li>
+          <li class="list-group-item">
+            Can assist in Category C defenses (Draw Bridge, Sally Port)
+          </li>
+          <li class="list-group-item">
+            Can scale tower in ~12 seconds (time includes line up, attach, and hang)
+          </li>
+          <li class="list-group-item">
+            Can select between multiple defenses and create new ones on the fly
+          </li>
+          <li class="list-group-item">
+            Can score boulders in the low goal
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2 id="" class="text-center">
+          Autonomous
+        </h2>
+        <p class="text-center">
+          Configurable autonomous modes, selected from the SmartDashboard.
+        </p>
+        <ol class="list-group">
+          <li class="list-group-item">
+            1. Select Starting position (defense 1-5 or spybot)
+          </li>
+          <li class="list-group-item">
+            2. Select Defense
+          </li>
+          <li class="list-group-item">
+            3. Select Mode
+            <ul class="list-group">
+              <li class="list-group-item">
+                Do Nothing (110% accuracy rate)
+              </li>
+              <li class="list-group-item">
+                Cross Defense, Score Low (camera aided)
+              </li>
+              <li class="list-group-item">
+                Cross Defense, Score Low
+              </li>
+              <li class="list-group-item">
+                Cross Defense
+              </li>
+              <li class="list-group-item">
+                Reach Defense
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div class="col-md-6">
+        <h2 id="" class="text-center">
+          Drive Team
+        </h2>
+        <p class="text-center">
+          ### Cumulative Hours Of Practice
+        </p>
+        <ol class="list-group">
+          <li class="list-group-item">
+            Driver: Aayush Goel
+          </li>
+          <li class="list-group-item">
+            Operator: Alex Taskovski
+          </li>
+          <li class="list-group-item">
+            Human Player: Joe Pirro
+          </li>
+          <li class="list-group-item">
+            Coach: Mr. Starke
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+          <h2 id="" class="text-center">
+            Drive Train
+          </h2>
+          <p class="text-center">
+            6 Wheel Tank Drive
+          </p>
+          <ul class="list-group">
+            <li class="list-group-item">
+              8 Inch pneumatic wheels
+            </li>
+            <li class="list-group-item">
+              Single Speed Transmission - ?? feet/sec
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h2 id="" class="text-center">
+            Boulder Manipulation
+          </h2>
+          <p class="text-center">
+            Over-Roller
+          </p>
+          <ul class="list-group">
+            <li class="list-group-item">
+              Intake motor specs
+            </li>
+            <li class="list-group-item">
+              Drop down specs
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h2 id="" class="text-center">
+            Tower Scaling
+          </h2>
+          <p class="text-center">
+            Extension-Ladder Inspired
+          </p>
+          <ul class="list-group">
+            <li class="list-group-item">
+              Lift Motor Specs
+            </li>
+            <li class="list-group-item">
+              Tilt Motor Spec
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</body>
 </html>

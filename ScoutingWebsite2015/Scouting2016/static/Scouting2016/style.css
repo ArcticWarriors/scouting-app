@@ -35,17 +35,22 @@ div .navbar {
 body {	
 	background-color: #FFFFFF;
 	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	margin: 10px;
 }
 table {
 	background-color: #C4C4C4;
 }
 
 h1 {
-	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;
 }
 
 h2 {
-	font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
 	color: #000000;
+}
+@font-face {
+  font-family: Orbitron;
+	src: url(/static/Scouting2016/fonts/Orbitron/Orbitron-Medium.ttf);
 }

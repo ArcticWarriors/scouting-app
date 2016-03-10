@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
 <script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
+<script src="{% static 'Scouting2016/site.js' %}"></script>
 <title>Home</title>
 </head>
 <style>
@@ -27,25 +28,24 @@ ul {
 
 {% include "Scouting2016/banner.html" %}
 
-<h1>Scouting App Homepage</h1>
-Welcome to team 174 scouting website!
-
-<h2>Our Matches</h2>
-
-{% for match_number in scouted_matches %}
-  <a href="{% url 'Scouting2016:match_display' match_number %}">Match {{match_number}}</a><br>
-{% endfor %}
-
-
-{% if unscouted_matches|length != 0 %}
-<h2>Un-Scouted Matches</h2>
-{% endif %}
-
-
-
-{% for match_number in unscouted_matches %}
-  <a href="{% url 'Scouting2016:match_prediction' match_number %}">Match {{match_number}}</a><br>
-{% endfor %}
+<div class="container-fluid">
+	<h1 class="text-center">
+		WELCOME TO
+	</h1>
+	<div class="row">
+		<div class="col-md-3">
+		</div>
+		<div class="col-md-6" style="display: block;">
+			<img class="img-center" src="{% static 'Scouting2016/174_Logo.jpg' %}"
+			width="75%">
+		</div>
+		<div class="col-md-3">
+		</div>
+	</div>
+	<h1 class="text-center">
+		SCOUTWEB
+	</h1>
+</div>
 
 
 </body>
