@@ -249,6 +249,9 @@ def populate_matchresults(max_match_number):
         blue_3_stats["defense_speed_lookup"] = defense_speed
         __save_sr(match=match, team=official_match.blueTeam3, **__populate_sr(**blue_3_stats))
 
+        official_match.hasOfficialData = True
+        official_match.save()
+
 
 # Week 1
 event_codes = []
@@ -274,9 +277,12 @@ database_path = "__api_scraping_results/database/week1"
 
 
 if len(sys.argv) <= 1:
-    for ec in event_codes:
-        reload_django(ec, database_path)
-        subprocess.call(['python', sys.argv[0], ec, database_path, "50"])
+#     for ec in event_codes:
+#         reload_django(ec, database_path)
+#         subprocess.call(['python', sys.argv[0], ec, database_path, "50"])
+
+    subprocess.call(['python', sys.argv[0], "CTWAT", ".", "50"])
+    pass
 else:
     from django.core.wsgi import get_wsgi_application
 

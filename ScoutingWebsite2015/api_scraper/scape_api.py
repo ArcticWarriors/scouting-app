@@ -78,7 +78,7 @@ event_codes = []
 # event_codes.append("ISTA")
 # event_codes.append("MNDU")
 # event_codes.append("MNDU2")
-event_codes.append("SCMB")
+# event_codes.append("SCMB")
 # event_codes.append("CASD")
 # event_codes.append("VAHAY")
 # event_codes.append("MIKET")
@@ -89,12 +89,12 @@ event_codes.append("SCMB")
 # event_codes.append("NJFLA")
 # event_codes.append("NCMCL")
 # event_codes.append("NHGRS")
-# event_codes.append("CTWAT")
+event_codes.append("CTWAT")
 # event_codes.append("WAAMV")
 # event_codes.append("WASPO")
 
 match_start = 0
-download_results = True
+download_results = False
 update_database = True
 json_path = "../__api_scraping_results/json/week1"
 sql_path = "__api_scraping_results/database/week1"
