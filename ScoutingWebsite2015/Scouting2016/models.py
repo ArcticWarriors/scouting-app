@@ -127,13 +127,13 @@ def validate_match(match, official_match):
         invalid_results["Blue Teams"] = (expected, all_teams)
 
     if blue_high_goals != official_match.blueTeleBouldersHigh:
-        invalid_results["Blue Low Goals"] = (blue_high_goals, official_match.blueTeleBouldersHigh)
+        invalid_results["Blue High Goals"] = (official_match.blueTeleBouldersHigh, blue_high_goals, )
 
     if blue_low_goals != official_match.blueTeleBouldersLow:
-        invalid_results["Blue Low Goals"] = (blue_low_goals, official_match.blueTeleBouldersLow)
+        invalid_results["Blue Low Goals"] = (official_match.blueTeleBouldersLow, blue_low_goals, )
         
     if blue_defense_crossings != official_match.blueTeleDefenseCrossings:
-        invalid_results["Blue Defense Crossings (Tele)"] = (blue_defense_crossings, official_match.blueTeleDefenseCrossings)
+        invalid_results["Blue Defense Crossings (Tele)"] = (official_match.blueTeleDefenseCrossings, blue_defense_crossings, )
 
     if len(unexpected_blue_crossings) != 0:
         invalid_results["Blue Available Defenses"] = (blue_actual_defenses, unexpected_blue_crossings)

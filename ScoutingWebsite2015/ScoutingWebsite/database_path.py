@@ -1,1 +1,1 @@
-database_path = '__api_scraping_results/database/week1/CTWAT.sqlite3'
+database_path = 'MatchVerification.sqlite3'
