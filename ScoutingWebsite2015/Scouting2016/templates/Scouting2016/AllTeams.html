@@ -44,6 +44,16 @@ table, th {
 					<th>High goal misses</th>
 					<th>Autonomous Low goal</th>
 					<th>Autonomous High goal</th>
+					<th>Tech. Fouls</th>
+					<th>Cheval de Frise</th>
+					<th>Ramparts</th>
+					<th>Sally Port</th>
+					<th>Low Bar</th>
+					<th>Rock Wall</th>
+					<th>Drawbridge</th>
+					<th>Moat</th>
+					<th>Rough Terrain</th>
+					<th>Portcullis</th>
 				</tr>
 				{% for team in teams %}
 
@@ -55,6 +65,16 @@ table, th {
 						<td> {{ team.avgerages.high_score_fail__avg }} </td>
 						<td> {{ team.avgerages.auto_score_low__avg }} </td>
 						<td> {{ team.avgerages.auto_score_high__avg }} </td>
+						<td> {{ team.avgerages.score_tech_foul__sum}}</td>
+						<td> {{team.avgerages.cheval_de_frise__sum }}</td>
+						<td> {{team.avgerages.ramparts__sum }}</td>
+						<td> {{team.avgerages.sally_port__sum }}</td>
+						<td> {{team.avgerages.low_bar__sum }}</td>
+						<td> {{team.avgerages.rock_wall__sum }}</td>
+						<td> {{team.avgerages.draw_bridge__sum }}</td>
+						<td> {{team.avgerages.moat__sum }}</td>
+						<td> {{team.avgerages.rough_terrain__sum }}</td>
+						<td> {{team.avgerages.portcullis__sum }}</td>
 				</tr>
 
 				{% endfor %}
