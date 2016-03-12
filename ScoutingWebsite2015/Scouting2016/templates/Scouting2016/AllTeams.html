@@ -1,6 +1,7 @@
 <html>
 <head>
 {% load staticfiles %}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="{% static 'Scouting2016/sorttable.js' %}"></script>
 <!-- 
 This script is found in 2016/static/scouting2016/sorttable.js
@@ -21,6 +22,7 @@ h2 {
 }
 table, th {
 	text-align: center;
+	overflow-y: auto;
 }
 </style>
 <body>
