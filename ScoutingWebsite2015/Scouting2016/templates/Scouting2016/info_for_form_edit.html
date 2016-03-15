@@ -33,24 +33,40 @@
 	</script>
 
 	<form action="{% url 'Scouting2016:show_edit_form' %}" method="get">
-		<table>
-			<tr>
-				<td>Match Number:</td>
-				<td> <button type="button" onclick="decrementValue('match_number')">-</button> 
-					 <input type="number" id = "match_number" name="match_number" value="1">  
-					 <button type="button" onclick="incrementValue('match_number')">+</button> 
-				</td>
-			</tr>
-			<tr>
-				<td>Team Number:</td>
-				<td><button type="button" onclick="decrementValue('team_number')">-</button>
-				<input type="number" id="team_number" name="team_number" value="174">
-				<button type="button" onclick="incrementValue('team_number')">+</button>
-				</td>
-			</tr>
-		</table>
-
-		<br> <br> <input type="submit" value="Submit">
+	 <div class="container-fluid">
+    	<div class="page-header">
+      		<h1 class="text-center">
+        		Our Robot
+      		</h1>
+    	</div>
+    	<div class="row">
+    		<div class="col-md-2">
+    			<span >Match Number: </span>
+    		</div>
+      		<div class="col-md-4">
+        		<span > <button type="button" onclick="decrementValue('match_number')">-</button> </span>
+        		<span > <input type="number" id = "match_number" name="match_number" value="1"> </span>
+        		<span ><button type="button" onclick="incrementValue('match_number')">+</button></span>
+     		</div>
+     	</div>	
+     	
+     	<div class="row">
+     		<div class="col-md-2">
+    			<span >Team Number: </span>
+    		</div>
+     		 <div class="col-md-4">
+     			<span > <button type="button" onclick="decrementValue('team_number')">-</button> </span>
+        		<span > <input type="number" id="team_number" name="team_number" value="174"> </span>
+        		<span ><button type="button" onclick="incrementValue('team_number')">+</button></span>
+     		 </div>
+     	</div>
+		<br> <br> 
+		<div class="row">
+      		<div class="col-md-4">
+        		<div ><input type="submit" value="Submit"> </div>
+     		 </div>
+     	</div>
+     </div>
 	</form>
 </body>
 </html>
