@@ -13,8 +13,7 @@ $( document ).ready (function() {
 });
 
 function initFilterPopover(target, content) {
-	var comparrisonSelected;
-	var sortSelected;
+	var comparrisonSelected, sortSelected, ssIndex, csIndex;
 	$(target).popover({
 			trigger: "manual",
 			html: true,
@@ -26,8 +25,8 @@ function initFilterPopover(target, content) {
 	}).on("click", function () {
 			var _this = this;
 			$('.popover').remove();
-			$("this").popover("show");
 			$(this).popover("show");
+			$('[name=search]').val($(target).prop("data-search"));
 			$(".btn-cancel").on("click", function () {
 					$(_this).popover('hide');
 					// Required for some reason, or else the popover won't work once clicked already
@@ -37,6 +36,7 @@ function initFilterPopover(target, content) {
 					var search = $('[name=search]').val();
 					$(_this).popover('hide');
 					filterTable(search, comparrisonSelected, $(target).index(), sortSelected);
+					$(target).prop("data-search", search).prop("data-comparrison", comparrisonSelected).prop("data-sorting", sortSelected);
 					initFilterPopover(_this, content);
 			});
 	});
@@ -47,19 +47,20 @@ function initFilterPopover(target, content) {
 			$("#sorting").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
 					var stindexes = ["Default", "Ascending", "Descending"];
 					sortSelected = stindexes[clickedIndex];
-					console.log(sortSelected);
+					ssIndex = clickedIndex;
 			});
 			$("#operator").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
 					var opindexes = ["<", "<=", "=", ">", ">="];
 					comparrisonSelected = opindexes[clickedIndex];
-					console.log(comparrisonSelected);
+					csIndex = clickedIndex;
 			});
 			$('.selectpicker').selectpicker({style: 'btn-default', size: false});
+			$('#operator').selectpicker('val', $(target).prop("data-comparrison"));
+			$('#sorting').selectpicker('val', $(target).prop("data-sorting"));
 	});
 }
 
 function filterTable(search, comparrison, column, sorting) {
-		console.log(search, comparrison, column, sorting);
 		// Get table data
 		var teamTable = $("table");
 		var teamTableRows = teamTable.find("tr");
@@ -70,12 +71,10 @@ function filterTable(search, comparrison, column, sorting) {
 		for (var i=0; i<teamData.length; i++){
 			var currRow = teamTableRows.eq(i + 1);
 			if (!compare(teamData[i][column], comparrison, search )){
-					currRow.css("display", "none").addClass("filtered-" + column);
-					 //log(currRow.prop("class"));
+					currRow.css("display", "none").prop("data-filtered",  currRow.prop("data-filtered") + column + " ");
 				}
 				else {
-					currRow.removeClass("filtered-" + column);
-						//if(currRow.)
+					currRow.prop("data-filtered-" + column);
 				}
 		}
 
