@@ -8,6 +8,7 @@ import random
 import sys
 import os
 import subprocess
+from api_scraper.get_competitions import get_competitions_to_scrape
 
 
 #############################################################
@@ -163,16 +164,13 @@ def __save_sr(match, team, **kargs):
         pass
 
 
-def populate_matchresults(max_match_number):
+def populate_matchresults(max_match_number, max_match_with_data_number):
 
     from Scouting2016.models import OfficialMatch, Match
-#     max_match_number = 1
 
     for official_match in OfficialMatch.objects.all():
         if official_match.matchNumber > max_match_number:
             continue
-
-#         print official_match
 
         match, _ = Match.objects.get_or_create(matchNumber=official_match.matchNumber)
         print "Updating match %s" % match.matchNumber
@@ -250,39 +248,17 @@ def populate_matchresults(max_match_number):
         __save_sr(match=match, team=official_match.blueTeam3, **__populate_sr(**blue_3_stats))
 
 
-# Week 1
-event_codes = []
-event_codes.append("ONTO2")
-event_codes.append("ISTA")
-event_codes.append("MNDU")
-event_codes.append("MNDU2")
-event_codes.append("SCMB")
-event_codes.append("CASD")
-event_codes.append("VAHAY")
-event_codes.append("MIKET")
-event_codes.append("MISOU")
-event_codes.append("MISTA")
-event_codes.append("MIWAT")
-event_codes.append("PAHAT")
-event_codes.append("NJFLA")
-event_codes.append("NCMCL")
-event_codes.append("NHGRS")
-event_codes.append("CTWAT")
-event_codes.append("WAAMV")
-event_codes.append("WASPO")
-database_path = "__api_scraping_results/database/week1"
-
-
 if len(sys.argv) <= 1:
-    for ec in event_codes:
-        reload_django(ec, database_path)
-        subprocess.call(['python', sys.argv[0], ec, database_path, "50"])
+    for json_path, sql_path, ec in get_competitions_to_scrape():
+        reload_django(ec, sql_path)
+        subprocess.call(['python', sys.argv[0], ec, sql_path, "50", "45"])
 else:
     from django.core.wsgi import get_wsgi_application
 
     event_code = sys.argv[1]
     databse_path = sys.argv[2]
     max_match_number = int(sys.argv[3])
+    max_match_with_data_number = int(sys.argv[4])
 #     json_path = sys.argv[3]
 
     os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
@@ -291,4 +267,4 @@ else:
     _ = get_wsgi_application()
 
     reload_django(event_code, databse_path)
-    populate_matchresults(max_match_number)
+    populate_matchresults(max_match_number, max_match_with_data_number)

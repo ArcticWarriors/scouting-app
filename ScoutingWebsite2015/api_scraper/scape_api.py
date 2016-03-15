@@ -4,7 +4,8 @@ Created on Feb 28, 2016
 @author: PJ
 '''
 import subprocess
-from api_scraper import get_users
+from api_scraper.get_competitions import get_competitions_to_scrape
+import os
 
 
 #############################################################
@@ -63,43 +64,28 @@ def download_team_info(event_code, json_path, season="2016"):
 def download_matchresult_info(event_code, start, json_path, season="2016", tourny_level="Qualification"):
     url = __api_website + "/{0}/scores/{1}/{2}?start={3}".format(season, event_code, tourny_level, start)
     local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
-    read_url_and_dump(url, get_header(), local_file)
+    json_struct = read_url_and_dump(url, get_header(), local_file)
+
+    if len(json_struct["MatchScores"]) == 0:
+        print "Event %s does not have any match results" % event_code
+        os.remove(local_file)
 
 
 def download_schedule(event_code, start, json_path, season="2016", tourny_level="Qualification"):
     url = __api_website + "/{0}/schedule/{1}?tournamentLevel={2}&start={3}".format(season, event_code, tourny_level, start)
     local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
-    read_url_and_dump(url, get_header(), local_file)
+    json_struct = read_url_and_dump(url, get_header(), local_file)
 
+    if len(json_struct["Schedule"]) == 0:
+        print "Event %s does not have any schedule information" % event_code
+        os.remove(local_file)
 
-# Week 1
-event_codes = []
-# event_codes.append("ONTO2")
-# event_codes.append("ISTA")
-# event_codes.append("MNDU")
-# event_codes.append("MNDU2")
-event_codes.append("SCMB")
-# event_codes.append("CASD")
-# event_codes.append("VAHAY")
-# event_codes.append("MIKET")
-# event_codes.append("MISOU")
-# event_codes.append("MISTA")
-# event_codes.append("MIWAT")
-# event_codes.append("PAHAT")
-# event_codes.append("NJFLA")
-# event_codes.append("NCMCL")
-# event_codes.append("NHGRS")
-# event_codes.append("CTWAT")
-# event_codes.append("WAAMV")
-# event_codes.append("WASPO")
 
 match_start = 0
-download_results = True
+download_results = False
 update_database = True
-json_path = "../__api_scraping_results/json/week1"
-sql_path = "__api_scraping_results/database/week1"
 
-for ec in event_codes:
+for json_path, sql_path, ec in get_competitions_to_scrape():
 
     if download_results:
         print "Downloading results for regional %s" % ec
@@ -111,6 +97,3 @@ for ec in event_codes:
         reload_django(ec, sql_path)
         subprocess.call(['python', 'populate_database.py', ec, sql_path, json_path])
         pass
-
-#     reload_django(ec, sql_path)
-#     add_users()

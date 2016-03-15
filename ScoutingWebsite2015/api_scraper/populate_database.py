@@ -6,21 +6,8 @@ Created on Mar 8, 2016
 
 import json
 from api_scraper import get_users
-from django.contrib.auth.models import User, Group
 import sys
 import os
-
-
-def reload_django(event_code, database_path):
-    import os
-    import sys
-
-    from django.core.wsgi import get_wsgi_application
-
-    os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"
-    proj_path = os.path.abspath("..")
-    sys.path.append(proj_path)
-    _ = get_wsgi_application()
 
 
 def read_local_copy(input_file):
@@ -177,6 +164,8 @@ def add_snobot():
 
 
 def add_users():
+    from django.contrib.auth.models import User, Group
+
     for user_info in get_users.get_users():
         user_search = User.objects.filter(username=user_info['username'])
         if len(user_search) == 1:
@@ -206,7 +195,6 @@ if __name__ == "__main__":
     print event_code
     print databse_path
 
-    reload_django(event_code, databse_path)
     update_schedule(event_code, json_path)
     update_matchresults(event_code, json_path)
     update_team_info(event_code, json_path)
