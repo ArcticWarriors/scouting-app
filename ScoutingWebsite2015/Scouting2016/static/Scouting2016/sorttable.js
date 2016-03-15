@@ -69,7 +69,7 @@ function filterTable(search, comparrison, column, sorting) {
 		// Do the filter
 		for (var i=0; i<teamData.length; i++){
 			var currRow = teamTableRows.eq(i + 1);
-			if (!compare(search, comparrison, teamData[i][column])){
+			if (!compare(teamData[i][column], comparrison, search )){
 					currRow.css("display", "none").addClass("filtered-" + column);
 					 //log(currRow.prop("class"));
 				}
