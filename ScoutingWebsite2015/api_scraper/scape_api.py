@@ -80,7 +80,6 @@ def download_schedule(event_code, start, json_path, season="2016", tourny_level=
         print "Event %s does not have any schedule information" % event_code
         os.remove(local_file)
 
-
 match_start = 0
 download_results = False
 update_database = True

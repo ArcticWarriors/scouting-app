@@ -7,7 +7,8 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
-from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch
+from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch, \
+    validate_match
 import operator
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -324,6 +325,14 @@ def match_display(request, match_number):
 
     context['score_result_list'] = score_result_list
     context['match_display'] = match_number
+
+    official_match_search = OfficialMatch.objects.filter(matchNumber=match_number)
+    if len(official_match_search) == 1:
+        official_match = official_match_search[0]
+        valid, invalid_fields, = validate_match(this_match, official_match)
+        if not valid:
+            context['official_mismatch'] = invalid_fields
+
     return render(request, 'Scouting2016/MatchPage.html', context)
 
 
@@ -412,6 +421,14 @@ def all_matches(request):
     """
 
     matches = Match.objects.all()
+
+    for match in matches:
+        official_match_search = OfficialMatch.objects.filter(matchNumber=match.matchNumber)
+        if len(official_match_search) == 1 and official_match_search[0].hasOfficialData:
+            valid, _ = validate_match(match, official_match_search[0])
+            match.validity = "Yes" if valid else "No"
+        else:
+            match.validity = "Unknown"
 
     scouted_numbers = [match.matchNumber for match in matches]
     unscouted_matches = OfficialMatch.objects.all().exclude(matchNumber__in=scouted_numbers)
@@ -710,3 +727,11 @@ def submit_new_pit(request):
     team.save()
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))
+  
+def get_hovercard(request):
+
+    context = {}
+    context['type'] = request.GET.get('type')
+    return render(request, 'Scouting2016/hovercards/filterContent.html', context)
+    
+    

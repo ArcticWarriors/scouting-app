@@ -1,5 +1,144 @@
 from django.db import models
 from django.db.models import Avg, Sum
+import sys
+
+
+def __get_alliance_results(match, teams,):
+    high_goals = 0
+    low_goals = 0
+    defense_crossing = 0
+    defenses_crossed = set()
+    auton_crossings = 0
+    auton_reaches = 0
+
+    error = False
+    for team in teams:
+        sr_search = match.scoreresult_set.filter(team__teamNumber=team.teamNumber)
+        if len(sr_search) != 0:
+            sr = sr_search[0]
+            high_goals += sr.high_score_successful
+            low_goals += sr.low_score_successful
+            if  sr.auto_defense == "reach":
+                auton_reaches += 1
+            elif sr.auto_defense != "no_reach":
+                print sr.auto_defense
+                auton_crossings += 1
+                
+
+            for defense in get_flat_defenses():
+                value = getattr(sr, defense)
+                if value != 0:
+                    defenses_crossed.add(defense)
+                    defense_crossing += value
+        else:
+            error = True
+            
+    defense_crossing -= auton_crossings
+
+    return high_goals, low_goals, defense_crossing, defenses_crossed, error
+
+
+def get_defenses():
+
+    defenses = {}
+    defenses['A'] = ('portcullis', 'cheval_de_frise')
+    defenses['B'] = ('moat', 'ramparts')
+    defenses['C'] = ('draw_bridge', 'sally_port')
+    defenses['D'] = ('rock_wall', 'rough_terrain')
+
+    return defenses
+
+
+def get_flat_defenses():
+    grouped_defenses = get_defenses()
+
+    flat_defense = ['low_bar']
+
+    for category in grouped_defenses:
+        for defense in grouped_defenses[category]:
+            flat_defense.append(defense)
+
+    return flat_defense
+
+
+def validate_match(match, official_match):
+
+    red_teams, blue_teams = official_match.get_alliance_teams()
+
+    red_high_goals, red_low_goals, red_defense_crossings, red_defenses_crossed, red_error = __get_alliance_results(match, red_teams)
+    blue_high_goals, blue_low_goals, blue_defense_crossings, blue_defenses_crossed, blue_error = __get_alliance_results(match, blue_teams)
+
+    red_actual_defenses = []
+    red_actual_defenses.append(official_match.redDefense2Name)
+    red_actual_defenses.append(official_match.redDefense3Name)
+    red_actual_defenses.append(official_match.redDefense4Name)
+    red_actual_defenses.append(official_match.redDefense5Name)
+
+    blue_actual_defenses = []
+    blue_actual_defenses.append(official_match.blueDefense2Name)
+    blue_actual_defenses.append(official_match.blueDefense3Name)
+    blue_actual_defenses.append(official_match.blueDefense4Name)
+    blue_actual_defenses.append(official_match.blueDefense5Name)
+
+    unexpected_red_crossings = []
+    for exp_def in red_defenses_crossed:
+        if exp_def not in red_actual_defenses and exp_def != "low_bar":
+            unexpected_red_crossings.append(exp_def)
+
+    unexpected_blue_crossings = []
+    for exp_def in blue_defenses_crossed:
+        if exp_def not in blue_actual_defenses and exp_def != "low_bar":
+            unexpected_blue_crossings.append(exp_def)
+
+    invalid_results = {}
+
+    
+    num_results = len(match.scoreresult_set.all())
+    if num_results != 6:
+        invalid_results["Team Count"] = (6, num_results)
+        
+
+    ###################################
+    # Red
+    ###################################
+    if red_error:
+        expected = [team.teamNumber for team in red_teams]
+        all_teams = [sr.team.teamNumber for sr in match.scoreresult_set.all()]
+        invalid_results["Red Teams"] = (expected, all_teams)
+
+    if red_high_goals != official_match.redTeleBouldersHigh:
+        invalid_results["Red High Goals"] = (official_match.redTeleBouldersHigh, red_high_goals, )
+
+    if red_low_goals != official_match.redTeleBouldersLow:
+        invalid_results["Red Low Goals"] = (official_match.redTeleBouldersLow, red_low_goals, )
+
+    if red_defense_crossings != official_match.redTeleDefenseCrossings:
+        invalid_results["Red Defense Crossings (Tele)"] = (official_match.redTeleDefenseCrossings, red_defense_crossings, )
+
+    if len(unexpected_red_crossings) != 0:
+        invalid_results["Red Available Defenses"] = (red_actual_defenses, unexpected_red_crossings)
+
+    ###################################
+    # Blue
+    ###################################
+    if blue_error:
+        expected = [team.teamNumber for team in blue_teams]
+        all_teams = [sr.team.teamNumber for sr in match.scoreresult_set.all()]
+        invalid_results["Blue Teams"] = (expected, all_teams)
+
+    if blue_high_goals != official_match.blueTeleBouldersHigh:
+        invalid_results["Blue High Goals"] = (official_match.blueTeleBouldersHigh, blue_high_goals, )
+
+    if blue_low_goals != official_match.blueTeleBouldersLow:
+        invalid_results["Blue Low Goals"] = (official_match.blueTeleBouldersLow, blue_low_goals, )
+        
+    if blue_defense_crossings != official_match.blueTeleDefenseCrossings:
+        invalid_results["Blue Defense Crossings (Tele)"] = (official_match.blueTeleDefenseCrossings, blue_defense_crossings, )
+
+    if len(unexpected_blue_crossings) != 0:
+        invalid_results["Blue Available Defenses"] = (blue_actual_defenses, unexpected_blue_crossings)
+        
+    return len(invalid_results) == 0, invalid_results
 
 
 class ScoreResultMetric:
@@ -50,14 +189,10 @@ class Team(models.Model):
         if stat_map == None:
             stat_map = {}
 
-        defenses = {}
-        defenses['A'] = ('portcullis', 'cheval_de_frise')
-        defenses['B'] = ('moat', 'ramparts')
-        defenses['C'] = ('draw_bridge', 'sally_port')
-        defenses['D'] = ('rock_wall', 'rough_terrain')
-
         no_results = len(self.scoreresult_set.all()) == 0
         print "no results: %s" % no_results
+
+        defenses = get_defenses()
 
         for category in defenses:
 
@@ -147,10 +282,14 @@ class OfficialMatch(models.Model):
     blueTeam2 = models.ForeignKey(Team, related_name='blue2')
     blueTeam3 = models.ForeignKey(Team, related_name='blue3')
 
+    redAutonA = models.CharField(max_length=20, default='None')
+    redAutonB = models.CharField(max_length=20, default='None')
+    redAutonC = models.CharField(max_length=20, default='None')
     redAutoBouldersLow = models.IntegerField(default=-1)
     redAutoBouldersHigh = models.IntegerField(default=-1)
     redTeleBouldersLow = models.IntegerField(default=-1)
     redTeleBouldersHigh = models.IntegerField(default=-1)
+    redTeleDefenseCrossings = models.IntegerField(default=-1)
     redDefense1Crossings = models.IntegerField(default=-1)
     redDefense2Name = models.CharField(max_length=20, default='Unspecified')
     redDefense2Crossings = models.IntegerField(default=-1)
@@ -166,10 +305,14 @@ class OfficialMatch(models.Model):
     redFouls = models.IntegerField(default=-1)
     redTechFouls = models.IntegerField(default=-1)
 
+    blueAutonA = models.CharField(max_length=20, default='None')
+    blueAutonB = models.CharField(max_length=20, default='None')
+    blueAutonC = models.CharField(max_length=20, default='None')
     blueAutoBouldersLow = models.IntegerField(default=-1)
     blueAutoBouldersHigh = models.IntegerField(default=-1)
     blueTeleBouldersLow = models.IntegerField(default=-1)
     blueTeleBouldersHigh = models.IntegerField(default=-1)
+    blueTeleDefenseCrossings = models.IntegerField(default=-1)
     blueDefense1Crossings = models.IntegerField(default=-1)
     blueDefense2Name = models.CharField(max_length=20, default='Unspecified')
     blueDefense2Crossings = models.IntegerField(default=-1)
@@ -186,6 +329,20 @@ class OfficialMatch(models.Model):
     blueTechFouls = models.IntegerField(default=-1)
 
     audienceSelectionCategory = models.CharField(max_length=1, default='A')
+
+    def get_alliance_teams(self):
+        red_teams = []
+        blue_teams = []
+
+        red_teams.append(self.redTeam1)
+        red_teams.append(self.redTeam2)
+        red_teams.append(self.redTeam3)
+
+        blue_teams.append(self.blueTeam1)
+        blue_teams.append(self.blueTeam2)
+        blue_teams.append(self.blueTeam3)
+
+        return red_teams, blue_teams
 
     def predict_score(self):
         red_score = 0

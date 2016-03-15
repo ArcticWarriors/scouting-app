@@ -2,6 +2,7 @@
 <head>
 
 {% load staticfiles %}
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="{% static 'Scouting2016/jquery-2.2.1.min.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
 <script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
@@ -17,15 +18,22 @@ table {
 <body>
 
 {% include "Scouting2016/banner.html" %}
+
+
 <h2>Scouted Matches</h2>
 	<table border="1">
 		<tr>
 			<th>Match Number</th>
+            <th>Valid Data</th>
 			<th colspan = '6'>Teams in match</th>
 		</tr>
 		{% for match in scouted_matches %}
 		<tr>
           <td> <a href="{% url 'Scouting2016:match_display' match.matchNumber %}">{{ match.matchNumber }}</a></td>
+           {% if match.validity == "Yes" %}  <td style='background: green; color: white'> 
+           {% elif match.validity == "No" %} <td style='background: red; color: white'> 
+           {% else %}                        <td> 
+           {% endif %}{{match.validity}}     </td>
 		   {% for sr in match.scoreresult_set.all %}
            <td> <a href="{% url 'Scouting2016:view_team' sr.team.teamNumber %}">{{ sr.team.teamNumber }}</a></td>
 		   {% endfor %}
