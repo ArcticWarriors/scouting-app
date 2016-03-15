@@ -27,11 +27,11 @@ def reload_django(event_code, database_path):
     _ = get_wsgi_application()
 
 
-def __populate_sr(auto_low, auto_high, tele_low, tele_high, tech_foul, challenge_string, defense_lookup, defense_speed_lookup):
+def __populate_sr(auto_cross, auto_low, auto_high, tele_low, tele_high, tech_foul, challenge_string, defense_lookup, defense_speed_lookup):
 
     comments_lookup = ["No Comment", "Great robot!", "DO NOT PICK"]
     spybot_lookup = ["yes", "no"]
-    auton_defense_cross = ['no_reach', 'reach', 'portcullis', 'cheval', 'moat', 'ramparts', 'bridge', 'sally', 'rock_wall', 'rough', 'low_bar']
+    auton_defense_cross = ['portcullis', 'cheval', 'moat', 'ramparts', 'bridge', 'sally', 'rock_wall', 'rough', 'low_bar']
 
     sr_fields = collections.OrderedDict()
 
@@ -43,6 +43,13 @@ def __populate_sr(auto_low, auto_high, tele_low, tele_high, tech_foul, challenge
     sr_fields['low_score_successful'] = tele_low
     sr_fields['scale_challenge'] = challenge_string
     sr_fields['score_tech_foul'] = tech_foul
+         
+    if auto_cross == "None":
+        sr_fields['auto_defense'] = "no_reach"
+    elif auto_cross == "Reached":
+        sr_fields['auto_defense'] = "reach"
+    else:
+        sr_fields['auto_defense'] = auton_defense_cross[random.randint(0, 8)]
 
     for defense in defense_lookup:
         sr_fields[defense] = defense_lookup[defense]
@@ -51,7 +58,6 @@ def __populate_sr(auto_low, auto_high, tele_low, tele_high, tech_foul, challenge
         sr_fields[defense] = defense_speed_lookup[defense]
 #
     # Random
-    sr_fields['auto_defense'] = auton_defense_cross[random.randint(0, 10)]
     sr_fields['auto_spy'] = spybot_lookup[random.randint(0, 1)]
     sr_fields['notes_text_area'] = comments_lookup[random.randint(0, 2)]
 
@@ -98,6 +104,7 @@ def __populate_defense(official_match, color, team_index):
         if defense1Name != "NA" and official_match.redDefense1Crossings > team_index:
             defenses[defense1Name] = 1
             defenses_speed['slow_fast_' + defense1Name] = fast_slow_lookup[random.randint(0, 1)]
+            
 
         if defense2Name != "NA" and official_match.redDefense2Crossings > team_index:
             defenses[defense2Name] = 1
@@ -179,6 +186,7 @@ def populate_matchresults(max_match_number):
 
         red_1_stats = {}
         defense_crossings, defense_speed = __populate_defense(official_match, "red", 0)
+        red_1_stats["auto_cross"] = official_match.redAutonA
         red_1_stats["auto_low"] = 1 if official_match.redAutoBouldersLow >= 1 else 0
         red_1_stats["auto_high"] = 1 if official_match.redAutoBouldersHigh >= 1 else 0
         red_1_stats["tele_low"] = 1 if official_match.redTeleBouldersLow >= 1 else 0
@@ -191,6 +199,7 @@ def populate_matchresults(max_match_number):
 
         red_2_stats = {}
         defense_crossings, defense_speed = __populate_defense(official_match, "red", 1)
+        red_2_stats["auto_cross"] = official_match.redAutonB
         red_2_stats["auto_low"] = 1 if official_match.redAutoBouldersLow >= 2 else 0
         red_2_stats["auto_high"] = 1 if official_match.redAutoBouldersHigh >= 2 else 0
         red_2_stats["tele_low"] = 1 if official_match.redTeleBouldersLow >= 2 else 0
@@ -203,6 +212,7 @@ def populate_matchresults(max_match_number):
 
         red_3_stats = {}
         defense_crossings, defense_speed = __populate_defense(official_match, "red", 3)
+        red_3_stats["auto_cross"] = official_match.redAutonC
         red_3_stats["auto_low"] = official_match.redAutoBouldersLow - 2 if official_match.redAutoBouldersLow >= 3 else 0
         red_3_stats["auto_high"] = official_match.redAutoBouldersHigh - 2 if official_match.redAutoBouldersHigh >= 3 else 0
         red_3_stats["tele_low"] = official_match.redTeleBouldersLow - 2 if official_match.redTeleBouldersLow >= 3 else 0
@@ -215,6 +225,7 @@ def populate_matchresults(max_match_number):
 
         blue_1_stats = {}
         defense_crossings, defense_speed = __populate_defense(official_match, "blue", 0)
+        blue_1_stats["auto_cross"] = official_match.blueAutonA
         blue_1_stats["auto_low"] = 1 if official_match.blueAutoBouldersLow >= 1 else 0
         blue_1_stats["auto_high"] = 1 if official_match.blueAutoBouldersHigh >= 1 else 0
         blue_1_stats["tele_low"] = 1 if official_match.blueTeleBouldersLow >= 1 else 0
@@ -227,6 +238,7 @@ def populate_matchresults(max_match_number):
 
         blue_2_stats = {}
         defense_crossings, defense_speed = __populate_defense(official_match, "blue", 1)
+        blue_2_stats["auto_cross"] = official_match.blueAutonB
         blue_2_stats["auto_low"] = 1 if official_match.blueAutoBouldersLow >= 2 else 0
         blue_2_stats["auto_high"] = 1 if official_match.blueAutoBouldersHigh >= 2 else 0
         blue_2_stats["tele_low"] = 1 if official_match.blueTeleBouldersLow >= 2 else 0
@@ -239,6 +251,7 @@ def populate_matchresults(max_match_number):
 
         blue_3_stats = {}
         defense_crossings, defense_speed = __populate_defense(official_match, "blue", 2)
+        blue_3_stats["auto_cross"] = official_match.blueAutonC
         blue_3_stats["auto_low"] = official_match.blueAutoBouldersLow - 2 if official_match.blueAutoBouldersLow >= 3 else 0
         blue_3_stats["auto_high"] = official_match.blueAutoBouldersHigh - 2 if official_match.blueAutoBouldersHigh >= 3 else 0
         blue_3_stats["tele_low"] = official_match.blueTeleBouldersLow - 2 if official_match.blueTeleBouldersLow >= 3 else 0
@@ -255,24 +268,24 @@ def populate_matchresults(max_match_number):
 
 # Week 1
 event_codes = []
-event_codes.append("ONTO2")
-event_codes.append("ISTA")
-event_codes.append("MNDU")
-event_codes.append("MNDU2")
-event_codes.append("SCMB")
-event_codes.append("CASD")
-event_codes.append("VAHAY")
-event_codes.append("MIKET")
-event_codes.append("MISOU")
-event_codes.append("MISTA")
-event_codes.append("MIWAT")
-event_codes.append("PAHAT")
-event_codes.append("NJFLA")
-event_codes.append("NCMCL")
-event_codes.append("NHGRS")
+# event_codes.append("ONTO2")
+# event_codes.append("ISTA")
+# event_codes.append("MNDU")
+# event_codes.append("MNDU2")
+# event_codes.append("SCMB")
+# event_codes.append("CASD")
+# event_codes.append("VAHAY")
+# event_codes.append("MIKET")
+# event_codes.append("MISOU")
+# event_codes.append("MISTA")
+# event_codes.append("MIWAT")
+# event_codes.append("PAHAT")
+# event_codes.append("NJFLA")
+# event_codes.append("NCMCL")
+# event_codes.append("NHGRS")
 event_codes.append("CTWAT")
-event_codes.append("WAAMV")
-event_codes.append("WASPO")
+# event_codes.append("WAAMV")
+# event_codes.append("WASPO")
 database_path = "__api_scraping_results/database/week1"
 
 
@@ -281,7 +294,8 @@ if len(sys.argv) <= 1:
 #         reload_django(ec, database_path)
 #         subprocess.call(['python', sys.argv[0], ec, database_path, "50"])
 
-    subprocess.call(['python', sys.argv[0], "CTWAT", ".", "50"])
+#     subprocess.call(['python', sys.argv[0], "CTWAT", ".", "50"])
+    subprocess.call(['python', sys.argv[0], "CTWAT", database_path, "50"])
     pass
 else:
     from django.core.wsgi import get_wsgi_application

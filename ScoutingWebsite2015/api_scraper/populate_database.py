@@ -6,7 +6,6 @@ Created on Mar 8, 2016
 
 import json
 from api_scraper import get_users
-from django.contrib.auth.models import User, Group
 import sys
 import os
 
@@ -123,6 +122,10 @@ def update_matchresults(event_code, json_path):
                 official_match.redAutoBouldersHigh = alliance_info["autoBouldersHigh"]
                 official_match.redTeleBouldersLow = alliance_info["teleopBouldersLow"]
                 official_match.redTeleBouldersHigh = alliance_info["teleopBouldersHigh"]
+                official_match.redTeleDefenseCrossings = alliance_info["teleopCrossingPoints"] / 5.0
+                official_match.redAutonA = alliance_info["robot1Auto"] if alliance_info["robot1Auto"] != None else "None"
+                official_match.redAutonB = alliance_info["robot2Auto"] if alliance_info["robot2Auto"] != None else "None"
+                official_match.redAutonC = alliance_info["robot3Auto"] if alliance_info["robot3Auto"] != None else "None"
                 official_match.redTowerFaceA = alliance_info["towerFaceA"]
                 official_match.redTowerFaceB = alliance_info["towerFaceB"]
                 official_match.redTowerFaceC = alliance_info["towerFaceC"]
@@ -144,6 +147,10 @@ def update_matchresults(event_code, json_path):
                 official_match.blueAutoBouldersHigh = alliance_info["autoBouldersHigh"]
                 official_match.blueTeleBouldersLow = alliance_info["teleopBouldersLow"]
                 official_match.blueTeleBouldersHigh = alliance_info["teleopBouldersHigh"]
+                official_match.blueTeleDefenseCrossings = alliance_info["teleopCrossingPoints"] / 5.0
+                official_match.blueAutonA = alliance_info["robot1Auto"] if alliance_info["robot1Auto"] != None else "None"
+                official_match.blueAutonB = alliance_info["robot2Auto"] if alliance_info["robot2Auto"] != None else "None"
+                official_match.blueAutonC = alliance_info["robot3Auto"] if alliance_info["robot3Auto"] != None else "None"
                 official_match.blueTowerFaceA = alliance_info["towerFaceA"]
                 official_match.blueTowerFaceB = alliance_info["towerFaceB"]
                 official_match.blueTowerFaceC = alliance_info["towerFaceC"]
@@ -177,6 +184,7 @@ def add_snobot():
 
 
 def add_users():
+    from django.contrib.auth.models import User, Group
     for user_info in get_users.get_users():
         user_search = User.objects.filter(username=user_info['username'])
         if len(user_search) == 1:
