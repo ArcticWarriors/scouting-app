@@ -47,12 +47,10 @@ function initFilterPopover(target, content) {
 			$("#sorting").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
 					var stindexes = ["Default", "Ascending", "Descending"];
 					sortSelected = stindexes[clickedIndex];
-					ssIndex = clickedIndex;
 			});
 			$("#operator").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
 					var opindexes = ["<", "<=", "=", ">", ">="];
 					comparrisonSelected = opindexes[clickedIndex];
-					csIndex = clickedIndex;
 			});
 			$('.selectpicker').selectpicker({style: 'btn-default', size: false});
 			$('#operator').selectpicker('val', $(target).prop("data-comparrison"));
@@ -70,12 +68,17 @@ function filterTable(search, comparrison, column, sorting) {
 		// Do the filter
 		for (var i=0; i<teamData.length; i++){
 			var currRow = teamTableRows.eq(i + 1);
-			if (!compare(teamData[i][column], comparrison, search )){
-					currRow.css("display", "none").prop("data-filtered",  currRow.prop("data-filtered") + column + " ");
-				}
-				else {
-					currRow.prop("data-filtered-" + column);
-				}
+            var currFilter = currRow.prop("data-filtered");
+            var filterExists = currFilter.indexOf(column) != -1;
+            var passesFilter = !compare(teamData[i][column], comparrison, search );
+			if (!passesFilter && !filterExists){
+					currRow.css("display", "none").prop("data-filtered", currFilter + column + ",");
+			} else if(passesFilter && filterExists) {
+                currRow.prop("data-filtered", currFilter.replace(column + ",", ""));
+		        if(currRow.prop("data-filtered") == ""){
+                    currRow.css("display", "table-row");
+                }
+			}
 		}
 
 		// Comparrison with string operator
