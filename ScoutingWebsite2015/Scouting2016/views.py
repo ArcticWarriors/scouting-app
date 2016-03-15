@@ -727,3 +727,11 @@ def submit_new_pit(request):
     team.save()
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))
+  
+def get_hovercard(request):
+
+    context = {}
+    context['type'] = request.GET.get('type')
+    return render(request, 'Scouting2016/hovercards/filterContent.html', context)
+    
+    

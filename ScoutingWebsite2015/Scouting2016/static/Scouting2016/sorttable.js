@@ -1,3 +1,113 @@
+// SortTable extension for column filtering via popover by ProgBot
+
+$( document ).ready (function() {
+	// Get hovercards HTML
+	var numericFilter;
+	jQuery.ajaxSetup({async:false});
+	$.get("/2016/hovercards?type=numericColFilter", function(data){numericFilter = data;});
+	jQuery.ajaxSetup({async:true});
+	// Initial filter popover initialization
+	$("th").each(function() {
+		initFilterPopover(this, numericFilter);
+	});
+});
+
+function initFilterPopover(target, content) {
+	var comparrisonSelected;
+	var sortSelected;
+	$(target).popover({
+			trigger: "manual",
+			html: true,
+			animation:false,
+			placement:"bottom",
+			container: "body",
+			title:'<div style="font-weight: bold">Filter ' + $(target).text() + '</div>',
+			content:content
+	}).on("click", function () {
+			var _this = this;
+			$('.popover').remove();
+			$("this").popover("show");
+			$(this).popover("show");
+			$(".btn-cancel").on("click", function () {
+					$(_this).popover('hide');
+					// Required for some reason, or else the popover won't work once clicked already
+					initFilterPopover(_this, content);
+			});
+			$(".btn-filter").on("click", function () {
+					var search = $('[name=search]').val();
+					$(_this).popover('hide');
+					filterTable(search, comparrisonSelected, $(target).index(), sortSelected);
+					initFilterPopover(_this, content);
+			});
+	});
+	$("th").on("click", function() {
+			// Initialize bootstrap-select styling for select elements
+			sortSelected = "Default";
+			comparrisonSelected = "=";
+			$("#sorting").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
+					var stindexes = ["Default", "Ascending", "Descending"];
+					sortSelected = stindexes[clickedIndex];
+					console.log(sortSelected);
+			});
+			$("#operator").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
+					var opindexes = ["<", "<=", "=", ">", ">="];
+					comparrisonSelected = opindexes[clickedIndex];
+					console.log(comparrisonSelected);
+			});
+			$('.selectpicker').selectpicker({style: 'btn-default', size: false});
+	});
+}
+
+function filterTable(search, comparrison, column, sorting) {
+		console.log(search, comparrison, column, sorting);
+		// Get table data
+		var teamTable = $("table");
+		var teamTableRows = teamTable.find("tr");
+		var teamData = getTableData(teamTable);
+		teamData.splice(0,1);
+
+		// Do the filter
+		for (var i=0; i<teamData.length; i++){
+			var currRow = teamTableRows.eq(i + 1);
+			if (!compare(search, comparrison, teamData[i][column])){
+					currRow.css("display", "none").addClass("filtered-" + column);
+					 //log(currRow.prop("class"));
+				}
+				else {
+					currRow.removeClass("filtered-" + column);
+						//if(currRow.)
+				}
+		}
+
+		// Comparrison with string operator
+		function compare(a, operator, b){
+			switch (operator) {
+					case "<":
+							return a < b;
+						case "<=":
+							return a <= b;
+				case "=":
+							return a == b;
+						case ">":
+							return a > b;
+						case ">=":
+							return a >= b;
+				}
+		}
+		// Returns data from table as array
+		function getTableData(table) {
+				var data = [];
+				table.find('tr').each(function (rowIndex, r) {
+						var cols = [];
+						$(this).find('th,td').each(function (colIndex, c) {
+								cols.push(c.textContent.trim());
+						});
+						data.push(cols);
+				});
+				return data;
+		}
+}
+
 /*
   SortTable
   version 2

@@ -1,0 +1,31 @@
+{% if type == 'numericColFilter' or type == 'textColFilter' %}
+<div class="form-group">
+    <div>
+      <label>Search</label>
+    </div>
+    {% if type == 'numericColFilter' %}
+      <select class="selectpicker" data-width="25%" id="operator">
+        <option value="<">&lt;</option>
+        <option value="<=">&lt;=</option>
+        <option value="=" selected="selected">=</option>
+        <option value=">">&gt;</option>
+        <option value=">=">&gt;=</option>
+      </select>
+    {% endif %}
+    <input type="text" class="form-control" name="search" style="display:inline; width:70%"/>
+    <div>
+      <label>Sort</label>
+    </div>
+    <div>
+      <select class="selectpicker" id="sorting">
+          <option value="default" selected="selected">Default</option>
+          <option value="ascending">Ascending</option>
+          <option value="descending">Decsending</option>
+      </select>
+      <div style="margin-top: 20px;">
+          <button type="button" class="btn btn-default btn-filter" style="width:49%">Apply</button>
+          <button type="button" class="btn btn-danger btn-cancel" style="width:49%">Cancel</button>
+      </div>
+    </div>
+</div>
+{% endif %}

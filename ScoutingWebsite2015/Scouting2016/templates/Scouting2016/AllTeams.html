@@ -2,20 +2,22 @@
 <head>
 {% load staticfiles %}
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<script src="{% static 'Scouting2016/sorttable.js' %}"></script>
+<script src="{% static 'Scouting2016/jquery-2.2.1.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
+<script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap-select.min.css' %}" />
+<script src="{% static 'Scouting2016/bootstrap-select.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
+<script src="{% static 'Scouting2016/site.js' %}"></script>
 <!-- 
 This script is found in 2016/static/scouting2016/sorttable.js
 It is capable of sorting any tables which contain
  class = "sortable" 
  This script can be used on the webpage by clicking the table header you'd like to sort
+Modifications by ProgBot creating a filter popover
  -->
-<script src="{% static 'Scouting2016/jquery-2.2.1.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
-<script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
-<script src="{% static 'Scouting2016/site.js' %}"></script>
+<script src="{% static 'Scouting2016/sorttable.js' %}"></script>
 <title>Team List</title>
-</head>
 <style>
 h2 {
 	display: inline;
@@ -24,7 +26,15 @@ table, th {
 	text-align: center;
 	overflow-y: auto;
 }
+th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
+	text-decoration: none;
+	color:black;
+	outline: none;
+	vertical-align: middle;
+}
 </style>
+</head>
+
 <body>
 
 	{% include "Scouting2016/banner.html" %}
@@ -37,50 +47,52 @@ table, th {
 					<a href="#" class="btn btn-default">Graph Data</a>
 				</div>
 			</div>
-			<table class="sortable table table-hover no-manual-sort">
-				<tr>
-					<th>Team Number</th>
-					<th>Low goal scores</th>
-					<th>Low goal misses</th>
-					<th>High goal scores</th>
-					<th>High goal misses</th>
-					<th>Autonomous Low goal</th>
-					<th>Autonomous High goal</th>
-					<th>Tech. Fouls</th>
-					<th>Cheval de Frise</th>
-					<th>Ramparts</th>
-					<th>Sally Port</th>
-					<th>Low Bar</th>
-					<th>Rock Wall</th>
-					<th>Drawbridge</th>
-					<th>Moat</th>
-					<th>Rough Terrain</th>
-					<th>Portcullis</th>
-				</tr>
-				{% for team in teams %}
+			<div style="overflow-x: auto">
+				<table class="sortable sortable-filterable no-manual-sort table table-hover">
+					<tr>
+						<th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Low goal scores</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Low goal misses</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>High goal scores</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>High goal misses</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Autonomous Low goal</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Autonomous High goal</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Tech. Fouls</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Cheval de Frise</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Ramparts</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Sally Port</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Low Bar</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Rock Wall</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Drawbridge</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Moat</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Rough Terrain</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Portcullis</a></th>
+					</tr>
+					{% for team in teams %}
 
-				<tr>
-						<td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
-					<td> {{ team.avgerages.low_score_successful__avg }} </td>
-						<td> {{ team.avgerages.low_score_fail__avg }} </td>
-						<td> {{ team.avgerages.high_score_successful__avg }} </td>
-						<td> {{ team.avgerages.high_score_fail__avg }} </td>
-						<td> {{ team.avgerages.auto_score_low__avg }} </td>
-						<td> {{ team.avgerages.auto_score_high__avg }} </td>
-						<td> {{ team.avgerages.score_tech_foul__sum}}</td>
-						<td> {{team.avgerages.cheval_de_frise__sum }}</td>
-						<td> {{team.avgerages.ramparts__sum }}</td>
-						<td> {{team.avgerages.sally_port__sum }}</td>
-						<td> {{team.avgerages.low_bar__sum }}</td>
-						<td> {{team.avgerages.rock_wall__sum }}</td>
-						<td> {{team.avgerages.draw_bridge__sum }}</td>
-						<td> {{team.avgerages.moat__sum }}</td>
-						<td> {{team.avgerages.rough_terrain__sum }}</td>
-						<td> {{team.avgerages.portcullis__sum }}</td>
-				</tr>
+					<tr>
+							<td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
+							<td> {{ team.avgerages.low_score_successful__avg }} </td>
+							<td> {{ team.avgerages.low_score_fail__avg }} </td>
+							<td> {{ team.avgerages.high_score_successful__avg }} </td>
+							<td> {{ team.avgerages.high_score_fail__avg }} </td>
+							<td> {{ team.avgerages.auto_score_low__avg }} </td>
+							<td> {{ team.avgerages.auto_score_high__avg }} </td>
+							<td> {{ team.avgerages.score_tech_foul__sum}}</td>
+							<td> {{team.avgerages.cheval_de_frise__sum }}</td>
+							<td> {{team.avgerages.ramparts__sum }}</td>
+							<td> {{team.avgerages.sally_port__sum }}</td>
+							<td> {{team.avgerages.low_bar__sum }}</td>
+							<td> {{team.avgerages.rock_wall__sum }}</td>
+							<td> {{team.avgerages.draw_bridge__sum }}</td>
+							<td> {{team.avgerages.moat__sum }}</td>
+							<td> {{team.avgerages.rough_terrain__sum }}</td>
+							<td> {{team.avgerages.portcullis__sum }}</td>
+					</tr>
 
-				{% endfor %}
-			</table>
+					{% endfor %}
+				</table>
+			</div>
 		</div>
 	</div>
 	
