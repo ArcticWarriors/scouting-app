@@ -164,7 +164,19 @@ def add_snobot():
 
 
 def add_users():
-    from django.contrib.auth.models import User, Group
+    from django.contrib.auth.models import User, Group, Permission, ContentType
+
+    group_scout, _ = Group.objects.get_or_create(name=get_users.group_scout)
+    group_scoutmaster, _ = Group.objects.get_or_create(name=get_users.group_scoutmaster)
+    group_website_manager, _ = Group.objects.get_or_create(name=get_users.group_website_manager)
+
+    edit_permission, _ = Permission.objects.get_or_create(codename="can_modify_model", name="Can Add/Edit Matches", content_type=ContentType.objects.get(app_label="auth", model="user"))
+    group_scout.permissions.add(edit_permission)
+    group_scoutmaster.permissions.add(edit_permission)
+    group_website_manager.permissions.add(edit_permission)
+
+    pic_permission, _ = Permission.objects.get_or_create(codename="can_add_pictures", name="Can Add Pictures", content_type=ContentType.objects.get(app_label="auth", model="user"))
+    group_scoutmaster.permissions.add(pic_permission)
 
     for user_info in get_users.get_users():
         user_search = User.objects.filter(username=user_info['username'])
@@ -174,7 +186,7 @@ def add_users():
             user = User.objects.create_user(username=user_info['username'], password=user_info["password"])
 
         for group_name in user_info["groups"]:
-            group, _ = Group.objects.get_or_create(name=group_name)
+            group = Group.objects.get(name=group_name)
             if not user.groups.filter(name=group_name).exists():
                 group.user_set.add(user)
                 group.save()
