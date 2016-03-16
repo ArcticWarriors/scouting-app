@@ -72,7 +72,7 @@ def get_competitions_to_scrape():
     json_path = "../__api_scraping_results/json"
 
     events = []
-#     events.extend(get_week1_competitions(sql_path, json_path))
+    events.extend(get_week1_competitions(sql_path, json_path))
     events.extend(get_week2_competitions(sql_path, json_path))
 
     return events
