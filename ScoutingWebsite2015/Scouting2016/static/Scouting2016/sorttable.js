@@ -13,7 +13,7 @@ $( document ).ready (function() {
 });
 
 function initFilterPopover(target, content) {
-	var comparrisonSelected, sortSelected, ssIndex, csIndex;
+	var comparrisonSelected, sortSelected;
 	$(target).popover({
 			trigger: "manual",
 			html: true,
@@ -35,8 +35,8 @@ function initFilterPopover(target, content) {
 			$(".btn-filter").on("click", function () {
 					var search = $('[name=search]').val();
 					$(_this).popover('hide');
-					filterTable(search, comparrisonSelected, $(target).index(), sortSelected);
 					$(target).prop("data-search", search).prop("data-comparrison", comparrisonSelected).prop("data-sorting", sortSelected);
+					filterTable(search, comparrisonSelected, $(target).index(), sortSelected);
 					initFilterPopover(_this, content);
 			});
 	});
@@ -68,32 +68,52 @@ function filterTable(search, comparrison, column, sorting) {
 		// Do the filter
 		for (var i=0; i<teamData.length; i++){
 			var currRow = teamTableRows.eq(i + 1);
-            var currFilter = currRow.prop("data-filtered");
-            var filterExists = currFilter.indexOf(column) != -1;
-            var passesFilter = !compare(teamData[i][column], comparrison, search );
-			if (!passesFilter && !filterExists){
+			var currFilter = currRow.prop("data-filtered");
+			var filterExists;
+			if (currFilter === undefined) {
+				filterExists = false;
+			} else {
+				filterExists = currFilter.indexOf(column) != -1;
+			}
+      var passesFilter = compare(teamData[i][column], comparrison, search);
+			if (!passesFilter && !filterExists) {
 					currRow.css("display", "none").prop("data-filtered", currFilter + column + ",");
 			} else if(passesFilter && filterExists) {
-                currRow.prop("data-filtered", currFilter.replace(column + ",", ""));
-		        if(currRow.prop("data-filtered") == ""){
-                    currRow.css("display", "table-row");
-                }
+				currRow.prop("data-filtered", currFilter.replace(column + ",", ""));
+			}
+			if(currRow.prop("data-filtered") == ""){
+				currRow.css("display", "table-row");
 			}
 		}
+	
+		// Do Sorting
+		var reverse;
+		if (sorting == "Ascending") {
+			reverse = false;
+		} else if (sorting == "Descending") {
+			reverse = true;
+		}
+	
+		if (reverse !== undefined) {
+			sorttable.innerSortFunction.apply($("th").get(column), [undefined, reverse]);
+		}
+		
 
 		// Comparrison with string operator
 		function compare(a, operator, b){
 			switch (operator) {
-					case "<":
-							return a < b;
-						case "<=":
-							return a <= b;
+				case b === "":
+					return true;
+				case "<":
+					return a < b;
+				case "<=":
+					return a <= b;
 				case "=":
-							return a == b;
-						case ">":
-							return a > b;
-						case ">=":
-							return a >= b;
+					return a == b;
+				case ">":
+					return a > b;
+				case ">=":
+					return a >= b;
 				}
 		}
 		// Returns data from table as array
