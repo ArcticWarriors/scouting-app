@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch, \
-    validate_match
+    validate_match, TeamComments
 import operator
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -293,6 +293,8 @@ def view_team(request, team_number):
     for sr in this_team.scoreresult_set.all():
         score_result_list.append(sr)
 
+    team_comments_search = TeamComments.objects.filter(team=this_team)
+
     context = {}
 #     context['team_number'] = this_team.teamNumber
     context['team'] = this_team
@@ -300,6 +302,8 @@ def view_team(request, team_number):
     context['score_result_list'] = score_result_list
     context['team_number'] = team_number
     context['pictures'] = picture_list
+    if len(team_comments_search) != 0:
+        context['team_comments'] = team_comments_search.all()
 
     return render(request, 'Scouting2016/TeamPage.html', context)
 
@@ -727,11 +731,19 @@ def submit_new_pit(request):
     team.save()
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))
-  
+
+
 def get_hovercard(request):
 
     context = {}
     context['type'] = request.GET.get('type')
     return render(request, 'Scouting2016/hovercards/filterContent.html', context)
-    
-    
+
+
+def add_team_comments(request, team_number):
+    comments = request.POST["team_comments"]
+    team = Team.objects.get(teamNumber=team_number)
+    teamComments = TeamComments.objects.create(team=team, comment=comments)
+    print teamComments
+
+    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_number,)))

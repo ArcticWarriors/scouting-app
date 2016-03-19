@@ -60,17 +60,30 @@ No matches scouted
     {% endif %}
     <h2>Team Comments</h2>
 {% if score_result_list|length == 0 %}
-No matches scouted
 {% else %}
-
+  Match Comments
   <ul>
   {% for sr in score_result_list %}
      {%if sr.notes_text_area != "" %}<li>{{sr.notes_text_area}}</li>{% endif %}
   {% endfor %}
   </ul>
-  
-  
 {% endif %}
+
+{% if team_comments|length != 0 %}
+  Team Comments
+  <ul>
+  {% for comment in team_comments %}
+     <li>{{comment.comment}}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+   <form action="{% url 'Scouting2016:add_team_comments' team_number %}" method="POST">
+   {% csrf_token %}
+   
+  <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
+  <br> <br> <input type="submit" value="Submit">
+   </form>
  
 
     <h1>Robot Statistics</h1>

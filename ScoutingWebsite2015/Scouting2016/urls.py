@@ -20,9 +20,11 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^log_user_out$', views.log_user_out, name='log_user_out'),
 
                url(r'^auth_login$', views.auth_login, name='auth_login'),
+
                # Pit Form
                url(r'^pit_form/(?P<team_number>[0-9]+)$', views.show_add_pit, name='show_add_pit'),
                url(r'^submit_pit$', views.submit_new_pit, name='submit_new_pit'),
+
                # Normal Pages
                url(r'^robot_display$', views.robot_display, name='robot_display'),
                url(r'^view_team/(?P<team_number>[0-9]+)$', views.view_team, name='view_team'),
@@ -36,4 +38,5 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^match_prediction/(?P<match_number>[0-9]+)$', views.match_prediction, name='match_prediction'),
                url(r'^comparison$', views.show_comparison, name='comparison'),
                url(r'^hovercards$', views.get_hovercard, name='hovercards'),
+               url(r'^add_team_comments/(?P<team_number>[0-9]+)$', views.add_team_comments, name='add_team_comments'),
                ]
