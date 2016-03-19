@@ -6,10 +6,11 @@ $( document ).ready (function() {
 	jQuery.ajaxSetup({async:false});
 	$.get("/2016/hovercards?type=numericColFilter", function(data){numericFilter = data;});
 	jQuery.ajaxSetup({async:true});
-	// Initial filter popover initialization
+	// Initial filter popover initialization & default filter values
 	$("th").each(function() {
 		initFilterPopover(this, numericFilter);
-	});
+	}).prop("data-comparrison", "=").prop("data-sorting", "default");
+	$("tbody > tr").prop("data-filtered", "");
 });
 
 function initFilterPopover(target, content) {
@@ -24,9 +25,11 @@ function initFilterPopover(target, content) {
 			content:content
 	}).on("click", function () {
 			var _this = this;
+			// Remove old popovers
 			$('.popover').remove();
+			// Show popover for this header
 			$(this).popover("show");
-			$('[name=search]').val($(target).prop("data-search"));
+			// Handling button clicks
 			$(".btn-cancel").on("click", function () {
 					$(_this).popover('hide');
 					// Required for some reason, or else the popover won't work once clicked already
@@ -34,33 +37,32 @@ function initFilterPopover(target, content) {
 			});
 			$(".btn-filter").on("click", function () {
 					var search = $('[name=search]').val();
-					search = parseInt(search);
 					$(_this).popover('hide');
 					$(target).prop("data-search", search).prop("data-comparrison", comparrisonSelected).prop("data-sorting", sortSelected);
-                    if (search == NaN) { $(target).prop("data-search", ""); }
-					filterTable(search, comparrisonSelected, $(target).index(), sortSelected);
+					filterTable(search, comparrisonSelected, target, sortSelected);
 					initFilterPopover(_this, content);
 			});
-	});
-	$("th").on("click", function() {
-			// Initialize bootstrap-select styling for select elements
-			sortSelected = "Default";
-			comparrisonSelected = "=";
+			// Fill search from remembered value
+			$('[name=search]').val($(target).prop("data-search"));
+			// Store selected dropdown value in a var on change of select, because we can't get it later with bootstrap-select
 			$("#sorting").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
-					var stindexes = ["Default", "Ascending", "Descending"];
+					var stindexes = ["default", "ascending", "descending"];
 					sortSelected = stindexes[clickedIndex];
 			});
 			$("#operator").on("changed.bs.select", function(event, clickedIndex, newValue, oldValue){
 					var opindexes = ["<", "<=", "=", ">", ">="];
 					comparrisonSelected = opindexes[clickedIndex];
 			});
+			// Initialize bootstrap-select styling for select elements
 			$('.selectpicker').selectpicker({style: 'btn-default', size: false});
-			$('#operator').selectpicker('val', $(target).prop("data-comparrison"));
+			// Fill dropdowns using remembered value
 			$('#sorting').selectpicker('val', $(target).prop("data-sorting"));
+			$('#operator').selectpicker('val', $(target).prop("data-comparrison"));
 	});
 }
 
 function filterTable(search, comparrison, column, sorting) {
+		var colName = $(column).text();
 		// Get table data
 		var teamTable = $("table");
 		var teamTableRows = teamTable.find("tr");
@@ -75,37 +77,38 @@ function filterTable(search, comparrison, column, sorting) {
 			if (currFilter === undefined) {
 				filterExists = false;
 			} else {
-				filterExists = currFilter.indexOf(column) != -1;
+				filterExists = currFilter.indexOf(colName) != -1;
 			}
 		
-      var passesFilter = compare(teamData[i][column], comparrison, search);	
+      var passesFilter = compare(teamData[i][$(column).index()], comparrison, search);	
       	if (!passesFilter && !filterExists) {
-					currRow.css("display", "none").prop("data-filtered", currFilter + column + ",");
+					currRow.css("display", "none").prop("data-filtered", currFilter + colName + ",");
 			} else if(passesFilter && filterExists) {
-				currRow.prop("data-filtered", currFilter.replace(column + ",", ""));
-			}
-			if(currRow.prop("data-filtered") == ""){
-				currRow.css("display", "table-row");
+				currRow.prop("data-filtered", currFilter.replace(colName + ",", ""));
+				if(currRow.prop("data-filtered") == "") {
+					currRow.css("display", "table-row");
+				}
 			}
 		}
 	
 		// Do Sorting
 		var reverse;
-		if (sorting == "Ascending") {
+		if (sorting == "ascending") {
 			reverse = false;
-		} else if (sorting == "Descending") {
+		} else if (sorting == "descending") {
 			reverse = true;
 		}
 	
 		if (reverse !== undefined) {
-			sorttable.innerSortFunction.apply($("th").get(column), [undefined, reverse]);
+			sorttable.innerSortFunction.apply($("th").get($(column).index()), [undefined, reverse]);
 		}
 
 		// Comparrison with string operator
 		function compare(a, operator, b) {
-			if (b === undefined || b == null || b == "" || b === NaN)
+			if (b === undefined || b == null || b == "")
 				return true;
 			else
+				b = parseInt(b);
 				{
 					switch (operator) {
 						case "<":
