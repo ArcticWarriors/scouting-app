@@ -28,7 +28,7 @@ def update_team_info(event_code, json_path):
     for team_info in json_struct["teams"]:
         team_number = team_info["teamNumber"]
 
-        team = Team.objects.get(teamNumber=team_number)
+        team, _ = Team.objects.get_or_create(teamNumber=team_number)
         team.homepage = team_info["website"] if team_info["website"] != None else "NA"
         team.teamFirstYear = team_info["rookieYear"]
         team.save()

@@ -121,6 +121,15 @@ def get_week4_competitions(sql_basepath, json_basepath):
     event_codes.append((json_path, sql_path, "VADOS"))
     event_codes.append((json_path, sql_path, "WIMI"))
 
+    return event_codes
+
+
+def get_our_competitions(sql_basepath, json_basepath):
+
+    event_codes = []
+    event_codes.append((json_basepath, sql_basepath, "NYRO"))
+
+    return event_codes
 
 
 def get_competitions_to_scrape():
@@ -131,6 +140,7 @@ def get_competitions_to_scrape():
     events = []
 #     events.extend(get_week1_competitions(sql_path, json_path))
 #     events.extend(get_week2_competitions(sql_path, json_path))
-    events.extend(get_week3_competitions(sql_path, json_path))
+#     events.extend(get_week3_competitions(sql_path, json_path))
+    events.extend(get_week4_competitions(sql_path, json_path))
 
     return events
