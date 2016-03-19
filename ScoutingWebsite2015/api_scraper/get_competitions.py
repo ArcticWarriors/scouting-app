@@ -141,6 +141,8 @@ def get_competitions_to_scrape():
 #     events.extend(get_week1_competitions(sql_path, json_path))
 #     events.extend(get_week2_competitions(sql_path, json_path))
 #     events.extend(get_week3_competitions(sql_path, json_path))
-    events.extend(get_week4_competitions(sql_path, json_path))
+#     events.extend(get_week4_competitions(sql_path, json_path))
+
+    events.extend(get_our_competitions(".", "../__api_scraping_results/json/week4"))
 
     return events
