@@ -207,8 +207,8 @@ if __name__ == "__main__":
     print event_code
     print databse_path
 
+    update_team_info(event_code, json_path)
     update_schedule(event_code, json_path)
     update_matchresults(event_code, json_path)
-    update_team_info(event_code, json_path)
     add_snobot()
     add_users()

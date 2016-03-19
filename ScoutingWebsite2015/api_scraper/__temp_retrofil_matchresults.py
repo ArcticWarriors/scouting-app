@@ -44,7 +44,7 @@ def __populate_sr(auto_cross, auto_low, auto_high, tele_low, tele_high, tech_fou
     sr_fields['low_score_successful'] = tele_low
     sr_fields['scale_challenge'] = challenge_string
     sr_fields['score_tech_foul'] = tech_foul
-         
+
     if auto_cross == "None":
         sr_fields['auto_defense'] = "no_reach"
     elif auto_cross == "Reached":
@@ -105,7 +105,6 @@ def __populate_defense(official_match, color, team_index):
         if defense1Name != "NA" and official_match.redDefense1Crossings > team_index:
             defenses[defense1Name] = 1
             defenses_speed['slow_fast_' + defense1Name] = fast_slow_lookup[random.randint(0, 1)]
-            
 
         if defense2Name != "NA" and official_match.redDefense2Crossings > team_index:
             defenses[defense2Name] = 1
