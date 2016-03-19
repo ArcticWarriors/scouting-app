@@ -34,8 +34,10 @@ function initFilterPopover(target, content) {
 			});
 			$(".btn-filter").on("click", function () {
 					var search = $('[name=search]').val();
+					search = parseInt(search);
 					$(_this).popover('hide');
 					$(target).prop("data-search", search).prop("data-comparrison", comparrisonSelected).prop("data-sorting", sortSelected);
+                    if (search == NaN) { $(target).prop("data-search", ""); }
 					filterTable(search, comparrisonSelected, $(target).index(), sortSelected);
 					initFilterPopover(_this, content);
 			});
@@ -64,7 +66,7 @@ function filterTable(search, comparrison, column, sorting) {
 		var teamTableRows = teamTable.find("tr");
 		var teamData = getTableData(teamTable);
 		teamData.splice(0,1);
-
+		
 		// Do the filter
 		for (var i=0; i<teamData.length; i++){
 			var currRow = teamTableRows.eq(i + 1);
@@ -75,8 +77,9 @@ function filterTable(search, comparrison, column, sorting) {
 			} else {
 				filterExists = currFilter.indexOf(column) != -1;
 			}
-      var passesFilter = compare(teamData[i][column], comparrison, search);
-			if (!passesFilter && !filterExists) {
+		
+      var passesFilter = compare(teamData[i][column], comparrison, search);	
+      	if (!passesFilter && !filterExists) {
 					currRow.css("display", "none").prop("data-filtered", currFilter + column + ",");
 			} else if(passesFilter && filterExists) {
 				currRow.prop("data-filtered", currFilter.replace(column + ",", ""));
@@ -97,23 +100,25 @@ function filterTable(search, comparrison, column, sorting) {
 		if (reverse !== undefined) {
 			sorttable.innerSortFunction.apply($("th").get(column), [undefined, reverse]);
 		}
-		
 
 		// Comparrison with string operator
-		function compare(a, operator, b){
-			switch (operator) {
-				case b === "":
-					return true;
-				case "<":
-					return a < b;
-				case "<=":
-					return a <= b;
-				case "=":
-					return a == b;
-				case ">":
-					return a > b;
-				case ">=":
-					return a >= b;
+		function compare(a, operator, b) {
+			if (b === undefined || b == null || b == "" || b === NaN)
+				return true;
+			else
+				{
+					switch (operator) {
+						case "<":
+							return (a < b);
+						case "<=":
+							return (a <= b);
+						case "=":
+							return (a == b);
+						case ">":
+							return (a > b);
+						case ">=":
+							return (a >= b);
+					}
 				}
 		}
 		// Returns data from table as array
