@@ -267,7 +267,47 @@ def robot_display(request):
     as an HTML page, as it is just meant to show hard-coded information.
     """
 
-    return render(request, 'Scouting2016/RobotDisplay.html')
+    return render(request, 'Scouting2016/robot_info/overview.html')
+
+
+def robot_display_software(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/software.html')
+
+
+def robot_display_scaling(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/scaling.html')
+
+
+def robot_display_overroller(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/overroller.html')
+
+
+def robot_display_drivetrain(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/drivetrain.html')
 
 
 def view_team(request, team_number):

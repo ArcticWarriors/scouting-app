@@ -19,12 +19,18 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^showLogin/$', views.showLogin, name='showLogin'),
                url(r'^log_user_out$', views.log_user_out, name='log_user_out'),
 
+               # Robot Info
+               url(r'^robot_display$', views.robot_display, name='robot_display'),
+               url(r'^robot_display/software$', views.robot_display_software, name='robot_display_software'),
+               url(r'^robot_display/scaling$', views.robot_display_scaling, name='robot_display_scaling'),
+               url(r'^robot_display/overroller$', views.robot_display_overroller, name='robot_display_overroller'),
+               url(r'^robot_display/drivetrain$', views.robot_display_drivetrain, name='robot_display_drivetrain'),
+
                url(r'^auth_login$', views.auth_login, name='auth_login'),
                # Pit Form
                url(r'^pit_form/(?P<team_number>[0-9]+)$', views.show_add_pit, name='show_add_pit'),
                url(r'^submit_pit$', views.submit_new_pit, name='submit_new_pit'),
                # Normal Pages
-               url(r'^robot_display$', views.robot_display, name='robot_display'),
                url(r'^view_team/(?P<team_number>[0-9]+)$', views.view_team, name='view_team'),
                url(r'^match_display/(?P<match_number>[0-9]+)$', views.match_display, name='match_display'),
                url(r'^all_teams$', views.all_teams, name='all_teams'),
