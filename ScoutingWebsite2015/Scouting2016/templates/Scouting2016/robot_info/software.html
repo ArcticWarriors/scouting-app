@@ -1,0 +1,85 @@
+<html>
+
+<head>
+{% load staticfiles %}
+{% include "Scouting2016/standard_header.html" %}
+<title>Software</title>
+</head>
+
+<body>
+
+{% include "Scouting2016/banner.html" %}
+
+<h1>Version Control</h1>
+We used GIT and Github to do version control
+
+<h1>Development Methodology</h1>
+We used Agile practices to develop our software.  This included daily standup meetings, weekly sprints, story planning meetings, and weekly code reviews.
+
+<h1>Autonomous Selection</h1>
+<img src="{% static 'Scouting2016/robot_info/software/auton_selection.PNG' %}" />
+<br>
+Three stage selection allows approximately 540 unique autonomous modes.  These are all selectable from the driver station, up to the point when the MC says "Drivers, behind the line"
+<ul>
+  <li>Select a starting position (In front of the 5 defenses, or spy bot)</li>
+  <li>Select a thing to do (Cross Defense and Score, Do Nothing, etc.)</li>
+  <li>Select the defense you will overcome (if necessary)</li>
+</ul>
+
+<h1>Autonomous Scripts</h1>
+<img src="{% static 'Scouting2016/robot_info/software/script_example.PNG' %}" />
+<br>
+Robot tasks are broken down into bite-sized, actionable <i>commands</i>, such as "Turn to X degrees", "Drive forward X inches", or "Intake a ball".  
+These commands are strung together in a simple, sequential list, so that we can execute them one at a time, in order.
+<br><br>
+In order to decrease debugging and compiling times, these commands can be written to a text file that lives on the roboRIO.  By doing this,
+we are able to FTP into the roboRIO and edit the files without any changes to code, or use our <i>Autonomous Widget</i> to edit them from
+the SmartDashboard.
+
+<h1>Pre-Planed Paths</h1>
+Moving an object to a desired position autonomously is hard.  Using a simple PID controller is often not good enough when the range or errors is extreme.
+It is hard to implement a controller that works just as well when you are trying to drive slowly 5 inches as when you are trying to drive 27 feet fast.
+One slightly more advanced approach to solving this problem is to use a technique called <i>Motion Profiling</i>.  We know how we want the robot to drive, so we
+can specify a maximum acceleration, a maximum velocity, and our desired setpoint to plan out a "path" for the object to move.  This allows an incredible 
+amount of flexibility when trying to drive the robot.  We can estimate, with an error on the order of inches, how far the robot will drive, how long it will
+take to drive there, and how we will get there.
+<br><br>
+We use a simple P+Feed Forward controller to complete the path.  We take the somewhat naive approach of tuning the controller empirically, by first 
+tuning the Velocity Feed Forward term so, then the Acceleration Feed Forward term, and finally the proportional error.  In order to expedite this process,
+we created a graphing widget for the SmartDashboard so that we can see how our empirical changes are taking effect
+<img src="{% static 'Scouting2016/robot_info/software/path_graph.PNG' %}" />
+
+<h1>Quintic Spline Trajectories</h1>
+<img src="{% static 'Scouting2016/robot_info/software/trajectory_graphs.PNG' %}" />
+<br>
+The pre-planned path technique discussed above is good for single dimension moving.  When you want two dimensionsal driving, the equations become much,
+much more complex.  FRC Team 254, The Cheesy Poofs, tackled this problem for the 2014 game and made their code <a href="https://github.com/Team254/TrajectoryLib">public</a>
+The basic idea is that you specify a series of (X, Y, Angle) coordinates, and their library will calculate the optimal way to get there.  We use a similar controller
+to the path approach to drive through the path.
+
+<h1>Simulator</h1>
+<img src="{% static 'Scouting2016/robot_info/software/simulator.PNG' %}" />
+<br>
+Last year, the lead software mentor on the team created a simulator for FRC Java programs.  WPI and FIRST provide .jar files
+and source code for the FRC code.  The library makes calls into a JNI layer which talks to C++ code on the robot.  The simulator
+simply mocks out those JNI calls so that other tools can store and retrieve the values used by the robot code.  
+<br><br>
+Doing this alone provides enough information to test the basic functionality for a robot, weeks before anything real is ready to test.
+You can test basic joystick inputs, basic autonomous, and make sure your program does not crash.
+<br><br>
+The library is also very extendable.  You can write "simulators" to hook up sensors to actuators.  For instance, you can say, "Motor 1
+ is connected to encoder 1" so whenever motor 1 moves forwards, the encoders distance will increment as well.  We have also simulated
+ other high level sensors like dynamic limit switches, "If the elevator is above 40 inches, the top limit switch should be pressed, if 
+ its below 0, the lower switch should be pressed."  This allows you to test more complicated algorithms, like PID controllers and safety checks
+
+<br><br>
+<b>
+Note: The phrase "Simulator" is a slight stretch,
+this does not do a full simulation of motor or pneumatic characteristics, just simple proportional outputs.  I.E. if the program sets a
+motor speed to 0.1, the simulator will move it forwards at 10% of max speed.  If the program sets the motor speed to -1.0, the simulator
+will move the backwards ad 100% max speed.  This is not the way motors work in the real world, but good enough for what you need to test
+between week 1 and week 5.5   
+</b>
+
+</body>
+</html>

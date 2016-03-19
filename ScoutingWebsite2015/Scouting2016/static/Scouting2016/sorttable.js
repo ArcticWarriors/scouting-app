@@ -37,6 +37,7 @@ function initFilterPopover(target, content) {
 					search = parseInt(search);
 					$(_this).popover('hide');
 					$(target).prop("data-search", search).prop("data-comparrison", comparrisonSelected).prop("data-sorting", sortSelected);
+                    if (search == NaN) { $(target).prop("data-search", ""); }
 					filterTable(search, comparrisonSelected, $(target).index(), sortSelected);
 					initFilterPopover(_this, content);
 			});
@@ -77,7 +78,7 @@ function filterTable(search, comparrison, column, sorting) {
 				filterExists = currFilter.indexOf(column) != -1;
 			}
 		
-      var passesFilter = compare(teamData[i][column].trim(), comparrison, search);	
+      var passesFilter = compare(teamData[i][column], comparrison, search);	
       	if (!passesFilter && !filterExists) {
 					currRow.css("display", "none").prop("data-filtered", currFilter + column + ",");
 			} else if(passesFilter && filterExists) {
@@ -101,9 +102,8 @@ function filterTable(search, comparrison, column, sorting) {
 		}
 
 		// Comparrison with string operator
-		function compare(a, operator, b){
-			console.log(parseInt(a), operator, parseInt(b));
-			if (b === undefined || b == null || b == "")
+		function compare(a, operator, b) {
+			if (b === undefined || b == null || b == "" || b === NaN)
 				return true;
 			else
 				{
