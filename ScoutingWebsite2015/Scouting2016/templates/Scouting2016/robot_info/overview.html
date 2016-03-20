@@ -2,12 +2,7 @@
 <head>
 
 {% load staticfiles %}
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<script src="{% static 'Scouting2016/jquery-2.2.1.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
-<script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
-<script src="{% static 'Scouting2016/site.js' %}"></script>
+{% include "Scouting2016/standard_header.html" %}
 <title>Robot Info</title>
 <style>
 .gridpic {
@@ -31,13 +26,13 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div style="background-image:url({% static 'Scouting2016/ourbot_overroller' %});" class="gridpic"></div>
+        <div style="background-image:url({% static 'Scouting2016/robot_info/ourbot_overroller.jpg' %});" class="gridpic"></div>
       </div>
       <div class="col-md-4">
-        <div style="background-image:url({% static 'Scouting2016/ourbot_bot' %})" class="gridpic"></div>
+        <div style="background-image:url({% static 'Scouting2016/robot_info/ourbot_bot.jpg' %})" class="gridpic"></div>
       </div>
       <div class="col-md-4">
-        <div style="background-image:url({% static 'Scouting2016/ourbot_tower' %})" class="gridpic"></div>
+        <div style="background-image:url({% static 'Scouting2016/robot_info/ourbot_tower.jpg' %})" class="gridpic"></div>
       </div>
     </div>
     <div class="row">
@@ -75,7 +70,7 @@
     <div class="row">
       <div class="col-md-6">
         <h2 id="" class="text-center">
-          Autonomous
+          <a href="{% url 'Scouting2016:robot_display_software' %}">Autonomous</a>
         </h2>
         <p class="text-center">
           Configurable autonomous modes, selected from the SmartDashboard.
@@ -135,7 +130,7 @@
     <div class="row">
         <div class="col-md-4">
           <h2 id="" class="text-center">
-            Drive Train
+            <a href="{% url 'Scouting2016:robot_display_drivetrain' %}">Drive Train</a>
           </h2>
           <p class="text-center">
             6 Wheel Tank Drive
@@ -151,7 +146,7 @@
         </div>
         <div class="col-md-4">
           <h2 id="" class="text-center">
-            Boulder Manipulation
+            <a href="{% url 'Scouting2016:robot_display_overroller' %}">Boulder Manipulation</a>
           </h2>
           <p class="text-center">
             Over-Roller
@@ -167,7 +162,7 @@
         </div>
         <div class="col-md-4">
           <h2 id="" class="text-center">
-            Tower Scaling
+            <a href="{% url 'Scouting2016:robot_display_scaling' %}">Tower Scaling</a>
           </h2>
           <p class="text-center">
             Extension-Ladder Inspired

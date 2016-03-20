@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Avg, Sum
 import sys
+from django.template.defaultfilters import default
 
 
 def __get_alliance_results(match, teams,):
@@ -165,13 +166,27 @@ class Team(models.Model):
 
     teamNumber = models.IntegerField()
 
-    homepage = models.CharField(max_length=1000)
     teamOrganized = models.CharField(max_length=1000)
     teamLikeable = models.CharField(max_length=1000)
     teamSwag = models.CharField(max_length=1000)
     teamAwards = models.CharField(max_length=1000)
-    teamAbilities = models.CharField(max_length=1000)
-    teamAlliances = models.CharField(max_length=1000)
+    teamAlliances = models.CharField(max_length=1000, default="")
+    
+    drive = models.CharField(max_length=1000, default="no")
+    Auto = models.CharField(max_length=1000, default="no")
+    ScoreHigh = models.CharField(max_length=1000, default="no")
+    ScoreLow = models.CharField(max_length=1000, default="no")
+    portcullis = models.CharField(max_length=1000, default="no")
+    cheval = models.CharField(max_length=1000, default="no")
+    moat = models.CharField(max_length=1000, default="no")
+    ramparts = models.CharField(max_length=1000, default="no")
+    sally = models.CharField(max_length=1000, default="no")
+    drawbridge = models.CharField(max_length=1000, default="no")
+    rockwall = models.CharField(max_length=1000, default="no")
+    rough = models.CharField(max_length=1000, default="no")
+    lowBar = models.CharField(max_length=1000, default="no")
+    scale = models.CharField(max_length=1000, default="no")
+    
     teamAlly174 = models.CharField(max_length=3)
     teamOperational = models.CharField(max_length=3)
     teamOperationProblems = models.CharField(max_length=1000)

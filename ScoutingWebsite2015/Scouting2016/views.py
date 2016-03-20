@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
 from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch, \
-    validate_match
+    validate_match, TeamComments
 import operator
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -267,7 +267,47 @@ def robot_display(request):
     as an HTML page, as it is just meant to show hard-coded information.
     """
 
-    return render(request, 'Scouting2016/RobotDisplay.html')
+    return render(request, 'Scouting2016/robot_info/overview.html')
+
+
+def robot_display_software(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/software.html')
+
+
+def robot_display_scaling(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/scaling.html')
+
+
+def robot_display_overroller(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/overroller.html')
+
+
+def robot_display_drivetrain(request):
+
+    """
+    robot_display currently has no python implementation. It simply needs to load correctly
+    as an HTML page, as it is just meant to show hard-coded information.
+    """
+
+    return render(request, 'Scouting2016/robot_info/drivetrain.html')
 
 
 def view_team(request, team_number):
@@ -293,6 +333,8 @@ def view_team(request, team_number):
     for sr in this_team.scoreresult_set.all():
         score_result_list.append(sr)
 
+    team_comments_search = TeamComments.objects.filter(team=this_team)
+
     context = {}
 #     context['team_number'] = this_team.teamNumber
     context['team'] = this_team
@@ -300,6 +342,8 @@ def view_team(request, team_number):
     context['score_result_list'] = score_result_list
     context['team_number'] = team_number
     context['pictures'] = picture_list
+    if len(team_comments_search) != 0:
+        context['team_comments'] = team_comments_search.all()
 
     return render(request, 'Scouting2016/TeamPage.html', context)
 
@@ -605,7 +649,6 @@ def info_for_form_edit(request):
 
     return render(request, 'Scouting2016/info_for_form_edit.html')
 
-
 @permission_required('auth.can_modify_model', login_url=login_reverse)
 def show_add_form(request):
 
@@ -638,7 +681,6 @@ def show_edit_form(request):
     context['lock_team_and_match'] = True
 
     return render(request, 'Scouting2016/inputForm.html', context)
-
 
 def submit_new_match(request):
     """
@@ -677,6 +719,9 @@ def submit_new_match(request):
 
         return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
 
+def submit_pit_scouting(request):
+    
+    return render(request, 'Scouting2016/inputForm.html')
 
 def edit_prev_match(request):
     """
@@ -702,40 +747,66 @@ def edit_prev_match(request):
 
 
 @permission_required('auth.can_modify_model', login_url=login_reverse)
-def show_add_pit(request, team_number):
+def info_for_pit_edit(request):
+    return render(request, 'Scouting2016/info_for_pit_edit.html')
 
+@permission_required('auth.can_modify_model', login_url=login_reverse)
+def show_add_pit(request):
+    team =  request.GET["team_number"]
+    print team;
     context = {}
-    context['team'] = Team.objects.get(teamNumber=team_number)
+    context['team'] = Team.objects.get(teamNumber=team)
     context['submit_pit'] = "/2016/submit_pit"
     return render(request, 'Scouting2016/pitForm.html', context)
 
 
 def submit_new_pit(request):
-    teamNumber = request.POST['team_number']
-    team = Team.objects.get(teamNumber=teamNumber)
-    team.homepage = request.POST['notes_homepage']
+    team = Team.objects.get(teamNumber=request.POST['team_number'])
+    print team;
     team.teamOrganized = request.POST['notes_organized']
     team.teamLikeable = request.POST['notes_openness']
     team.teamSwag = request.POST['notes_swag']
     team.teamAwards = request.POST['notes_awards']
-    team.teamAbilities = request.POST['notes_abiltiies']
     team.teamAlliances = request.POST['notes_alliances']
     team.teamAlly174 = request.POST['ally_174']
     team.teamOperational = request.POST['function']
     team.teamOperationProblems = request.POST['notes_functionality']
     team.teamFirstYear = request.POST['first_year']
+    
+    team.drive = request.POST['drive']
+    team.Auto = request.POST['Auto']
+    team.ScoreHigh = request.POST['ScoreHigh']
+    team.ScoreLow = request.POST['ScoreLow']
+    team.portcullis = request.POST['portcullis']
+    team.cheval = request.POST['cheval']
+    team.moat = request.POST['moat']
+    team.ramparts = request.POST['ramparts']
+    team.sally = request.POST['sally']
+    team.drawbridge = request.POST['drawbridge']
+    team.rockwall = request.POST['rockwall']
+    team.rough = request.POST['rough']
+    team.lowBar = request.POST['lowBar']
+    team.scale = request.POST['scale']
+    
     team.save()
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))
-  
+
+
 def get_hovercard(request):
 
-    context = {}
     type = request.GET.get('type')
     if type == "colSelectContent":
       return render(request, 'Scouting2016/hovercards/colSelectContent.html')
     elif type == "filterContent":
       context['filterType'] = request.GET.get('filterType')
       return render(request, 'Scouting2016/hovercards/filterContent.html', context)
-    
-    
+
+
+def add_team_comments(request, team_number):
+    comments = request.POST["team_comments"]
+    team = Team.objects.get(teamNumber=team_number)
+    teamComments = TeamComments.objects.create(team=team, comment=comments)
+    print teamComments
+
+    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_number,)))
