@@ -762,7 +762,6 @@ def show_add_pit(request):
 
 def submit_new_pit(request):
     team = Team.objects.get(teamNumber=request.POST['team_number'])
-    print team;
     team.teamOrganized = request.POST['notes_organized']
     team.teamLikeable = request.POST['notes_openness']
     team.teamSwag = request.POST['notes_swag']

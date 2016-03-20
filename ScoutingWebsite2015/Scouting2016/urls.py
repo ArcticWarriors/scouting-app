@@ -29,7 +29,9 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^robot_display/drivetrain$', views.robot_display_drivetrain, name='robot_display_drivetrain'),
 
                url(r'^auth_login$', views.auth_login, name='auth_login'),
-
+               
+               url(r'^bookmark_team_page$', views.bookmark_team_page, name='bookmark'),
+               
                # Pit Form
                url(r'^pre_pit_form$', views.info_for_pit_edit, name='info_for_pit_edit'),
                url(r'^pit_form$', views.show_add_pit, name='show_add_pit'),
