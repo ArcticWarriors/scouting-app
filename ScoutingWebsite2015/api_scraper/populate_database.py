@@ -30,7 +30,6 @@ def update_team_info(event_code, json_path):
 
         team, _ = Team.objects.get_or_create(teamNumber=team_number)
         team.teamHomepage = team_info["website"] if team_info["website"] != None else "NA"
-        print team.teamHomepage
         team.teamFirstYear = team_info["rookieYear"]
         team.save()
         print "Updating info for team %s" % team_number
@@ -116,6 +115,8 @@ def update_matchresults(event_code, json_path):
                 official_match.redTowerFaceC = alliance_info["towerFaceC"]
                 official_match.redFouls = alliance_info["foulCount"]
                 official_match.redTechFouls = alliance_info["techFoulCount"]
+                official_match.redTeleDefenseCrossings = alliance_info["teleopCrossingPoints"] / 5
+                print official_match.redTeleDefenseCrossings
 
                 official_match.redDefense2Name = defense_name_lookup[alliance_info["position2"]]
                 official_match.redDefense3Name = defense_name_lookup[alliance_info["position3"]]
@@ -137,6 +138,7 @@ def update_matchresults(event_code, json_path):
                 official_match.blueTowerFaceC = alliance_info["towerFaceC"]
                 official_match.blueFouls = alliance_info["foulCount"]
                 official_match.blueTechFouls = alliance_info["techFoulCount"]
+                official_match.blueTeleDefenseCrossings = alliance_info["teleopCrossingPoints"] / 5
 
                 official_match.blueDefense2Name = defense_name_lookup[alliance_info["position2"]]
                 official_match.blueDefense3Name = defense_name_lookup[alliance_info["position3"]]
@@ -208,8 +210,8 @@ if __name__ == "__main__":
     print event_code
     print databse_path
 
-#     add_users()
+    add_users()
     update_team_info(event_code, json_path)
-#     update_schedule(event_code, json_path)
-#     update_matchresults(event_code, json_path)
+    update_schedule(event_code, json_path)
+    update_matchresults(event_code, json_path)
     add_snobot()
