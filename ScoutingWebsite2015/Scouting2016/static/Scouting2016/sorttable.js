@@ -68,11 +68,13 @@ function graphSelectedURL() {
 		var teams = [];
 		var fields = [];
 		var teamData = getTableData($("table"));
+		var teamnum = $("col#teamnum").index();
 		teamData.splice(0,1);
 		var rows = $("table").find("tr");
+		
 		for (var i=0; i<teamData.length; i++) {
 			if (rows.eq(i+1).css("display") != "none") {
-				teams.push(teamData[i][0]);
+				teams.push(teamData[i][teamnum]);
 			}
 		}
 		$("col").each(function(){
