@@ -587,7 +587,7 @@ def upload_image(request):
     f = request.FILES['image_name']
 
     static_dir = 'Scouting2016/static/'
-    out_file_name = static_dir + 'Scouting2016/teambotimages/%s_{0}%s' % (team_numer, os.path.splitext(f.name)[1])
+    out_file_name = static_dir + 'Scouting2016/robot_pics/%s_{0}%s' % (team_numer, os.path.splitext(f.name)[1])
 
     # Look for the next available number, i.e. if there are [#_0, #_1, ..., #_10], this would make the new picture #_11
     picture_number = 0
