@@ -794,7 +794,7 @@ def submit_new_pit(request):
 
 
 def get_hovercard(request):
-
+    context = {}
     type = request.GET.get('type')
     if type == "colSelectContent":
       return render(request, 'Scouting2016/hovercards/colSelectContent.html')
