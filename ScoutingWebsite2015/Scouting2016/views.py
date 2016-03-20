@@ -450,8 +450,8 @@ def all_teams(request):
         team_with_avg["teamNumber"] = team.teamNumber
         team_with_avg["matches_scouted"] = team.scoreresult_set.count()
         team_with_avg["avgerages"] = metrics
+        team_with_avg["bookmark"] = team.bookmark
         teams_with_avg.append(team_with_avg)
-
     context = {"teams": teams_with_avg}
 
     return render(request, 'Scouting2016/AllTeams.html', context)
@@ -810,3 +810,8 @@ def add_team_comments(request, team_number):
     print teamComments
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_number,)))
+def bookmark_team_page(request):
+    team = Team.objects.get(teamNumber=request.POST['team_number'])
+    team.bookmark = request.POST['bookmark']
+    team.save()
+    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))

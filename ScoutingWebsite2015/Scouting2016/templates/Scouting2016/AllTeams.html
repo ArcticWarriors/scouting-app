@@ -72,6 +72,7 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 						<col id="portcullis" data-graphable=true>
 					</colgroup>
 					<tr>
+						<th class="col-numeric"><a role="button" tabindex=0>Bookmark</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Scores</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Misses</a></th>
@@ -91,8 +92,9 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 						<th class="col-numeric"><a role="button" tabindex=0>Portcullis</a></th>
 					</tr>
 					{% for team in teams %}
-
+						
 					<tr>
+							<td>{{team.bookmark}}</td>
 							<td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
 							<td>{{team.avgerages.low_score_successful__avg}}</td>
 							<td>{{team.avgerages.low_score_fail__avg}}</td>
