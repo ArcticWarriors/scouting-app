@@ -1,9 +1,8 @@
-{% if type == 'numericColFilter' or type == 'textColFilter' %}
 <div class="form-group">
     <div>
       <label>Search</label>
     </div>
-    {% if type == 'numericColFilter' %}
+    {% if filterType == 'numeric' %}
       <select class="selectpicker" data-width="25%" id="operator">
         <option value="<">&lt;</option>
         <option value="<=">&lt;=</option>
@@ -28,4 +27,3 @@
       </div>
     </div>
 </div>
-{% endif %}

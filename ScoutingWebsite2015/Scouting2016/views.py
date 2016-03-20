@@ -731,7 +731,11 @@ def submit_new_pit(request):
 def get_hovercard(request):
 
     context = {}
-    context['type'] = request.GET.get('type')
-    return render(request, 'Scouting2016/hovercards/filterContent.html', context)
+    type = request.GET.get('type')
+    if type == "colSelectContent":
+      return render(request, 'Scouting2016/hovercards/colSelectContent.html')
+    elif type == "filterContent":
+      context['filterType'] = request.GET.get('filterType')
+      return render(request, 'Scouting2016/hovercards/filterContent.html', context)
     
     

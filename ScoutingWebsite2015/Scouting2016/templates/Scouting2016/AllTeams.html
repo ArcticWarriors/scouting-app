@@ -32,6 +32,9 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 	outline: none;
 	vertical-align: middle;
 }
+	.hide {
+		display:none;
+	}
 </style>
 </head>
 
@@ -43,18 +46,37 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 			<div class="panel-heading" style="overflow:auto;">
 				<h2>List of All Teams</h2>
 				<div class="btn-group pull-right">
-					<a href="#" class="btn btn-default colSelect">Select Columns</a>
-					<a href="#" class="btn btn-default">Graph Data</a>
+					<a href="#" id="col-select" class="btn btn-default">Select Columns</a>
+					<a href="#" id="graph-data" class="btn btn-default">Graph Data</a>
 				</div>
 			</div>
 			<div style="overflow-x: auto">
 				<table class="sortable sortable-filterable no-manual-sort table table-hover">
+					<colgroup>
+						<col id="teamnum" data-graphable=false>
+						<col id="low_score_successful" data-graphable=true>
+						<col id="low_score_fail" data-graphable=true>
+						<col id="high_score_successful" data-graphable=true>
+						<col id="high_score_fail" data-graphable=true>
+						<col id="auto_score_low" data-graphable=true>
+						<col id="auto_score_high" data-graphable=true>
+						<col id="score_tech_foul" data-graphable=true>
+						<col id="cheval_de_frise" data-graphable=true>
+						<col id="ramparts" data-graphable=true>
+						<col id="sally_port" data-graphable=true>
+						<col id="low_bar" data-graphable=true>
+						<col id="rock_wall" data-graphable=true>
+						<col id="draw_bridge" data-graphable=true>
+						<col id="moat" data-graphable=true>
+						<col id="rough_terrain" data-graphable=true>
+						<col id="portcullis" data-graphable=true>
+					</colgroup>
 					<tr>
 						<th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Low goal scores</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Low goal misses</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>High goal scores</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>High goal misses</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Scores</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Misses</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>High Goal Scores</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>High Goal Misses</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Autonomous Low goal</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Autonomous High goal</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Tech. Fouls</a></th>
@@ -92,6 +114,20 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 
 					{% endfor %}
 				</table>
+			</div>
+		</div>
+	</div>
+	<!-- Modal for graph, shown through sorttable.js -->
+	<div class="modal fade" id="team-data-graph" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Team Data Graph</h4>
+				</div>
+				<div class="modal-body">
+					<img id ="tdgimg" src="">
+				</div>
 			</div>
 		</div>
 	</div>

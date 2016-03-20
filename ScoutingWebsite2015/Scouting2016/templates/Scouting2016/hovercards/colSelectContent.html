@@ -1,73 +1,69 @@
-<form>
+<div class="form-group">
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
+            <div class="panel-heading" role="tab" id="autoHeading">
                 <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Column Type </a>
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#autoCollapse" aria-expanded="true" aria-controls="autoCollapse">Autonomous</a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div id="autoCollapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="autoHeading">
                 <div class="panel-body">
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
+                    <input type="checkbox" value=auto_score_low checked /> Autonomous Low goal<br/>
+                    <input type="checkbox" value=auto_score_high checked /> Autonomous High goal<br/>
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
+            <div class="panel-heading" role="tab" id="goalsHeading">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> Column Type </a>
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#goalsCollapse" aria-expanded="false" aria-controls="goalsCollapse">Goals</a>
                 </h4>
             </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div id="goalsCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="goalsHeading">
                 <div class="panel-body">
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
+                        <input type="checkbox" value=low_score_successful checked /> Low Goal Scores<br/>
+                        <input type="checkbox" value=low_score_fail checked /> Low Goal Misses<br/>
+                        <input type="checkbox" value=high_score_successful checked /> High Goal Scores<br/>
+                        <input type="checkbox" value=high_score_fail checked /> High Goal Misses<br/>
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
+            <div class="panel-heading" role="tab" id="defencesHeading">
                 <h4 class="panel-title">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Column Type </a>
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#defencesCollapse" aria-expanded="false" aria-controls="defencesCollapse">Defences</a>
                 </h4>
             </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div id="defencesCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="defencesHeading">
                 <div class="panel-body">
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column 
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
-                    <label class="checkbox text-center">
-                        <input type="checkbox" /> Column
-                    </label>
+                    <input type="checkbox" value=cheval_de_frise checked /> Cheval de Frise<br/>
+                    <input type="checkbox" value=ramparts checked /> Ramparts<br/>
+                    <input type="checkbox" value=sally_port checked /> Sally Port<br/>
+                    <input type="checkbox" value=low_bar checked /> Low Bar<br/>
+                    <input type="checkbox" value=rock_wall checked /> Rock Wall<br/>
+                    <input type="checkbox" value=draw_bridge checked /> Drawbridge<br/>
+                    <input type="checkbox" value=moat checked /> Moat<br/>
+                    <input type="checkbox" value=rough_terrain checked /> Rough Terrain<br/>
+                    <input type="checkbox" value=portcullis checked /> Portcullis<br/>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="generalHeading">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#generalCollapse" aria-expanded="false" aria-controls="generalCollapse">General</a>
+                </h4>
+            </div>
+            <div id="generalCollapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="generalHeading">
+                <div class="panel-body">
+                    <input type="checkbox" value=score_tech_foul checked /> Tech. Fouls<br/>
+                    <input type="checkbox" value=teamnum checked /> Team Number<br/>
                 </div>
             </div>
         </div>
     </div>
-</form>
+    <div style="margin-top: 20px;">
+          <button type="button" class="btn btn-default btn-apply" style="width:48%">Apply</button>
+          <button type="button" class="btn btn-danger btn-cancel" style="width:49%">Cancel</button>
+      </div>
+</div>

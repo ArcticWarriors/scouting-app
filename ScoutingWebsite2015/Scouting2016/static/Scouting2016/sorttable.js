@@ -1,17 +1,87 @@
-// SortTable extension for column filtering via popover by ProgBot
-
+// SortTable extension for column filtering, selection, and graphing of unfiltered, graphable data by ProgBot
 $( document ).ready (function() {
 	// Get hovercards HTML
-	var numericFilter;
+	var numericFilter, colSelect;
 	jQuery.ajaxSetup({async:false});
-	$.get("/2016/hovercards?type=numericColFilter", function(data){numericFilter = data;});
+	$.get("/2016/hovercards?type=filterContent&filterType=numeric", function(data){numericFilter = data;});
+	$.get("/2016/hovercards?type=colSelectContent", function(data){colSelect = data;});
 	jQuery.ajaxSetup({async:true});
 	// Initial filter popover initialization & default filter values
 	$("th").each(function() {
 		initFilterPopover(this, numericFilter);
 	}).prop("data-comparrison", "=").prop("data-sorting", "default");
 	$("tbody > tr").prop("data-filtered", "");
+	// Show graph
+	$("#graph-data").on("click", function( ){
+		$("#tdgimg").prop("src", graphSelectedURL());
+		$('#team-data-graph').modal('show');
+	});
+	//Init Column Selection Popover
+	initColSelPopover($("#col-select"), colSelect);
 });
+
+function initColSelPopover(target, content) {
+	$(target).popover({
+			trigger: "manual",
+			html: true,
+			animation:false,
+			placement:"bottom",
+			container: "body",
+			title:'<div style="font-weight: bold">Filter ' + $(target).text() + '</div>',
+			content:content
+	}).on("click", function () {
+			var _this = this;
+			// Remove old popovers
+			$('.popover').remove();
+			// Show popover for this header
+			$(this).popover("show");
+			// Determine whether the boxes should be checked
+			$("input[type='checkbox']").each(function(){
+						if ($("col[id=" + $(this).prop("value") + "]").css("display") == "none") {
+							$(this).prop("checked", false);
+						}
+			});
+			// Handling button clicks
+			$(".btn-cancel").on("click", function () {
+					$(_this).popover('hide');
+					// Required for some reason, or else the popover won't work once clicked already
+					initColSelPopover(_this, content);
+			});
+			$(".btn-apply").on("click", function () {
+					$("input[type='checkbox']").each(function(){
+						var c = $("col[id=" + $(this).prop("value") + "]").index() + 1;
+						if (!$(this).prop("checked")) {
+							$('td:nth-child(' + c + '),th:nth-child(' + c + ')').hide();
+							$("col[id=" + $(this).prop("value") + "]").hide();
+						} else {
+							$('td:nth-child(' + c + '),th:nth-child(' + c + ')').show();
+							$("col[id=" + $(this).prop("value") + "]").show();
+						}
+					});
+					$(_this).popover('hide');
+					initColSelPopover(_this, content);
+			});
+	});
+}
+
+function graphSelectedURL() {
+		var teams = [];
+		var fields = [];
+		var teamData = getTableData($("table"));
+		teamData.splice(0,1);
+		var rows = $("table").find("tr");
+		for (var i=0; i<teamData.length; i++) {
+			if (rows.eq(i+1).css("display") != "none") {
+				teams.push(teamData[i][0]);
+			}
+		}
+		$("col").each(function(){
+			if ($(this).css("display") != "none" && $(this).attr("data-graphable") == "true") {
+				fields.push($(this).attr("id"));
+			} 
+		});
+		return "gen_graph/" + teams + "/" + fields;
+}
 
 function initFilterPopover(target, content) {
 	var comparrisonSelected, sortSelected;
@@ -64,11 +134,9 @@ function initFilterPopover(target, content) {
 function filterTable(search, comparrison, column, sorting) {
 		var colName = $(column).text();
 		// Get table data
-		var teamTable = $("table");
-		var teamTableRows = teamTable.find("tr");
-		var teamData = getTableData(teamTable);
+		var teamTableRows = $("table").find("tr");
+		var teamData = getTableData($("table"));
 		teamData.splice(0,1);
-		
 		// Do the filter
 		for (var i=0; i<teamData.length; i++){
 			var currRow = teamTableRows.eq(i + 1);
@@ -124,18 +192,19 @@ function filterTable(search, comparrison, column, sorting) {
 					}
 				}
 		}
-		// Returns data from table as array
-		function getTableData(table) {
-				var data = [];
-				table.find('tr').each(function (rowIndex, r) {
-						var cols = [];
-						$(this).find('th,td').each(function (colIndex, c) {
-								cols.push(c.textContent.trim());
-						});
-						data.push(cols);
+}
+
+// Returns data from table as array
+function getTableData(table) {
+		var data = [];
+		table.find('tr').each(function (rowIndex, r) {
+				var cols = [];
+				$(this).find('th,td').each(function (colIndex, c) {
+						cols.push(c.textContent.trim());
 				});
-				return data;
-		}
+				data.push(cols);
+		});
+		return data;
 }
 
 /*
