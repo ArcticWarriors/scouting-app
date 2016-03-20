@@ -20,8 +20,13 @@ table {
 {% include "Scouting2016/banner.html" %}
 
 
-<h2>Scouted Matches</h2>
-	<table border="1">
+<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading" style="overflow:auto;">
+				<h2>Scouted Matches</h2>
+			</div>
+			<div style="overflow-x: auto">
+				<table class="table table-hover">
 		<tr>
 			<th>Match Number</th>
             <th>Valid Data</th>
@@ -40,10 +45,15 @@ table {
 		</tr>
 		{% endfor %}
 	</table>
+</div>
+</div>
  
-<h2>UnScouted Matches</h2>
-
- <table border="1">
+<div class="panel panel-default">
+			<div class="panel-heading" style="overflow:auto;">
+				<h2>Unscouted Matches</h2>
+			</div>
+			<div style="overflow-x: auto">
+				<table class="table table-hover">
   <tr>
    <th>Match Number</th>
    <th>Red 1</th>
@@ -66,6 +76,8 @@ table {
   </tr>
   {% endfor %}
  </table>
-
+</div>
+</div>
+</div>
 </body>
 </html>

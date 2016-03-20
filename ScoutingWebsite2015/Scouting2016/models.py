@@ -167,6 +167,7 @@ class Team(models.Model):
     teamNumber = models.IntegerField()
 
     bookmark = models.CharField(max_length=1000, default="no")
+
     
     teamOrganized = models.CharField(max_length=1000)
     teamLikeable = models.CharField(max_length=1000)

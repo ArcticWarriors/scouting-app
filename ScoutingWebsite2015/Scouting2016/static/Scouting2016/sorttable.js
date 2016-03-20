@@ -125,9 +125,11 @@ function initFilterPopover(target, content) {
 			});
 			// Initialize bootstrap-select styling for select elements
 			$('.selectpicker').selectpicker({style: 'btn-default', size: false});
-			// Fill dropdowns using remembered value
-			$('#sorting').selectpicker('val', $(target).prop("data-sorting"));
-			$('#operator').selectpicker('val', $(target).prop("data-comparrison"));
+			// Fill dropdowns & default selection var using remembered value
+			sortSelected = $(target).prop("data-sorting");
+			$('#sorting').selectpicker('val', sortSelected);
+			comparrisonSelected = $(target).prop("data-comparrison");
+			$('#operator').selectpicker('val', comparrisonSelected);
 	});
 }
 
