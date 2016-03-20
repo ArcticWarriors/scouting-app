@@ -53,6 +53,7 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 			<div style="overflow-x: auto">
 				<table class="sortable sortable-filterable no-manual-sort table table-hover">
 					<colgroup>
+                       <col id="bookmark" data-graphable=false>
 						<col id="teamnum" data-graphable=false>
 						<col id="low_score_successful" data-graphable=true>
 						<col id="low_score_fail" data-graphable=true>
@@ -72,7 +73,7 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 						<col id="portcullis" data-graphable=true>
 					</colgroup>
 					<tr>
-						<th class="col-numeric"><a role="button" tabindex=0>Bookmark</a></th>
+						<th class="col-numeric"><a role="button" tabindex=0>Bookmarked</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Scores</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Misses</a></th>
