@@ -120,25 +120,67 @@ No matches scouted
 </table>
 
 <h2>Additional Info.</h2>
-<b><big>Tech fouls: {{metrics.score_tech_foul__sum}}</big></b>
+<h3>Tech fouls: {{metrics.score_tech_foul__sum}}</h3></b>
 
 <h2> Pit Scouting </h2>
 
-<a href = "/2016/pit_form/{{team_number}}">Add or edit pit info</a><br>
-<b> Was the team organized? </b><br>
+<h4> Was the team organized? </h4>
 {{team.teamOrganized}}<br>
-<b> Was the team likeable?  </b><br>
+<h4> Was the team likeable?  </h4>
 {{team.teamLikeable}}<br>
-<b> Did the team have swag? </b><br>
+<h4> Did the team have swag? </h4>
 {{team.teamSwag}}<br>
-<b> What could the robot do?</b><br>
-{{team.teamAbilities}}<br>
-<b> Who was considering allying them? </b><br>
+<h4> What could the robot do?</h4>
+	<div class="container-fluid">
+		<div class="row">
+     		<div class="col-md-2"><b>Drive Exceptionally? </b></div>
+     		<div class="col-md-1">{{team.drive}}</div>
+		    <div class="col-md-2"><b>Have Autonomous? </b></div>
+		    <div class="col-md-1">{{team.Auto}}</div>
+		</div>
+		<div class="row">
+		    <div class="col-md-2"><b>Score High? </b></div>
+		    <div class="col-md-1">{{team.ScoreHigh}}</div>
+		    <div class="col-md-2"><b>Score Low? </b></div>
+		    <div class="col-md-1">{{team.ScoreLow}}</div>
+		</div>
+		<div class="row">
+		    <div class="col-md-2"><b>Cross Portcullis? </b></div>
+		    <div class="col-md-1">{{team.portcullis}}</div>
+		    <div class="col-md-2"><b>Cross CDF? </b></div>
+		    <div class="col-md-1">{{team.cheval}}</div>
+		</div>
+		<div class="row">
+		    <div class="col-md-2"><b>Cross Moat? </b></div>
+		    <div class="col-md-1">{{team.moat}}</div>
+		    <div class="col-md-2"><b>Cross Ramparts? </b></div>
+		    <div class="col-md-1">{{team.ramparts}}</div>
+		</div>
+		<div class="row">
+		    <div class="col-md-2"><b>Cross Sally Port? </b></div>
+		    <div class="col-md-1">{{team.sally}}</div>
+		    <div class="col-md-2"><b>Cross Draw Bridge? </b></div>
+		    <div class="col-md-1">{{team.drawbridge}}</div>
+		</div>
+		<div class="row">
+		    <div class="col-md-2"><b>Cross Rock Wall? </b></div>
+		    <div class="col-md-1">{{team.rockwall}}</div>
+		    <div class="col-md-2"><b>Cross Rough Terrain? </b></div>
+		    <div class="col-md-1">{{team.rough}}</div>
+		</div>
+		<div class="row">
+		    <div class="col-md-2"><b>Cross Low Bar? </b></div>
+		    <div class="col-md-1">{{team.lowBar}}</div>
+		    <div class="col-md-2"><b>Scale? </b></div>
+		    <div class="col-md-1">{{team.scale}}</div>
+		</div>
+	 </div> 
+<h4> Who was considering allying them?</h4>
 {{team.teamAlliances}}<br>
-<b> Would they ally us? :</b> {{team.teamAlly174}}<br>
-<b> Was it their first year? :</b> {{team.teamFirstYear}}<br>
-<b> Was their robot operational? :</b> {{team.teamOperational}}<br>
-<b> Any operation problems? :</b> <br>
+<h4> Would they ally us? :</h4> {{team.teamAlly174}}<br>
+<h4> Was it their first year? :</h4> {{team.teamFirstYear}}<br>
+<h4> Was their robot operational? :</h4> {{team.teamOperational}}<br>
+<h4> Any operation problems? :</h4> <br>
 {{team.teamOperationProblems}}<br>
 </body>
 </html>

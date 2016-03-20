@@ -12,9 +12,11 @@ urlpatterns = [url(r'^$', views.index, name='index'),
 
                # Add/Edit Form
                url(r'^form$', views.show_add_form, name='showForm'),
+               
                url(r'^edit_form$', views.show_edit_form, name='show_edit_form'),
-               url(r'^pre_edit_form', views.info_for_form_edit, name='info_for_form_edit'),
+               url(r'^pre_edit_form$', views.info_for_form_edit, name='info_for_form_edit'),
                url(r'^submit_form$', views.submit_new_match, name='show_add_form'),
+               
                url(r'^submit_edit$', views.edit_prev_match, name='edit_form'),
                url(r'^showLogin/$', views.showLogin, name='showLogin'),
                url(r'^log_user_out$', views.log_user_out, name='log_user_out'),
@@ -29,7 +31,8 @@ urlpatterns = [url(r'^$', views.index, name='index'),
                url(r'^auth_login$', views.auth_login, name='auth_login'),
 
                # Pit Form
-               url(r'^pit_form/(?P<team_number>[0-9]+)$', views.show_add_pit, name='show_add_pit'),
+               url(r'^pre_pit_form$', views.info_for_pit_edit, name='info_for_pit_edit'),
+               url(r'^pit_form$', views.show_add_pit, name='show_add_pit'),
                url(r'^submit_pit$', views.submit_new_pit, name='submit_new_pit'),
 
                # Normal Pages

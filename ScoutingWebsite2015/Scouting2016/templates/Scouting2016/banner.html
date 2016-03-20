@@ -24,6 +24,7 @@
             {% if "auth.can_modify_model" in perms %}
             <li> <a href="{% url 'Scouting2016:showForm' %}">Add Match</a> </li>
             <li> <a href="{% url 'Scouting2016:info_for_form_edit' %}">Edit Match</a> </li>
+            <li> <a href="{% url 'Scouting2016:info_for_pit_edit' %}">Edit Pit</a> </li>
             <li> <a href="{% url 'Scouting2016:log_user_out' %}">Logout</a> </li>
             {% elif user.is_authenticated %}
             <li> <a href="{% url 'Scouting2016:log_user_out' %}">Logout</a> </li>
