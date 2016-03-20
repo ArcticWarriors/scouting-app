@@ -19,12 +19,11 @@ def __get_alliance_results(match, teams,):
             sr = sr_search[0]
             high_goals += sr.high_score_successful
             low_goals += sr.low_score_successful
-            if  sr.auto_defense == "reach":
+            if sr.auto_defense == "reach":
                 auton_reaches += 1
             elif sr.auto_defense != "no_reach":
                 print sr.auto_defense
                 auton_crossings += 1
-                
 
             for defense in get_flat_defenses():
                 value = getattr(sr, defense)
@@ -33,7 +32,7 @@ def __get_alliance_results(match, teams,):
                     defense_crossing += value
         else:
             error = True
-            
+
     defense_crossing -= auton_crossings
 
     return high_goals, low_goals, defense_crossing, defenses_crossed, error
@@ -93,11 +92,9 @@ def validate_match(match, official_match):
 
     invalid_results = {}
 
-    
     num_results = len(match.scoreresult_set.all())
     if num_results != 6:
         invalid_results["Team Count"] = (6, num_results)
-        
 
     ###################################
     # Red
@@ -132,13 +129,13 @@ def validate_match(match, official_match):
 
     if blue_low_goals != official_match.blueTeleBouldersLow:
         invalid_results["Blue Low Goals"] = (official_match.blueTeleBouldersLow, blue_low_goals, )
-        
+
     if blue_defense_crossings != official_match.blueTeleDefenseCrossings:
         invalid_results["Blue Defense Crossings (Tele)"] = (official_match.blueTeleDefenseCrossings, blue_defense_crossings, )
 
     if len(unexpected_blue_crossings) != 0:
         invalid_results["Blue Available Defenses"] = (blue_actual_defenses, unexpected_blue_crossings)
-        
+
     return len(invalid_results) == 0, invalid_results
 
 
@@ -168,13 +165,13 @@ class Team(models.Model):
 
     bookmark = models.CharField(max_length=1000, default="no")
 
-    
+    teamHomepage = models.CharField(max_length=2000, default="")
     teamOrganized = models.CharField(max_length=1000)
     teamLikeable = models.CharField(max_length=1000)
     teamSwag = models.CharField(max_length=1000)
     teamAwards = models.CharField(max_length=1000)
     teamAlliances = models.CharField(max_length=1000, default="no")
-    
+
     drive = models.CharField(max_length=1000, default="no")
     Auto = models.CharField(max_length=1000, default="no")
     ScoreHigh = models.CharField(max_length=1000, default="no")
@@ -189,7 +186,7 @@ class Team(models.Model):
     rough = models.CharField(max_length=1000, default="no")
     lowBar = models.CharField(max_length=1000, default="no")
     scale = models.CharField(max_length=1000, default="no")
-    
+
     teamAlly174 = models.CharField(max_length=3)
     teamOperational = models.CharField(max_length=3)
     teamOperationProblems = models.CharField(max_length=1000)

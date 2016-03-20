@@ -20,7 +20,7 @@ table {
 
     {% include "Scouting2016/banner.html" %}
     <h1>Team {{ team_number }}</h1>
-    <B> Homepage: </B> <a href = "{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
+    <B> Homepage: </B> <a href = "{{team.teamHomepage}}" target="_blank">{{team.teamHomepage}}</a><br>
     Bookmark?	
     <form action="/2016/bookmark_team_page" method="post">
 		{% csrf_token %}

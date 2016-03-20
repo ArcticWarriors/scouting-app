@@ -29,7 +29,8 @@ def update_team_info(event_code, json_path):
         team_number = team_info["teamNumber"]
 
         team, _ = Team.objects.get_or_create(teamNumber=team_number)
-        team.homepage = team_info["website"] if team_info["website"] != None else "NA"
+        team.teamHomepage = team_info["website"] if team_info["website"] != None else "NA"
+        print team.teamHomepage
         team.teamFirstYear = team_info["rookieYear"]
         team.save()
         print "Updating info for team %s" % team_number
@@ -207,8 +208,8 @@ if __name__ == "__main__":
     print event_code
     print databse_path
 
-    add_users()
+#     add_users()
     update_team_info(event_code, json_path)
-    update_schedule(event_code, json_path)
-    update_matchresults(event_code, json_path)
+#     update_schedule(event_code, json_path)
+#     update_matchresults(event_code, json_path)
     add_snobot()
