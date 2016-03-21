@@ -3,9 +3,16 @@ Created on Feb 28, 2016
 
 @author: PJ
 '''
-import subprocess
-from api_scraper.get_competitions import get_competitions_to_scrape
 import os
+import subprocess
+import sys
+
+# Hack for the command line
+# os.chdir("..")
+sys.path.append(os.path.abspath(".."))
+print "\n".join(x for x in sys.path)
+
+from api_scraper.get_competitions import get_competitions_to_scrape
 
 
 #############################################################

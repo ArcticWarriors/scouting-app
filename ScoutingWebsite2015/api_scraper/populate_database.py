@@ -4,10 +4,14 @@ Created on Mar 8, 2016
 @author: PJ
 '''
 
+import os
+import sys
+
+# Command line hack
+sys.path.append(os.path.abspath(".."))
+
 import json
 from api_scraper import get_users
-import sys
-import os
 
 
 def read_local_copy(input_file):
