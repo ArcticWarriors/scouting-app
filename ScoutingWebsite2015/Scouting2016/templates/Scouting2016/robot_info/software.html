@@ -36,7 +36,7 @@ In order to decrease debugging and compiling times, these commands can be writte
 we are able to FTP into the roboRIO and edit the files without any changes to code, or use our <i>Autonomous Widget</i> to edit them from
 the SmartDashboard.
 
-<h1>Pre-Planed Paths</h1>
+<h1>Pre-Planned Paths</h1>
 Moving an object to a desired position autonomously is hard.  Using a simple PID controller is often not good enough when the range or errors is extreme.
 It is hard to implement a controller that works just as well when you are trying to drive slowly 5 inches as when you are trying to drive 27 feet fast.
 One slightly more advanced approach to solving this problem is to use a technique called <i>Motion Profiling</i>.  We know how we want the robot to drive, so we
@@ -47,13 +47,14 @@ take to drive there, and how we will get there.
 We use a simple P+Feed Forward controller to complete the path.  We take the somewhat naive approach of tuning the controller empirically, by first 
 tuning the Velocity Feed Forward term so, then the Acceleration Feed Forward term, and finally the proportional error.  In order to expedite this process,
 we created a graphing widget for the SmartDashboard so that we can see how our empirical changes are taking effect
-<img src="{% static 'Scouting2016/robot_info/software/path_graph.PNG' %}" />
+
+<center><img src="{% static 'Scouting2016/robot_info/software/path_graph.PNG' %}" /></center>
 
 <h1>Quintic Spline Trajectories</h1>
 <img src="{% static 'Scouting2016/robot_info/software/trajectory_graphs.PNG' %}" />
 <br>
 The pre-planned path technique discussed above is good for single dimension moving.  When you want two dimensionsal driving, the equations become much,
-much more complex.  FRC Team 254, The Cheesy Poofs, tackled this problem for the 2014 game and made their code <a href="https://github.com/Team254/TrajectoryLib">public</a>
+much more complex.  FRC Team 254, The Cheesy Poofs, tackled this problem for the 2014 game and made their code <a href="https://github.com/Team254/TrajectoryLib">public</a>.
 The basic idea is that you specify a series of (X, Y, Angle) coordinates, and their library will calculate the optimal way to get there.  We use a similar controller
 to the path approach to drive through the path.
 
