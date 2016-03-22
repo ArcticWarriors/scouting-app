@@ -68,13 +68,11 @@ function graphSelectedURL() {
 		var teams = [];
 		var fields = [];
 		var teamData = getTableData($("table"));
-		var teamnum = $("col#teamnum").index();
 		teamData.splice(0,1);
 		var rows = $("table").find("tr");
-		
 		for (var i=0; i<teamData.length; i++) {
 			if (rows.eq(i+1).css("display") != "none") {
-				teams.push(teamData[i][teamnum]);
+				teams.push(teamData[i][0]);
 			}
 		}
 		$("col").each(function(){
@@ -177,24 +175,30 @@ function filterTable(search, comparrison, column, sorting) {
 
 		// Comparrison with string operator
 		function compare(a, operator, b) {
-			if (b === undefined || b == null || b == "")
+			if (b === undefined || b === null || b === "") {
 				return true;
-			else
-				b = parseInt(b);
-				{
-					switch (operator) {
-						case "<":
-							return (a < b);
-						case "<=":
-							return (a <= b);
-						case "=":
-							return (a == b);
-						case ">":
-							return (a > b);
-						case ">=":
-							return (a >= b);
+			} else if (operator == "=") {
+				// Parses multiple valid options separated with commas, returns true if any match the given value
+				var bArr = b.split(",");
+				console.log(bArr);
+				for (var i=0; i<bArr.length; i++) {
+					if (a == parseInt(bArr[i].trim())) {
+						return true;
 					}
+				} return false;
+			} else {
+				b = parseInt(b);
+				switch (operator) {
+					case "<":
+						return (a < b);
+					case "<=":
+						return (a <= b);
+					case ">":
+						return (a > b);
+					case ">=":
+						return (a >= b);
 				}
+			}
 		}
 }
 
