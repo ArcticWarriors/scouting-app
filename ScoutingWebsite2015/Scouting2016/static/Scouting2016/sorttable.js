@@ -179,6 +179,12 @@ function filterTable(search, comparrison, column, sorting) {
 			if (b === undefined || b === null || b === "") {
 				return true;
 			} else if (operator == "=") {
+				// Hacky fix for bookmark filtering
+				if (b == "yes" || b == "no") {
+					if ( a == b) {
+						return true;
+					}
+				}
 				// Parses multiple valid options separated with commas, returns true if any match the given value
 				var bArr = b.split(",");
 				console.log(bArr);
