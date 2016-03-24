@@ -95,7 +95,7 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 					{% for team in teams %}
 						
 					<tr>
-							<td>{{team.bookmark}}</td>
+							<td style="{% if team.bookmark == 'yes' %}background-color:#ff5a14; color:white;{% endif %}">{{team.bookmark}}</td>
 							<td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
 							<td>{{team.avgerages.low_score_successful__avg}}</td>
 							<td>{{team.avgerages.low_score_fail__avg}}</td>
