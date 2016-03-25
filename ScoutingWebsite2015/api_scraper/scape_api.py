@@ -88,7 +88,7 @@ def download_schedule(event_code, start, json_path, season="2016", tourny_level=
         os.remove(local_file)
 
 match_start = 0
-download_results = False
+download_results = True
 update_database = True
 
 for json_path, sql_path, ec in get_competitions_to_scrape():

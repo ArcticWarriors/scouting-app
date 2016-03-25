@@ -27,6 +27,10 @@ def update_team_info(event_code, json_path):
     from Scouting2016.models import Team
 
     local_file = json_path + '/{0}_team_query.json'.format(event_code)
+    if not os.path.exists(local_file):
+        print "No team info, skipping population"
+        return
+
     json_struct = read_local_copy(local_file)
 
     for team_info in json_struct["teams"]:
@@ -43,6 +47,10 @@ def update_schedule(event_code, json_path):
     from Scouting2016.models import OfficialMatch, Team
 
     local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
+    if not os.path.exists(local_file):
+        print "No schedule info, skipping population"
+        return
+
     json_struct = read_local_copy(local_file)
 
     schedule_info = json_struct["Schedule"]
@@ -86,6 +94,10 @@ def update_matchresults(event_code, json_path):
     from Scouting2016.models import OfficialMatch
 
     local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
+    if not os.path.exists(local_file):
+        print "No official results, skipping population"
+        return
+
     json_struct = read_local_copy(local_file)
 
     defense_name_lookup = {}
@@ -219,8 +231,8 @@ if __name__ == "__main__":
     print event_code
     print databse_path
 
-    add_users()
+#    add_users()
     update_team_info(event_code, json_path)
     update_schedule(event_code, json_path)
     update_matchresults(event_code, json_path)
-    add_snobot()
+#    add_snobot()

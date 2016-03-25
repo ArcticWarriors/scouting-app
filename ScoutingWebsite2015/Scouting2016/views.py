@@ -586,7 +586,7 @@ def upload_image(request):
     team_numer = request.POST['team_number']
     f = request.FILES['image_name']
 
-    static_dir = 'Scouting2016/static/'
+    static_dir = 'ScoutingWebsite2015/Scouting2016/static/'
     out_file_name = static_dir + 'Scouting2016/robot_pics/%s_{0}%s' % (team_numer, os.path.splitext(f.name)[1])
 
     # Look for the next available number, i.e. if there are [#_0, #_1, ..., #_10], this would make the new picture #_11
@@ -604,6 +604,10 @@ def upload_image(request):
     TeamPictures.objects.create(team=team, path=out_file_name[len(static_dir):])
 
     # Write the file to disk
+    hack_test = "writing picture to %s, " % out_file_name
+    hack_test += str(os.path.exists(out_file_name)) + ", "
+    hack_test += str(os.path.abspath(out_file_name)) + ", " 
+    #raise Exception(hack_test)
     with open(out_file_name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
