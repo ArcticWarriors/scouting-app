@@ -685,7 +685,8 @@ def show_edit_form(request):
     context['match_number'] = request.GET["match_number"]
     context['sr'] = score_results
     context['submit_view'] = '/2016/submit_edit'
-    context['lock_team_and_match'] = True
+    if request.user.username != 'scoutmaster':
+        context['lock_team_and_match'] = True
 
     return render(request, 'Scouting2016/inputForm.html', context)
 
