@@ -371,11 +371,14 @@ def match_display(request, match_number):
     context['match_display'] = match_number
 
     official_match_search = OfficialMatch.objects.filter(matchNumber=match_number)
-    if len(official_match_search) == 1:
+    if len(official_match_search) == 1 and official_match_search[0].hasOfficialData:
+        context['has_official_data'] = True
         official_match = official_match_search[0]
         valid, invalid_fields, = validate_match(this_match, official_match)
         if not valid:
             context['official_mismatch'] = invalid_fields
+    else:
+        context['has_official_data'] = False
 
     return render(request, 'Scouting2016/MatchPage.html', context)
 

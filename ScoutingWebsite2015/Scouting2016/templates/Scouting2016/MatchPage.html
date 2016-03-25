@@ -31,7 +31,7 @@ table {
 	{% include "Scouting2016/banner.html" %}
  
  
-   {% if official_mismatch != None %}
+   {% if official_mismatch != None and has_official_data %}
    <center>
    <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
    <table border=1>
@@ -48,6 +48,10 @@ table {
      </tr>
      {% endfor %}
    </table>
+   </center>
+   {% elif !has_official_data %}
+   <center>
+     <h1> Warning: No official results available. Data from this match cannot be verified. </h1>
    </center>
    {% endif %}
  
