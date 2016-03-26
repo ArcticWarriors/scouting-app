@@ -118,6 +118,7 @@ def update_matchresults(event_code, json_path):
 
         official_match = OfficialMatch.objects.get(matchNumber=match_number)
         official_match.audienceSelectionCategory = audience_defense
+        official_match.hasOfficialData = True
 
         for alliance_info in match_info["Alliances"]:
             color = alliance_info["alliance"]
