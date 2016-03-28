@@ -21,7 +21,7 @@ application = get_wsgi_application()
 #############################################################
 
 import random
-from Scouting2016.models import Team, Match, ScoreResult, OfficialMatch
+from Scouting2016.model import Team, Match, ScoreResult, OfficialMatch
 
 
 def __get_create_kargs(present_defense, non_present_defense):

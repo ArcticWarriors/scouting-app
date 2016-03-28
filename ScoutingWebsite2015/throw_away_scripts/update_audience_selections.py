@@ -10,7 +10,7 @@ from load_django import load_django
 
 
 def update_audience_selections(starting_category, matches_on):
-    from Scouting2016.models import OfficialMatch
+    from Scouting2016.model import OfficialMatch
 
     category = starting_category
     official_matches = OfficialMatch.objects.all()

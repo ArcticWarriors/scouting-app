@@ -154,7 +154,7 @@ def __populate_defense(official_match, color, team_index):
 
 def __save_sr(match, team, **kargs):
 
-    from Scouting2016.models import ScoreResult
+    from Scouting2016.model import ScoreResult
 
     sr_search = ScoreResult.objects.filter(match=match, team=team)
     if len(sr_search) == 0:
@@ -172,7 +172,7 @@ def __save_sr(match, team, **kargs):
 
 def populate_matchresults(max_match_number, max_match_with_data_number):
 
-    from Scouting2016.models import OfficialMatch, Match
+    from Scouting2016.model import OfficialMatch, Match
 
     for official_match in OfficialMatch.objects.all():
         if official_match.matchNumber > max_match_number:

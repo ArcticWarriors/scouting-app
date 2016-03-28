@@ -14,7 +14,7 @@ proj_path = os.path.abspath("..")
 sys.path.append(proj_path)
 application = get_wsgi_application()
 
-from Scouting2016.models import OfficialMatch, Match
+from Scouting2016.model import OfficialMatch, Match
 
 
 def dump_schedule():

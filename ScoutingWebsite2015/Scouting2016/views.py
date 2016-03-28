@@ -7,7 +7,8 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
-from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch, TeamComments
+from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch, TeamComments, \
+    get_team_metrics
 import operator
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -326,7 +327,7 @@ def view_team(request, team_number):
     using a naming convention of picture_### to store and display all avalable pictures on the website itself.
     """
 
-    metrics = this_team.get_metrics()
+    metrics = get_team_metrics(this_team)
     score_result_list = []
 
     for sr in this_team.scoreresult_set.all():

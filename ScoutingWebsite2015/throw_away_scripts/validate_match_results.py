@@ -8,7 +8,7 @@ Created on Mar 9, 2016
 from load_django import load_django
 load_django()
 
-from Scouting2016.models import Match, OfficialMatch, validate_match
+from Scouting2016.model import Match, OfficialMatch, validate_match
 
 
 def validate_matches():

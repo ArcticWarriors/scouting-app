@@ -24,7 +24,7 @@ def read_local_copy(input_file):
 
 
 def update_team_info(event_code, json_path):
-    from Scouting2016.models import Team
+    from Scouting2016.model import Team
 
     local_file = json_path + '/{0}_team_query.json'.format(event_code)
     if not os.path.exists(local_file):
@@ -44,7 +44,7 @@ def update_team_info(event_code, json_path):
 
 
 def update_schedule(event_code, json_path):
-    from Scouting2016.models import OfficialMatch, Team
+    from Scouting2016.model import OfficialMatch, Team
 
     local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
     if not os.path.exists(local_file):
@@ -91,7 +91,7 @@ def update_schedule(event_code, json_path):
 
 
 def update_matchresults(event_code, json_path):
-    from Scouting2016.models import OfficialMatch
+    from Scouting2016.model import OfficialMatch
 
     local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
     if not os.path.exists(local_file):
@@ -179,7 +179,7 @@ def update_matchresults(event_code, json_path):
 
 
 def add_snobot():
-    from Scouting2016.models import Team
+    from Scouting2016.model import Team
     query = Team.objects.filter(teamNumber=174)
     if len(query) == 0:
         team = Team.objects.all()[0]
