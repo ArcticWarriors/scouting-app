@@ -7,8 +7,7 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
-from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch, \
-    validate_match, TeamComments
+from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, OfficialMatch, TeamComments
 import operator
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -374,9 +373,9 @@ def match_display(request, match_number):
     if len(official_match_search) == 1 and official_match_search[0].hasOfficialData:
         context['has_official_data'] = True
         official_match = official_match_search[0]
-        valid, invalid_fields, = validate_match(this_match, official_match)
-        if not valid:
-            context['official_mismatch'] = invalid_fields
+#         valid, invalid_fields, = validate_match(this_match, official_match)
+#         if not valid:
+#             context['official_mismatch'] = invalid_fields
     else:
         context['has_official_data'] = False
 
@@ -453,7 +452,7 @@ def all_teams(request):
         team_with_avg["teamNumber"] = team.teamNumber
         team_with_avg["matches_scouted"] = team.scoreresult_set.count()
         team_with_avg["avgerages"] = metrics
-        team_with_avg["bookmark"] = team.bookmark
+        team_with_avg["bookmark"] = team.teampitscouting.bookmark
         teams_with_avg.append(team_with_avg)
     context = {"teams": teams_with_avg}
 
@@ -471,11 +470,11 @@ def all_matches(request):
 
     for match in matches:
         official_match_search = OfficialMatch.objects.filter(matchNumber=match.matchNumber)
-        if len(official_match_search) == 1 and official_match_search[0].hasOfficialData:
-            valid, _ = validate_match(match, official_match_search[0])
-            match.validity = "Yes" if valid else "No"
-        else:
-            match.validity = "Unknown"
+#         if len(official_match_search) == 1 and official_match_search[0].hasOfficialData:
+#             valid, _ = validate_match(match, official_match_search[0])
+#             match.validity = "Yes" if valid else "No"
+#         else:
+#             match.validity = "Unknown"
 
     scouted_numbers = [match.matchNumber for match in matches]
     unscouted_matches = OfficialMatch.objects.all().exclude(matchNumber__in=scouted_numbers)

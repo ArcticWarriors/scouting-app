@@ -20,7 +20,7 @@ table {
 
     {% include "Scouting2016/banner.html" %}
     <h1>Team {{ team_number }}</h1>
-    <B> Homepage: </B> <a href = "{{team.teamHomepage}}" target="_blank">{{team.teamHomepage}}</a><br>
+    <B> Homepage: </B> <a href = "{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
     Bookmark?	
     <form action="/2016/bookmark_team_page" method="post">
 		{% csrf_token %}
@@ -129,62 +129,62 @@ No matches scouted
 <h2> Pit Scouting </h2>
 
 <h4> Was the team organized? </h4>
-{{team.teamOrganized}}<br>
+{{team.teampitscouting.teamOrganized}}<br>
 <h4> Was the team likeable?  </h4>
-{{team.teamLikeable}}<br>
+{{team.teampitscouting.teamLikeable}}<br>
 <h4> What could the robot do in autonomous? </h4>
-{{team.teamSwag}}<br>
+{{team.teampitscouting.teamSwag}}<br>
 <h4> What could the robot do?</h4>
 	<div class="container-fluid">
 		<div class="row">
      		<div class="col-md-2"><b>Drive Exceptionally? </b></div>
-     		<div class="col-md-1">{{team.drive}}</div>
+     		<div class="col-md-1">{{team.teampitscouting.drive}}</div>
 		    <div class="col-md-2"><b>Have Autonomous? </b></div>
-		    <div class="col-md-1">{{team.Auto}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.Auto}}</div>
 		</div>
 		<div class="row">
 		    <div class="col-md-2"><b>Score High? </b></div>
-		    <div class="col-md-1">{{team.ScoreHigh}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.ScoreHigh}}</div>
 		    <div class="col-md-2"><b>Score Low? </b></div>
-		    <div class="col-md-1">{{team.ScoreLow}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.ScoreLow}}</div>
 		</div>
 		<div class="row">
 		    <div class="col-md-2"><b>Cross Portcullis? </b></div>
-		    <div class="col-md-1">{{team.portcullis}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.portcullis}}</div>
 		    <div class="col-md-2"><b>Cross CDF? </b></div>
-		    <div class="col-md-1">{{team.cheval}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.cheval}}</div>
 		</div>
 		<div class="row">
 		    <div class="col-md-2"><b>Cross Moat? </b></div>
-		    <div class="col-md-1">{{team.moat}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.moat}}</div>
 		    <div class="col-md-2"><b>Cross Ramparts? </b></div>
-		    <div class="col-md-1">{{team.ramparts}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.ramparts}}</div>
 		</div>
 		<div class="row">
 		    <div class="col-md-2"><b>Cross Sally Port? </b></div>
-		    <div class="col-md-1">{{team.sally}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.sally}}</div>
 		    <div class="col-md-2"><b>Cross Draw Bridge? </b></div>
-		    <div class="col-md-1">{{team.drawbridge}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.drawbridge}}</div>
 		</div>
 		<div class="row">
 		    <div class="col-md-2"><b>Cross Rock Wall? </b></div>
-		    <div class="col-md-1">{{team.rockwall}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.rockwall}}</div>
 		    <div class="col-md-2"><b>Cross Rough Terrain? </b></div>
-		    <div class="col-md-1">{{team.rough}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.rough}}</div>
 		</div>
 		<div class="row">
 		    <div class="col-md-2"><b>Cross Low Bar? </b></div>
-		    <div class="col-md-1">{{team.lowBar}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.lowBar}}</div>
 		    <div class="col-md-2"><b>Scale? </b></div>
-		    <div class="col-md-1">{{team.scale}}</div>
+		    <div class="col-md-1">{{team.teampitscouting.scale}}</div>
 		</div>
 	 </div> 
 <h4> Who was considering allying them?</h4>
-{{team.teamAlliances}}<br>
-<h4> Would they ally us? :</h4> {{team.teamAlly174}}<br>
-<h4> Was it their first year? :</h4> {{team.teamFirstYear}}<br>
-<h4> Was their robot operational? :</h4> {{team.teamOperational}}<br>
+{{team.teampitscouting.teamAlliances}}<br>
+<h4> Would they ally us? :</h4> {{team.teampitscouting.teamAlly174}}<br>
+<h4> Was it their first year? :</h4> {{team.teampitscouting.teamFirstYear}}<br>
+<h4> Was their robot operational? :</h4> {{team.teampitscouting.teamOperational}}<br>
 <h4> Any operation problems? :</h4> <br>
-{{team.teamOperationProblems}}<br>
+{{team.teampitscouting.teamOperationProblems}}<br>
 </body>
 </html>
