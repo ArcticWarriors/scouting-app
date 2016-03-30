@@ -2,14 +2,8 @@
 <head>
 
 {% load staticfiles %}
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<script src="{% static 'Scouting2016/jquery-2.2.1.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
-<script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
-<script src="{% static 'Scouting2016/site.js' %}"></script>
+{% include "Scouting2016/standard_header.html" %}
 <title>Team {{ team_number }}</title>
-
 </head>
 <style>
 table {
@@ -19,22 +13,13 @@ table {
 <body>
 
     {% include "Scouting2016/banner.html" %}
-    <h1>Team {{ team_number }}</h1>
-    <B> Homepage: </B> <a href = "{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
-    Bookmark?	
-    <form action="/2016/bookmark_team_page" method="post">
-		{% csrf_token %}
-		<input type='hidden' name='team_number' value={{team.teamNumber}}>
-		<input type="radio" name="bookmark" value="yes" {% if team.bookmark == "yes" %} checked="checked" {% endif %}>Yes 
-		<input type="radio" name="bookmark" value="no" {% if team.bookmark == "no" %} checked="checked" {% endif %}>No  
-		<input type="submit">
-	</form>
+    <h1>Team {{ team.teamNumber }}</h1>
+    <B> Team Website </B> <a href="{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
 
 <h1>Matches Information:</h1>
+
 {% if score_result_list|length == 0 %}
 No matches scouted
-
-
 {% else %}
  <h2>Matches Scouted:</h2>
   <ul>
@@ -49,7 +34,7 @@ No matches scouted
     {% if "auth.can_add_pictures" in perms %}
     <form action="{% url 'Scouting2016:upload_image' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="hidden" name='team_number' value={{team_number}}>
+        <input type="hidden" name='team_number' value={{team.teamNumber}}>
         <input type="file" name='image_name' accept="image/*">
         <input type="submit">
     </form>
@@ -68,7 +53,7 @@ No matches scouted
   Match Comments
   <ul>
   {% for sr in score_result_list %}
-     {%if sr.notes_text_area != "" %}<li>{{sr.notes_text_area}}</li>{% endif %}
+     {%if sr.comments != "" %}<li>{{sr.comments}}</li>{% endif %}
   {% endfor %}
   </ul>
 {% endif %}
@@ -82,12 +67,15 @@ No matches scouted
   </ul>
 {% endif %}
 
-   <form action="{% url 'Scouting2016:add_team_comments' team_number %}" method="POST">
+
+   {% if "auth.can_add_pictures" in perms %}
+   <form action="{% url 'Scouting2016:add_team_comments' team.teamNumber %}" method="POST">
    {% csrf_token %}
    
   <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
   <br> <br> <input type="submit" value="Submit">
    </form>
+   {% endif %}
  
 
     <h1>Robot Statistics</h1>
@@ -126,8 +114,11 @@ No matches scouted
 <h2>Additional Info.</h2>
 <h3>Tech fouls: {{metrics.score_tech_foul__sum}}</h3></b>
 
-<h2> Pit Scouting </h2>
 
+<h2> Pit Scouting </h2>
+{% if team.teampitscouting == None %}
+No information available
+{% else %}
 <h4> Was the team organized? </h4>
 {{team.teampitscouting.teamOrganized}}<br>
 <h4> Was the team likeable?  </h4>
@@ -186,5 +177,7 @@ No matches scouted
 <h4> Was their robot operational? :</h4> {{team.teampitscouting.teamOperational}}<br>
 <h4> Any operation problems? :</h4> <br>
 {{team.teampitscouting.teamOperationProblems}}<br>
+{% endif %}
+
 </body>
 </html>

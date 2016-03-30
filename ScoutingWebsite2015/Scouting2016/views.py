@@ -13,32 +13,6 @@ from Scouting2016.model.models2016 import get_team_metrics
 login_reverse = reverse_lazy('Scouting2016:showLogin')
 
 
-def __get_create_kargs(request):
-    """
-    Fill out a list of kargs based on the given request and its POST arguments.
-    Will iterate over all of the allowable ScoreResult fields, and will add an
-    item into the kargs dicitionary for each one, using the fields default value
-    if it is not present in POST.  The result will be a dictionary of
-    field_name -> integer value
-
-    @param request: The request containing the POST dictionary
-
-    @return: A dictionary containing field -> value pairs
-    """
-
-    kargs = {}
-
-    score_result_fields = ScoreResult.get_fields()
-
-    for field_name in score_result_fields:
-        if field_name not in request.POST:
-            kargs[field_name] = score_result_fields[field_name].default
-        else:
-            kargs[field_name] = request.POST[field_name]
-
-    return kargs
-
-
 def __create_filtered_team_metrics(search_results, good_fields):
     """
     Iterates over a set of annotates results from a team search.
@@ -142,103 +116,6 @@ def show_graph(request):
     return render(request, 'Scouting2016/showGraph.html', context)
 
 
-def show_comparison(request):
-
-    context = {}
-    context['teams'] = Team.objects.all()
-
-    if len(request.GET) != 0:
-
-        teams = []
-        fields = []
-
-        for key in request.GET:
-            try:
-                team_number = int(key)
-                teams.append(team_number)
-            except:
-                fields.append(key)
-
-        context['selected_team_numbers'] = teams
-        context['selected_fields_names'] = [str(x) for x in fields]
-
-    # This would imply that they were on the comparison page, and made a request
-    if len(request.GET) != 0:
-        context['get'] = request.GET
-
-        annotate_args = {}
-        good_fields = []
-
-        valid_fields = []
-
-        # For each available field, check if the GET request has the field AND the field sign
-        for score_result_field in ScoreResult.get_fields().values():
-            field_name = score_result_field.field_name
-
-            if field_name in request.GET:
-                value = request.GET[field_name]
-
-                """
-                Grabs whatever field names are requested, and if any fields are requested the
-                following command blocks will be used
-                """
-                if len(value) != 0:
-
-                    valid_fields.append(score_result_field)
-                    annotate = __get_annotate_args(score_result_field)
-
-                    annotate_args[annotate[0]] = annotate[1]
-                    good_fields.append(score_result_field)
-
-        """
-        The filter function will grab score results for all teams requested, exclusively
-        all that will be passed on to the page is the teams and fields asked for.
-        """
-        search_results = Team.objects.filter(teamNumber__in=teams).annotate(**annotate_args)
-        context['results'] = __create_filtered_team_metrics(search_results, good_fields)
-
-    return render(request, 'Scouting2016/showComparison.html', context)
-
-
-def robot_display_software(request):
-
-    """
-    robot_display currently has no python implementation. It simply needs to load correctly
-    as an HTML page, as it is just meant to show hard-coded information.
-    """
-
-    return render(request, 'Scouting2016/robot_info/software.html')
-
-
-def robot_display_scaling(request):
-
-    """
-    robot_display currently has no python implementation. It simply needs to load correctly
-    as an HTML page, as it is just meant to show hard-coded information.
-    """
-
-    return render(request, 'Scouting2016/robot_info/scaling.html')
-
-
-def robot_display_overroller(request):
-
-    """
-    robot_display currently has no python implementation. It simply needs to load correctly
-    as an HTML page, as it is just meant to show hard-coded information.
-    """
-
-    return render(request, 'Scouting2016/robot_info/overroller.html')
-
-
-def robot_display_drivetrain(request):
-
-    """
-    robot_display currently has no python implementation. It simply needs to load correctly
-    as an HTML page, as it is just meant to show hard-coded information.
-    """
-
-    return render(request, 'Scouting2016/robot_info/drivetrain.html')
-
 
 def view_team(request, team_number):
 
@@ -303,28 +180,27 @@ def match_prediction(request, match_number):
     """
 
     official_match = OfficialMatch.objects.get(matchNumber=match_number)
+    score_results = official_match.officialmatchscoreresult_set.all()
+    red_results = score_results[0]
+    blue_results = score_results[1]
 
     context = {}
     context['match_number'] = match_number
-    context['red_team_1'] = official_match.redTeam1
-    context['red_team_2'] = official_match.redTeam2
-    context['red_team_3'] = official_match.redTeam3
-    context['blue_team_1'] = official_match.blueTeam1
-    context['blue_team_2'] = official_match.blueTeam2
-    context['blue_team_3'] = official_match.blueTeam3
-    context['audience_defense'] = official_match.audienceSelectionCategory
+    context['red_results'] = red_results
+    context['blue_results'] = blue_results
+#     context['audience_defense'] = official_match.audienceSelectionCategory
 
-    red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
-    blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
+#     red_teams = [official_match.redTeam1, official_match.redTeam2, official_match.redTeam3]
+#     blue_teams = [official_match.blueTeam1, official_match.blueTeam2, official_match.blueTeam3]
+#
+#     red_prediction, blue_prediction = official_match.predict_score()
+#
+#     context['red_defenses'] = get_sorted_defense_stats(red_teams)
+#     context['blue_defenses'] = get_sorted_defense_stats(blue_teams)
+#     context['red_prediction'] = red_prediction
+#     context['blue_prediction'] = blue_prediction
 
-    red_prediction, blue_prediction = official_match.predict_score()
-
-    context['red_defenses'] = get_sorted_defense_stats(red_teams)
-    context['blue_defenses'] = get_sorted_defense_stats(blue_teams)
-    context['red_prediction'] = red_prediction
-    context['blue_prediction'] = blue_prediction
-
-    return render(request, 'Scouting2016/MatchPrediction.html', context)
+    return render(request, 'Scouting2016/view_official_match.html', context)
 
 
 def search_page(request):
@@ -422,159 +298,7 @@ def search_result_filter(request, team_numbers, filtered_results, parameter):
 # Form Stuff
 #######################################
 
-
-@permission_required('auth.can_modify_model', login_url=login_reverse)
-def info_for_form_edit(request):
-
-    return render(request, 'Scouting2016/info_for_form_edit.html')
-
-
-@permission_required('auth.can_modify_model', login_url=login_reverse)
-def show_add_form(request):
-
-    context = {}
-    context['team_number'] = 1
-    context['match_number'] = 10
-    context['submit_view'] = "/2016/submit_form"
-    context["sr"] = {}
-
-    score_result_fields = ScoreResult.get_fields()
-    for field_name, value in score_result_fields.iteritems():
-        context["sr"][field_name] = value.default
-
-    return render(request, 'Scouting2016/inputForm.html', context)
-
-
-def show_edit_form(request):
-
-    match = Match.objects.get(matchNumber=request.GET["match_number"])
-    team = Team.objects.get(teamNumber=request.GET["team_number"])
-
-    score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
-    print score_results
-
-    context = {}
-    context['team_number'] = request.GET["team_number"]
-    context['match_number'] = request.GET["match_number"]
-    context['sr'] = score_results
-    context['submit_view'] = '/2016/submit_edit'
-    if request.user.username != 'scoutmaster':
-        context['lock_team_and_match'] = True
-
-    return render(request, 'Scouting2016/inputForm.html', context)
-
-
-def submit_new_match(request):
-    """
-    Creates a new score result and match (if possible).  Uses the team and match number
-    from the form to search for an existing score result.  If one exists, it will
-    re-direct the user back to the form so they can attempt to input the data again.
-
-    If the score result does not exist, a new one will be created
-    """
-
-    team = Team.objects.get(teamNumber=request.POST["team_number"])
-    if len(Match.objects.filter(matchNumber=request.POST["match_number"])) == 0:
-        match = Match.objects.create(matchNumber=request.POST["match_number"])
-    else:
-        match = Match.objects.get(matchNumber=request.POST["match_number"])
-
-    available_srs = ScoreResult.objects.filter(match=match, team=team)
-
-    # score result with this combination already exists, don't let them add it again
-    if len(available_srs) != 0:
-        context = {}
-        context['error_message'] = "ERROR! A combination of team %s and match %s already exists" % (team.teamNumber, match.matchNumber)
-        context['match_number'] = match.matchNumber
-        context['team_number'] = team.teamNumber
-        context['submit_view'] = "/2016/submit_form"
-
-        fake_score_result = {}
-        for key in request.POST:
-            fake_score_result[key] = request.POST[key]
-        context['sr'] = fake_score_result
-
-        return render(request, 'Scouting2016/inputForm.html', context)
-    else:
-        kargs = __get_create_kargs(request)
-        ScoreResult.objects.create(match=match, team=team, **kargs)
-
-        return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
-
-
-def submit_pit_scouting(request):
-
-    return render(request, 'Scouting2016/inputForm.html')
-
-
-def edit_prev_match(request):
-    """
-    Edits an existing match.
-    """
-
-    match = Match.objects.get(matchNumber=request.POST["match_number"])
-    team = Team.objects.get(teamNumber=request.POST["team_number"])
-
-    score_result = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
-
-    sr_fields = request.POST
-    for key, value in sr_fields.iteritems():
-        setattr(score_result, key, value)
-    score_result.save()
-
-    context = {}
-    context['match_display'] = match.matchNumber
-
-    return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
-
     # Pit stuff
-
-
-@permission_required('auth.can_modify_model', login_url=login_reverse)
-def info_for_pit_edit(request):
-    return render(request, 'Scouting2016/info_for_pit_edit.html')
-
-
-@permission_required('auth.can_modify_model', login_url=login_reverse)
-def show_add_pit(request):
-    team =  request.GET["team_number"]
-    print team;
-    context = {}
-    context['team'] = Team.objects.get(teamNumber=team)
-    context['submit_pit'] = "/2016/submit_pit"
-    return render(request, 'Scouting2016/pitForm.html', context)
-
-
-def submit_new_pit(request):
-    team = Team.objects.get(teamNumber=request.POST['team_number'])
-    team.teamOrganized = request.POST['notes_organized']
-    team.teamLikeable = request.POST['notes_openness']
-    team.teamSwag = request.POST['notes_swag']
-    team.teamAwards = request.POST['notes_awards']
-    team.teamAlliances = request.POST['notes_alliances']
-    team.teamAlly174 = request.POST['ally_174']
-    team.teamOperational = request.POST['function']
-    team.teamOperationProblems = request.POST['notes_functionality']
-    team.teamFirstYear = request.POST['first_year']
-
-    team.drive = request.POST['drive']
-    team.Auto = request.POST['Auto']
-    team.ScoreHigh = request.POST['ScoreHigh']
-    team.ScoreLow = request.POST['ScoreLow']
-    team.portcullis = request.POST['portcullis']
-    team.cheval = request.POST['cheval']
-    team.moat = request.POST['moat']
-    team.ramparts = request.POST['ramparts']
-    team.sally = request.POST['sally']
-    team.drawbridge = request.POST['drawbridge']
-    team.rockwall = request.POST['rockwall']
-    team.rough = request.POST['rough']
-    team.lowBar = request.POST['lowBar']
-    team.scale = request.POST['scale']
-
-    team.save()
-
-    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team.teamNumber,)))
 
 
 def get_hovercard(request):

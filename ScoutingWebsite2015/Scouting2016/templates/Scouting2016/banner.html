@@ -16,8 +16,8 @@
           <ul class="nav navbar-nav">
             <li> <a href="{% url 'Scouting2016:index' %}">Home</a> </li>
             <li> <a href="{% url 'Scouting2016:robot_display' %}">Our Robot</a> </li>
-            <li> <a href="{% url 'Scouting2016:all_teams' %}">Team List</a></li>
-            <li> <a href="{% url 'Scouting2016:all_matches' %}">Matches</a></li>
+            <li> <a href="{% url 'Scouting2016:teams' %}">Team List</a></li>
+            <li> <a href="{% url 'Scouting2016:matches' %}">Matches</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if "auth.can_modify_model" in perms %}

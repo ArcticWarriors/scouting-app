@@ -6,70 +6,13 @@ Created on Mar 28, 2016
 
 import os
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from Scouting2016.model.reusable_models import Team, Match, OfficialMatch, \
     TeamPictures, TeamComments
+from django.views.generic.base import TemplateView
 
 
-def index(request):
-
-    return render(request, 'Scouting2016/index.html')
-
-
-def gen_graph(request, team_numbers, fields):
-
-    """
-    @param team_numbers is the list of all checked team numbers on the show_graph page.
-    @param fields is the list of all checked fields on the show_graph page
-    these two parameters determine what is graphed and displayed on the page
-    """
-
-    import matplotlib
-    matplotlib.use('agg')
-    import matplotlib.pyplot as plt
-    from matplotlib.backends.backend_agg import FigureCanvasAgg
-    from matplotlib.font_manager import FontProperties
-
-    team_numbers = [int(x) for x in team_numbers.split(",")]
-    fields = fields.split(',')
-
-    f = plt.figure(figsize=(6, 6))
-    legend_handles = []
-
-    for team_number in team_numbers:
-        team = Team.objects.get(teamNumber=int(team_number))
-
-        for field in fields:
-            metric = []
-            for result in team.scoreresult_set.all():
-                metric.append(getattr(result, field))
-
-            hand, = plt.plot(metric, label="Team %s, %s" % (team.teamNumber, field))
-            legend_handles.append(hand)
-
-    fontP = FontProperties()
-    fontP.set_size('small')
-    plt.legend(handles=legend_handles, prop=fontP)
-    plt.xlabel("Match")
-
-    matplotlib.pyplot.close(f)
-
-    canvas = FigureCanvasAgg(f)
-    response = HttpResponse(content_type='image/png')
-    canvas.print_png(response)
-
-    return response
-
-
-def robot_display(request):
-
-    """
-    robot_display currently has no python implementation. It simply needs to load correctly
-    as an HTML page, as it is just meant to show hard-coded information.
-    """
-
-    return render(request, 'Scouting2016/robot_info/overview.html')
 
 
 def match_display(request, match_number):
@@ -104,7 +47,7 @@ def match_display(request, match_number):
     else:
         context['has_official_data'] = False
 
-    return render(request, 'Scouting2016/MatchPage.html', context)
+    return render(request, 'Scouting2016/view_match.html', context)
 
 
 def all_teams(request):
@@ -132,7 +75,7 @@ def all_teams(request):
         teams_with_avg.append(team_with_avg)
     context = {"teams": teams_with_avg}
 
-    return render(request, 'Scouting2016/AllTeams.html', context)
+    return render(request, 'Scouting2016/all_teams.html', context)
 
 
 def upload_image(request):
@@ -194,7 +137,7 @@ def all_matches(request):
     context['scouted_matches'] = matches
     context['unscouted_matches'] = unscouted_matches
 
-    return render(request, 'Scouting2016/AllMatches.html', context)
+    return render(request, 'Scouting2016/all_matches.html', context)
 
 
 def add_team_comments(request, team_number):
@@ -204,3 +147,33 @@ def add_team_comments(request, team_number):
     print teamComments
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_number,)))
+
+
+class SingleTeamView(TemplateView):
+
+    template_name = 'Scouting2016/view_team.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SingleTeamView, self).get_context_data(**kwargs)
+        context['team'] = get_object_or_404(Team, teamNumber=kwargs["team_number"])
+
+        print context
+        print kwargs
+        return context
+
+#     def __init__(self, team, pictures, score_results, metrics):
+#         self.team = team
+#         self.pictures = pictures
+#         self.score_results = score_results
+#         self.metrics = metrics
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(SingleTeamView, self).get_context_data(**kwargs)
+#         context['team'] = self.team
+#         context['metrics'] = self.metrics
+#         context['score_result_list'] = self.score_results
+#         context['pictures'] = self.pictures
+# #         if len(team_comments_search) != 0:
+# #             context['team_comments'] = team_comments_search.all()
+#
+#         return context
