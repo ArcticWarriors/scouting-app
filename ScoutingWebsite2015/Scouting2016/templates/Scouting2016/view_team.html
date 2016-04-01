@@ -24,7 +24,7 @@ No matches scouted
  <h2>Matches Scouted:</h2>
   <ul>
   {% for sr in score_result_list %}
-     <li><a href="{% url 'Scouting2016:match_display' sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a></li>
+     <li><a href="{% url 'Scouting2016:view_match' sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a>{%if sr.notes_text_area != "" %} - {{sr.notes_text_area}}{% endif %}</li>
   {% endfor %}
   </ul>
 {% endif %}
@@ -48,15 +48,6 @@ No matches scouted
     No pictures available
     {% endif %}
     <h2>Team Comments</h2>
-{% if score_result_list|length == 0 %}
-{% else %}
-  Match Comments
-  <ul>
-  {% for sr in score_result_list %}
-     {%if sr.comments != "" %}<li>{{sr.comments}}</li>{% endif %}
-  {% endfor %}
-  </ul>
-{% endif %}
 
 {% if team_comments|length != 0 %}
   Team Comments

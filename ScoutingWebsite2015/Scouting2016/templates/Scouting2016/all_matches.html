@@ -29,7 +29,7 @@ table {
 		</tr>
 		{% for match in scouted_matches %}
 		<tr>
-          <td> <a href="{% url 'Scouting2016:all_matches' match.matchNumber %}">{{ match.matchNumber }}</a></td>
+          <td> <a href="{% url 'Scouting2016:view_match' match.matchNumber %}">{{ match.matchNumber }}</a></td>
            {% if match.validity == "Yes" %}  <td style='background: green; color: white'> 
            {% elif match.validity == "No" %} <td style='background: red; color: white'> 
            {% else %}                        <td> 

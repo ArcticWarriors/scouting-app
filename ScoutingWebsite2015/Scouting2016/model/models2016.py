@@ -66,6 +66,38 @@ def get_flat_defenses():
     return flat_defense
 
 
+def get_defense_stats(team, stat_map=None):
+    """
+    Gets the stats for the defenses crossed for the team.  Groups them by category.
+    @param stat_map Optional argument for an existing stat map to append.  Useful when you are getting stats for a whole alliance
+    @return The filled out (or updated) stat map
+    """
+
+    if stat_map == None:
+        stat_map = {}
+
+    no_results = len(team.scoreresult_set.all()) == 0
+    print "no results: %s" % no_results
+
+    defenses = get_defenses()
+
+    for category in defenses:
+
+        if category not in stat_map:
+            stat_map[category] = {}
+
+        for defense in defenses[category]:
+            if defense not in stat_map[category]:
+                stat_map[category][defense] = 0
+
+            if no_results:
+                stat_map[category][defense] += 0
+            else:
+                stat_map[category][defense] += team.scoreresult_set.aggregate(Sum(defense))[defense + "__sum"]
+
+    return stat_map
+
+
 def get_team_metrics(team):
     metrics = team.scoreresult_set.aggregate(Avg("auto_score_low"),
                                              Avg("auto_score_high"),
@@ -203,14 +235,8 @@ class OfficialMatchScoreResult(models.Model):
     fouls = models.IntegerField(default=-1)
     techFouls = models.IntegerField(default=-1)
 
-    def get_alliance_teams(self):
-        teams = []
-
-        teams.append(self.team1)
-        teams.append(self.team2)
-        teams.append(self.team3)
-
-        return teams
+    def predict(self):
+        return 123
 
 
 class ScoreResult(models.Model):

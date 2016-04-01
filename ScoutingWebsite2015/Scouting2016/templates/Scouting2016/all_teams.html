@@ -83,22 +83,22 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 					<tr>
 							<td style="{% if team.bookmark == 'yes' %}background-color:#ff5a14; color:white;{% endif %}">{{team.bookmark}}</td>
 							<td> <a href="{% url 'Scouting2016:view_team' team.teamNumber %}">{{ team.teamNumber }}</a></td>
-							<td>{{team.avgerages.low_score_successful__avg}}</td>
-							<td>{{team.avgerages.low_score_fail__avg}}</td>
-							<td>{{team.avgerages.high_score_successful__avg}}</td>
-							<td>{{team.avgerages.high_score_fail__avg}}</td>
-							<td>{{team.avgerages.auto_score_low__avg}}</td>
-							<td>{{team.avgerages.auto_score_high__avg}}</td>
-							<td>{{team.avgerages.score_tech_foul__sum}}</td>
-							<td>{{team.avgerages.cheval_de_frise__sum}}</td>
-							<td>{{team.avgerages.ramparts__sum}}</td>
-							<td>{{team.avgerages.sally_port__sum}}</td>
-							<td>{{team.avgerages.low_bar__sum}}</td>
-							<td>{{team.avgerages.rock_wall__sum}}</td>
-							<td>{{team.avgerages.draw_bridge__sum}}</td>
-							<td>{{team.avgerages.moat__sum}}</td>
-							<td>{{team.avgerages.rough_terrain__sum}}</td>
-							<td>{{team.avgerages.portcullis__sum}}</td>
+							<td>{{team.metrics.low_score_successful__avg}}</td>
+							<td>{{team.metrics.low_score_fail__avg}}</td>
+							<td>{{team.metrics.high_score_successful__avg}}</td>
+							<td>{{team.metrics.high_score_fail__avg}}</td>
+							<td>{{team.metrics.auto_score_low__avg}}</td>
+							<td>{{team.metrics.auto_score_high__avg}}</td>
+							<td>{{team.metrics.score_tech_foul__sum}}</td>
+							<td>{{team.metrics.cheval_de_frise__sum}}</td>
+							<td>{{team.metrics.ramparts__sum}}</td>
+							<td>{{team.metrics.sally_port__sum}}</td>
+							<td>{{team.metrics.low_bar__sum}}</td>
+							<td>{{team.metrics.rock_wall__sum}}</td>
+							<td>{{team.metrics.draw_bridge__sum}}</td>
+							<td>{{team.metrics.moat__sum}}</td>
+							<td>{{team.metrics.rough_terrain__sum}}</td>
+							<td>{{team.metrics.portcullis__sum}}</td>
 					</tr>
 
 					{% endfor %}

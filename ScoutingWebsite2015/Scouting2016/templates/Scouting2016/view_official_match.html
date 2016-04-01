@@ -15,16 +15,16 @@
 {% include "Scouting2016/banner.html" %}
 
 <table border="1">
-  <tr><td>Red Prediction</td><td>{{ red_prediction }}</td></tr>
-  <tr><td>Blue Prediction</td><td>{{ blue_prediction }}</td></tr>
+  <tr><td>Red Prediction</td><td>{{ results.red_results.predict }}</td></tr>
+  <tr><td>Blue Prediction</td><td>{{ results.blue_results.predict  }}</td></tr>
 </table>
 
 <h1> Prediction for Match {{match_number}}</h1>
 <h2><u>Red Alliance</u></h2>
 <ul>
-	<li> <a href="{% url 'Scouting2016:view_team' red_results.team1.teamNumber %}">{{ red_results.team1.teamNumber }} </a></li>
-	<li> <a href="{% url 'Scouting2016:view_team' red_results.team1.teamNumber %}">{{ red_results.team2.teamNumber }} </a></li>
-	<li> <a href="{% url 'Scouting2016:view_team' red_results.team1.teamNumber %}">{{ red_results.team3.teamNumber }} </a></li>
+	<li> <a href="{% url 'Scouting2016:view_team' results.red_results.team1.teamNumber %}">{{ results.red_results.team1.teamNumber }} </a></li>
+	<li> <a href="{% url 'Scouting2016:view_team' results.red_results.team1.teamNumber %}">{{ results.red_results.team2.teamNumber }} </a></li>
+	<li> <a href="{% url 'Scouting2016:view_team' results.red_results.team1.teamNumber %}">{{ results.red_results.team3.teamNumber }} </a></li>
 </ul>
 <table border="1">
   <tr>
@@ -34,7 +34,7 @@
    <th> Worst Defense </th>
    <th> Crossed </th>
   </tr>
-  {% for category_name, value in red_defenses %}
+  {% for category_name, value in results.red_defenses %}
   <tr>
     <td><center>{% if audience_defense == category_name %} <b>{% endif %}{{category_name}}</center></td>
     <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.0.0}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
@@ -50,9 +50,9 @@
 
 <h2><u> Blue Alliance</u></h2>
 <ul>
- <li> <a href="{% url 'Scouting2016:view_team' blue_results.team1.teamNumber %}">{{ blue_results.team1.teamNumber }} </a></li>
- <li> <a href="{% url 'Scouting2016:view_team' blue_results.team2.teamNumber %}">{{ blue_results.team2.teamNumber }} </a></li>
- <li> <a href="{% url 'Scouting2016:view_team' blue_results.team3.teamNumber %}">{{ blue_results.team3.teamNumber }} </a></li>
+ <li> <a href="{% url 'Scouting2016:view_team' results.blue_results.team1.teamNumber %}">{{ results.blue_results.team1.teamNumber }} </a></li>
+ <li> <a href="{% url 'Scouting2016:view_team' results.blue_results.team2.teamNumber %}">{{ results.blue_results.team2.teamNumber }} </a></li>
+ <li> <a href="{% url 'Scouting2016:view_team' results.blue_results.team3.teamNumber %}">{{ results.blue_results.team3.teamNumber }} </a></li>
 </ul>
 <br>
 
@@ -64,7 +64,7 @@
    <th> Worst Defense </th>
    <th> Crossed </th>
   </tr>
-  {% for category_name, value in blue_defenses %}
+  {% for category_name, value in results.blue_defenses %}
   <tr>
     <td><center>{% if audience_defense == category_name %} <b>{% endif %}{{category_name}}</center></td>
     <td>{% if audience_defense == category_name %} <b>{% endif %}{{value.0.0}}{% if audience_defense == category_name %} </b>{% endif %}</td> 
