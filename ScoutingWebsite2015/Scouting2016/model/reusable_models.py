@@ -26,11 +26,26 @@ class Match(models.Model):
         return "Match %s" % self.matchNumber
 
 
+class Compitition(models.Model):
+
+    code = models.CharField(max_length=6)
+    name = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+
+
 class Team(models.Model):
 
     teamNumber = models.IntegerField()
     homepage = models.CharField(max_length=2000, default="")
     rookie_year = models.CharField(max_length=4)
+    city = models.CharField(max_length=100, default="Unknown")
+    state = models.CharField(max_length=100, default="Unknown")
+    country = models.CharField(max_length=100, default="Unknown")
+    team_name = models.CharField(max_length=100, default="Unknown")
+    team_nickname = models.CharField(max_length=100, default="Unknown")
+    robot_name = models.CharField(max_length=100, default="Unknown")
 
     def __str__(self):
         return "Team %s" % self.teamNumber

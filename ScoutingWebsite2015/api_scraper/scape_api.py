@@ -61,6 +61,25 @@ def read_url_and_dump(url, headers, output_file):
     return json_struct
 
 
+def download_team_data(json_path, season="2016"):
+    url = __api_website + "/{0}/teams?".format(season)
+    local_file = json_path + 'teams/team_query.json'
+    json_struct = read_url_and_dump(url, get_header(), local_file)
+
+    total_pages = json_struct["pageTotal"]
+
+    for page_i in range(total_pages):
+        url = __api_website + "/{0}/teams?page={1}".format(season, page_i + 1)
+        local_file = json_path + 'team_query_page%s.json' % page_i
+        json_struct = read_url_and_dump(url, get_header(), local_file)
+
+
+def download_event_data(json_path, season="2016"):
+    url = __api_website + "/{0}/events?".format(season)
+    local_file = json_path + 'events/event_query.json'
+    json_struct = read_url_and_dump(url, get_header(), local_file)
+
+
 def download_team_info(event_code, json_path, season="2016"):
 
     url = __api_website + "/{0}/teams?eventCode={1}".format(season, event_code)
@@ -91,15 +110,20 @@ match_start = 0
 download_results = True
 update_database = True
 
-for json_path, sql_path, ec in get_competitions_to_scrape():
+if download_results:
+    json_path = "../__api_scraping_results/json/"
+#     download_team_data(json_path)
+    download_event_data(json_path)
 
-    if download_results:
-        print "Downloading results for regional %s" % ec
-        download_matchresult_info(ec, match_start, json_path)
-        download_schedule(ec, match_start, json_path)
-        download_team_info(ec, json_path)
-
-    if update_database:
-        reload_django(ec, sql_path)
-        subprocess.call(['python', 'populate_database.py', ec, sql_path, json_path])
-        pass
+# for json_path, sql_path, ec in get_competitions_to_scrape():
+#
+#     if download_results:
+#         print "Downloading results for regional %s" % ec
+#         download_matchresult_info(ec, match_start, json_path)
+#         download_schedule(ec, match_start, json_path)
+#         download_team_info(ec, json_path)
+#
+#     if update_database:
+#         reload_django(ec, sql_path)
+#         subprocess.call(['python', 'populate_database.py', ec, sql_path, json_path])
+#         pass
