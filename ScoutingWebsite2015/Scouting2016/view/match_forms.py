@@ -58,6 +58,9 @@ def submit_new_match(request):
     available_srs = ScoreResult.objects.filter(match=match, team=team)
 
     # score result with this combination already exists, don't let them add it again
+    kargs = __get_create_kargs(request)
+    keys = sorted(kargs.keys())
+    print "\n".join("%s->%s" % (key, kargs[key]) for key in keys)
     if len(available_srs) != 0:
         context = {}
         context['error_message'] = "ERROR! A combination of team %s and match %s already exists" % (team.teamNumber, match.matchNumber)
@@ -75,7 +78,7 @@ def submit_new_match(request):
         kargs = __get_create_kargs(request)
         ScoreResult.objects.create(match=match, team=team, **kargs)
 
-        return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
+        return HttpResponseRedirect(reverse('Scouting2016:view_match', args=(match.matchNumber,)))
 
 
 def edit_prev_match(request):
@@ -102,15 +105,13 @@ def edit_prev_match(request):
 @permission_required('auth.can_modify_model', login_url=login_reverse)
 def info_for_form_edit(request):
 
-    return render(request, 'Scouting2016/info_for_form_edit.html')
+    return render(request, 'Scouting2016/match_form/pre_edit_match_form.html')
 
 
 @permission_required('auth.can_modify_model', login_url=login_reverse)
 def show_add_form(request):
 
     context = {}
-    context['team_number'] = 1
-    context['match_number'] = 10
     context['submit_view'] = "/2016/submit_form"
     context["sr"] = {}
 
@@ -118,7 +119,7 @@ def show_add_form(request):
     for field_name, value in score_result_fields.iteritems():
         context["sr"][field_name] = value.default
 
-    return render(request, 'Scouting2016/inputForm.html', context)
+    return render(request, 'Scouting2016/match_form/match_form.html', context)
 
 
 def show_edit_form(request):
@@ -137,4 +138,4 @@ def show_edit_form(request):
     if request.user.username != 'scoutmaster':
         context['lock_team_and_match'] = True
 
-    return render(request, 'Scouting2016/inputForm.html', context)
+    return render(request, 'Scouting2016/match_form/match_form.html', context)

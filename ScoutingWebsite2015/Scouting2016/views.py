@@ -9,7 +9,7 @@ from Scouting2016.models import Team, Match, ScoreResult, TeamPictures, Official
 from django.contrib.auth.decorators import permission_required
 from Scouting2016.model.models2016 import get_team_metrics, get_defense_stats
 from Scouting2016.view.generic_views import SingleTeamView, SingleMatchView, \
-    OfficialMatchView, AllTeamsViews
+    OfficialMatchView, AllTeamsViews, AddTeamPictureView
 
 
 login_reverse = reverse_lazy('Scouting2016:showLogin')
@@ -19,6 +19,12 @@ class AllTeamsViews2016(AllTeamsViews):
 
     def get_metrics_for_team(self, team):
         return get_team_metrics(team)
+
+
+class AddTeamPictureView2016(AddTeamPictureView):
+
+    def __init__(self):
+        AddTeamPictureView.__init__(self, 'Scouting2016/static', 'Scouting2016/robot_pics')
 
 
 class SingleTeamView2016(SingleTeamView):

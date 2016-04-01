@@ -1,0 +1,91 @@
+<html>
+<head>
+
+{% load staticfiles %}
+{% include "Scouting2016/standard_header.html" %}
+<title>Edit Pit Form</title>
+</head>
+<body>
+
+{% include "Scouting2016/banner.html" %}
+<form action="{{ submit_pit }}" method="post">
+	{% csrf_token %}
+		<p> Which team's pit was visited?												 </p>
+		<input type="number" name="team_number"  value="{{team.teamNumber}}" readonly> 
+		<p> Was the team pit functional? Have they been organized? 		 				 </p>
+		<textarea rows="8" cols="75" wrap="soft" name="notes_organized" 
+		placeholder="Forget about the robot, how was the team? Was the pit nice and neat and stuff?">{{team.teampitscouting.teamOrganized}}</textarea>
+		<p> Was the team amicable and open?												 </p>
+		<textarea rows="8" cols="75" wrap="soft" name="notes_openness" 
+		placeholder="Hold information about the team, and their team members">{{team.teampitscouting.teamLikeable}}</textarea>
+		<p> What is their robot able to do in autonomous? 							 </p>
+		<textarea rows="8" cols="75" wrap="soft" name="notes_swag" 
+		placeholder="Describe any autonomous capabilities">{{team.teampitscouting.teamSwag}}</textarea>
+		<p> Has the team won awards in the past? 										 </p>
+		<textarea rows="8" cols="75" wrap="soft" name="notes_awards" 
+		placeholder="Include all awards won">{{team.teampitscouting.teamAwards}}</textarea>
+		<p> What could their robot do? Check all that apply.							 </p>
+			<div class="row">
+				<input type='hidden' name='drive' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="drive" value="yes" {% if team.teampitscouting.drive == "yes" %} checked="checked" {% endif %}> Exceptional Drive<br></div>
+				<input type='hidden' name='Auto' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="Auto" value="yes" {% if team.teampitscouting.Auto == "yes" %} checked="checked" {% endif %}> Autonomous<br></div>
+			</div>
+			<div class="row">
+				<input type='hidden' name='ScoreHigh' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="ScoreHigh" value="yes" {% if team.teampitscouting.ScoreHigh == "yes" %} checked="checked" {% endif %}> Score in High Goal<br></div>
+				<input type='hidden' name='ScoreLow' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="ScoreLow" value="yes" {% if team.teampitscouting.ScoreLow == "yes" %} checked="checked" {% endif %}> Score in Low Goal<br></div>
+			</div>
+			<div class="row">
+				<input type='hidden' name='portcullis' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="portcullis" value="yes" {% if team.teampitscouting.portcullis == "yes" %} checked="checked" {% endif %}> Cross Portcullis<br></div>
+				<input type='hidden' name='cheval' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="cheval" value="yes" {% if team.teampitscouting.cheval == "yes" %} checked="checked" {% endif %}> Cross Cheval De Frise<br></div>
+			</div>
+			<div class="row">
+				<input type='hidden' name='moat' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="moat" value="yes" {% if team.teampitscouting.moat == "yes" %} checked="checked" {% endif %}> Cross Moat<br></div>
+				<input type='hidden' name='ramparts' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="ramparts" value="yes" {% if team.teampitscouting.ramparts == "yes" %} checked="checked" {% endif %}> Cross Ramparts<br></div>
+			</div>
+			<div class="row">
+				<input type='hidden' name='sally' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="sally" value="yes" {% if team.teampitscouting.sally == "yes" %} checked="checked" {% endif %}> Cross Sally Port<br></div>
+				<input type='hidden' name='drawbridge' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="drawbridge" value="yes" {% if team.teampitscouting.drawbridge == "yes" %} checked="checked" {% endif %}> Cross Draw Bridge<br></div>
+			</div>
+			<div class="row">
+				<input type='hidden' name='rockwall' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="rockwall" value="yes" {% if team.teampitscouting.rockwall == "yes" %} checked="checked" {% endif %}> Cross Rock Wall<br></div>
+				<input type='hidden' name='rough' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="rough" value="yes" {% if team.teampitscouting.rough == "yes" %} checked="checked" {% endif %}> Cross Rough Terrain<br></div>
+			</div>
+			<div class="row">
+				<input type='hidden' name='lowBar' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="lowBar" value="yes" {% if team.teampitscouting.lowBar == "yes" %} checked="checked" {% endif %}> Cross Low Bar<br></div>
+				<input type='hidden' name='scale' value='no'>
+				<div class="col-md-4"><input type="checkbox" name="scale" value="yes" {% if team.teampitscouting.scale == "yes" %} checked="checked" {% endif %}> scale<br></div>
+			</div>		
+		<p> What teams were considering an alliance with this team?						 </p>
+		<textarea rows="8" cols="75" wrap="soft" name="notes_alliances" 
+		placeholder="Please list all teams, incluiding name and mumber.">{{team.teampitscouting.teamAlliances}}</textarea>
+		<p> Is the team considering an alliance with us? 								 </p>
+		<input type='hidden' name='ally_174' value='no'>
+		<input type="radio" name='ally_174' value="yes"{% if team.teampitscouting.teamAlly174 == 'yes' %} checked="checked"{% endif %}>Yes
+		<input type="radio" name='ally_174' value='no'{% if team.teampitscouting.teamAlly174 == 'no' %} checked="checked"{% endif %}>No
+		<p> Is this the team's first year? Are they new?								 </p>
+		<input type='hidden' name='first_year' value='no'>
+		<input type='radio' name = 'first_year' value = 'yes'{% if team.teampitscouting.teamFirstYear == 'yes' %} checked="checked"{% endif %}>Yes
+		<input type='radio' name = 'first_year' value = 'no'{% if team.teampitscouting.teamFirstYear == 'no' %} checked="checked"{% endif %}>No
+		<p> Was their robot functional?													 </p>
+		<input type='hidden' name='function' value='no'>
+		<input type='radio' name = 'function' value = 'yes'{% if team.teampitscouting.teamOperational == 'yes' %} checked="checked"{% endif %}>Yes
+		<input type='radio' name = 'function' value = 'no'{% if team.teampitscouting.teamOperational == 'no' %} checked="checked"{% endif %}>No		
+		<p> If no, what was the problem?									 </p>
+		<textarea rows="8" cols="75" wrap="soft" name="notes_functionality" 
+		placeholder="Include what was broken, if anything, and how quickly any problems were being fixed.">{{team.teampitscouting.teamOperationProblems}}</textarea>
+		<br> <br> <input type="submit" value="Submit">
+</form>		
+</body>
+</html>

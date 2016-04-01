@@ -5,9 +5,64 @@ Created on Mar 28, 2016
 '''
 
 from django.shortcuts import get_object_or_404
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from Scouting2016.model.reusable_models import Team, Match, OfficialMatch, \
     TeamPictures, TeamComments
+from django.core.urlresolvers import reverse
+from django.http.response import HttpResponseRedirect
+import os
+
+
+class AddTeamCommentsView(View):
+
+    def post(self, request, team_number):
+        comments = request.POST["team_comments"]
+        team = Team.objects.get(teamNumber=team_number)
+        TeamComments.objects.create(team=team, comment=comments)
+
+        return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_number,)))
+
+
+class AddTeamPictureView(View):
+
+    def __init__(self, static_dir, picture_location):
+        self.static_dir = static_dir
+        self.picture_location = picture_location
+
+    def post(self, request):
+
+        """
+        Pictures can be uploaded from the users devices to the server and posts them to the team's
+        respective team page
+        """
+
+        team_numer = request.POST['team_number']
+        f = request.FILES['image_name']
+
+        out_file_name = os.path.join(self.static_dir, self.picture_location) + "/" + ('%s_{0}%s' % (team_numer, os.path.splitext(f.name)[1]))
+
+        # Look for the next available number, i.e. if there are [#_0, #_1, ..., #_10], this would make the new picture #_11
+        picture_number = 0
+        found = False
+        while not found:
+            test_name = out_file_name.format(picture_number)
+            if not os.path.exists(test_name):
+                out_file_name = test_name
+                found = True
+            else:
+                picture_number += 1
+
+        database_name = out_file_name[len(self.static_dir) + 1:]
+
+        team = Team.objects.get(teamNumber=team_numer)
+        TeamPictures.objects.create(team=team, path=database_name)
+
+        # Write the file to disk
+        with open(out_file_name, 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+
+        return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_numer,)))
 
 
 class AllTeamsViews(TemplateView):
@@ -85,9 +140,11 @@ class SingleMatchView(TemplateView):
 
     def get_context_data(self, **kwargs):
         the_match = get_object_or_404(Match, matchNumber=kwargs["match_number"])
+        print the_match
 
         context = super(SingleMatchView, self).get_context_data(**kwargs)
         context['match'] = the_match
+        context['score_result_list'] = [sr for sr in the_match.scoreresult_set.all()]
 
         return context
 

@@ -2,12 +2,7 @@
 <head>
 
 {% load staticfiles %}
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<script src="{% static 'Scouting2016/jquery-2.2.1.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/bootstrap.min.css' %}" />
-<script src="{% static 'Scouting2016/bootstrap.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'Scouting2016/style.css' %}" />
-<script src="{% static 'Scouting2016/site.js' %}"></script>
+{% include "Scouting2016/standard_header.html" %}
 <title>Scouting Form</title>
 </head>
 <style>
@@ -357,7 +352,7 @@
 		
 		<div class="form-group">
       		<label for="notes">Notes (include penalties): </label>
-      		<textarea class="form-control" rows="5" id="notes_text_area" placeholder="Please enter any notes here. This can include strategy and penalties.">{{sr.notes_text_area}}</textarea>
+      		<textarea class="form-control" rows="5" name="notes_text_area" placeholder="Please enter any notes here. This can include strategy and penalties.">{{sr.notes_text_area}}</textarea>
     	</div>
 		<br> <br> <input type="submit" value="Submit">
 	</form>

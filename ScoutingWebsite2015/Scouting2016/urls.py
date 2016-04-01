@@ -39,12 +39,14 @@ urlpatterns = [url(r'^$', TemplateView.as_view(template_name="Scouting2016/index
                # Generic Views
                url(r'^gen_graph/(?P<team_numbers>\w+(,\w+)*)/(?P<fields>\w+(,\w+)*)$', gen_graph.gen_graph, name='gen_graph'),
                url(r'^matches$', generic_views.AllMatchesView.as_view(), name='matches'),
+               url(r'^add_team_comments/(?P<team_number>[0-9]+)$', generic_views.AddTeamCommentsView.as_view(), name='add_team_comments'),
 
                # 2016 Views
                url(r'^teams$', views.AllTeamsViews2016.as_view(), name='teams'),
                url(r'^teams/(?P<team_number>[0-9]+)$', views.SingleTeamView2016.as_view(), name='view_team'),
                url(r'^matches/(?P<match_number>[0-9]+)$', views.SingleMatchView2016.as_view(), name='view_match'),
                url(r'^match_prediction/(?P<match_number>[0-9]+)$', views.OfficialMatchView2016.as_view(), name='match_prediction'),
+               url(r'^upload_image$', views.AddTeamPictureView2016.as_view(), name='upload_image'),
 
                # Robot Info
                url(r'^robot_display$', TemplateView.as_view(template_name='Scouting2016/robot_info/overview.html'), name='robot_display'),

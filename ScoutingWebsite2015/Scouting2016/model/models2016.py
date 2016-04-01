@@ -355,10 +355,10 @@ class ScoreResult(models.Model):
         output = {}
 
         # Auto
-        output['auto_score_high'] = ScoreResultMetric('auto_score_high', 'Auto High Goals', 0, "Average")
-        output['auto_score_low'] = ScoreResultMetric('auto_score_low', 'Auto Low Goals', 0, "Average")
         output['auto_defense'] = ScoreResultMetric('auto_defense', 'Auto Defense', 'no_reach', 0)
         output['auto_spy'] = ScoreResultMetric('auto_spy', 'no', 0)
+        output['auto_score_high'] = ScoreResultMetric('auto_score_high', 'Auto High Goals', 0, "Average")
+        output['auto_score_low'] = ScoreResultMetric('auto_score_low', 'Auto Low Goals', 0, "Average")
 
         # Boulders
         output['high_score_fail'] = ScoreResultMetric('high_score_fail', 'High Misses', 0, "Average")
@@ -388,12 +388,12 @@ class ScoreResult(models.Model):
         output['slow_fast_rough_terrain'] = ScoreResultMetric('slow_fast_rough_terrain', 'Portcullis Speed', 'no_move')
         output['slow_fast_low_bar'] = ScoreResultMetric('slow_fast_low_bar', 'Portcullis Speed', 'no_move')
 
-        # Scale
-        output['scale_challenge'] = ScoreResultMetric('scale_challenge', 'Portcullis Speed', 'no')
-
         # General
-        output['notes_text_area'] = ScoreResultMetric('notes_text_area', 'Notes', "")
+        output['scale_challenge'] = ScoreResultMetric('scale_challenge', 'Portcullis Speed', 'no')
         output['score_tech_foul'] = ScoreResultMetric('score_tech_foul', 'Tech Fouls', 0, "Sum")
+
+        # Comments
+        output['notes_text_area'] = ScoreResultMetric('notes_text_area', 'Notes', "")
 
         return output
 
