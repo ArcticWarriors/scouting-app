@@ -17,20 +17,21 @@ login_reverse = reverse_lazy('Scouting2016:showLogin')
 
 
 @permission_required('auth.can_modify_model', login_url=login_reverse)
-def info_for_pit_edit(request):
-    return render(request, 'Scouting2016/pit_form/pre_pit_form.html')
+def info_for_pit_edit(request, regional_code):
+    return render(request, 'Scouting2016/pit_form/pre_pit_form.html', context={'regional_code': regional_code})
 
 
 @permission_required('auth.can_modify_model', login_url=login_reverse)
-def show_add_pit(request):
+def show_add_pit(request, regional_code):
     context = {}
+    context["regional_code"] = regional_code
     context['team'] = Team.objects.get(teamNumber=request.GET["team_number"])
     context['submit_pit'] = "/2016/submit_pit"
     return render(request, 'Scouting2016/pit_form/pit_form.html', context)
 
 
 @permission_required('auth.can_modify_model', login_url=login_reverse)
-def submit_new_pit(request):
+def submit_new_pit(request, regional_code):
 
     team_pit_scouting = TeamPitScouting.objects.get(team__teamNumber=request.POST['team_number'])
     team_pit_scouting.teamOrganized = request.POST['notes_organized']
@@ -60,4 +61,6 @@ def submit_new_pit(request):
 
     team_pit_scouting.save()
 
-    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(team_pit_scouting.team.teamNumber,)))
+    print "UHHH'"
+
+    return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(regional_code, team_pit_scouting.team.teamNumber,)))

@@ -14,7 +14,7 @@
     {{error_message}}
     {% endif %}
 	
-	<form action="{% url 'Scouting2016:auth_login' %}" method="post">
+	<form action="{% url 'Scouting2016:auth_login' regional_code %}" method="post">
       {% csrf_token %}
       {% if request.GET.next != None %} <input type="hidden" name="next" value="{{ request.GET.next }}" />{% endif %}
     

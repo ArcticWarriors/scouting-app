@@ -7,7 +7,7 @@ Created on Mar 28, 2016
 from django.shortcuts import get_object_or_404
 from django.views.generic.base import TemplateView, View
 from Scouting2016.model.reusable_models import Team, Match, OfficialMatch, \
-    TeamPictures, TeamComments
+    TeamPictures, TeamComments, TeamCompetesIn
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 import os
@@ -75,16 +75,18 @@ class AllTeamsViews(TemplateView):
     template_name = 'Scouting2016/all_teams.html'
 
     def get_context_data(self, **kwargs):
-        all_teams = Team.objects.all()
+        competes_in_query = TeamCompetesIn.objects.filter(competition__code=kwargs["regional_code"])
 
         teams_with_metrics = []
 
-        for team in all_teams:
+        for competes_in in competes_in_query:
+            team = competes_in.team
             team.metrics = self.get_metrics_for_team(team)
             teams_with_metrics.append(team)
 
         context = super(AllTeamsViews, self).get_context_data(**kwargs)
         context['teams'] = teams_with_metrics
+        print context
 
         return context
 
@@ -116,9 +118,9 @@ class AllMatchesView(TemplateView):
     template_name = 'Scouting2016/all_matches.html'
 
     def get_context_data(self, **kwargs):
-        matches = Match.objects.all()
+        matches = Match.objects.filter(competition__code=kwargs["regional_code"])
         scouted_numbers = [match.matchNumber for match in matches]
-        unscouted_matches = OfficialMatch.objects.all().exclude(matchNumber__in=scouted_numbers)
+        unscouted_matches = OfficialMatch.objects.filter(competition__code=kwargs["regional_code"]).exclude(matchNumber__in=scouted_numbers)
 
         context = super(AllMatchesView, self).get_context_data(**kwargs)
         context['scouted_matches'] = matches

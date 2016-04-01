@@ -8,7 +8,7 @@
 <body>
 
 {% include "Scouting2016/banner.html" %}
-<form action="{{ submit_pit }}" method="post">
+<form action="{% url 'Scouting2016:submit_new_pit' regional_code %}" method="post">
 	{% csrf_token %}
 		<p> Which team's pit was visited?												 </p>
 		<input type="number" name="team_number"  value="{{team.teamNumber}}" readonly> 

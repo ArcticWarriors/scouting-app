@@ -24,7 +24,7 @@ No matches scouted
  <h2>Matches Scouted:</h2>
   <ul>
   {% for sr in score_result_list %}
-     <li><a href="{% url 'Scouting2016:view_match' sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a>{%if sr.notes_text_area != "" %} - {{sr.notes_text_area}}{% endif %}</li>
+     <li><a href="{% url 'Scouting2016:view_match' regional_code sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a>{%if sr.notes_text_area != "" %} - {{sr.notes_text_area}}{% endif %}</li>
   {% endfor %}
   </ul>
 {% endif %}
@@ -32,7 +32,7 @@ No matches scouted
   <h2>Pictures</h2>
     
     {% if "auth.can_add_pictures" in perms %}
-    <form action="{% url 'Scouting2016:upload_image' %}" method="POST" enctype="multipart/form-data">
+    <form action="{% url 'Scouting2016:upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="hidden" name='team_number' value={{team.teamNumber}}>
         <input type="file" name='image_name' accept="image/*">
@@ -60,7 +60,7 @@ No matches scouted
 
 
    {% if "auth.can_add_pictures" in perms %}
-   <form action="{% url 'Scouting2016:add_team_comments' team.teamNumber %}" method="POST">
+   <form action="{% url 'Scouting2016:add_team_comments' regional_code team.teamNumber %}" method="POST">
    {% csrf_token %}
    
   <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>

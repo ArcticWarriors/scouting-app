@@ -18,14 +18,6 @@ class ScoreResultMetric:
         return "SRMetric: [%s, %s, %s, %s]" % (self.field_name, self.display_name, self.default, self.metric_type)
 
 
-class Match(models.Model):
-
-    matchNumber = models.IntegerField()
-
-    def __str__(self):
-        return "Match %s" % self.matchNumber
-
-
 class Compitition(models.Model):
 
     code = models.CharField(max_length=6)
@@ -34,21 +26,38 @@ class Compitition(models.Model):
     state = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
 
+    def __str__(self):
+        return "Competition %s - %s" % (self.code, self.name)
+
+
+class Match(models.Model):
+
+    matchNumber = models.IntegerField()
+    competition = models.ForeignKey(Compitition)
+
+    def __str__(self):
+        return "Match %s at Competitions %s" % (self.matchNumber, self.competition)
+
 
 class Team(models.Model):
 
     teamNumber = models.IntegerField()
     homepage = models.CharField(max_length=2000, default="")
     rookie_year = models.CharField(max_length=4)
-    city = models.CharField(max_length=100, default="Unknown")
-    state = models.CharField(max_length=100, default="Unknown")
-    country = models.CharField(max_length=100, default="Unknown")
-    team_name = models.CharField(max_length=100, default="Unknown")
-    team_nickname = models.CharField(max_length=100, default="Unknown")
-    robot_name = models.CharField(max_length=100, default="Unknown")
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    team_name = models.CharField(max_length=100)
+    team_nickname = models.CharField(max_length=100)
+    robot_name = models.CharField(max_length=100)
 
     def __str__(self):
         return "Team %s" % self.teamNumber
+
+
+class TeamCompetesIn(models.Model):
+    team = models.ForeignKey(Team)
+    competition = models.ForeignKey(Compitition)
 
 
 class TeamComments(models.Model):
@@ -68,4 +77,6 @@ class TeamPictures(models.Model):
 class OfficialMatch(models.Model):
 
     matchNumber = models.IntegerField()
+    competition = models.ForeignKey(Compitition)
+
     hasOfficialData = models.BooleanField(default=False)

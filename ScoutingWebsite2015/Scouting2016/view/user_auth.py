@@ -9,21 +9,21 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
 
-def showLogin(request):
+def showLogin(request, **kargs):
 
-    return render(request, 'Scouting2016/login.html')
+    return render(request, 'Scouting2016/login.html', context=kargs)
 
 
-def log_user_out(request):
+def log_user_out(request, **kargs):
     logout(request)
 
-    return HttpResponseRedirect(reverse('Scouting2016:showLogin'))
+    return HttpResponseRedirect(reverse('Scouting2016:showLogin', args=kargs.values()))
 
 
-def auth_login(request):
+def auth_login(request, **kargs):
     username = request.POST['username']
     password = request.POST['password']
-    good_redirect = request.POST.get('next', '/2016')
+    good_redirect = request.POST.get('next', '/2016/%s' % kargs['regional_code'])
     bad_redirect = 'Scouting2016:showLogin'
     print good_redirect
 
@@ -33,6 +33,6 @@ def auth_login(request):
             login(request, user)
             return HttpResponseRedirect(good_redirect)
         else:
-            return HttpResponseRedirect(reverse(bad_redirect))
+            return HttpResponseRedirect(reverse(bad_redirect, args=kargs.values()))
     else:
-        return HttpResponseRedirect(reverse(bad_redirect))
+        return HttpResponseRedirect(reverse(bad_redirect, args=kargs.values()))

@@ -14,21 +14,21 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li> <a href="{% url 'Scouting2016:index' %}">Home</a> </li>
-            <li> <a href="{% url 'Scouting2016:robot_display' %}">Our Robot</a> </li>
-            <li> <a href="{% url 'Scouting2016:teams' %}">Team List</a></li>
-            <li> <a href="{% url 'Scouting2016:matches' %}">Matches</a></li>
+            <li> <a href="{% url 'Scouting2016:index' regional_code %}">Home</a> </li>
+            <li> <a href="{% url 'Scouting2016:robot_display' regional_code %}">Our Robot</a> </li>
+            <li> <a href="{% url 'Scouting2016:teams' regional_code %}">Team List</a></li>
+            <li> <a href="{% url 'Scouting2016:matches' regional_code %}">Matches</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if "auth.can_modify_model" in perms %}
-            <li> <a href="{% url 'Scouting2016:showForm' %}">Add Match</a> </li>
-            <li> <a href="{% url 'Scouting2016:info_for_form_edit' %}">Edit Match</a> </li>
-            <li> <a href="{% url 'Scouting2016:info_for_pit_edit' %}">Edit Pit</a> </li>
-            <li> <a href="{% url 'Scouting2016:log_user_out' %}">Logout</a> </li>
+            <li> <a href="{% url 'Scouting2016:showForm' regional_code %}">Add Match</a> </li>
+            <li> <a href="{% url 'Scouting2016:info_for_form_edit' regional_code %}">Edit Match</a> </li>
+            <li> <a href="{% url 'Scouting2016:info_for_pit_edit' regional_code %}">Edit Pit</a> </li>
+            <li> <a href="{% url 'Scouting2016:log_user_out' regional_code %}">Logout</a> </li>
             {% elif user.is_authenticated %}
-            <li> <a href="{% url 'Scouting2016:log_user_out' %}">Logout</a> </li>
+            <li> <a href="{% url 'Scouting2016:log_user_out' regional_code %}">Logout</a> </li>
             {% else %}
-            <li> <a href="{% url 'Scouting2016:showLogin' %}">Log In</a> </li>
+            <li> <a href="{% url 'Scouting2016:showLogin' regional_code %}">Log In</a> </li>
             {% endif %}
             </ul>
         </div>

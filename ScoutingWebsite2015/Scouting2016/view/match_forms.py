@@ -9,6 +9,7 @@ from django.shortcuts import render
 
 from Scouting2016.models import Team, Match, ScoreResult
 from django.contrib.auth.decorators import permission_required
+from Scouting2016.model.reusable_models import Compitition
 
 
 login_reverse = reverse_lazy('Scouting2016:showLogin')
@@ -40,7 +41,7 @@ def __get_create_kargs(request):
     return kargs
 
 
-def submit_new_match(request):
+def submit_new_match(request, regional_code):
     """
     Creates a new score result and match (if possible).  Uses the team and match number
     from the form to search for an existing score result.  If one exists, it will
@@ -50,8 +51,9 @@ def submit_new_match(request):
     """
 
     team = Team.objects.get(teamNumber=request.POST["team_number"])
+    competition = Compitition.objects.get(code=regional_code)
     if len(Match.objects.filter(matchNumber=request.POST["match_number"])) == 0:
-        match = Match.objects.create(matchNumber=request.POST["match_number"])
+        match = Match.objects.create(matchNumber=request.POST["match_number"], competition=competition)
     else:
         match = Match.objects.get(matchNumber=request.POST["match_number"])
 
@@ -76,9 +78,9 @@ def submit_new_match(request):
         return render(request, 'Scouting2016/inputForm.html', context)
     else:
         kargs = __get_create_kargs(request)
-        ScoreResult.objects.create(match=match, team=team, **kargs)
+        ScoreResult.objects.create(match=match, team=team, competition=competition, **kargs)
 
-        return HttpResponseRedirect(reverse('Scouting2016:view_match', args=(match.matchNumber,)))
+        return HttpResponseRedirect(reverse('Scouting2016:view_match', args=(regional_code, match.matchNumber,)))
 
 
 def edit_prev_match(request):
@@ -103,16 +105,17 @@ def edit_prev_match(request):
 
 
 @permission_required('auth.can_modify_model', login_url=login_reverse)
-def info_for_form_edit(request):
+def info_for_form_edit(request, regional_code):
 
-    return render(request, 'Scouting2016/match_form/pre_edit_match_form.html')
+    return render(request, 'Scouting2016/match_form/pre_edit_match_form.html', context={"regional_code": regional_code})
 
 
 @permission_required('auth.can_modify_model', login_url=login_reverse)
-def show_add_form(request):
+def show_add_form(request, regional_code):
 
     context = {}
-    context['submit_view'] = "/2016/submit_form"
+    context['regional_code'] = regional_code
+    context['submit_view'] = "/2016/%s/submit_form" % regional_code
     context["sr"] = {}
 
     score_result_fields = ScoreResult.get_fields()
@@ -122,7 +125,7 @@ def show_add_form(request):
     return render(request, 'Scouting2016/match_form/match_form.html', context)
 
 
-def show_edit_form(request):
+def show_edit_form(request, regional_code):
 
     match = Match.objects.get(matchNumber=request.GET["match_number"])
     team = Team.objects.get(teamNumber=request.GET["team_number"])
@@ -131,6 +134,7 @@ def show_edit_form(request):
     print score_results
 
     context = {}
+    context["regional_code"] = regional_code
     context['team_number'] = request.GET["team_number"]
     context['match_number'] = request.GET["match_number"]
     context['sr'] = score_results

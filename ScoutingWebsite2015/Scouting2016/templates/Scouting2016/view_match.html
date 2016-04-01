@@ -59,7 +59,7 @@ table {
 		
 		{% for sr in score_result_list %}
 		<tr>
-			<td><a href="{% url 'Scouting2016:view_team' sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
+			<td><a href="{% url 'Scouting2016:view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
 			<td>{{sr.low_score_successful}}</td>
 			<td>{{sr.high_score_successful}}</td>
 			<td>{{sr.auto_score_low}}</td>
@@ -88,7 +88,7 @@ table {
 		<th>Portcullis</th>
 		{% for sr in score_result_list %}
 		<tr>
-			<td><a href="{% url 'Scouting2016:view_team' sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
+			<td><a href="{% url 'Scouting2016:view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
 			<td>{{sr.low_bar}} </td>
 			<td>{{sr.cheval_de_frise}}</td>
 			<td>{{sr.ramparts}}</td>
