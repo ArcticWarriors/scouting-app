@@ -1,0 +1,106 @@
+<html>
+<head>
+{% load staticfiles %}
+{% include "Scouting2013/standard_header.html" %}
+<title>Match {{ match_display }}</title>
+</head>
+<style>
+h2 {
+	text-align: center;
+}
+
+table {
+	text-align: center;
+}
+</style>
+
+<body>
+
+	{% include "Scouting2013/banner.html" %}
+ 
+ 
+   {% if official_mismatch != None and has_official_data %}
+   <center>
+   <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
+   <table border=1>
+     <tr>
+       <td> Field </td>
+       <td> Expected </td>
+       <td> Actual </td>
+     </tr>
+     {% for field, results in official_mismatch.items %}
+     <tr>
+       <td> {{ field }} </td>
+       <td> {{ results.0 }} </td>
+       <td> {{ results.1 }} </td>
+     </tr>
+     {% endfor %}
+   </table>
+   </center>
+   {% elif not has_official_data %}
+   <center>
+     <h1> Warning: No official results available. Data from this match cannot be verified. </h1>
+   </center>
+   {% endif %}
+ 
+ 
+
+ <h1>Match {{ match.matchNumber }}</h1>
+	<h2>Scoring Stats.</h2>
+	<table border="1" class = "sortable">
+
+		<th>Teams</th>
+		<th>Low goal scores</th>
+		<th>High goal scores</th>
+		<th>Low auto scores</th>
+		<th>High auto scores</th>
+		<th>Spybot?</th>
+		<th>Tech. Fouls</th>
+		
+		{% for sr in score_result_list %}
+		<tr>
+			<td><a href="{% url 'Scouting2013:view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
+			<td>{{sr.low_score_successful}}</td>
+			<td>{{sr.high_score_successful}}</td>
+			<td>{{sr.auto_score_low}}</td>
+			<td>{{sr.auto_score_high}}</td>
+			<td>{{sr.auto_spy}}</td>
+			<td>{{sr.score_tech_foul}}</td>
+			
+			
+			
+		</tr>
+		{% endfor %}
+	</table>
+	<br></br>
+	<h2>Defense Stats.</h2>
+	<table border="1" class = "sortable">
+
+		<th>Teams</th>
+		<th>Low Bar</th>
+		<th>Cheval</th>
+		<th>Ramparts</th>
+		<th>Sally Port</th>
+		<th>Rock Wall</th>
+		<th>Drawbridge</th>
+		<th>Moat</th>
+		<th>Rough Terrain</th>
+		<th>Portcullis</th>
+		{% for sr in score_result_list %}
+		<tr>
+			<td><a href="{% url 'Scouting2013:view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
+			<td>{{sr.low_bar}} </td>
+			<td>{{sr.cheval_de_frise}}</td>
+			<td>{{sr.ramparts}}</td>
+			<td>{{sr.sally_port}}</td>
+			<td>{{sr.rock_wall}}</td>
+			<td>{{sr.draw_bridge}}</td>
+			<td>{{sr.moat}}</td>
+			<td>{{sr.rough_terrain}}</td>
+			<td>{{sr.portcullis}}</td>	
+		</tr>
+		{% endfor %}
+	</table>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+
+{% load staticfiles %}
+{% include "Scouting2013/standard_header.html" %}
+<title>Robot Info</title>
+<style>
+.gridpic {
+  padding-top:60%;
+  width:85%;
+  display: block;
+  margin: 0 auto;
+  background-size: cover
+}
+</style>
+</head>
+
+<body>
+
+{% include "Scouting2013/banner.html" %}
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1 class="text-center">
+        Our Robot
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div style="background-image:url({% static 'Scouting2013/robot_info/ourbot_overroller.jpg' %});" class="gridpic"></div>
+      </div>
+      <div class="col-md-4">
+        <div style="background-image:url({% static 'Scouting2013/robot_info/ourbot_bot.jpg' %})" class="gridpic"></div>
+      </div>
+      <div class="col-md-4">
+        <div style="background-image:url({% static 'Scouting2013/robot_info/ourbot_tower.jpg' %})" class="gridpic"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
