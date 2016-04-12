@@ -86,7 +86,6 @@ class AllTeamsViews(TemplateView):
 
         context = super(AllTeamsViews, self).get_context_data(**kwargs)
         context['teams'] = teams_with_metrics
-        print context
 
         return context
 
@@ -107,8 +106,6 @@ class SingleTeamView(TemplateView):
         context['pictures'] = TeamPictures.objects.filter(team_id=team.id)
         context['team_comments'] = TeamComments.objects.filter(team=team)
         context['metrics'] = self.get_metrics(team)
-
-        print context['team_comments']
 
         return context
 
@@ -142,7 +139,6 @@ class SingleMatchView(TemplateView):
 
     def get_context_data(self, **kwargs):
         the_match = get_object_or_404(Match, matchNumber=kwargs["match_number"])
-        print the_match
 
         context = super(SingleMatchView, self).get_context_data(**kwargs)
         context['match'] = the_match
@@ -171,6 +167,5 @@ class OfficialMatchView(TemplateView):
         context = super(OfficialMatchView, self).get_context_data(**kwargs)
         context['match_number'] = official_match.matchNumber
         context['results'] = self.get_score_results(official_match)
-        print context
 
         return context

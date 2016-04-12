@@ -47,10 +47,37 @@ class ScoreResult(models.Model):
         # General
         output['invalid_hangs'] = ScoreResultMetric('invalid_hangs', 'Invalid Hangs', "", "Sum")
         output['notes_text_area'] = ScoreResultMetric('notes_text_area', 'Notes', "")
-        output['fouls'] = ScoreResultMetric('fouls', 'Tech Fouls', 0, "Fouls", "Sum")
+        output['fouls'] = ScoreResultMetric('fouls', 'Fouls', 0, "Sum")
         output['technical_fouls'] = ScoreResultMetric('technical_fouls', 'Tech Fouls', 0, "Sum")
         output['yellow_card'] = ScoreResultMetric('yellow_card', 'Yellow Card', 0, "Sum")
         output['red_card'] = ScoreResultMetric('red_card', 'Red Card', 0, "Sum")
         output['broke_badly'] = ScoreResultMetric('broke_badly', 'Broke Badly', 0, "Sum")
 
         return output
+
+
+
+def get_team_metrics(team):
+    
+    kargs = {}
+    all_fields = ScoreResult.get_fields()
+    for key in all_fields:
+        sr_field = all_fields[key]
+        if sr_field.metric_type == "Average":
+#             kargs.append(Avg(key))
+            kargs[sr_field.display_name] = Avg(key)
+        elif sr_field.metric_type == "Sum":
+#             kargs.append(Sum(key))
+            kargs[sr_field.display_name] = Sum(key)
+        else:
+            print "field %s is not metrics-able" % key
+            
+    print kargs
+    output =  team.scoreresult_set.aggregate(**kargs)
+    print
+    print
+    print output
+    print 
+    print
+    
+    return output
