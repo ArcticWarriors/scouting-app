@@ -143,8 +143,18 @@ class SingleMatchView(TemplateView):
         context = super(SingleMatchView, self).get_context_data(**kwargs)
         context['match'] = the_match
         context['score_result_list'] = [sr for sr in the_match.scoreresult_set.all()]
+        
+        metrics = []
+        for sr in the_match.scoreresult_set.all():
+            metrics.append(self.get_metrics(sr))
+        context['metrics'] = metrics
+        
+        print metrics
 
         return context
+    
+    def get_metrics(self, sr):
+        return []
 
 
 class OfficialMatchView(TemplateView):

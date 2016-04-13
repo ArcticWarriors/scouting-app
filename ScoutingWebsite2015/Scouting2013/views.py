@@ -14,10 +14,7 @@ login_reverse = reverse_lazy('Scouting2013:showLogin')
 class AllTeamsViews2013(AllTeamsViews):
 
     def get_metrics_for_team(self, team):
-        xxx = get_team_metrics(team)
-        print "AHHHHHHHHHHHHHHHHHH"
-        print xxx
-        return xxx
+        return get_team_metrics(team)
 
 
 class AddTeamPictureView2013(AddTeamPictureView):
@@ -29,12 +26,18 @@ class AddTeamPictureView2013(AddTeamPictureView):
 class SingleTeamView2013(SingleTeamView):
 
     def get_metrics(self, team):
-        xxx = get_team_metrics(team)
-        print "AHHHHHHHHHHHHHHHHHH"
-        print xxx
-        return xxx
+        return get_team_metrics(team)
 
 
 class SingleMatchView2013(SingleMatchView):
-    pass
+    
+    def get_metrics(self, sr):
+        output = []
+        output.append(('teamNumber', sr.team.teamNumber))
+        sr_fields = ScoreResult.get_fields()
+        for key in sr_fields:
+            sr_field = sr_fields[key]
+            output.append((sr_field.display_name, getattr(sr, key)))
+            
+        return output
 

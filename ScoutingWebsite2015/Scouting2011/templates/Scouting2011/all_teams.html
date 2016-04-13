@@ -61,44 +61,19 @@ th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
 					<tr>
 						<th class="col-numeric"><a role="button" tabindex=0>Bookmarked</a></th>
 						<th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Scores</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Low Goal Misses</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>High Goal Scores</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>High Goal Misses</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Autonomous Low goal</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Autonomous High goal</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Tech. Fouls</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Cheval de Frise</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Ramparts</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Sally Port</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Low Bar</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Rock Wall</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Drawbridge</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Moat</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Rough Terrain</a></th>
-						<th class="col-numeric"><a role="button" tabindex=0>Portcullis</a></th>
+					  {% for x in teams.0.metrics %}
+						<th class="col-numeric"><a role="button" tabindex=0>{{x.0}}</a></th>
+					  {% endfor %}
 					</tr>
+					
 					{% for team in teams %}
-						
 					<tr>
 							<td style="{% if team.bookmark == 'yes' %}background-color:#ff5a14; color:white;{% endif %}">{{team.bookmark}}</td>
 							<td> <a href="{% url 'Scouting2011:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a></td>
-							<td>{{team.metrics.low_score_successful__avg}}</td>
-							<td>{{team.metrics.low_score_fail__avg}}</td>
-							<td>{{team.metrics.high_score_successful__avg}}</td>
-							<td>{{team.metrics.high_score_fail__avg}}</td>
-							<td>{{team.metrics.auto_score_low__avg}}</td>
-							<td>{{team.metrics.auto_score_high__avg}}</td>
-							<td>{{team.metrics.score_tech_foul__sum}}</td>
-							<td>{{team.metrics.cheval_de_frise__sum}}</td>
-							<td>{{team.metrics.ramparts__sum}}</td>
-							<td>{{team.metrics.sally_port__sum}}</td>
-							<td>{{team.metrics.low_bar__sum}}</td>
-							<td>{{team.metrics.rock_wall__sum}}</td>
-							<td>{{team.metrics.draw_bridge__sum}}</td>
-							<td>{{team.metrics.moat__sum}}</td>
-							<td>{{team.metrics.rough_terrain__sum}}</td>
-							<td>{{team.metrics.portcullis__sum}}</td>
+							
+					       {% for x in team.metrics %}
+						   <td>{{x.1}}</td>
+					       {% endfor %}
 					</tr>
 
 					{% endfor %}

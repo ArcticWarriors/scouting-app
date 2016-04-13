@@ -3,8 +3,8 @@ $( document ).ready (function() {
 	// Get hovercards HTML
 	var numericFilter, colSelect;
 	jQuery.ajaxSetup({async:false});
-	$.get("/2016/hovercards?type=filterContent&filterType=numeric", function(data){numericFilter = data;});
-	$.get("/2016/hovercards?type=colSelectContent", function(data){colSelect = data;});
+	$.get("/2013/hovercards?type=filterContent&filterType=numeric", function(data){numericFilter = data;});
+	$.get("/2013/hovercards?type=colSelectContent", function(data){colSelect = data;});
 	jQuery.ajaxSetup({async:true});
 	// Initial filter popover initialization & default filter values
 	$("th").each(function() {
