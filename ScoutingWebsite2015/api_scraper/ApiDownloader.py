@@ -7,11 +7,11 @@ import os
 import json
 from urllib2 import Request, urlopen
 #
-from Scouting2015.api_scraper.api_key import get_encoded_key
+from api_key import get_encoded_key
 import datetime
 
 
-class ApiScraper():
+class ApiDownloader():
 
     __api_website = "https://frc-api.firstinspires.org/v2.0/"
 
@@ -43,24 +43,25 @@ class ApiScraper():
 
         return json_struct
 
-    def download_team_data(self):
-        url = self.__api_website + "/{0}/teams?".format(self.season)
-        local_file = self.json_path + 'teams/team_query.json'
-        json_struct = self.read_url_and_dump(url, local_file)
-
-        total_pages = json_struct["pageTotal"]
-
-        for page_i in range(total_pages):
-            url = self.__api_website + "/{0}/teams?page={1}".format(self.season, page_i + 1)
-            local_file = self.json_path + 'team_query_page%s.json' % page_i
-            json_struct = self.read_url_and_dump(url, local_file)
-
     def download_event_data(self):
         url = self.__api_website + "/{0}/events?".format(self.season)
         local_file = self.json_path + 'events/event_query.json'
         self.read_url_and_dump(url, local_file)
 
         self.calculate_event_to_week_mapping()
+
+    def download_team_data(self):
+        url = self.__api_website + "/{0}/teams?".format(self.season)
+        original_file = self.json_path + 'teams/team_query.json'
+        json_struct = self.read_url_and_dump(url, original_file)
+        os.remove(original_file)
+
+        total_pages = json_struct["pageTotal"]
+
+        for page_i in range(total_pages):
+            url = self.__api_website + "/{0}/teams?page={1}".format(self.season, page_i + 1)
+            local_file = self.json_path + 'teams/team_query_page%s.json' % page_i
+            json_struct = self.read_url_and_dump(url, local_file)
 
     def calculate_event_to_week_mapping(self):
         local_file = self.json_path + 'events/event_query.json'
@@ -86,30 +87,26 @@ class ApiScraper():
         with open(event_dump, 'w') as f:
             json.dump(sorted_comp, f, indent=4)
 
-    def download_team_info(self, event_code):
-
-        url = self.__api_website + "/{0}/teams?eventCode={1}".format(self.season, event_code)
-        local_file = self.json_path + '/{0}_team_query.json'.format(event_code)
-        self.read_url_and_dump(url, local_file)
-
-    def download_schedule(self, event_code, tourny_level="Qualification"):
+    ###########################
+    # Event Based
+    ###########################
+    def download_schedule(self, event_code, competition_week, tourny_level="Qualification"):
         url = self.__api_website + "/{0}/schedule/{1}?tournamentLevel={2}".format(self.season, event_code, tourny_level)
-        local_file = self.json_path + '/{0}_schedule_query.json'.format(event_code)
+        local_file = self.json_path + '/week{0}/{1}_schedule_query.json'.format(competition_week, event_code)
         json_struct = self.read_url_and_dump(url, local_file)
 
         if len(json_struct["Schedule"]) == 0:
             print "Event %s does not have any schedule information" % event_code
             os.remove(local_file)
 
-    def download_matchresult_info(self, event_code, start, ):
-        raise
+    def download_matchresult_info(self, event_code, competition_week, tourny_level="Qualification"):
+        url = self.__api_website + "/{0}/scores/{1}/{2}".format(self.season, event_code, tourny_level)
+        local_file = self.json_path + '/week{0}/{1}_scoreresult_query.json'.format(competition_week, event_code)
+        json_struct = self.read_url_and_dump(url, local_file)
 
-json_root = os.path.abspath("../__api_scraping_results") + "/"
-if not os.path.exists(json_root):
-    os.makedirs(json_root)
+        if len(json_struct["MatchScores"]) == 0:
+            print "Event %s does not have any match results" % event_code
+            os.remove(local_file)
 
-scraper = ApiScraper(2015, json_root)
-# scraper.download_event_data()
-scraper.download_team_data()
 
 
