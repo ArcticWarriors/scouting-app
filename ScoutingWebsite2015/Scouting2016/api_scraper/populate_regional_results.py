@@ -11,7 +11,7 @@ import sys
 sys.path.append(os.path.abspath(".."))
 
 import json
-from api_scraper import get_users
+from Scouting2016.api_scraper import get_users
 
 
 def read_local_copy(input_file):

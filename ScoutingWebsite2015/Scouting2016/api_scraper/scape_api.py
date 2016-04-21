@@ -12,7 +12,7 @@ import sys
 sys.path.append(os.path.abspath(".."))
 print "\n".join(x for x in sys.path)
 
-from api_scraper.get_competitions import get_competitions_to_scrape
+from Scouting2016.api_scraper.get_competitions import get_competitions_to_scrape
 
 
 #############################################################
@@ -34,7 +34,7 @@ def reload_django(event_code, database_path):
 import json
 from urllib2 import Request, urlopen
 
-from api_scraper.api_key import get_encoded_key
+from Scouting2016.api_scraper.api_key import get_encoded_key
 
 
 __api_website = "https://frc-api.firstinspires.org/v2.0/"
