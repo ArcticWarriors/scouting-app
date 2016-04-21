@@ -1,0 +1,2812 @@
+{
+    "Schedule": [
+        {
+            "description": "Qualification 1 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:00:00",
+            "matchNumber": 1
+        },
+        {
+            "description": "Qualification 2 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:07:00",
+            "matchNumber": 2
+        },
+        {
+            "description": "Qualification 3 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:14:00",
+            "matchNumber": 3
+        },
+        {
+            "description": "Qualification 4 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:24:00",
+            "matchNumber": 4
+        },
+        {
+            "description": "Qualification 5 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:31:00",
+            "matchNumber": 5
+        },
+        {
+            "description": "Qualification 6 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:38:00",
+            "matchNumber": 6
+        },
+        {
+            "description": "Qualification 7 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:45:00",
+            "matchNumber": 7
+        },
+        {
+            "description": "Qualification 8 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:52:00",
+            "matchNumber": 8
+        },
+        {
+            "description": "Qualification 9 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T11:59:00",
+            "matchNumber": 9
+        },
+        {
+            "description": "Qualification 10 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T12:09:00",
+            "matchNumber": 10
+        },
+        {
+            "description": "Qualification 11 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T12:16:00",
+            "matchNumber": 11
+        },
+        {
+            "description": "Qualification 12 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T12:23:00",
+            "matchNumber": 12
+        },
+        {
+            "description": "Qualification 13 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T12:30:00",
+            "matchNumber": 13
+        },
+        {
+            "description": "Qualification 14 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T12:37:00",
+            "matchNumber": 14
+        },
+        {
+            "description": "Qualification 15 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T12:44:00",
+            "matchNumber": 15
+        },
+        {
+            "description": "Qualification 16 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T12:54:00",
+            "matchNumber": 16
+        },
+        {
+            "description": "Qualification 17 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T13:31:00",
+            "matchNumber": 17
+        },
+        {
+            "description": "Qualification 18 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T13:38:00",
+            "matchNumber": 18
+        },
+        {
+            "description": "Qualification 19 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T13:45:00",
+            "matchNumber": 19
+        },
+        {
+            "description": "Qualification 20 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T13:52:00",
+            "matchNumber": 20
+        },
+        {
+            "description": "Qualification 21 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T13:59:00",
+            "matchNumber": 21
+        },
+        {
+            "description": "Qualification 22 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T14:09:00",
+            "matchNumber": 22
+        },
+        {
+            "description": "Qualification 23 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T14:16:00",
+            "matchNumber": 23
+        },
+        {
+            "description": "Qualification 24 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T14:23:00",
+            "matchNumber": 24
+        },
+        {
+            "description": "Qualification 25 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T14:30:00",
+            "matchNumber": 25
+        },
+        {
+            "description": "Qualification 26 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T14:37:00",
+            "matchNumber": 26
+        },
+        {
+            "description": "Qualification 27 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T14:44:00",
+            "matchNumber": 27
+        },
+        {
+            "description": "Qualification 28 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T14:54:00",
+            "matchNumber": 28
+        },
+        {
+            "description": "Qualification 29 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:01:00",
+            "matchNumber": 29
+        },
+        {
+            "description": "Qualification 30 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:08:00",
+            "matchNumber": 30
+        },
+        {
+            "description": "Qualification 31 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:15:00",
+            "matchNumber": 31
+        },
+        {
+            "description": "Qualification 32 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:22:00",
+            "matchNumber": 32
+        },
+        {
+            "description": "Qualification 33 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 360,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:29:00",
+            "matchNumber": 33
+        },
+        {
+            "description": "Qualification 34 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:39:00",
+            "matchNumber": 34
+        },
+        {
+            "description": "Qualification 35 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:46:00",
+            "matchNumber": 35
+        },
+        {
+            "description": "Qualification 36 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T15:53:00",
+            "matchNumber": 36
+        },
+        {
+            "description": "Qualification 37 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T16:00:00",
+            "matchNumber": 37
+        },
+        {
+            "description": "Qualification 38 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T16:07:00",
+            "matchNumber": 38
+        },
+        {
+            "description": "Qualification 39 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T16:14:00",
+            "matchNumber": 39
+        },
+        {
+            "description": "Qualification 40 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T16:24:00",
+            "matchNumber": 40
+        },
+        {
+            "description": "Qualification 41 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T16:31:00",
+            "matchNumber": 41
+        },
+        {
+            "description": "Qualification 42 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T16:53:00",
+            "matchNumber": 42
+        },
+        {
+            "description": "Qualification 43 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:00:00",
+            "matchNumber": 43
+        },
+        {
+            "description": "Qualification 44 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:07:00",
+            "matchNumber": 44
+        },
+        {
+            "description": "Qualification 45 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:14:00",
+            "matchNumber": 45
+        },
+        {
+            "description": "Qualification 46 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:24:00",
+            "matchNumber": 46
+        },
+        {
+            "description": "Qualification 47 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:31:00",
+            "matchNumber": 47
+        },
+        {
+            "description": "Qualification 48 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:38:00",
+            "matchNumber": 48
+        },
+        {
+            "description": "Qualification 49 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 948,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:45:00",
+            "matchNumber": 49
+        },
+        {
+            "description": "Qualification 50 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:52:00",
+            "matchNumber": 50
+        },
+        {
+            "description": "Qualification 51 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T17:59:00",
+            "matchNumber": 51
+        },
+        {
+            "description": "Qualification 52 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T18:09:00",
+            "matchNumber": 52
+        },
+        {
+            "description": "Qualification 53 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T18:16:00",
+            "matchNumber": 53
+        },
+        {
+            "description": "Qualification 54 (D)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-02T18:23:00",
+            "matchNumber": 54
+        },
+        {
+            "description": "Qualification 55 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:00:00",
+            "matchNumber": 55
+        },
+        {
+            "description": "Qualification 56 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:07:00",
+            "matchNumber": 56
+        },
+        {
+            "description": "Qualification 57 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:14:00",
+            "matchNumber": 57
+        },
+        {
+            "description": "Qualification 58 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:24:00",
+            "matchNumber": 58
+        },
+        {
+            "description": "Qualification 59 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:31:00",
+            "matchNumber": 59
+        },
+        {
+            "description": "Qualification 60 (A)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:38:00",
+            "matchNumber": 60
+        },
+        {
+            "description": "Qualification 61 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:45:00",
+            "matchNumber": 61
+        },
+        {
+            "description": "Qualification 62 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:52:00",
+            "matchNumber": 62
+        },
+        {
+            "description": "Qualification 63 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T09:59:00",
+            "matchNumber": 63
+        },
+        {
+            "description": "Qualification 64 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:09:00",
+            "matchNumber": 64
+        },
+        {
+            "description": "Qualification 65 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:16:00",
+            "matchNumber": 65
+        },
+        {
+            "description": "Qualification 66 (B)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:23:00",
+            "matchNumber": 66
+        },
+        {
+            "description": "Qualification 67 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3218,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2929,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3237,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4131,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1425,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2927,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:30:00",
+            "matchNumber": 67
+        },
+        {
+            "description": "Qualification 68 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 948,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3049,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4060,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3574,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3781,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2942,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:37:00",
+            "matchNumber": 68
+        },
+        {
+            "description": "Qualification 69 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4579,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5937,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5748,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4681,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3684,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3393,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:44:00",
+            "matchNumber": 69
+        },
+        {
+            "description": "Qualification 70 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2906,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2980,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2910,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5939,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2046,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3787,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:51:00",
+            "matchNumber": 70
+        },
+        {
+            "description": "Qualification 71 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 360,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4469,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3588,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2555,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5941,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2412,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T10:58:00",
+            "matchNumber": 71
+        },
+        {
+            "description": "Qualification 72 (C)",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5683,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3221,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3219,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3786,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4461,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5295,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2016-04-03T11:05:00",
+            "matchNumber": 72
+        }
+    ]
+}
