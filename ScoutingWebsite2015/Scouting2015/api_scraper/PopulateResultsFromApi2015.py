@@ -28,28 +28,23 @@ class PopulateRegionalResults2015(PopulateRegionalresults):
 
     def populate_official_sr(self, official_match_sr, alliance_info):
         pass
-#         official_match_sr.autoBouldersLow = alliance_info["autoBouldersLow"]
-#         official_match_sr.autoBouldersHigh = alliance_info["autoBouldersHigh"]
-#         official_match_sr.teleBouldersLow = alliance_info["teleopBouldersLow"]
-#         official_match_sr.teleBouldersHigh = alliance_info["teleopBouldersHigh"]
-#         official_match_sr.teleDefenseCrossings = alliance_info["teleopCrossingPoints"] / 5.0
-#         official_match_sr.autonA = alliance_info["robot1Auto"] if alliance_info["robot1Auto"] != None else "None"
-#         official_match_sr.autonB = alliance_info["robot2Auto"] if alliance_info["robot2Auto"] != None else "None"
-#         official_match_sr.autonC = alliance_info["robot3Auto"] if alliance_info["robot3Auto"] != None else "None"
-#         official_match_sr.towerFaceA = alliance_info["towerFaceA"]
-#         official_match_sr.towerFaceB = alliance_info["towerFaceB"]
-#         official_match_sr.towerFaceC = alliance_info["towerFaceC"]
-#         official_match_sr.fouls = alliance_info["foulCount"]
-#         official_match_sr.techFouls = alliance_info["techFoulCount"]
-#
-#         official_match_sr.defense2Name = self.defense_name_lookup[alliance_info["position2"]]
-#         official_match_sr.defense3Name = self.defense_name_lookup[alliance_info["position3"]]
-#         official_match_sr.defense4Name = self.defense_name_lookup[alliance_info["position4"]]
-#         official_match_sr.defense5Name = self.defense_name_lookup[alliance_info["position5"]]
-#         official_match_sr.defense1Crossings = alliance_info["position1crossings"]
-#         official_match_sr.defense2Crossings = alliance_info["position2crossings"]
-#         official_match_sr.defense3Crossings = alliance_info["position3crossings"]
-#         official_match_sr.defense4Crossings = alliance_info["position4crossings"]
-#         official_match_sr.defense5Crossings = alliance_info["position5crossings"]
-#
-#         official_match_sr.save()
+
+        # Auton
+        official_match_sr.auton_robot_set = alliance_info["robotSet"]
+        official_match_sr.auton_tote_set = alliance_info["toteSet"]
+        official_match_sr.auton_tote_stack = alliance_info["toteStack"]
+        official_match_sr.auton_container_set = alliance_info["containerSet"]
+
+        # Totes
+        official_match_sr.totes_on_close_platform = alliance_info["toteCountNear"]
+        official_match_sr.totes_on_far_platform = alliance_info["toteCountFar"]
+
+        # Containers
+        official_match_sr.containers_on_level_1 = alliance_info["containerCountLevel1"]
+        official_match_sr.containers_on_level_2 = alliance_info["containerCountLevel2"]
+        official_match_sr.containers_on_level_3 = alliance_info["containerCountLevel3"]
+        official_match_sr.containers_on_level_4 = alliance_info["containerCountLevel4"]
+        official_match_sr.containers_on_level_5 = alliance_info["containerCountLevel5"]
+        official_match_sr.containers_on_level_6 = alliance_info["containerCountLevel6"]
+
+        official_match_sr.save()
