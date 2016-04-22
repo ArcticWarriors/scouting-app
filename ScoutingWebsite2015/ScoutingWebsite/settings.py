@@ -40,8 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Our Apps
-#     'Scouting2016',
-    'Scouting2011',
+    'Scouting2016',
+#     'Scouting2011',
 #     'Scouting2013',
 )
 

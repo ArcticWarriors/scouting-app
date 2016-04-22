@@ -9,6 +9,7 @@ from urllib2 import Request, urlopen
 #
 from api_key import get_encoded_key
 import datetime
+import urllib2
 
 
 class ApiDownloader():
@@ -102,11 +103,14 @@ class ApiDownloader():
     def download_matchresult_info(self, event_code, competition_week, tourny_level="Qualification"):
         url = self.__api_website + "/{0}/scores/{1}/{2}".format(self.season, event_code, tourny_level)
         local_file = self.json_path + '/week{0}/{1}_scoreresult_query.json'.format(competition_week, event_code)
-        json_struct = self.read_url_and_dump(url, local_file)
+        try:
+            json_struct = self.read_url_and_dump(url, local_file)
 
-        if len(json_struct["MatchScores"]) == 0:
-            print "Event %s does not have any match results" % event_code
-            os.remove(local_file)
+            if len(json_struct["MatchScores"]) == 0:
+                print "Event %s does not have any match results" % event_code
+                os.remove(local_file)
+        except urllib2.HTTPError:
+            print "Event %s has invalid match results" % event_code
 
 
 

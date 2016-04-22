@@ -1,1 +1,1 @@
-database_path = './NYRO.sqlite3'
+database_path = './FullDatabase.sqlite3'
