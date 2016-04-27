@@ -42,8 +42,8 @@ INSTALLED_APPS = (
     # Our Apps
 #     'Scouting2011',
 #     'Scouting2013',
-    'Scouting2015',
-#     'Scouting2016',
+#     'Scouting2015',
+    'Scouting2016',
 )
 
 MIDDLEWARE_CLASSES = (

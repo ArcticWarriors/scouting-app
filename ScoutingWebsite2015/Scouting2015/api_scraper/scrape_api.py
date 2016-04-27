@@ -55,7 +55,7 @@ for event_pair in events_to_do:
 
     if populate_results:
         event_path = json_root + "week%s" % week
-        populater.update_schedule(code, event_path)
-#         populater.update_matchresults(code, event_path)
+#         populater.update_schedule(code, event_path)
+        populater.update_matchresults(code, event_path)
 
 #     break

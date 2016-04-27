@@ -6,7 +6,7 @@ Created on Mar 8, 2016
 
 import os
 import sys
-from api_scraper.PopulateResultsFromApi import PopulateRegionalresults
+from BaseScouting.api_scraper.PopulateResultsFromApi import PopulateRegionalresults
 
 
 class PopulateRegionalResults2015(PopulateRegionalresults):
