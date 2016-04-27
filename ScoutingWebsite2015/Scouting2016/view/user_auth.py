@@ -3,8 +3,8 @@ Created on Mar 28, 2016
 
 @author: PJ
 '''
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 

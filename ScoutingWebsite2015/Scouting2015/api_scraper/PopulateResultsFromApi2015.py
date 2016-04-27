@@ -4,16 +4,14 @@ Created on Mar 8, 2016
 @author: PJ
 '''
 
-import os
-import sys
-from BaseScouting.api_scraper.PopulateResultsFromApi import PopulateRegionalresults
+from BaseScouting.api_scraper.PopulateResultsFromApi import PopulateRegionalResults
 
 
-class PopulateRegionalResults2015(PopulateRegionalresults):
+class PopulateRegionalResults2015(PopulateRegionalResults):
 
     def __init__(self):
         from Scouting2015.model import Team, Compitition, OfficialMatch, OfficialMatchScoreResult
-        PopulateRegionalresults.__init__(self, Team, Compitition, OfficialMatch, OfficialMatchScoreResult)
+        PopulateRegionalResults.__init__(self, Team, Compitition, OfficialMatch, OfficialMatchScoreResult)
 
         self.defense_name_lookup = {}
         self.defense_name_lookup["A_Portcullis"] = "portcullis"

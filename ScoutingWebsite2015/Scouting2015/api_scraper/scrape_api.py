@@ -5,8 +5,8 @@ Created on Apr 20, 2016
 '''
 import os
 import json
-from api_scraper.ApiDownloader import ApiDownloader
-from BaseScouting import load_django.load_django
+from BaseScouting import load_django
+from BaseScouting.api_scraper.ApiDownloader import ApiDownloader
 from Scouting2015.api_scraper.PopulateResultsFromApi2015 import PopulateRegionalResults2015
 
 

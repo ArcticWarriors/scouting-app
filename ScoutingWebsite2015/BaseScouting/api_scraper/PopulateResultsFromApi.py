@@ -8,7 +8,7 @@ import json
 from django.db import transaction
 
 
-class PopulateRegionalresults:
+class PopulateRegionalResults:
 
     def __init__(self, team_model, competition_model, official_match_model, official_match_sr_model):
         self.team_model = team_model

@@ -111,6 +111,3 @@ class ApiDownloader():
                 os.remove(local_file)
         except urllib2.HTTPError:
             print "Event %s has invalid match results" % event_code
-
-
-

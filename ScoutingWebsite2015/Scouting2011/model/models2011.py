@@ -3,12 +3,10 @@ Created on Apr 11, 2016
 
 @author: PJ
 '''
+import collections
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
-from Scouting2011.model.reusable_models import ScoreResultMetric, Team, \
-    OfficialMatch, Match, Compitition
-import collections
-
+from Scouting2011.model.reusable_models import ScoreResultMetric, Team, Match, Compitition
 
 
 class ScoreResult(models.Model):
@@ -16,28 +14,28 @@ class ScoreResult(models.Model):
     team = models.ForeignKey(Team)
     match = models.ForeignKey(Match)
     competition = models.ForeignKey(Compitition)
-    
-    #auton
-    scored_uber_tube    = models.BooleanField()
-    
-    #Tubes
-    low_tubes_hung      = models.IntegerField()
-    mid_tubes_hung      = models.IntegerField()
-    high_tubes_hung     = models.IntegerField()
-    tubes_dropped      = models.IntegerField()
-    tubes_received     = models.IntegerField()
-    
-    #Minibot
-    minibot_finish     = models.IntegerField()
-    deployed_minibot   = models.BooleanField()
-    
-    #General
-    penelties         = models.IntegerField()
-    was_offensive      = models.BooleanField()
-    was_scouted        = models.BooleanField()
-    broke_badly        = models.BooleanField()
-    comments          = models.CharField(max_length=1000)
-    
+
+    # auton
+    scored_uber_tube = models.BooleanField()
+
+    # Tubes
+    low_tubes_hung = models.IntegerField()
+    mid_tubes_hung = models.IntegerField()
+    high_tubes_hung = models.IntegerField()
+    tubes_dropped = models.IntegerField()
+    tubes_received = models.IntegerField()
+
+    # Minibot
+    minibot_finish = models.IntegerField()
+    deployed_minibot = models.BooleanField()
+
+    # General
+    penelties = models.IntegerField()
+    was_offensive = models.BooleanField()
+    was_scouted = models.BooleanField()
+    broke_badly = models.BooleanField()
+    comments = models.CharField(max_length=1000)
+
     @staticmethod
     def get_fields():
 
@@ -67,7 +65,6 @@ class ScoreResult(models.Model):
         return output
 
 
-
 def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
 
     kargs = {}
@@ -88,5 +85,5 @@ def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
         sr_field = all_fields[key]
         if sr_field.display_name in results:
             output.append((sr_field.display_name, results[sr_field.display_name]))
-    
+
     return output

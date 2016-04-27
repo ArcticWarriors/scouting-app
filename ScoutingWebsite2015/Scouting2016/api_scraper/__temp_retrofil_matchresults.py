@@ -8,7 +8,6 @@ import random
 import sys
 import os
 import subprocess
-from Scouting2016.api_scraper.get_competitions import get_competitions_to_scrape
 
 
 #############################################################

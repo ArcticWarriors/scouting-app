@@ -3,10 +3,8 @@ Created on Mar 28, 2015
 
 @author: PJ
 '''
-from django.db.models.aggregates import Avg, Sum
 from django.db import models
-from Scouting2015.model.reusable_models import ScoreResultMetric, Team, \
-    OfficialMatch, Match, Compitition
+from Scouting2015.model.reusable_models import Team, OfficialMatch, Compitition
 
 
 class OfficialMatchScoreResult(models.Model):
@@ -38,4 +36,3 @@ class OfficialMatchScoreResult(models.Model):
 
     def predict(self):
         return 123
-

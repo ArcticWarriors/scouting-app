@@ -10,7 +10,6 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.views.generic.base import TemplateView, View
 from django.shortcuts import get_object_or_404
-from django.contrib.sites import requests
 
 
 class BaseAddTeamCommentsView(View):
