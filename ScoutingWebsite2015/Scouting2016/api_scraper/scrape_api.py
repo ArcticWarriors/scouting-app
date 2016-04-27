@@ -7,7 +7,7 @@ import os
 import json
 from api_scraper.ApiDownloader import ApiDownloader
 from Scouting2016.api_scraper.populate_regional_results import PopulateRegionalresults2016
-from throw_away_scripts.load_django import load_django
+from BaseScouting import load_django.load_django
 
 
 year = 2016
