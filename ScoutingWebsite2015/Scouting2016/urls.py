@@ -5,12 +5,13 @@ Created on Oct 9, 2015
 '''
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-from Scouting2016 import views
+# from Scouting2016 import views
 # from Scouting2016.view.gen_graph import gen_graph
 # from Scouting2016.view.generic_views import SingleTeamView
 import view.match_forms as match_forms
 import view.pit_scouting as pit_scouting
 import view.user_auth as user_auth
+import view.standard_views as standard_views
 # import views as views
 
 
@@ -34,17 +35,15 @@ urlpatterns = [url(r'^(?P<regional_code>\w+)$', TemplateView.as_view(template_na
                url(r'^(?P<regional_code>\w+)/log_user_out$', user_auth.log_user_out, name='log_user_out'),
                url(r'^(?P<regional_code>\w+)/auth_login$', user_auth.auth_login, name='auth_login'),
 
-               # Generic Views
-               url(r'^(?P<regional_code>\w+)/gen_graph/(?P<team_numbers>\w+(,\w+)*)/(?P<fields>\w+(,\w+)*)$', views.GenGraphView2016.as_view(), name='gen_graph'),
-
                # 2016 Views
-               url(r'^(?P<regional_code>\w+)/teams$', views.AllTeamsViews2016.as_view(), name='teams'),
-               url(r'^(?P<regional_code>\w+)/teams/(?P<team_number>[0-9]+)$', views.SingleTeamView2016.as_view(), name='view_team'),
-               url(r'^(?P<regional_code>\w+)/matches$', views.AllMatchesView2016.as_view(), name='matches'),
-               url(r'^(?P<regional_code>\w+)/matches/(?P<match_number>[0-9]+)$', views.SingleMatchView2016.as_view(), name='view_match'),
-               url(r'^(?P<regional_code>\w+)/match_prediction/(?P<match_number>[0-9]+)$', views.OfficialMatchView2016.as_view(), name='match_prediction'),
-               url(r'^(?P<regional_code>\w+)/upload_image$', views.AddTeamPictureView2016.as_view(), name='upload_image'),
-               url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', views.AddTeamCommentsView2016.as_view(), name='add_team_comments'),
+               url(r'^(?P<regional_code>\w+)/gen_graph/(?P<team_numbers>\w+(,\w+)*)/(?P<fields>\w+(,\w+)*)$', standard_views.GenGraphView2016.as_view(), name='gen_graph'),
+               url(r'^(?P<regional_code>\w+)/teams$', standard_views.AllTeamsViews2016.as_view(), name='teams'),
+               url(r'^(?P<regional_code>\w+)/teams/(?P<team_number>[0-9]+)$', standard_views.SingleTeamView2016.as_view(), name='view_team'),
+               url(r'^(?P<regional_code>\w+)/matches$', standard_views.AllMatchesView2016.as_view(), name='matches'),
+               url(r'^(?P<regional_code>\w+)/matches/(?P<match_number>[0-9]+)$', standard_views.SingleMatchView2016.as_view(), name='view_match'),
+               url(r'^(?P<regional_code>\w+)/match_prediction/(?P<match_number>[0-9]+)$', standard_views.OfficialMatchView2016.as_view(), name='match_prediction'),
+               url(r'^(?P<regional_code>\w+)/upload_image$', standard_views.AddTeamPictureView2016.as_view(), name='upload_image'),
+               url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', standard_views.AddTeamCommentsView2016.as_view(), name='add_team_comments'),
 
                # Robot Info
                url(r'^(?P<regional_code>\w+)/robot_display$', TemplateView.as_view(template_name='Scouting2016/robot_info/overview.html'), name='robot_display'),

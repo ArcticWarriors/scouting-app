@@ -69,7 +69,7 @@ class ScoreResult(models.Model):
 
 
 def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
-    
+
     kargs = {}
     field_order = []
     for key in all_fields:
@@ -81,8 +81,8 @@ def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
             kargs[sr_field.display_name] = Sum(key)
         else:
             print "field %s is not metrics-able" % key
-            
-    results =  team.scoreresult_set.aggregate(**kargs)
+
+    results = team.scoreresult_set.aggregate(**kargs)
     output = []
     for key in all_fields:
         sr_field = all_fields[key]

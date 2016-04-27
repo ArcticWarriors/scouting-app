@@ -47,8 +47,8 @@ class ScoreResult(models.Model):
         output['mid_goals'] = ScoreResultMetric('mid_goals', 'Mid Goals', 0, "Average")
         output['low_goals'] = ScoreResultMetric('low_goals', 'Low Goals', 0, "Average")
         output['missed_shots'] = ScoreResultMetric('missed_shots', 'missed_shots', 0, "Average")
-        
-        #Hanging
+
+        # Hanging
         output['invalid_hangs'] = ScoreResultMetric('invalid_hangs', 'Invalid Hangs', "", "Sum")
         output['hanging_points'] = ScoreResultMetric('hanging_points', 'Hanging Points', 0, "Average")
 
@@ -62,12 +62,11 @@ class ScoreResult(models.Model):
         return output
 
 
+def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
 
-def get_team_metrics(team):
-    
     kargs = {}
     field_order = []
-    all_fields = ScoreResult.get_fields()
+
     for key in all_fields:
         sr_field = all_fields[key]
         field_order.append(sr_field.display_name)
@@ -77,12 +76,12 @@ def get_team_metrics(team):
             kargs[sr_field.display_name] = Sum(key)
         else:
             print "field %s is not metrics-able" % key
-            
-    results =  team.scoreresult_set.aggregate(**kargs)
+
+    results = team.scoreresult_set.aggregate(**kargs)
     output = []
     for key in all_fields:
         sr_field = all_fields[key]
         if sr_field.display_name in results:
             output.append((sr_field.display_name, results[sr_field.display_name]))
-    
+
     return output

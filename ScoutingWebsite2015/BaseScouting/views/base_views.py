@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.views.generic.base import TemplateView, View
 from django.shortcuts import get_object_or_404
+from django.contrib.sites import requests
 
 
 class BaseAddTeamCommentsView(View):
@@ -37,13 +38,14 @@ class BaseAddTeamPictureView(View):
         self.picture_location = picture_location
         self.reverse_name = reverse_name
 
-    def post(self, request):
+    def post(self, request, **kargs):
 
         """
         Pictures can be uploaded from the users devices to the server and posts them to the team's
         respective team page
         """
 
+        regional_code = kargs['regional_code']
         team_numer = request.POST['team_number']
         f = request.FILES['image_name']
 
@@ -70,7 +72,7 @@ class BaseAddTeamPictureView(View):
             for chunk in f.chunks():
                 destination.write(chunk)
 
-        return HttpResponseRedirect(reverse(self.reverse_name, args=(team_numer,)))
+        return HttpResponseRedirect(reverse(self.reverse_name, args=(regional_code, team_numer,)))
 
 
 class BaseAllTeamsViews(TemplateView):
@@ -162,6 +164,11 @@ class BaseSingleMatchView(TemplateView):
         context = super(BaseSingleMatchView, self).get_context_data(**kwargs)
         context['match'] = the_match
         context['score_result_list'] = [sr for sr in the_match.scoreresult_set.all()]
+
+        metrics = []
+        for sr in the_match.scoreresult_set.all():
+            metrics.append(self.get_metrics(sr))
+        context['metrics'] = metrics
 
         return context
 
