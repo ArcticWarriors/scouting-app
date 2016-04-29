@@ -1,1 +1,1 @@
-from model import *
+from Scouting2015.model import *

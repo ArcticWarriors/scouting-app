@@ -8,10 +8,10 @@ from django.views.generic.base import TemplateView
 # from Scouting2016 import views
 # from Scouting2016.view.gen_graph import gen_graph
 # from Scouting2016.view.generic_views import SingleTeamView
-import view.match_forms as match_forms
-import view.pit_scouting as pit_scouting
-import view.user_auth as user_auth
-import view.standard_views as standard_views
+import Scouting2016.view.match_forms as match_forms
+import Scouting2016.view.pit_scouting as pit_scouting
+import Scouting2016.view.user_auth as user_auth
+import Scouting2016.view.standard_views as standard_views
 # import views as views
 
 

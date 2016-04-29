@@ -5,7 +5,7 @@ Created on Oct 9, 2015
 '''
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-import view.standard_views as standard_views
+import Scouting2011.view.standard_views as standard_views
 
 app_name = 'Scouting2011'
 urlpatterns = [url(r'^(?P<regional_code>\w+)$', TemplateView.as_view(template_name="Scouting2011/index.html"), name='index'),

@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Scouting2016', '0025_remove_officialmatch_audienceselectioncategory'),
+        ('Scouting2016', '0001_squashed_0026_auto_20160331_2117'),
     ]
 
     operations = [
