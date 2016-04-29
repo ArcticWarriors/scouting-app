@@ -75,7 +75,7 @@ def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
         elif sr_field.metric_type == "Sum":
             kargs[sr_field.display_name] = Sum(key)
         else:
-            print "field %s is not metrics-able" % key
+            print("field %s is not metrics-able" % key)
 
     results = team.scoreresult_set.aggregate(**kargs)
     output = []

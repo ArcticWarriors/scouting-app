@@ -36,7 +36,7 @@ def update_team_info(local_file):
     from Scouting2016.model import Team
 
     if not os.path.exists(local_file):
-        print "No team info, skipping population"
+        print("No team info, skipping population")
         return
 
     json_struct = read_local_copy(local_file)
@@ -54,7 +54,7 @@ def update_team_info(local_file):
         team.team_nickname = get_non_null_field(team_info, "nameShort")
         team.robot_name = get_non_null_field(team_info, "robotName")
         team.save()
-        print "Updating info for team %s" % team_number
+        print("Updating info for team %s" % team_number)
 
 
 def update_event_info(json_path):
@@ -70,7 +70,7 @@ def update_event_info(json_path):
         event.city = event_info["city"]
         event.state = event_info["stateprov"]
         event.country = event_info["country"]
-        print event_info
+        print(event_info)
         event.save()
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "ScoutingWebsite.settings"

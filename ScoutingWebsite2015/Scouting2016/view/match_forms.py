@@ -62,7 +62,7 @@ def submit_new_match(request, regional_code):
     # score result with this combination already exists, don't let them add it again
     kargs = __get_create_kargs(request)
     keys = sorted(kargs.keys())
-    print "\n".join("%s->%s" % (key, kargs[key]) for key in keys)
+    print("\n".join("%s->%s" % (key, kargs[key]) for key in keys))
     if len(available_srs) != 0:
         context = {}
         context['error_message'] = "ERROR! A combination of team %s and match %s already exists" % (team.teamNumber, match.matchNumber)
@@ -131,7 +131,7 @@ def show_edit_form(request, regional_code):
     team = Team.objects.get(teamNumber=request.GET["team_number"])
 
     score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
-    print score_results
+    print(score_results)
 
     context = {}
     context["regional_code"] = regional_code

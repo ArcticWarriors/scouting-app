@@ -165,7 +165,7 @@ def __save_sr(match, team, **kargs):
         for key, value in kargs.iteritems():
             setattr(sr, key, value)
         sr.save()
-#         print sr
+#         print(sr)
         pass
 
 
@@ -178,7 +178,7 @@ def populate_matchresults(max_match_number, max_match_with_data_number):
             continue
 
         match, _ = Match.objects.get_or_create(matchNumber=official_match.matchNumber)
-        print "Updating match %s" % match.matchNumber
+        print("Updating match %s" % match.matchNumber)
 
         red_1_stats = {}
         defense_crossings, defense_speed = __populate_defense(official_match, "red", 0)

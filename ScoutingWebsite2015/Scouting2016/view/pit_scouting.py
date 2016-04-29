@@ -61,6 +61,6 @@ def submit_new_pit(request, regional_code):
 
     team_pit_scouting.save()
 
-    print "UHHH'"
+    print("UHHH'")
 
     return HttpResponseRedirect(reverse('Scouting2016:view_team', args=(regional_code, team_pit_scouting.team.teamNumber,)))

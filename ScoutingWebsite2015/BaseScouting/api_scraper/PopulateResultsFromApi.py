@@ -31,7 +31,7 @@ class PopulateRegionalResults:
     def __update_team_info(self, local_file):
 
         if not os.path.exists(local_file):
-            print "No team info, skipping population"
+            print("No team info, skipping population")
             return
 
         json_struct = self.__read_local_copy(local_file)
@@ -49,7 +49,7 @@ class PopulateRegionalResults:
             team.team_nickname = self.__get_non_null_field(team_info, "nameShort")
             team.robot_name = self.__get_non_null_field(team_info, "robotName")
             team.save()
-            print "Updating info for team %s" % team_number
+            print("Updating info for team %s" % team_number)
 
     #########################################
     # Season Info
@@ -77,7 +77,7 @@ class PopulateRegionalResults:
             event.country = event_info["country"]
             event.save()
 
-            print "Adding event %s" % code
+            print("Adding event %s" % code)
 
     #########################################
     # Competition Info
@@ -88,7 +88,7 @@ class PopulateRegionalResults:
 
         local_file = json_path + '/{0}_team_query.json'.format(event_code)
         if not os.path.exists(local_file):
-            print "No team info, skipping population"
+            print("No team info, skipping population")
             return
 
         json_struct = self.__read_local_copy(local_file)
@@ -100,7 +100,7 @@ class PopulateRegionalResults:
             team.teamHomepage = team_info["website"] if team_info["website"] != None else "NA"
             team.teamFirstYear = team_info["rookieYear"]
             team.save()
-            print "Updating info for team %s" % team_number
+            print("Updating info for team %s" % team_number)
 
     @transaction.atomic
     def update_schedule(self, event_code, json_path):
@@ -109,7 +109,7 @@ class PopulateRegionalResults:
 
         local_file = json_path + '/{0}_schedule_query.json'.format(event_code)
         if not os.path.exists(local_file):
-            print "No schedule info, skipping population"
+            print("No schedule info, skipping population")
             return
 
         json_struct = self.__read_local_copy(local_file)
@@ -133,13 +133,13 @@ class PopulateRegionalResults:
             match_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
 
             if len(match_sr_search) == 2:
-                print "Updating teams for match %s" % official_match.matchNumber
+                print("Updating teams for match %s" % official_match.matchNumber)
             elif len(match_sr_search) == 0:
                 self.official_match_sr_model.objects.create(official_match=official_match, competition=competition, team1=red_teams[0], team2=red_teams[1], team3=red_teams[2],)
                 self.official_match_sr_model.objects.create(official_match=official_match, competition=competition, team1=blue_teams[0], team2=blue_teams[1], team3=blue_teams[2],)
-                print "Creating official match %s" % official_match.matchNumber
+                print("Creating official match %s" % official_match.matchNumber)
             else:
-                print "UH OH"
+                print("UH OH")
 
     @transaction.atomic
     def update_matchresults(self, event_code, json_path):
@@ -147,7 +147,7 @@ class PopulateRegionalResults:
 
         local_file = json_path + '/{0}_scoreresult_query.json'.format(event_code)
         if not os.path.exists(local_file):
-            print "No official results, skipping population"
+            print("No official results, skipping population")
             return
 
         json_struct = self.__read_local_copy(local_file)
@@ -160,7 +160,7 @@ class PopulateRegionalResults:
                 official_match = self.official_match_model.objects.get(matchNumber=match_number, competition=competition)
                 official_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
                 if len(official_sr_search) != 2:
-                    print "Uh oh..."
+                    print("Uh oh...")
                     continue
 
                 color = alliance_info["alliance"]
@@ -170,7 +170,7 @@ class PopulateRegionalResults:
                 if color == "Blue":
                     self.populate_official_sr(official_sr_search[1], alliance_info)
 
-            print "Adding stats to official match %s" % official_match.matchNumber
+            print("Adding stats to official match %s" % official_match.matchNumber)
 
     def populate_official_sr(self, official_match_sr, alliance_info):
         raise NotImplementedError()

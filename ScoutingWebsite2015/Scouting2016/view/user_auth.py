@@ -25,7 +25,7 @@ def auth_login(request, **kargs):
     password = request.POST['password']
     good_redirect = request.POST.get('next', '/2016/%s' % kargs['regional_code'])
     bad_redirect = 'Scouting2016:showLogin'
-    print good_redirect
+    print(good_redirect)
 
     user = authenticate(username=username, password=password)
     if user is not None:

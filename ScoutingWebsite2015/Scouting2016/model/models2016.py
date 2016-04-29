@@ -27,7 +27,7 @@ def __get_alliance_results(match, teams,):
             if sr.auto_defense == "reach":
                 auton_reaches += 1
             elif sr.auto_defense != "no_reach":
-                print sr.auto_defense
+                print(sr.auto_defense)
                 auton_crossings += 1
 
             for defense in get_flat_defenses():
@@ -77,7 +77,7 @@ def get_defense_stats(team, stat_map=None):
         stat_map = {}
 
     no_results = len(team.scoreresult_set.all()) == 0
-    print "no results: %s" % no_results
+    print("no results: %s" % no_results)
 
     defenses = get_defenses()
 

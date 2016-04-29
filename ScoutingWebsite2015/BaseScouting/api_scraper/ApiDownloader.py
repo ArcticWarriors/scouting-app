@@ -36,7 +36,7 @@ class ApiDownloader():
 
         dir_name = os.path.dirname(output_file)
         if not os.path.exists(dir_name):
-            print "Creating directory at %s" % dir_name
+            print("Creating directory at %s" % dir_name)
             os.makedirs(dir_name)
 
         with open(output_file, 'w') as f:
@@ -97,7 +97,7 @@ class ApiDownloader():
         json_struct = self.read_url_and_dump(url, local_file)
 
         if len(json_struct["Schedule"]) == 0:
-            print "Event %s does not have any schedule information" % event_code
+            print("Event %s does not have any schedule information" % event_code)
             os.remove(local_file)
 
     def download_matchresult_info(self, event_code, competition_week, tourny_level="Qualification"):
@@ -107,7 +107,7 @@ class ApiDownloader():
             json_struct = self.read_url_and_dump(url, local_file)
 
             if len(json_struct["MatchScores"]) == 0:
-                print "Event %s does not have any match results" % event_code
+                print("Event %s does not have any match results" % event_code)
                 os.remove(local_file)
         except urllib2.HTTPError:
-            print "Event %s has invalid match results" % event_code
+            print("Event %s has invalid match results" % event_code)
