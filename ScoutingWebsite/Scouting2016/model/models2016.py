@@ -408,3 +408,31 @@ class ScoreResult(models.Model):
             output += "  {0:25} = {1}\n".format(attr_name, value)
 
         return output
+
+
+def get_advanced_team_metrics(team, all_fields=ScoreResult.get_fields()):
+
+    kargs = {}
+    field_order = []
+    for key in all_fields:
+        sr_field = all_fields[key]
+        field_order.append(sr_field.display_name)
+        if sr_field.metric_type == "Average":
+            kargs[sr_field.display_name] = Avg(key)
+        elif sr_field.metric_type == "Sum":
+            kargs[sr_field.display_name] = Sum(key)
+        else:
+            print("field %s is not metrics-able" % key)
+
+    results = team.scoreresult_set.aggregate(**kargs)
+    output = []
+    for key in all_fields:
+        sr_field = all_fields[key]
+        if sr_field.display_name in results:
+            print type(results[sr_field.display_name])
+            result = results[sr_field.display_name]
+            if type(result) == float:
+                result = "%.2f" % result
+            output.append((sr_field.display_name, result))
+
+    return output

@@ -16,7 +16,7 @@ import Scouting2016.view.standard_views as standard_views
 
 
 app_name = 'Scouting2016'
-urlpatterns = [url(r'^(?P<regional_code>\w+)$', TemplateView.as_view(template_name="Scouting2016/index.html"), name='index'),
+urlpatterns = [url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2016.as_view(), name='index'),
 
                # Add match form
                url(r'^(?P<regional_code>\w+)/form$', match_forms.show_add_form, name='showForm'),

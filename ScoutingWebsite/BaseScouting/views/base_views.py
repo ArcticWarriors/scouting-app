@@ -12,6 +12,23 @@ from django.views.generic.base import TemplateView, View
 from django.shortcuts import get_object_or_404
 
 
+class BaseHomepageView(TemplateView):
+    def __init__(self, compition_model, template_name):
+        self.compition_model = compition_model
+
+        self.template_name = template_name
+
+    def get_context_data(self, **kwargs):
+        competition = self.compition_model.objects.get(code=kwargs["regional_code"])
+
+        context = super(BaseHomepageView, self).get_context_data(**kwargs)
+        context['competition'] = competition
+        context['our_metrics'] = self.get_our_metrics()
+        context['competition_metrics'] = self.get_competition_metrics(competition)
+
+        return context
+
+
 class BaseAddTeamCommentsView(View):
 
     def __init__(self, team_model, team_comments_model, reverse_name):
