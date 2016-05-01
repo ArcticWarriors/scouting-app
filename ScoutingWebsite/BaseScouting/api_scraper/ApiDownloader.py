@@ -44,12 +44,12 @@ class ApiDownloader():
 
         return json_struct
 
-    def download_event_data(self):
+    def download_event_data(self, first_week=None):
         url = self.__api_website + "/{0}/events?".format(self.season)
         local_file = self.json_path + 'events/event_query.json'
         self.read_url_and_dump(url, local_file)
 
-        self.calculate_event_to_week_mapping()
+        self.calculate_event_to_week_mapping(first_week)
 
     def download_team_data(self):
         url = self.__api_website + "/{0}/teams?".format(self.season)
@@ -64,7 +64,7 @@ class ApiDownloader():
             local_file = self.json_path + 'teams/team_query_page%s.json' % page_i
             json_struct = self.read_url_and_dump(url, local_file)
 
-    def calculate_event_to_week_mapping(self):
+    def calculate_event_to_week_mapping(self, first_week):
         local_file = self.json_path + 'events/event_query.json'
 
         with open(local_file, 'r') as f:
@@ -79,6 +79,10 @@ class ApiDownloader():
             competitions.append((code, start_week))
             if start_week < min_week:
                 min_week = start_week
+
+        if first_week != None:
+            min_week = first_week
+            print "Overriding first week..."
 
         sorted_comp = []
         for x in sorted(competitions, key=lambda pair: pair[1]):

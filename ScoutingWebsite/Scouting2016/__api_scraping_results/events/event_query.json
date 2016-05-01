@@ -204,11 +204,25 @@
             "dateStart": "2016-04-27T00:00:00",
             "country": "USA",
             "stateprov": "MO",
-            "venue": "Edward Jones Dome",
+            "venue": "The Dome at America's Center",
             "dateEnd": "2016-04-30T23:59:59",
             "timezone": "Central Standard Time",
             "divisionCode": null,
             "type": "Championship"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-ARCHIMEDES",
+            "name": "FIRST Championship - Archimedes Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-ARTE",
+            "type": "ChampionshipSubdivision"
         },
         {
             "districtCode": null,
@@ -218,11 +232,39 @@
             "dateStart": "2016-04-27T00:00:00",
             "country": "USA",
             "stateprov": "MO",
-            "venue": "Edward Jones Dome",
+            "venue": "The Dome at America's Center",
             "dateEnd": "2016-04-30T23:59:59",
             "timezone": "Central Standard Time",
             "divisionCode": "CMP",
             "type": "ChampionshipDivision"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-CARSON",
+            "name": "FIRST Championship - Carson Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-GACA",
+            "type": "ChampionshipSubdivision"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-CARVER",
+            "name": "FIRST Championship - Carver Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-CUCA",
+            "type": "ChampionshipSubdivision"
         },
         {
             "districtCode": null,
@@ -232,11 +274,25 @@
             "dateStart": "2016-04-27T00:00:00",
             "country": "USA",
             "stateprov": "MO",
-            "venue": "Edward Jones Dome",
+            "venue": "The Dome at America's Center",
             "dateEnd": "2016-04-30T23:59:59",
             "timezone": "Central Standard Time",
             "divisionCode": "CMP",
             "type": "ChampionshipDivision"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-CURIE",
+            "name": "FIRST Championship - Curie Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-CUCA",
+            "type": "ChampionshipSubdivision"
         },
         {
             "districtCode": null,
@@ -246,11 +302,39 @@
             "dateStart": "2016-04-27T00:00:00",
             "country": "USA",
             "stateprov": "MO",
-            "venue": "Edward Jones Dome",
+            "venue": "The Dome at America's Center",
             "dateEnd": "2016-04-30T23:59:59",
             "timezone": "Central Standard Time",
             "divisionCode": "CMP",
             "type": "ChampionshipDivision"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-GALILEO",
+            "name": "FIRST Championship - Galileo Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-GACA",
+            "type": "ChampionshipSubdivision"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-HOPPER",
+            "name": "FIRST Championship - Hopper Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-NEHO",
+            "type": "ChampionshipSubdivision"
         },
         {
             "districtCode": null,
@@ -260,11 +344,39 @@
             "dateStart": "2016-04-27T00:00:00",
             "country": "USA",
             "stateprov": "MO",
-            "venue": "Edward Jones Dome",
+            "venue": "The Dome at America's Center",
             "dateEnd": "2016-04-30T23:59:59",
             "timezone": "Central Standard Time",
             "divisionCode": "CMP",
             "type": "ChampionshipDivision"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-NEWTON",
+            "name": "FIRST Championship - Newton Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-NEHO",
+            "type": "ChampionshipSubdivision"
+        },
+        {
+            "districtCode": null,
+            "code": "CMP-TESLA",
+            "name": "FIRST Championship - Tesla Subdivision",
+            "city": "St. Louis",
+            "dateStart": "2016-04-27T00:00:00",
+            "country": "USA",
+            "stateprov": "MO",
+            "venue": "The Dome at America's Center",
+            "dateEnd": "2016-04-30T23:59:59",
+            "timezone": "Central Standard Time",
+            "divisionCode": "CMP-ARTE",
+            "type": "ChampionshipSubdivision"
         },
         {
             "districtCode": null,
@@ -1849,5 +1961,5 @@
             "type": "Regional"
         }
     ],
-    "eventCount": 132
+    "eventCount": 140
 }
