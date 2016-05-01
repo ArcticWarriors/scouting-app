@@ -9,7 +9,7 @@ import Scouting2013.view.standard_views as standard_views
 
 
 app_name = 'Scouting2013'
-urlpatterns = [url(r'^(?P<regional_code>\w+)$', TemplateView.as_view(template_name="Scouting2013/index.html"), name='index'),
+urlpatterns = [url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2013.as_view(), name='index'),
 
                # 2013 Views
                url(r'^(?P<regional_code>\w+)/teams$', standard_views.AllTeamsViews2013.as_view(), name='teams'),

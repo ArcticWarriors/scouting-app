@@ -8,7 +8,7 @@ from django.views.generic.base import TemplateView
 import Scouting2011.view.standard_views as standard_views
 
 app_name = 'Scouting2011'
-urlpatterns = [url(r'^(?P<regional_code>\w+)$', TemplateView.as_view(template_name="Scouting2011/index.html"), name='index'),
+urlpatterns = [url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2011.as_view(), name='index'),
 
 
                # 2011 Views
