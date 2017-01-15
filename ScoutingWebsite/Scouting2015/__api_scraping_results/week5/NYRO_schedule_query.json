@@ -1,0 +1,3241 @@
+{
+    "Schedule": [
+        {
+            "description": "Qualification 1",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:00:00",
+            "matchNumber": 1
+        },
+        {
+            "description": "Qualification 2",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:07:00",
+            "matchNumber": 2
+        },
+        {
+            "description": "Qualification 3",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:14:00",
+            "matchNumber": 3
+        },
+        {
+            "description": "Qualification 4",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 395,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:21:00",
+            "matchNumber": 4
+        },
+        {
+            "description": "Qualification 5",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:28:00",
+            "matchNumber": 5
+        },
+        {
+            "description": "Qualification 6",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:35:00",
+            "matchNumber": 6
+        },
+        {
+            "description": "Qualification 7",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:42:00",
+            "matchNumber": 7
+        },
+        {
+            "description": "Qualification 8",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:49:00",
+            "matchNumber": 8
+        },
+        {
+            "description": "Qualification 9",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T09:56:00",
+            "matchNumber": 9
+        },
+        {
+            "description": "Qualification 10",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:03:00",
+            "matchNumber": 10
+        },
+        {
+            "description": "Qualification 11",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:10:00",
+            "matchNumber": 11
+        },
+        {
+            "description": "Qualification 12",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 174,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:17:00",
+            "matchNumber": 12
+        },
+        {
+            "description": "Qualification 13",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:24:00",
+            "matchNumber": 13
+        },
+        {
+            "description": "Qualification 14",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:31:00",
+            "matchNumber": 14
+        },
+        {
+            "description": "Qualification 15",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:38:00",
+            "matchNumber": 15
+        },
+        {
+            "description": "Qualification 16",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1518,
+                    "surrogate": true
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1585,
+                    "surrogate": true
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 578,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:45:00",
+            "matchNumber": 16
+        },
+        {
+            "description": "Qualification 17",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5590,
+                    "surrogate": true
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:52:00",
+            "matchNumber": 17
+        },
+        {
+            "description": "Qualification 18",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T10:59:00",
+            "matchNumber": 18
+        },
+        {
+            "description": "Qualification 19",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T11:06:00",
+            "matchNumber": 19
+        },
+        {
+            "description": "Qualification 20",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T11:13:00",
+            "matchNumber": 20
+        },
+        {
+            "description": "Qualification 21",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T11:20:00",
+            "matchNumber": 21
+        },
+        {
+            "description": "Qualification 22",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T11:27:00",
+            "matchNumber": 22
+        },
+        {
+            "description": "Qualification 23",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 191,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T11:34:00",
+            "matchNumber": 23
+        },
+        {
+            "description": "Qualification 24",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:00:00",
+            "matchNumber": 24
+        },
+        {
+            "description": "Qualification 25",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:07:00",
+            "matchNumber": 25
+        },
+        {
+            "description": "Qualification 26",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:14:00",
+            "matchNumber": 26
+        },
+        {
+            "description": "Qualification 27",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:21:00",
+            "matchNumber": 27
+        },
+        {
+            "description": "Qualification 28",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 73,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:28:00",
+            "matchNumber": 28
+        },
+        {
+            "description": "Qualification 29",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 340,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:35:00",
+            "matchNumber": 29
+        },
+        {
+            "description": "Qualification 30",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:42:00",
+            "matchNumber": 30
+        },
+        {
+            "description": "Qualification 31",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 191,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:49:00",
+            "matchNumber": 31
+        },
+        {
+            "description": "Qualification 32",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T13:56:00",
+            "matchNumber": 32
+        },
+        {
+            "description": "Qualification 33",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 250,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:03:00",
+            "matchNumber": 33
+        },
+        {
+            "description": "Qualification 34",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 378,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:10:00",
+            "matchNumber": 34
+        },
+        {
+            "description": "Qualification 35",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:17:00",
+            "matchNumber": 35
+        },
+        {
+            "description": "Qualification 36",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:24:00",
+            "matchNumber": 36
+        },
+        {
+            "description": "Qualification 37",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:31:00",
+            "matchNumber": 37
+        },
+        {
+            "description": "Qualification 38",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:38:00",
+            "matchNumber": 38
+        },
+        {
+            "description": "Qualification 39",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:45:00",
+            "matchNumber": 39
+        },
+        {
+            "description": "Qualification 40",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:52:00",
+            "matchNumber": 40
+        },
+        {
+            "description": "Qualification 41",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T14:59:00",
+            "matchNumber": 41
+        },
+        {
+            "description": "Qualification 42",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 578,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:06:00",
+            "matchNumber": 42
+        },
+        {
+            "description": "Qualification 43",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:13:00",
+            "matchNumber": 43
+        },
+        {
+            "description": "Qualification 44",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:20:00",
+            "matchNumber": 44
+        },
+        {
+            "description": "Qualification 45",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:27:00",
+            "matchNumber": 45
+        },
+        {
+            "description": "Qualification 46",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:34:00",
+            "matchNumber": 46
+        },
+        {
+            "description": "Qualification 47",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 340,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:41:00",
+            "matchNumber": 47
+        },
+        {
+            "description": "Qualification 48",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:48:00",
+            "matchNumber": 48
+        },
+        {
+            "description": "Qualification 49",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T15:55:00",
+            "matchNumber": 49
+        },
+        {
+            "description": "Qualification 50",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:02:00",
+            "matchNumber": 50
+        },
+        {
+            "description": "Qualification 51",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:09:00",
+            "matchNumber": 51
+        },
+        {
+            "description": "Qualification 52",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 743,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:16:00",
+            "matchNumber": 52
+        },
+        {
+            "description": "Qualification 53",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:23:00",
+            "matchNumber": 53
+        },
+        {
+            "description": "Qualification 54",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:30:00",
+            "matchNumber": 54
+        },
+        {
+            "description": "Qualification 55",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:37:00",
+            "matchNumber": 55
+        },
+        {
+            "description": "Qualification 56",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:44:00",
+            "matchNumber": 56
+        },
+        {
+            "description": "Qualification 57",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:51:00",
+            "matchNumber": 57
+        },
+        {
+            "description": "Qualification 58",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 340,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T16:58:00",
+            "matchNumber": 58
+        },
+        {
+            "description": "Qualification 59",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-27T17:05:00",
+            "matchNumber": 59
+        },
+        {
+            "description": "Qualification 60",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 20,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:00:00",
+            "matchNumber": 60
+        },
+        {
+            "description": "Qualification 61",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:07:00",
+            "matchNumber": 61
+        },
+        {
+            "description": "Qualification 62",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 395,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:14:00",
+            "matchNumber": 62
+        },
+        {
+            "description": "Qualification 63",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:21:00",
+            "matchNumber": 63
+        },
+        {
+            "description": "Qualification 64",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:28:00",
+            "matchNumber": 64
+        },
+        {
+            "description": "Qualification 65",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 378,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:35:00",
+            "matchNumber": 65
+        },
+        {
+            "description": "Qualification 66",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:42:00",
+            "matchNumber": 66
+        },
+        {
+            "description": "Qualification 67",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:49:00",
+            "matchNumber": 67
+        },
+        {
+            "description": "Qualification 68",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 578,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T09:56:00",
+            "matchNumber": 68
+        },
+        {
+            "description": "Qualification 69",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 378,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:03:00",
+            "matchNumber": 69
+        },
+        {
+            "description": "Qualification 70",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:10:00",
+            "matchNumber": 70
+        },
+        {
+            "description": "Qualification 71",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:17:00",
+            "matchNumber": 71
+        },
+        {
+            "description": "Qualification 72",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:24:00",
+            "matchNumber": 72
+        },
+        {
+            "description": "Qualification 73",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:31:00",
+            "matchNumber": 73
+        },
+        {
+            "description": "Qualification 74",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:38:00",
+            "matchNumber": 74
+        },
+        {
+            "description": "Qualification 75",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:45:00",
+            "matchNumber": 75
+        },
+        {
+            "description": "Qualification 76",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3157,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 3044,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5030,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1450,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3838,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 2809,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:52:00",
+            "matchNumber": 76
+        },
+        {
+            "description": "Qualification 77",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1155,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5254,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1765,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2791,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1660,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T10:59:00",
+            "matchNumber": 77
+        },
+        {
+            "description": "Qualification 78",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 73,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 5433,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 743,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 191,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T11:06:00",
+            "matchNumber": 78
+        },
+        {
+            "description": "Qualification 79",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 3799,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1551,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 174,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 1559,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1126,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T11:13:00",
+            "matchNumber": 79
+        },
+        {
+            "description": "Qualification 80",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 4093,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1507,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3015,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3003,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 3951,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 4505,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T11:20:00",
+            "matchNumber": 80
+        },
+        {
+            "description": "Qualification 81",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 578,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 250,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 3181,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 395,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2228,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1591,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T11:27:00",
+            "matchNumber": 81
+        },
+        {
+            "description": "Qualification 82",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 1405,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 2340,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 1511,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 4039,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 5349,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 378,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T11:34:00",
+            "matchNumber": 82
+        },
+        {
+            "description": "Qualification 83",
+            "tournamentLevel": "Qualification",
+            "Teams": [
+                {
+                    "station": "Red1",
+                    "teamNumber": 20,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red2",
+                    "teamNumber": 1518,
+                    "surrogate": false
+                },
+                {
+                    "station": "Red3",
+                    "teamNumber": 5590,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue1",
+                    "teamNumber": 3173,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue2",
+                    "teamNumber": 2265,
+                    "surrogate": false
+                },
+                {
+                    "station": "Blue3",
+                    "teamNumber": 1585,
+                    "surrogate": false
+                }
+            ],
+            "field": "Primary",
+            "startTime": "2015-03-28T11:41:00",
+            "matchNumber": 83
+        }
+    ]
+}

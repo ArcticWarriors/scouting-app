@@ -1,0 +1,48 @@
+div .navbar {
+  text-align: center;
+}
+.nav ul {
+  list-style: none;
+	background-color: #1024AD;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.nav li {
+  font-family: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+  font-size: 1.2em;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 10px;
+}
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+.nav a:hover {
+  background-color: #005f5f;
+}
+.nav a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+body {	
+	background-color: #FFFFFF;
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	margin: 10px;
+}
+h1 {
+	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+	color: #000000;
+}
+h2 {
+	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+	color: #000000;
+}
+@font-face {
+  font-family: Orbitron;
+	src: url(/static/Scouting2016/fonts/Orbitron/Orbitron-Medium.ttf);
+}

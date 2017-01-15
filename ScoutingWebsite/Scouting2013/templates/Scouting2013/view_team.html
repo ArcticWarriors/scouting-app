@@ -1,0 +1,85 @@
+<html>
+<head>
+
+{% load staticfiles %}
+{% include "Scouting2013/standard_header.html" %}
+<title>Team {{ team_number }}</title>
+</head>
+<style>
+table {
+	text-align: center;
+}
+</style>
+<body>
+
+    {% include "Scouting2013/banner.html" %}
+    <h1>Team {{ team.teamNumber }}</h1>
+    <B> Team Website </B> <a href="{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
+
+<h1>Matches Information:</h1>
+
+{% if score_result_list|length == 0 %}
+No matches scouted
+{% else %}
+ <h2>Matches Scouted:</h2>
+  <ul>
+  {% for sr in score_result_list %}
+     <li><a href="{% url 'Scouting2013:view_match' regional_code sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a>{%if sr.notes_text_area != "" %} - {{sr.notes_text_area}}{% endif %}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+     	
+  <h2>Pictures</h2>
+    
+    {% if "auth.can_add_pictures" in perms %}
+    <form action="{% url 'Scouting2013:upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name='team_number' value={{team.teamNumber}}>
+        <input type="file" name='image_name' accept="image/*">
+        <input type="submit">
+    </form>
+    {% endif %}
+    {% if pictures|length != 0 %}
+      {% for picture in pictures %}
+    <img src="{% static picture.path %}" width='500'>
+    <br></br>
+      {% endfor %}
+    {% else %}
+    No pictures available
+    {% endif %}
+    <h2>Team Comments</h2>
+
+{% if team_comments|length != 0 %}
+  Team Comments
+  <ul>
+  {% for comment in team_comments %}
+     <li>{{comment.comment}}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+
+   {% if "auth.can_add_pictures" in perms %}
+   <form action="{% url 'Scouting2013:add_team_comments' regional_code team.teamNumber %}" method="POST">
+   {% csrf_token %}
+   
+  <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
+  <br> <br> <input type="submit" value="Submit">
+   </form>
+   {% endif %}
+ 
+
+<h1>Robot Statistics</h1>
+
+<table>
+  {% for x in metrics %}
+  <tr>
+     <td>{{x.0}}</td>
+     <td>{{x.1}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+</body>
+</html>

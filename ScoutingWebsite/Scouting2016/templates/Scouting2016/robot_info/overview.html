@@ -1,0 +1,185 @@
+<html>
+<head>
+
+{% load staticfiles %}
+{% include "Scouting2016/standard_header.html" %}
+<title>Robot Info</title>
+<style>
+.gridpic {
+  padding-top:60%;
+  width:85%;
+  display: block;
+  margin: 0 auto;
+  background-size: cover
+}
+</style>
+</head>
+
+<body>
+
+{% include "Scouting2016/banner.html" %}
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1 class="text-center">
+        Our Robot
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div style="background-image:url({% static 'Scouting2016/robot_info/ourbot_overroller.jpg' %});" class="gridpic"></div>
+      </div>
+      <div class="col-md-4">
+        <div style="background-image:url({% static 'Scouting2016/robot_info/ourbot_bot.jpg' %})" class="gridpic"></div>
+      </div>
+      <div class="col-md-4">
+        <div style="background-image:url({% static 'Scouting2016/robot_info/ourbot_tower.jpg' %})" class="gridpic"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-12 col-md-6">
+		<h2 class="text-center">
+			<u>Design Statement</u> <br></br> The 2016 Team 174 robot is quick and maneuverable, able to cross any driving defenses. <br></br>It is primarily designed to acquire and manipulate BOULDERS from the ground, score BOULDERS in the low goal, and secondaily to SCALE the Tower.
+		</h2>
+        <h2 id="" class="text-center">
+          Overview
+        </h2>
+        <ul class="list-group">
+          <li class="list-group-item">
+            Can cross over driving defenses in Tele-Op and autonomous (B.Moat, B.Ramparts,
+            D.Rock Wall, D.Rough Terrain, E.Low bar)
+          </li>
+          <li class="list-group-item">
+            Can manipulate and drive over Cheval De Frise in Tele-Op
+          </li>
+          <li class="list-group-item">
+            Can assist in Category C defenses (Draw Bridge, Sally Port)
+          </li>
+          <li class="list-group-item">
+            Can scale tower in ~12 seconds (time includes line up, attach, and hang)
+          </li>
+          <li class="list-group-item">
+            Can select between multiple defenses and create new ones on the fly
+          </li>
+          <li class="list-group-item">
+            Can score boulders in the low goal
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2 id="" class="text-center">
+          <a href="{% url 'Scouting2016:robot_display_software' regional_code %}">Autonomous</a>
+        </h2>
+        <p class="text-center">
+          Configurable autonomous modes, selected from the SmartDashboard.
+        </p>
+        <ol class="list-group">
+          <li class="list-group-item">
+            1. Select Starting position (defense 1-5 or spybot)
+          </li>
+          <li class="list-group-item">
+            2. Select Defense
+          </li>
+          <li class="list-group-item">
+            3. Select Mode
+            <ul class="list-group">
+              <li class="list-group-item">
+                Do Nothing (110% accuracy rate)
+              </li>
+              <li class="list-group-item">
+                Cross Defense, Score Low (camera aided)
+              </li>
+              <li class="list-group-item">
+                Cross Defense, Score Low
+              </li>
+              <li class="list-group-item">
+                Cross Defense
+              </li>
+              <li class="list-group-item">
+                Reach Defense
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div class="col-md-6">
+        <h2 id="" class="text-center">
+          Drive Team
+        </h2>
+        <p class="text-center">
+          Four Weeks of Practice and Analysis
+        </p>
+        <ol class="list-group">
+          <li class="list-group-item">
+            Driver: Ayush Goel
+          </li>
+          <li class="list-group-item">
+            Operator: Alex Taskovski
+          </li>
+          <li class="list-group-item">
+            Human Player: Joe Pirro
+          </li>
+          <li class="list-group-item">
+            Coach: Mr. Starke
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+          <h2 id="" class="text-center">
+            <a href="{% url 'Scouting2016:robot_display_drivetrain' regional_code %}">Drive Train</a>
+          </h2>
+          <p class="text-center">
+            6 Wheel Tank Drive
+          </p>
+          <ul class="list-group">
+            <li class="list-group-item">
+              8 inch pneumatic wheels
+            </li>
+            <li class="list-group-item">
+              Single speed transmission efficiently traverses defenses and field
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h2 id="" class="text-center">
+          	<a href="{% url 'Scouting2016:robot_display_overroller' regional_code %}">Boulder Manipulation</a>
+          </h2>
+          <p class="text-center">
+            Over-Roller
+          </p>
+          <ul class="list-group">
+            <li class="list-group-item">
+              Quick acquisition and low goal scoring
+            </li>
+            <li class="list-group-item">
+              Tilts inside robot to protect boulder
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h2 id="" class="text-center">
+          	<a href="{% url 'Scouting2016:robot_display_scaling' regional_code %}">Tower Scaling</a>
+          </h2>
+          <p class="text-center">
+            Extension-Ladder Inspired
+          </p>
+          <ul class="list-group">
+            <li class="list-group-item">
+              Able to scale robot in seconds
+            </li>
+            <li class="list-group-item">
+              Clips ensure robot is held in place
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
