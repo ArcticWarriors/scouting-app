@@ -11,7 +11,7 @@ from django.db.models.aggregates import Avg, Sum
 class HomepageView2013(BaseHomepageView):
 
     def __init__(self):
-        BaseHomepageView.__init__(self, Compitition, 'Scouting2016/index.html')
+        BaseHomepageView.__init__(self, Compitition, 'Scouting2013/index.html')
 
     def get_our_metrics(self):
         return None

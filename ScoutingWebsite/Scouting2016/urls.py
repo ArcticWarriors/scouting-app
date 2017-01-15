@@ -4,7 +4,7 @@ Created on Oct 9, 2015
 @author: PJ
 '''
 from django.conf.urls import url
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 # from Scouting2016 import views
 # from Scouting2016.view.gen_graph import gen_graph
 # from Scouting2016.view.generic_views import SingleTeamView
@@ -15,8 +15,13 @@ import Scouting2016.view.standard_views as standard_views
 # import views as views
 
 
+
 app_name = 'Scouting2016'
-urlpatterns = [url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2016.as_view(), name='index'),
+urlpatterns = [
+    
+               url(r'^$', RedirectView.as_view(url='/2016/NYRO')),
+    
+               url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2016.as_view(), name='index'),
 
                # Add match form
                url(r'^(?P<regional_code>\w+)/form$', match_forms.show_add_form, name='showForm'),

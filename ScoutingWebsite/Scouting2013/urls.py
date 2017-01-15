@@ -4,12 +4,14 @@ Created on Oct 9, 2015
 @author: PJ
 '''
 from django.conf.urls import url
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 import Scouting2013.view.standard_views as standard_views
 
 
 app_name = 'Scouting2013'
-urlpatterns = [url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2013.as_view(), name='index'),
+urlpatterns = [
+               url(r'^$', RedirectView.as_view(url='/2013/OHCL')),
+               url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2013.as_view(), name='index'),
 
                # 2013 Views
                url(r'^(?P<regional_code>\w+)/teams$', standard_views.AllTeamsViews2013.as_view(), name='teams'),
