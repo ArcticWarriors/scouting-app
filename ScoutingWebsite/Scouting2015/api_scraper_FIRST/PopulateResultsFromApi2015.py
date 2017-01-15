@@ -4,7 +4,7 @@ Created on Mar 8, 2016
 @author: PJ
 '''
 
-from BaseScouting.api_scraper.PopulateResultsFromApi import PopulateRegionalResults
+from BaseScouting.api_scraper_FIRST.PopulateResultsFromApi import PopulateRegionalResults
 
 
 class PopulateRegionalResults2015(PopulateRegionalResults):
