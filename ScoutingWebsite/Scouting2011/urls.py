@@ -9,7 +9,7 @@ import Scouting2011.view.standard_views as standard_views
 
 app_name = 'Scouting2011'
 urlpatterns = [
-               url(r'^$', RedirectView.as_view(url='/2011/NYLI')),
+               url(r'^$', RedirectView.as_view(url='/2011/NYLI', permanent=False)),
                url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2011.as_view(), name='index'),
 
 
