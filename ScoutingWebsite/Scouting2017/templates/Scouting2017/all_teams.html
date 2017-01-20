@@ -6,6 +6,16 @@
 </head>
 <body>
 {% include "Scouting2017/banner.html" %}
+	<div class="fluid_container">
+		<table border="1">
+			<th> Team # </th>
+			{% for team in teams %}
+			<tr>
+				<td> {{ team.teamNumber }} </td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
 </body>
 </html>
 
