@@ -26,6 +26,10 @@ def get_team_metrics(team):
 class TeamPitScouting(models.Model):
 
     team = models.OneToOneField(Team)
+    
+    competent = models.BooleanField()
+    short_fat = models.BooleanField()
+    tall_wide = models.BooleanField()
 
 class OfficialMatchScoreResult(models.Model):
 
@@ -42,6 +46,34 @@ class ScoreResult(models.Model):
     team = models.ForeignKey(Team)
     match = models.ForeignKey(Match)
     competition = models.ForeignKey(Compitition)
+    
+    # Teleop
+    gears_score = models.IntegerField()
+    fuel_shot_hi = models.IntegerField()
+    fuel_shot_low = models.IntegerField()
+    fuel_score_hi = models.IntegerField()
+    fuel_score_low = models.IntegerField()
+    rope = models.BooleanField()
+    hopper = models.BooleanField()
+    
+    # Fouls
+    tech_foul = models.IntegerField()
+    foul = models.IntegerField()
+    red_card = models.BooleanField()
+    yellow_card = models.BooleanField()
+    
+    # Auto
+    fuel_shot_hi_auto = models.IntegerField()
+    fuel_shot_low_auto = models.IntegerField()
+    fuel_score_hi_auto = models.IntegerField()
+    fuel_score_low_auto = models.IntegerField()
+    gears_score_auto = models.IntegerField()
+    baseline = models.BooleanField()
+    
+    #collecting
+    ground_fuel = models.BooleanField()
+    ground_gear = models.BooleanField()
+    
 
     @staticmethod
     def get_fields():
