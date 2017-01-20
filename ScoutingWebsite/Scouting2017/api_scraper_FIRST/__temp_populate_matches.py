@@ -17,8 +17,12 @@ def randomNumber(minval, maxval):
 
 def create_score_result(scouted_match, team):
     from Scouting2017.model import ScoreResult
+    from Scouting2017.model.reusable_models import TeamCompetesIn
     
     scouted_sr = ScoreResult.objects.get_or_create(team=team, match=scouted_match, competition=scouted_match.competition)[0]
+    TeamCompetesIn.objects.get_or_create(team=team, competition=scouted_match.competition)
+    
+    
     
     # Teleop
     scouted_sr.gears_score         = randomNumber(0, 1)
