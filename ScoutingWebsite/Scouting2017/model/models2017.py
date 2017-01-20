@@ -27,9 +27,9 @@ class TeamPitScouting(models.Model):
 
     team = models.OneToOneField(Team)
     
-    competent = models.BooleanField()
-    short_fat = models.BooleanField()
-    tall_wide = models.BooleanField()
+    competent = models.BooleanField(default=False)
+    short_fat = models.BooleanField(default=False)
+    tall_wide = models.BooleanField(default=False)
 
 class OfficialMatchScoreResult(models.Model):
 
@@ -48,31 +48,31 @@ class ScoreResult(models.Model):
     competition = models.ForeignKey(Compitition)
     
     # Teleop
-    gears_score = models.IntegerField()
-    fuel_shot_hi = models.IntegerField()
-    fuel_shot_low = models.IntegerField()
-    fuel_score_hi = models.IntegerField()
-    fuel_score_low = models.IntegerField()
-    rope = models.BooleanField()
-    hopper = models.BooleanField()
+    gears_score = models.IntegerField(default=0)
+    fuel_shot_hi = models.IntegerField(default=0)
+    fuel_shot_low = models.IntegerField(default=0)
+    fuel_score_hi = models.IntegerField(default=0)
+    fuel_score_low = models.IntegerField(default=0)
+    rope = models.BooleanField(default=False)
+    hopper = models.BooleanField(default=False)
     
     # Fouls
-    tech_foul = models.IntegerField()
-    foul = models.IntegerField()
-    red_card = models.BooleanField()
-    yellow_card = models.BooleanField()
+    tech_foul = models.IntegerField(default=0)
+    foul = models.IntegerField(default=0)
+    red_card = models.BooleanField(default=False)
+    yellow_card = models.BooleanField(default=False)
     
     # Auto
-    fuel_shot_hi_auto = models.IntegerField()
-    fuel_shot_low_auto = models.IntegerField()
-    fuel_score_hi_auto = models.IntegerField()
-    fuel_score_low_auto = models.IntegerField()
-    gears_score_auto = models.IntegerField()
-    baseline = models.BooleanField()
+    fuel_shot_hi_auto = models.IntegerField(default=0)
+    fuel_shot_low_auto = models.IntegerField(default=0)
+    fuel_score_hi_auto = models.IntegerField(default=0)
+    fuel_score_low_auto = models.IntegerField(default=0)
+    gears_score_auto = models.IntegerField(default=0)
+    baseline = models.BooleanField(default=False)
     
     #collecting
-    ground_fuel = models.BooleanField()
-    ground_gear = models.BooleanField()
+    ground_fuel = models.BooleanField(default=False)
+    ground_gear = models.BooleanField(default=False)
     
 
     @staticmethod
