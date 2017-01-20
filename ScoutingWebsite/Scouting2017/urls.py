@@ -13,5 +13,8 @@ urlpatterns = [
     
                url(r'^$', RedirectView.as_view(url='/2017/NYRO', permanent=False)),
                url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2017.as_view(), name='index'),
+               url(r'^(?P<regional_code>\w+)/teams$', standard_views.AllTeamsViews2017.as_view(), name='teams'),
+               url(r'^(?P<regional_code>\w+)/matches$', standard_views.AllMatchesViews2017.as_view(), name='matches'),
+               
                
                ]

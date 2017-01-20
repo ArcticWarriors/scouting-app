@@ -1,0 +1,2 @@
+class AllTeamsViews2017():
+    
