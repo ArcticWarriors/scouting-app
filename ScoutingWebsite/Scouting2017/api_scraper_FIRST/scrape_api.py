@@ -56,7 +56,7 @@ for event_pair in events_to_do:
         event_path = json_root + "week%s" % week
         print event_path
 
-        print(event_path)
         populater = PopulateRegionalresults2017()
-        populater.update_schedule(code, event_path)
-        populater.update_matchresults(code, event_path)
+        populater.update_team_info(code, event_path)
+#         populater.update_schedule(code, event_path)
+#         populater.update_matchresults(code, event_path)

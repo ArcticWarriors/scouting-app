@@ -34,6 +34,8 @@ def update_all_team_info(json_path):
 
 def update_team_info(local_file):
     from Scouting2017.model import Team
+    
+    print "AHHH"
 
     if not os.path.exists(local_file):
         print("No team info, skipping population")
@@ -43,6 +45,9 @@ def update_team_info(local_file):
 
     for team_info in json_struct["teams"]:
         team_number = team_info["teamNumber"]
+        
+        print team_number
+        continue
 
         team, _ = Team.objects.get_or_create(teamNumber=team_number)
         team.homepage = get_non_null_field(team_info, "website")

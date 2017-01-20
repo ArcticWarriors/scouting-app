@@ -97,8 +97,16 @@ class PopulateRegionalResults:
             team_number = team_info["teamNumber"]
 
             team, _ = self.team_model.objects.get_or_create(teamNumber=team_number)
-            team.teamHomepage = team_info["website"] if team_info["website"] != None else "NA"
-            team.teamFirstYear = team_info["rookieYear"]
+#             team.teamHomepage = team_info["website"] if team_info["website"] != None else "NA"
+#             team.teamFirstYear = team_info["rookieYear"]
+            team.homepage = self.__get_non_null_field(team_info, "website")
+            team.rookie_year = self.__get_non_null_field(team_info, "rookieYear")
+            team.city = self.__get_non_null_field(team_info, "city")
+            team.state = self.__get_non_null_field(team_info, "stateProv")
+            team.country = self.__get_non_null_field(team_info, "country")
+            team.team_name = self.__get_non_null_field(team_info, "nameFull")
+            team.team_nickname = self.__get_non_null_field(team_info, "nameShort")
+            team.robot_name = self.__get_non_null_field(team_info, "robotName")
             team.save()
             print("Updating info for team %s" % team_number)
 
