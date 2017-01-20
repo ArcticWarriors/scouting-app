@@ -1,5 +1,5 @@
 import operator
-from Scouting2016.model.reusable_models import Team, Match, OfficialMatch, TeamPictures, TeamComments, TeamCompetesIn, Compitition
+from Scouting2016.model.reusable_models import Team, Match, OfficialMatch, TeamPictures, TeamComments, TeamCompetesIn, Competition
 from Scouting2016.model.models2016 import get_team_metrics, get_defense_stats, \
     get_advanced_team_metrics, ScoreResult
 from BaseScouting.views.base_views import BaseAddTeamCommentsView, \
@@ -12,7 +12,7 @@ from django.db.models.aggregates import Avg, Sum
 class HomepageView2016(BaseHomepageView):
 
     def __init__(self):
-        BaseHomepageView.__init__(self, Compitition, 'Scouting2016/index.html')
+        BaseHomepageView.__init__(self, Competition, 'Scouting2016/index.html')
 
     def get_our_metrics(self):
 

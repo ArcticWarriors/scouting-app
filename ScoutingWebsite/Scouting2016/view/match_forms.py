@@ -9,7 +9,7 @@ from django.shortcuts import render
 
 from Scouting2016.models import Team, Match, ScoreResult
 from django.contrib.auth.decorators import permission_required
-from Scouting2016.model.reusable_models import Compitition
+from Scouting2016.model.reusable_models import Competition
 
 
 login_reverse = reverse_lazy('Scouting2016:showLogin')
@@ -51,7 +51,7 @@ def submit_new_match(request, regional_code):
     """
 
     team = Team.objects.get(teamNumber=request.POST["team_number"])
-    competition = Compitition.objects.get(code=regional_code)
+    competition = Competition.objects.get(code=regional_code)
     if len(Match.objects.filter(matchNumber=request.POST["match_number"])) == 0:
         match = Match.objects.create(matchNumber=request.POST["match_number"], competition=competition)
     else:

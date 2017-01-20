@@ -10,8 +10,8 @@ from BaseScouting.api_scraper_FIRST.PopulateResultsFromApi import PopulateRegion
 class PopulateRegionalResults2015(PopulateRegionalResults):
 
     def __init__(self):
-        from Scouting2015.model import Team, Compitition, OfficialMatch, OfficialMatchScoreResult
-        PopulateRegionalResults.__init__(self, Team, Compitition, OfficialMatch, OfficialMatchScoreResult)
+        from Scouting2015.model import Team, Competition, OfficialMatch, OfficialMatchScoreResult
+        PopulateRegionalResults.__init__(self, Team, Competition, OfficialMatch, OfficialMatchScoreResult)
 
         self.defense_name_lookup = {}
         self.defense_name_lookup["A_Portcullis"] = "portcullis"

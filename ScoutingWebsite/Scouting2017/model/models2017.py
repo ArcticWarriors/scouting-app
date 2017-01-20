@@ -6,7 +6,7 @@ Created on Jan 15, 2017
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
 from Scouting2017.model.reusable_models import Team, \
-    OfficialMatch, Match, Compitition
+    OfficialMatch, Match, Competition
 
 
 
@@ -34,7 +34,7 @@ class TeamPitScouting(models.Model):
 class OfficialMatchScoreResult(models.Model):
 
     official_match = models.ForeignKey(OfficialMatch)
-    competition = models.ForeignKey(Compitition)
+    competition = models.ForeignKey(Competition)
 
     team1 = models.ForeignKey(Team, related_name='da_team1')
     team2 = models.ForeignKey(Team, related_name='da_team2')
@@ -45,7 +45,7 @@ class ScoreResult(models.Model):
 
     team = models.ForeignKey(Team)
     match = models.ForeignKey(Match)
-    competition = models.ForeignKey(Compitition)
+    competition = models.ForeignKey(Competition)
     
     # Teleop
     gears_score = models.IntegerField(default=0)

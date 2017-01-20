@@ -1,13 +1,13 @@
 from BaseScouting.views.base_views import BaseHomepageView, BaseAllTeamsViews,\
     BaseAllMatchesView
-from Scouting2017.model.reusable_models import Compitition
+from Scouting2017.model.reusable_models import Competition
 
 
 
 class HomepageView2017(BaseHomepageView):
  
     def __init__(self):
-        BaseHomepageView.__init__(self, Compitition, 'Scouting2017/index.html')
+        BaseHomepageView.__init__(self, Competition, 'Scouting2017/index.html')
  
     def get_our_metrics(self):
  

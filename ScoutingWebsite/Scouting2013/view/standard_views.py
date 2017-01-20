@@ -1,5 +1,5 @@
 
-from Scouting2013.model.reusable_models import Team, Match, OfficialMatch, TeamPictures, TeamComments, TeamCompetesIn, Compitition
+from Scouting2013.model.reusable_models import Team, Match, OfficialMatch, TeamPictures, TeamComments, TeamCompetesIn, Competition
 from Scouting2013.model.models2013 import ScoreResult, get_team_metrics
 from BaseScouting.views.base_views import BaseAddTeamCommentsView, \
     BaseAddTeamPictureView, BaseAllTeamsViews, BaseSingleTeamView, \
@@ -11,7 +11,7 @@ from django.db.models.aggregates import Avg, Sum
 class HomepageView2013(BaseHomepageView):
 
     def __init__(self):
-        BaseHomepageView.__init__(self, Compitition, 'Scouting2013/index.html')
+        BaseHomepageView.__init__(self, Competition, 'Scouting2013/index.html')
 
     def get_our_metrics(self):
         return None

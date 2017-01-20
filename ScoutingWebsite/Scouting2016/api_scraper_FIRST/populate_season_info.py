@@ -58,13 +58,13 @@ def update_team_info(local_file):
 
 
 def update_event_info(json_path):
-    from Scouting2016.model.reusable_models import Compitition
+    from Scouting2016.model.reusable_models import Competition
 
     json_struct = read_local_copy(json_path + "events/event_query.json")
 
     for event_info in json_struct["Events"]:
         code = event_info["code"]
-        event = Compitition.objects.create(code=code)
+        event = Competition.objects.create(code=code)
 
         event.name = event_info["name"]
         event.city = event_info["city"]

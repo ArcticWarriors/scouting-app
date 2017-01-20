@@ -6,14 +6,14 @@ Created on Apr 11, 2016
 import collections
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
-from Scouting2011.model.reusable_models import ScoreResultMetric, Team, Match, Compitition
+from Scouting2011.model.reusable_models import ScoreResultMetric, Team, Match, Competition
 
 
 class ScoreResult(models.Model):
 
     team = models.ForeignKey(Team)
     match = models.ForeignKey(Match)
-    competition = models.ForeignKey(Compitition)
+    competition = models.ForeignKey(Competition)
 
     # auton
     scored_uber_tube = models.BooleanField()

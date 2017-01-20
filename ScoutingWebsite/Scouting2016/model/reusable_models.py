@@ -18,7 +18,7 @@ class ScoreResultMetric:
         return "SRMetric: [%s, %s, %s, %s]" % (self.field_name, self.display_name, self.default, self.metric_type)
 
 
-class Compitition(models.Model):
+class Competition(models.Model):
 
     code = models.CharField(max_length=6)
     name = models.CharField(max_length=100)
@@ -33,7 +33,7 @@ class Compitition(models.Model):
 class Match(models.Model):
 
     matchNumber = models.IntegerField()
-    competition = models.ForeignKey(Compitition)
+    competition = models.ForeignKey(Competition)
 
     def __str__(self):
         return "Match %s at Competitions %s" % (self.matchNumber, self.competition)
@@ -57,7 +57,7 @@ class Team(models.Model):
 
 class TeamCompetesIn(models.Model):
     team = models.ForeignKey(Team)
-    competition = models.ForeignKey(Compitition)
+    competition = models.ForeignKey(Competition)
 
 
 class TeamComments(models.Model):
@@ -77,6 +77,6 @@ class TeamPictures(models.Model):
 class OfficialMatch(models.Model):
 
     matchNumber = models.IntegerField()
-    competition = models.ForeignKey(Compitition)
+    competition = models.ForeignKey(Competition)
 
     hasOfficialData = models.BooleanField(default=False)
