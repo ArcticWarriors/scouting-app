@@ -1,4 +1,5 @@
-from BaseScouting.views.base_views import BaseHomepageView
+from BaseScouting.views.base_views import BaseHomepageView, BaseAllTeamsViews,\
+    BaseAllMatchesView
 from Scouting2017.model.reusable_models import Compitition
 
 
@@ -18,3 +19,7 @@ class HomepageView2017(BaseHomepageView):
  
         return output
 
+class AllTeamsViews2017(BaseAllTeamsViews):
+    pass
+class AllMatchesViews2017(BaseAllMatchesView):
+    pass
