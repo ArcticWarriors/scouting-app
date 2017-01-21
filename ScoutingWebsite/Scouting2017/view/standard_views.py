@@ -26,4 +26,5 @@ class AllTeamsViews2017(BaseAllTeamsViews):
         return [] 
     
 class AllMatchesViews2017(BaseAllMatchesView):
-    pass
+    def __init__(self, match_model, official_match_model, template_name):
+        BaseAllMatchesView.__init__(self, match_model, official_match_model, template_name)
