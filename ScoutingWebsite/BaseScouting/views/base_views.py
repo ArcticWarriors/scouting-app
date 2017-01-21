@@ -266,3 +266,14 @@ class BaseGenGraphView(View):
         canvas.print_png(response)
 
         return response
+    
+    
+class BaseMatchEntryView(TemplateView):
+    def __init__(self, compition_model, template_name):
+        self.template_name = template_name
+
+    def get_context_data(self, **kwargs):
+        context = super(BaseMatchEntryView, self).get_context_data(**kwargs)
+        
+        return context
+
