@@ -2,7 +2,7 @@
 <head>
 {% load staticfiles %} 
 {% include "Scouting2017/standard_header.html" %}
-<title> Team # </title>
+<title> Team {{ team.teamNumber }} </title>
 </head>
 <style>
 table{
@@ -14,7 +14,7 @@ margin:auto
 
 {% include "Scouting2017/banner.html" %}
 
-<h1 style="text-align: center;">Team #</h1>
+<h1 style="text-align: center;">Team {{ team.teamNumber }}</h1>
 
 <h2 style="text-align: center;">Match Information</h2>
 <table border="1" style="text-align: center;">

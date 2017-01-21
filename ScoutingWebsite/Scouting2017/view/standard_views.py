@@ -35,5 +35,5 @@ class SingleTeamView2017(BaseSingleTeamView):
         BaseSingleTeamView.__init__(self, Team, TeamPictures, TeamComments, 'Scouting2017/view_team.html')
 
     def get_metrics(self, team):
-        return []
+        return get_team_metrics(team)
 
