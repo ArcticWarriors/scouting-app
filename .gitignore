@@ -60,4 +60,4 @@ target/
 *.tmp
 
 # Include libraries stored in staticfiles
-!static/lib/
+!*/static/*/lib/
