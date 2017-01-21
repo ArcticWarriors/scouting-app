@@ -18,11 +18,16 @@
 			<th width=50> Gear Score </th>
 			{% for team in teams %}
 			<tr>
+			
 				<td> {{ team.teamNumber }} </td>
 				<td> ICON </td>
 				<td> ICON </td>
 				<td> ICON </td>
 				<td> ICON </td>
+				<td> {{ team.metrics.fuel_score_high }} </td>
+				<td> {{ team.metrics.fuel_score_low__avg }} </td>
+				<td> {{ team.gears_score__avg }} </td>
+				<td> {{ team.metrics }} </td>
 				<!-- Make a good looking table using this, is the hope. -->
 			</tr>
 			{% endfor %}
