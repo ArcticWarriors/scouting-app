@@ -35,7 +35,7 @@ td{
 			{% for team in teams %}
 			<tr>
 			
-				<td> {{ team.teamNumber }} </td>
+				<td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
 				<td> <img src="{% static 'scouting2017/icons/gear.png' %}" style="width:50px;"> </img> </td>
 				<td> <img src="{% static 'scouting2017/icons/fuel.png' %}" style="width:50px;"> </img></td>
 				<td> <img src="{% static 'scouting2017/icons/rope.png' %}" style="width:50px;"> </img> </td>
