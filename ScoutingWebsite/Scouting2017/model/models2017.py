@@ -6,13 +6,18 @@ Created on Jan 15, 2017
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
 from Scouting2017.model.reusable_models import Team, \
-    OfficialMatch, Match, Competition
+    OfficialMatch, Match, Competition, ScoreResultMetric
 
 
 
 def get_team_metrics(team):
-    metrics = team.scoreresult_set.aggregate()
-
+    
+    metrics = team.scoreresult_set.aggregate(Avg("fuel_score_hi"),
+                                             Avg("fuel_score_low"),
+                                             Avg("gears_score"),
+                                             )
+                                           
+                                            
     # Format all of the numbers.  If we haven't scouted the team, None will be returned.  Turn that into NA
     for key in metrics:
         if metrics[key] == None:
@@ -79,6 +84,13 @@ class ScoreResult(models.Model):
     def get_fields():
 
         output = {}
+        
+        # Auto 
+        
+        # Fuel
+        output['fuel_score_hi'] = ScoreResultMetric ('fuel_score_hi', 'High Fuel Scored', 0, "Average")
+        output['fuel_score_low'] = ScoreResultMetric ('fuel_score_low', 'Low Fuel Scored', 0, "Average")
+        output['gears_score'] = ScoreResultMetric ('gears_score', 'Gears Scored', 0, "Average")
 
         return output
 
