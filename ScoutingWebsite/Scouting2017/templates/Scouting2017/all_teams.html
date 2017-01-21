@@ -2,17 +2,20 @@
 <head>
 {% load staticfiles %} 
 {% include "Scouting2017/standard_header.html" %}
-<title> Insert title here </title>
+<title> Scouting Web </title>
 </head>
 <body>
 {% include "Scouting2017/banner.html" %}
 	<div class="fluid_container">
 		<table border="1">
-			<th> Team # </th>
-			<th> Gears </th>
-			<th> Fuel </th>
-			<th> Rope </th>
-			<th> Bookmarked? </th>
+			<th width=50> Team # </th>
+			<th width=50> Gears </th>
+			<th width=50> Fuel </th>
+			<th width=50> Rope </th>
+			<th width=50> Bookmarked? </th>
+			<th width=50> High Fuel </th>
+			<th width=50> Low Fuel </th>
+			<th width=50> Gear Score </th>
 			{% for team in teams %}
 			<tr>
 				<td> {{ team.teamNumber }} </td>
