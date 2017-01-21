@@ -6,7 +6,7 @@ Created on Jan 15, 2017
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
 from Scouting2017.model.reusable_models import Team, \
-    OfficialMatch, Match, Competition
+    OfficialMatch, Match, Competition, ScoreResultMetric
 
 
 
@@ -79,6 +79,17 @@ class ScoreResult(models.Model):
     def get_fields():
 
         output = {}
+        
+        # Auto 
+        
+        # Fuel
+        output['fuel_score_low'] = ScoreResultMetric ('fuel_score_low', 'Low Fuel Scored', 0, "Average")
+        output['fuel_score_high'] = ScoreResultMetric ('fuel_score_high', 'High Fuel Scored', 0, "Average")
+        # Gears 
+        output['gears_score'] = ScoreResultMetric('gears_Score', 'Gears Lifted', 0, "Average")
+        # General
+        
+        # Notes
 
         return output
 
