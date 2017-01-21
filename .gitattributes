@@ -2,7 +2,17 @@
 * text=auto
 * text eol=lf
 
+# Exclude fules from LF normalization
 *.sqlite3 binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.bmp binary
+*.otf binary
+*.eot binary
+*.ttf binary
+*.woff binary
 
 # Custom for Visual Studio
 *.cs     diff=csharp
