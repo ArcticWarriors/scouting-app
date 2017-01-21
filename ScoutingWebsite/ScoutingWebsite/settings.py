@@ -44,6 +44,7 @@ INSTALLED_APPS = (
 #     'Scouting2011',
 #     'Scouting2013',
 #     'Scouting2015',
+    'BaseScouting',
     'Scouting2016',
     'Scouting2017',
 )
