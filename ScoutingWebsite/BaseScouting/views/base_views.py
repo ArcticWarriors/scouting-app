@@ -269,7 +269,7 @@ class BaseGenGraphView(View):
     
     
 class BaseMatchEntryView(TemplateView):
-    def __init__(self, compition_model, template_name):
+    def __init__(self, template_name):
         self.template_name = template_name
 
     def get_context_data(self, **kwargs):

@@ -14,11 +14,11 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li <a href="{% url 'Scouting2017:index' regional_code %}">Home</a> </li>
+            <li> <a href="{% url 'Scouting2017:index' regional_code %}">Home</a> </li>
 {#            <li> <a href="{% url 'Scouting2017:robot_display' regional_code %}">Our Robot</a> </li> #}
             <li> <a href="{% url 'Scouting2017:teams' regional_code %}">Team List</a></li>
             <li> <a href="{% url 'Scouting2017:matches' regional_code %}">Matches</a></li>
-            <li <a href="{% url 'Scouting2017:match_entry' regional_code %}">Add Matches</a> </li>
+            <li> <a href="{% url 'Scouting2017:match_entry' regional_code %}">Add Matches</a> </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if "auth.can_modify_model" in perms %}

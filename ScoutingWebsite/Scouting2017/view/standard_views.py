@@ -39,5 +39,5 @@ class SingleTeamView2017(BaseSingleTeamView):
 
 class MatchEntryView2017(BaseMatchEntryView):
     def __init__(self):
-        BaseMatchEntryView.___init__(self, 'Scouting2017/match_entry')
+        BaseMatchEntryView.__init__(self, 'Scouting2017/match_entry.html')
 
