@@ -11,8 +11,13 @@ from Scouting2017.model.reusable_models import Team, \
 
 
 def get_team_metrics(team):
-    metrics = team.scoreresult_set.aggregate()
-
+    
+    metrics = team.scoreresult_set.aggregate(Avg("fuel_score_hi"),
+                                             Avg("fuel_score_low"),
+                                             Avg("gears_score"),
+                                             )
+                                           
+                                            
     # Format all of the numbers.  If we haven't scouted the team, None will be returned.  Turn that into NA
     for key in metrics:
         if metrics[key] == None:
@@ -83,13 +88,9 @@ class ScoreResult(models.Model):
         # Auto 
         
         # Fuel
+        output['fuel_score_hi'] = ScoreResultMetric ('fuel_score_hi', 'High Fuel Scored', 0, "Average")
         output['fuel_score_low'] = ScoreResultMetric ('fuel_score_low', 'Low Fuel Scored', 0, "Average")
-        output['fuel_score_high'] = ScoreResultMetric ('fuel_score_high', 'High Fuel Scored', 0, "Average")
-        # Gears 
-        output['gears_score'] = ScoreResultMetric('gears_Score', 'Gears Lifted', 0, "Average")
-        # General
-        
-        # Notes
+        output['gears_score'] = ScoreResultMetric ('gears_score', 'Gears Scored', 0, "Average")
 
         return output
 

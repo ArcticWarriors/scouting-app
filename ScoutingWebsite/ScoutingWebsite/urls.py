@@ -19,9 +19,9 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     #url(r'^admin/', include(admin.site.urls)),
-    #url(r'^2011/', include('Scouting2011.urls', namespace="Scouting2011")),
-    #url(r'^2013/', include('Scouting2013.urls', namespace="Scouting2013")),
-    #url(r'^2016/', include('Scouting2016.urls', namespace="Scouting2016")),
+#     url(r'^2011/', include('Scouting2011.urls', namespace="Scouting2011")),
+#     url(r'^2013/', include('Scouting2013.urls', namespace="Scouting2013")),
+    url(r'^2016/', include('Scouting2016.urls', namespace="Scouting2016")),
     url(r'^2017/', include('Scouting2017.urls', namespace="Scouting2017")),
 
     url(r'^$', RedirectView.as_view(url='/2017/', permanent=False)),
