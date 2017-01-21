@@ -1,6 +1,6 @@
 from BaseScouting.views.base_views import BaseHomepageView, BaseAllTeamsViews,\
     BaseAllMatchesView
-from Scouting2017.model.reusable_models import Competition, TeamCompetesIn
+from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch
 from Scouting2017.model.models2017 import get_team_metrics
 
 
@@ -28,4 +28,5 @@ class AllTeamsViews2017(BaseAllTeamsViews):
         return get_team_metrics(team)
     
 class AllMatchesViews2017(BaseAllMatchesView):
-    pass
+    def __init__(self):
+        BaseAllMatchesView.__init__(self, Match, OfficialMatch, 'Scouting2017/allmatches.html')
