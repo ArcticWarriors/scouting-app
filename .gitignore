@@ -58,3 +58,6 @@ target/
 
 # Temporary databases
 *.tmp
+
+# Include libraries stored in staticfiles
+!static/lib/
