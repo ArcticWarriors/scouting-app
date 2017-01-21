@@ -12,6 +12,8 @@ margin:auto
 
 <body>
 
+{% include "Scouting2017/banner.html" %}
+
 <h1 style="text-align: center;">Team #</h1>
 
 <h2 style="text-align: center;">Match Information</h2>
@@ -21,7 +23,7 @@ margin:auto
 										  <li>1234</li> </ul> </td> <td> <ul> <li>345</li> 
 										  									  <li>345</li> 
 										  									  <li>345</li> </ul> </td> </tr>
-<tr> <td>#</td> <td>Yes/No</td> <td> <ul> <li>1234</li>
+<tr> <td>#</td> <td>Yes/No</td> <td> <ul> <li>1234</li> 
 										  <li>1234</li> </ul> </td> <td> <ul> <li>345</li> 
 										  									  <li>345</li> 
 										  									  <li>345</li> </ul> </td> </tr>
@@ -42,10 +44,10 @@ margin:auto
 
 <table border="1" style="text-align: center;">
 <th> </th><th>High Boiler</th><th>Low Boiler</th>
-<tr> <td>Autonomous</td> <td></td> <td></td> </tr>
-<tr> <td>Teleop</td> <td></td> <td></td> </tr>
-<tr> <td>Average Score</td> <td></td> <td></td> </tr>
-<tr> <td>Total</td> <td></td> <td></td> </tr>
+<tr> <td>Autonomous</td> <td>#</td> <td>#</td> </tr>
+<tr> <td>Teleop</td> <td>#</td> <td>#</td> </tr>
+<tr> <td>Average Score</td> <td>#</td> <td>#</td> </tr>
+<tr> <td>Total</td> <td>#</td> <td>#</td> </tr>
 </table>
 
 <h3 style="text-align: center;">Gears</h3>
@@ -56,9 +58,15 @@ margin:auto
 <tr> <td>Autonomous Success</td> <td>Percentage</td> </tr>
 </table>
 
+<h2 style="text-align: center;">Fouls</h2>
 
+<table border="1" style="text-align: center;">
+<tr> <td>Foul</td> <td>#</td> </tr>
+<tr> <td>Tech Foul</td> <td>#</td> </tr>
+<tr> <td>Yellow Card</td> <td>Yes/No?</td> </tr>
+<tr> <td>Red Card</td> <td>Yes/No?</td> </tr>
+</table>
 
-{% include "Scouting2017/banner.html" %}
 </body>
 </html>
 
