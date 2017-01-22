@@ -45,8 +45,10 @@ class AllTeamsViews2017(BaseAllTeamsViews):
             teams_with_gears += 1
     
        
-        
-        global_gear_avg = global_gear_sum/teams_with_gears
+        if teams_with_gears==0:
+            global_gear_avg = 'NA'
+        else:
+            global_gear_avg = global_gear_sum/(teams_with_gears)
         print global_gear_avg #some number
         teams_with_gears = 0
         variance = 0
@@ -57,7 +59,10 @@ class AllTeamsViews2017(BaseAllTeamsViews):
             teams_with_gears += 1
             #compare global to me
             gear_stat_z = 0
-        st_dev_gear = math.sqrt(sum_v_squared / (teams_with_gears-1))   
+        if teams_with_gears==1:
+            st_dev_gear = 'NA'
+        else:          
+            st_dev_gear = math.sqrt(sum_v_squared / (teams_with_gears-1))   
         for team in teams_at_competition:
             variance = (team.gears_score__avg - global_gear_avg)
             #gear_stat_z = variance/st_dev_gear 
