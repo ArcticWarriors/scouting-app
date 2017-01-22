@@ -44,6 +44,15 @@ class OfficialMatchScoreResult(models.Model):
     team1 = models.ForeignKey(Team, related_name='da_team1')
     team2 = models.ForeignKey(Team, related_name='da_team2')
     team3 = models.ForeignKey(Team, related_name='da_team3')
+    
+    auto_gears = models.IntegerField(default=0)
+    auto_fuel_high = models.IntegerField(default=0)
+    auto_fuel_low = models.IntegerField(default=0)
+    auto_baseline = models.IntegerField(default=0)
+    
+    fuel_high = models.IntegerField(default=0)
+    fuel_low = models.IntegerField(default=0)
+    takeoffs = models.IntegerField(default=0)
 
 
 class ScoreResult(models.Model):
