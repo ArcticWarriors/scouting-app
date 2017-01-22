@@ -2,6 +2,7 @@ from BaseScouting.views.base_views import BaseHomepageView, BaseAllTeamsViews,\
     BaseAllMatchesView, BaseSingleTeamView
 from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments
 from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
+import math
 
 class HomepageView2017(BaseHomepageView):
  
@@ -40,17 +41,29 @@ class AllTeamsViews2017(BaseAllTeamsViews):
         teams_with_gears = 0
         
         for team in metrics:
-            global_gear_sum .join(team.gears_score)
+            global_gear_sum.join(team.gears_score__avg)
             teams_with_gears += 1
     
        
         
-        global_gear_avg = 0 #some number
-        
+        global_gear_avg = global_gear_sum/teams_with_gears
+        print global_gear_avg #some number
+        teams_with_gears = 0
+        variance = 0
+        sum_v_squared = 0
         for team in teams_at_competition:
-            pass
-        
+            variance = (team.gears_score__avg - global_gear_avg)
+            sum_v_squared.join(variance**2)
+            teams_with_gears += 1
             #compare global to me
+            gear_stat_z = 0
+        st_dev_gear = math.sqrt(sum_v_squared / (teams_with_gears-1))   
+        for team in teams_at_competition:
+            variance = (team.gears_score__avg - global_gear_avg)
+            #gear_stat_z = variance/st_dev_gear 
+            # this is commented until we figure out how to add it to the model
+        
+            
             
         
             
