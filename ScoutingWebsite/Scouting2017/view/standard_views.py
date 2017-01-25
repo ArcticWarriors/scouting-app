@@ -2,6 +2,7 @@ from BaseScouting.views.base_views import BaseHomepageView, BaseAllTeamsViews,\
     BaseAllMatchesView, BaseSingleTeamView
 from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments
 from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
+from django.db.models.aggregates import Avg
 import math
 
 class HomepageView2017(BaseHomepageView):
@@ -28,7 +29,14 @@ class AllTeamsViews2017(BaseAllTeamsViews):
     
     def get_context_data(self, **kwargs):
         context = BaseAllTeamsViews.get_context_data(self, **kwargs)
-        context['statistics'] = self.get_statistics(kwargs['regional_code'])
+        reg_code = kwargs['regional_code']
+        
+        
+        get_statistics(reg_code,context['teams'])
+        for team in context['teams']:
+            print team.teamNumber, team.gear_z, team.fuel_z
+            
+        
         
 
 class AllMatchesViews2017(BaseAllMatchesView):
@@ -54,39 +62,38 @@ def get_statistics(self, regional_code):
     teams_at_competition = TeamCompetesIn.objects.filter(competition__code=regional_code)
     metrics = get_team_metrics(teams_at_competition)
     # black magic grabs all the metrics for every team with metrics.
-        
-    global_gear_sum = 0 # summation used to find global_gear_avg
-    teams_with_gears = 0 #counter variable
-        
-    for team in metrics:
-        global_gear_sum.join(team.gears_score__avg)
-        teams_with_gears += 1
-     
-    if teams_with_gears==0: # Divide by 0 should not happen.
-        global_gear_avg = 'NA'
-    else:
-        global_gear_avg = global_gear_sum/(teams_with_gears) # X-bar (Mean) for gears.
-        # the above for loop will grab all the team's score results, and average them all together.
-    print global_gear_avg
-        
-        
-    teams_with_gears = 0 # Reset counter variable
-    sum_v_squared = 0
-    for team in teams_at_competition: # Finds the standard deviation
-        sum_v_squared.join((team.gears_score__avg - global_gear_avg)**2) #Obtains a variance, squares it, and ads it to a sum.
-        teams_with_gears += 1
+    competition_averages = competition_srs.aggregate(Avg('gears_score'),
+                                                    Avg('fuel_score_hi'),
+                                                    Avg('fuel_score_hi_auto'),
+                                                    Avg('fuel_score_low'),
+                                                    Avg('fuel_score_low_auto'))   
+    
+    gear_avg = competition_averages['gears_score']
+    fuel_avg = competition_averages['fuel_score_hi_auto'] + (competition_averages['fuel_score_hi'] / 3 ) + (competition_averages['fuel_score_low_auto'] / 3) + (competition_averages['fuel_score_low'] / 9)
+    gear_v2 = 0
+    fuel_v2 = 0
+    num_srs = 0 
+
+    
+    for sr in competition_srs:
+        sr_gear = sr.gears_score - gear_avg
+        sr_fuel = ((sr.fuel_score_hi_auto)+(sr.fuel_score_hi / 3) + (sr.fuel_score_low_auto / 3) + (sr.fuel_score_low / 9)) - fuel_avg
+        gear_v2 += sr_gear * sr_gear
+        fuel_v2 += gear_avg * gear_avg
+        num_srs += 1  
+    gear_stdev = math.sqrt(gear_v2/num_srs) 
+    fuel_stdev = math.sqrt(fuel_v2/num_srs)   
+    print gear_stdev,fuel_stdev
+    
+    for team in teams_at_competition:
+        teams_srs = team.scoreresult_set.filter(competition_code=regional_code) 
+        team_avgs = teams_srs.aggregate(Avg('gears_score'),
+                                        Avg('fuel_score_hi'),
+                                        Avg('fuel_score_hi_auto'),
+                                        Avg('fuel_score_low'),
+                                        Avg('fuel_score_low_auto'))   
             
-    if teams_with_gears==1: # Divide by 0 should not happen. Is == 1 because SSD requires dividing by N-1, so having exactly 1 score result would break this.
-        st_dev_gear = 'NA'
-    else:          
-        st_dev_gear = math.sqrt(sum_v_squared / (teams_with_gears-1)) # Standard deviation for gears.  
-    print st_dev_gear
-        
-            
-    gear_stat_z = 0    
-    for team in teams_at_competition: # Finds Z-scores and ads them to each team's model.
-        variance = (team.gears_score__avg - global_gear_avg)
-        #gear_stat_z = variance/st_dev_gear 
-        # this is commented until we figure out how to add it to the model
-        
-            
+        team.fuel_z = 'NA'
+        if len(teams_srs)!= 0:
+            team.gear_z = team.gears_score__avg / gear_stdev 
+            team.fuel_z = ((team.fuel_score_hi_auto__avg) + (team.fuel_score_hi__avg / 3) + (team.fuel_score_low_auto__avg / 3) + (team.fuel_score_low__avg / 9)) / fuel_stdev
