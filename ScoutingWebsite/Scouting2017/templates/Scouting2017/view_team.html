@@ -18,6 +18,11 @@ margin:auto
 <h1 style="text-align: center;">Team {{ team.teamNumber }}</h1>
 
 <h2 style="text-align: center;">Match Information</h2>
+{% if score_result_list|length == 0 %}
+No Matches Scouted
+{% else %}
+
+
 <table border="1">
 <th width=100 style="text-align: center;">Match#</th> 
 <th width=100 style="text-align: center;">Win?</th> 
@@ -29,27 +34,12 @@ margin:auto
 										  <li>1234</li> </ul> </td> <td> <ul> <li>345</li> 
 										  									  <li>345</li> 
 										  									  <li>345</li> </ul> </td> </tr>
-		<tr> <td style="text-align: center;">#</td> 
-		<td style="text-align: center;">Yes/No</td> 
-		<td> <ul> <li>1234</li> 
-										  <li>1234</li> </ul> </td> <td> <ul> <li>345</li> 
-										  									  <li>345</li> 
-										  									  <li>345</li> </ul> </td> </tr>
-		<tr> <td style="text-align: center;">#</td> 
-		<td style="text-align: center;">Yes/No</td> 
-		<td> <ul> <li>1234</li> 
-										  <li>1234</li> </ul> </td> <td> <ul> <li>345</li> 
-										  									  <li>345</li> 
-										  									  <li>345</li> </ul> </td> </tr>
-		<tr> <td style="text-align: center;">#</td> 
-		<td style="text-align: center;">Yes/No</td> 
-		<td> <ul> <li>1234</li> 
-										  <li>1234</li> </ul> </td> <td> <ul> <li>345</li> 
-										  									  <li>345</li> 
-										  									  <li>345</li> </ul> </td> </tr>
+		
 
-
+{% making things dependent, it will loop the info per game%}
 </table>
+{% endif %}
+
 
 <h2 style="text-align: center;">Capabilities</h2>
 <h3 style="text-align: center;">Fuel</h3>
