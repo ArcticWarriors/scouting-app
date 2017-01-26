@@ -1,0 +1,73 @@
+<html>
+<head>
+{% load staticfiles %}
+{% include "BaseScouting/core_head.html" %}
+{% include "Scouting2017/standard_header.html" %}
+
+
+
+<script type="text/javascript">
+	function addRow(){
+		var numCols = $("#entry-table tr th").length;
+		var row = "<tr>";
+		
+		for(var i=0; i<numCols; i++){
+			row += '<td contenteditable="true"></td>';
+		}
+		
+		row += "</tr>";
+		
+		$("#entry-table").append(row);	
+	}
+</script>
+<title> All Matches </title>
+</head>
+<body>
+	{% include "Scouting2017/banner.html" %}
+	<div class="container-fluid">
+		<table id="entry-table" class="table">
+		
+			<tr>
+				<th>Team Number</th>
+				<th>Match Number</th>
+				<th>Auto Baseline</th>
+				<th>High Fuel Shot</th>
+				<th>Low Fuel Shot</th>
+				<th>High Fuel Score</th>
+				<th>Low Fuel Score</th>
+				<th>Gear Score</th>
+				<th>Rope Climbed</th>
+				
+			</tr>
+			<tr>
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			
+				<td contenteditable="true"></td>
+			</tr>
+			
+			
+			
+		
+		</table>
+	</div>
+	<button type="button" class="btn btn-default" onclick="addRow()">Add Row </button>
+	
+	
+	
+</body>
+</html>
+
