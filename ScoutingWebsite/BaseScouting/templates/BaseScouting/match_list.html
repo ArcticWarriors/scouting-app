@@ -1,0 +1,78 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Matches - Arctic Warriors Scouting</title>
+    <style>
+        table, th {
+            text-align: center;
+        }
+
+        td.valid {
+            background-color: green;
+            color: white;
+        }
+
+        td.invalid {
+            background-color: red;
+            color: whie;
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading" style="overflow:auto;">
+            <h2>Scouted Matches</h2>
+        </div>
+        <div style="overflow-x: auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Match Number</th>
+                        <th>Valid Data</th>
+                        <th colspan='6'>Teams in match</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for match in scouted_matches %}
+                    <tr>
+                        <td><a href="{% url request.resolver_match.namespace|add:':view_match' regional_code match.matchNumber %}">{{ match.matchNumber }}</a></td>
+                        <td class="{% if match.validity == 'Yes' %}valid{% elif match.validity == 'No' %}invalid{% endif %}">{{ match.valdity }}</td>
+                        {% for sr in match.scoreresult_set.all %}
+                        <td><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code sr.team.teamNumber %}">{{ sr.team.teamNumber }}</a></td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="overflow:auto;">
+            <h2>Unscouted Matches</h2>
+        </div>
+        <div style="overflow-x: auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Match Number</th>
+                        <th>Red 1</th>
+                        <th>Red 2</th>
+                        <th>Red 3</th>
+                        <th>Blue 1</th>
+                        <th>Blue 2</th>
+                        <th>Blue 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for match in unscouted_matches %}
+                    <tr>
+                        <td> <a href="{% url request.resolver_match.namespace|add:':match_prediction' regional_code match.matchNumber %}">{{ match.matchNumber }} </a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

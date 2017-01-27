@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 
 
 class BaseHomepageView(TemplateView):
-    def __init__(self, compition_model, template_name):
+    def __init__(self, compition_model, template_name='BaseScouting/index.html'):
         self.compition_model = compition_model
 
         self.template_name = template_name
@@ -91,13 +91,35 @@ class BaseAddTeamPictureView(View):
         return HttpResponseRedirect(reverse(self.reverse_name, args=(regional_code, team_numer,)))
 
 
-class BaseAllTeamsViews(TemplateView):
+class BaseTeamListView(TemplateView):
     """
     When requested, will show a list of all the teams that have been in a match,
     or will be in a match. This also shows some average scoring statistics of each team,
     so it is necessary to obtain their metrics data.
     """
 
+    def __init__(self, team_competes_in_model, score_result_model, template_name='BaseScouting/team_list.html'):
+        self.team_competes_in_model = team_competes_in_model
+        self.score_result_model = score_result_model
+        self.template_name = template_name
+
+    def get_context_data(self, **kwargs):
+        competes_in_query = self.team_competes_in_model.objects.filter(competition__code=kwargs["regional_code"])
+
+        teams_with_metrics = []
+
+        for competes_in in competes_in_query:
+            team = competes_in.team
+            team.metrics = self.get_metrics_for_team(team)
+            teams_with_metrics.append(team)
+        
+        context = super(BaseTeamListView, self).get_context_data(**kwargs)
+        context['teams'] = teams_with_metrics
+        context['metric_fields'] = self.score_result_model.get_fields()
+        return context
+
+# TODO: Remove once Scouting2017 can be refactored
+class BaseAllTeamsViews(TemplateView):
     def __init__(self, team_competesin_model, template_name):
         self.team_competesin_model = team_competesin_model
         self.template_name = template_name
@@ -116,8 +138,7 @@ class BaseAllTeamsViews(TemplateView):
         context['teams'] = teams_with_metrics
 
         return context
-
-
+    
 class BaseSingleTeamView(TemplateView):
 
     def __init__(self, team_model, team_pictures_model, team_comments_model, template_name):
@@ -142,9 +163,9 @@ class BaseSingleTeamView(TemplateView):
         return context
 
 
-class BaseAllMatchesView(TemplateView):
+class BaseMatchListView(TemplateView):
 
-    def __init__(self, match_model, official_match_model, template_name):
+    def __init__(self, match_model, official_match_model, template_name='BaseScouting/match_list.html'):
         self.match_model = match_model
         self.official_match_model = official_match_model
         self.template_name = template_name
@@ -154,12 +175,15 @@ class BaseAllMatchesView(TemplateView):
         scouted_numbers = [match.matchNumber for match in matches]
         unscouted_matches = self.official_match_model.objects.filter(competition__code=kwargs["regional_code"]).exclude(matchNumber__in=scouted_numbers)
 
-        context = super(BaseAllMatchesView, self).get_context_data(**kwargs)
+        context = super(BaseMatchListView, self).get_context_data(**kwargs)
         context['scouted_matches'] = matches
         context['unscouted_matches'] = unscouted_matches
 
         return context
 
+# TODO: Remove once Scouting2017 can be refactored
+class BaseAllMatchesView(BaseMatchListView):
+    pass
 
 class BaseSingleMatchView(TemplateView):
     """
