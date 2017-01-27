@@ -57,8 +57,6 @@ NOTE: Sample standard deviation is used when you do not have the full data set, 
 '''
 def get_statistics(regional_code, teams_at_competition):
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
-#     metrics = get_team_metrics(teams_at_competition)
-#     print competition_srs
     competition_averages = competition_srs.aggregate(Avg('gears_score'),
                                                     Avg('fuel_score_hi'),
                                                     Avg('fuel_score_hi_auto'),
@@ -80,7 +78,6 @@ def get_statistics(regional_code, teams_at_competition):
         num_srs += 1  
     gear_stdev = math.sqrt(gear_v2/num_srs) 
     fuel_stdev = math.sqrt(fuel_v2/num_srs)
-    print gear_stdev,fuel_stdev,gear_avg,fuel_avg
     
     for team in teams_at_competition:
         teams_srs = team.scoreresult_set.filter(competition__code=regional_code) 

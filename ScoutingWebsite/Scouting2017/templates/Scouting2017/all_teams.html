@@ -37,21 +37,21 @@ td{
 			<tbody>
 				{% for team in teams %}
 				<tr>
-			
+					<!-- 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282 -->
 					<td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
 					<td>
-						{% if team.gear_z >= 0.5 %}
+						{% if team.gear_z >= 0.8416 %}
 						GREEN
-						{% elif team.gear_z <= -0.5 %}
+						{% elif team.gear_z <= -0.8416 %}
 						RED
 						{% else %}
 						<img src="{% static 'Scouting2017/Icons/gear.png' %}" style="width:50px;"> </img>
 						{% endif %} {{ team.gear_z }}
 					</td>
 					<td>
-						{% if team.fuel_z >= 0.5 %}
+						{% if team.fuel_z >= 0.8416 %} 
 						GREEN
-						{% elif team.fuel_z <= -0.5 %}
+						{% elif team.fuel_z <= -0.8416 %}
 						RED
 						{% else %}
 					 	<img src="{% static 'Scouting2017/Icons/fuel.png' %}" style="width:50px;"> </img>
