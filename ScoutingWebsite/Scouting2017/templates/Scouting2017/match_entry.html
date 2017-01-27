@@ -10,7 +10,7 @@
 	function addRow(){
 		var numCols = $("#entry-table tr th").length;
 		var row = "<tr>";
-		
+		// button for adding rows
 		for(var i=0; i<numCols; i++){
 			row += '<td contenteditable="true"></td>';
 		}
@@ -41,27 +41,15 @@
 			</tr>
 			<tr>
 				<td contenteditable="true"></td>
-			
 				<td contenteditable="true"></td>
-			
 				<td contenteditable="true"></td>
-			
 				<td contenteditable="true"></td>
-			
 				<td contenteditable="true"></td>
-			
+				<td contenteditable="true"></td>	
 				<td contenteditable="true"></td>
-			
 				<td contenteditable="true"></td>
-			
 				<td contenteditable="true"></td>
-			
-				<td contenteditable="true"></td>
-			</tr>
-			
-			
-			
-		
+			</tr>	
 		</table>
 	</div>
 	<button type="button" class="btn btn-default" onclick="addRow()">Add Row </button>
