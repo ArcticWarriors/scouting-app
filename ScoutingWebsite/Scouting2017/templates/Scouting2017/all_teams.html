@@ -36,10 +36,10 @@ td{
 			<tr>
 			
 				<td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
-				<td> <img src="{% static 'scouting2017/icons/gear.png' %}" style="width:50px;"> </img> </td>
-				<td> <img src="{% static 'scouting2017/icons/fuel.png' %}" style="width:50px;"> </img></td>
-				<td> <img src="{% static 'scouting2017/icons/rope.png' %}" style="width:50px;"> </img> </td>
-				<td>  <img src="{% static 'scouting2017/icons/star.png' %}" style="width:50px;"> </img> </td>
+				<td> <img src="{% static 'Scouting2017/Icons/gear.png' %}" style="width:50px;"> </img> {{ team.gear_z }}</td>
+				<td> <img src="{% static 'Scouting2017/Icons/fuel.png' %}" style="width:50px;"> </img> {{ team.fuel_z }}</td>
+				<td> <img src="{% static 'Scouting2017/Icons/rope.png' %}" style="width:50px;"> </img> </td>
+				<td> <img src="{% static 'Scouting2017/Icons/star.png' %}" style="width:50px;"> </img> </td>
 				<td> {{ team.metrics.fuel_score_hi__avg }} </td>
 				<td> {{ team.metrics.fuel_score_low__avg }} </td>
 				<td> {{ team.metrics.gears_score__avg }} </td>

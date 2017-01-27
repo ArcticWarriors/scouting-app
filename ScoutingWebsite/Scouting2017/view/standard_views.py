@@ -31,12 +31,13 @@ class AllTeamsViews2017(BaseAllTeamsViews):
         context = BaseAllTeamsViews.get_context_data(self, **kwargs)
         reg_code = kwargs['regional_code']
         
+#         teams_at_competition = TeamCompetesIn.objects.filter(competition__code=reg_code)
         
-        get_statistics(reg_code,context['teams'])
+        get_statistics(reg_code, context['teams'])
         for team in context['teams']:
-            print team.teamNumber, team.gear_z, team.fuel_z
+            print team.teamNumber, team.gear_z
             
-        
+        return context
         
 
 class AllMatchesViews2017(BaseAllMatchesView):
@@ -57,19 +58,19 @@ It then will use that data to determine a mean and SAMPLE standard deviation for
 get_statistics() will also calculate z-scores along the SSD for those elements and store them in the model to be called later.
 NOTE: Sample standard deviation is used when you do not have the full data set, so I believe it is appropriate to use here.
 '''
-def get_statistics(self, regional_code):
+def get_statistics(regional_code, teams_at_competition):
+    print "Regional Code %s "% regional_code
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
-    teams_at_competition = TeamCompetesIn.objects.filter(competition__code=regional_code)
-    metrics = get_team_metrics(teams_at_competition)
-    # black magic grabs all the metrics for every team with metrics.
+#     metrics = get_team_metrics(teams_at_competition)
+#     print competition_srs
     competition_averages = competition_srs.aggregate(Avg('gears_score'),
                                                     Avg('fuel_score_hi'),
                                                     Avg('fuel_score_hi_auto'),
                                                     Avg('fuel_score_low'),
                                                     Avg('fuel_score_low_auto'))   
     
-    gear_avg = competition_averages['gears_score']
-    fuel_avg = competition_averages['fuel_score_hi_auto'] + (competition_averages['fuel_score_hi'] / 3 ) + (competition_averages['fuel_score_low_auto'] / 3) + (competition_averages['fuel_score_low'] / 9)
+    gear_avg = competition_averages['gears_score__avg']
+    fuel_avg = competition_averages['fuel_score_hi_auto__avg'] + (competition_averages['fuel_score_hi__avg'] / 3 ) + (competition_averages['fuel_score_low_auto__avg'] / 3) + (competition_averages['fuel_score_low__avg'] / 9)
     gear_v2 = 0
     fuel_v2 = 0
     num_srs = 0 
@@ -79,21 +80,23 @@ def get_statistics(self, regional_code):
         sr_gear = sr.gears_score - gear_avg
         sr_fuel = ((sr.fuel_score_hi_auto)+(sr.fuel_score_hi / 3) + (sr.fuel_score_low_auto / 3) + (sr.fuel_score_low / 9)) - fuel_avg
         gear_v2 += sr_gear * sr_gear
-        fuel_v2 += gear_avg * gear_avg
+        fuel_v2 += sr_fuel * sr_fuel
         num_srs += 1  
     gear_stdev = math.sqrt(gear_v2/num_srs) 
-    fuel_stdev = math.sqrt(fuel_v2/num_srs)   
+    fuel_stdev = math.sqrt(fuel_v2/num_srs)
     print gear_stdev,fuel_stdev
     
     for team in teams_at_competition:
-        teams_srs = team.scoreresult_set.filter(competition_code=regional_code) 
+        teams_srs = team.scoreresult_set.filter(competition__code=regional_code) 
         team_avgs = teams_srs.aggregate(Avg('gears_score'),
                                         Avg('fuel_score_hi'),
                                         Avg('fuel_score_hi_auto'),
                                         Avg('fuel_score_low'),
                                         Avg('fuel_score_low_auto'))   
-            
+        
+        print team_avgs   
         team.fuel_z = 'NA'
+        team.gear_z = 'NA'
         if len(teams_srs)!= 0:
-            team.gear_z = team.gears_score__avg / gear_stdev 
-            team.fuel_z = ((team.fuel_score_hi_auto__avg) + (team.fuel_score_hi__avg / 3) + (team.fuel_score_low_auto__avg / 3) + (team.fuel_score_low__avg / 9)) / fuel_stdev
+            team.gear_z = team_avgs['gears_score__avg'] / gear_stdev 
+            team.fuel_z = ((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) / fuel_stdev
