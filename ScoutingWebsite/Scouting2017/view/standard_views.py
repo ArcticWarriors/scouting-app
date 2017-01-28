@@ -51,9 +51,8 @@ class SingleTeamView2017(BaseSingleTeamView):
 
 '''
 When get_statistics() function is called, it grabs live data from all the teams and all their score results.
-It then will use that data to determine a mean and SAMPLE standard deviation for bots' gears,fuel,and rope capabilities.
-get_statistics() will also calculate z-scores along the SSD for those elements and store them in the model to be called later.
-NOTE: Sample standard deviation is used when you do not have the full data set, so I believe it is appropriate to use here.
+It then will use that data to determine a mean and standard deviation for bots' gears,fuel,and rope capabilities.
+get_statistics() will also calculate z-scores along the St. Dev. for those elements and store them in the model to be called later.
 '''
 def get_statistics(regional_code, teams_at_competition):
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
