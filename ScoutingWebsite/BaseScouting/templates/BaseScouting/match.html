@@ -15,18 +15,22 @@
         <center>
         <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
         <table border=1>
-            <tr>
-                <td> Field </td>
-                <td> Expected </td>
-                <td> Actual </td>
-            </tr>
-            {% for field, results in official_mismatch.items %}
-            <tr>
-                <td> {{ field }} </td>
-                <td> {{ results.0 }} </td>
-                <td> {{ results.1 }} </td>
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    <th> Field </th>
+                    <th> Expected </th>
+                    <th> Actual </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for field, results in official_mismatch.items %}
+                <tr>
+                    <td> {{ field }} </td>
+                    <td> {{ results.0 }} </td>
+                    <td> {{ results.1 }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
         </center>
         {% elif not has_official_data %}

@@ -85,7 +85,7 @@ class MatchListView2016(BaseMatchListView):
 class SingleMatchView2016(BaseSingleMatchView):
 
     def __init__(self):
-        BaseSingleMatchView.__init__(self, Match, 'Scouting2016/view_match.html')
+        BaseSingleMatchView.__init__(self, Match, 'Scouting2016/match.html')
 
     def get_metrics(self, score_result):
         return []
@@ -100,7 +100,7 @@ class GenGraphView2016(BaseGenGraphView):
 class OfficialMatchView2016(BaseOfficialMatchView):
 
     def __init__(self):
-        BaseOfficialMatchView.__init__(self, OfficialMatch, 'Scouting2016/view_official_match.html')
+        BaseOfficialMatchView.__init__(self, OfficialMatch, 'Scouting2016/official_match.html')
 
     def __get_sorted_defense_stats(self, official_score_result):
         results = {}
