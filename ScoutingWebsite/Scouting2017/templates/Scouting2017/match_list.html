@@ -1,0 +1,32 @@
+{% load staticfiles %}
+
+{% block head %}
+	<title>Match List - Arctic Warriors Scouting</title>
+	{% include "BaseScouting/base.html" %}
+{% endblock head %}
+
+{% block content %}
+<body>
+	<table border="1" class="table">
+		<thead>
+			<th> Match # </th>
+			<th> Team 1 </th>
+			<th> Team 2 </th>
+			<th> Team 3 </th>
+			<th> Team 4 </th>
+			<th> Team 5 </th>
+			<th> Team 6 </th>
+			<th> Who won? </th>
+		</thead>
+		<tbody>
+			{% for match in matches %}
+			<tr>
+				<td>ttt</td>
+			</tr>	
+			{% endfor %}
+		</tbody>
+	</table>
+	
+
+</body>
+{% endblock content %}

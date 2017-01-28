@@ -40,7 +40,10 @@ class AllTeamsViews2017(BaseAllTeamsViews):
 
 class AllMatchesViews2017(BaseAllMatchesView):
     def __init__(self):
-        BaseAllMatchesView.__init__(self, Match, OfficialMatch, 'Scouting2017/allmatches.html')
+        BaseAllMatchesView.__init__(self, Match, OfficialMatch, 'Scouting2017/match_list.html')
+        
+    def get_metrics_for_match(self,match):
+        pass
 
 class SingleTeamView2017(BaseSingleTeamView):
 
