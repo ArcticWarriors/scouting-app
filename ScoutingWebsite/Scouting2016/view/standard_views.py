@@ -2,17 +2,14 @@ import operator
 from Scouting2016.model.reusable_models import Team, Match, OfficialMatch, TeamPictures, TeamComments, TeamCompetesIn, Competition
 from Scouting2016.model.models2016 import get_team_metrics, get_defense_stats, \
     get_advanced_team_metrics, ScoreResult
-from BaseScouting.views.base_views import BaseAddTeamCommentsView, \
-    BaseAddTeamPictureView, BaseAllTeamsViews, BaseSingleTeamView, \
-    BaseAllMatchesView, BaseSingleMatchView, BaseOfficialMatchView, \
-    BaseGenGraphView, BaseHomepageView
+from BaseScouting.views.base_views import *
 from django.db.models.aggregates import Avg, Sum
 
 
 class HomepageView2016(BaseHomepageView):
 
     def __init__(self):
-        BaseHomepageView.__init__(self, Competition, 'Scouting2016/index.html')
+        BaseHomepageView.__init__(self, Competition)
 
     def get_our_metrics(self):
 
@@ -61,11 +58,11 @@ class AddTeamPictureView2016(BaseAddTeamPictureView):
         BaseAddTeamPictureView.__init__(self, Team, TeamPictures, 'Scouting2016/static', 'Scouting2016/robot_pics', 'Scouting2016:view_team')
 
 
-class AllTeamsViews2016(BaseAllTeamsViews):
+class TeamListView2016(BaseTeamListView):
 
     def __init__(self):
-        BaseAllTeamsViews.__init__(self, TeamCompetesIn, 'Scouting2016/all_teams.html')
-
+        BaseTeamListView.__init__(self, TeamCompetesIn, ScoreResult)
+        
     def get_metrics_for_team(self, team):
         return get_team_metrics(team)
 
@@ -79,16 +76,16 @@ class SingleTeamView2016(BaseSingleTeamView):
         return get_team_metrics(team)
 
 
-class AllMatchesView2016(BaseAllMatchesView):
+class MatchListView2016(BaseMatchListView):
 
     def __init__(self):
-        BaseAllMatchesView.__init__(self, Match, OfficialMatch, 'Scouting2016/all_matches.html')
+        BaseMatchListView.__init__(self, Match, OfficialMatch)
 
 
 class SingleMatchView2016(BaseSingleMatchView):
 
     def __init__(self):
-        BaseSingleMatchView.__init__(self, Match, 'Scouting2016/view_match.html')
+        BaseSingleMatchView.__init__(self, Match, 'Scouting2016/match.html')
 
     def get_metrics(self, score_result):
         return []
@@ -103,7 +100,7 @@ class GenGraphView2016(BaseGenGraphView):
 class OfficialMatchView2016(BaseOfficialMatchView):
 
     def __init__(self):
-        BaseOfficialMatchView.__init__(self, OfficialMatch, 'Scouting2016/view_official_match.html')
+        BaseOfficialMatchView.__init__(self, OfficialMatch, 'Scouting2016/official_match.html')
 
     def __get_sorted_defense_stats(self, official_score_result):
         results = {}

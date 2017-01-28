@@ -42,9 +42,9 @@ urlpatterns = [
 
                # 2016 Views
                url(r'^(?P<regional_code>\w+)/gen_graph/(?P<team_numbers>\w+(,\w+)*)/(?P<fields>\w+(,\w+)*)$', standard_views.GenGraphView2016.as_view(), name='gen_graph'),
-               url(r'^(?P<regional_code>\w+)/teams$', standard_views.AllTeamsViews2016.as_view(), name='teams'),
+               url(r'^(?P<regional_code>\w+)/teams$', standard_views.TeamListView2016.as_view(), name='teams'),
                url(r'^(?P<regional_code>\w+)/teams/(?P<team_number>[0-9]+)$', standard_views.SingleTeamView2016.as_view(), name='view_team'),
-               url(r'^(?P<regional_code>\w+)/matches$', standard_views.AllMatchesView2016.as_view(), name='matches'),
+               url(r'^(?P<regional_code>\w+)/matches$', standard_views.MatchListView2016.as_view(), name='matches'),
                url(r'^(?P<regional_code>\w+)/matches/(?P<match_number>[0-9]+)$', standard_views.SingleMatchView2016.as_view(), name='view_match'),
                url(r'^(?P<regional_code>\w+)/match_prediction/(?P<match_number>[0-9]+)$', standard_views.OfficialMatchView2016.as_view(), name='match_prediction'),
                url(r'^(?P<regional_code>\w+)/upload_image$', standard_views.AddTeamPictureView2016.as_view(), name='upload_image'),

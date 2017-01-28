@@ -11,8 +11,6 @@ from Scouting2017.model.reusable_models import Team, \
 
 
 def get_team_metrics(team):
-    
-    print "Get Metrics %s " % team
     metrics = team.scoreresult_set.aggregate(Avg("fuel_score_hi"),
                                              Avg("fuel_score_low"),
                                              Avg("gears_score"),
