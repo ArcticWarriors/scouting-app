@@ -1,33 +1,31 @@
-<html>
-<head>
+{% extends 'BaseScouting/base.html' %}
 {% load staticfiles %}
-{% include "BaseScouting/core_head.html" %}
-{% include "Scouting2017/standard_header.html" %}
 
-<style>
-tr:nth-child(even) {background-color: #f2f2f2}
-</style>
-
-<script type="text/javascript">
-	function addRow(){
-		var numCols = $("#entry-table tr th").length;
-		var row = "<tr>";
-		// button for adding rows
-		for(var i=0; i<numCols; i++){
-			row += '<td contenteditable="true"></td>';
+{% block head %}
+	<title>Match Entry - Arctic Warriors Scouting</title>
+	
+	<style>
+		tr:nth-child(even) {background-color: #f2f2f2}
+	</style>
+	
+	<script type="text/javascript">
+		function addRow(){
+			var numCols = $("#entry-table tr th").length;
+			var row = "<tr>";
+			// button for adding rows
+			for(var i=0; i<numCols; i++){
+				row += '<td contenteditable="true"></td>';
+			}
+			
+			row += "</tr>";
+			
+			$("#entry-table").append(row);	
 		}
-		
-		row += "</tr>";
-		
-		$("#entry-table").append(row);	
-	}
-</script>
-<title>Enter Data - Arctic Warriors Scouting</title>
-</head>
-<body>
-	{% include "Scouting2017/banner.html" %}
-	<div class="container-fluid">
-		<table id="entry-table" class="table">
+	</script>
+{% endblock head %}
+
+{% block content %}
+	<table id="entry-table" class="table">
 			<thead>
 			<tr>
 					<th>Team Number</th>
@@ -57,10 +55,5 @@ tr:nth-child(even) {background-color: #f2f2f2}
 				</tr>
 			</tbody>	
 		</table>
-	</div>
-	<button type="button" class="btn btn-default" onclick="addRow()">Add Row </button>	
-	
-	
-</body>
-</html>
-
+		<button type="button" class="btn btn-default" onclick="addRow()">Add Row </button>
+{% endblock content %}

@@ -9,7 +9,7 @@ import math
 class HomepageView2017(BaseHomepageView):
  
     def __init__(self):
-        BaseHomepageView.__init__(self, Competition, 'Scouting2017/index.html')
+        BaseHomepageView.__init__(self, Competition, 'BaseScouting/index.html')
  
     def get_our_metrics(self):
  
@@ -23,7 +23,7 @@ class HomepageView2017(BaseHomepageView):
 
 class AllTeamsViews2017(BaseAllTeamsViews):
     def __init__(self):
-        BaseAllTeamsViews.__init__(self, TeamCompetesIn, 'Scouting2017/all_teams.html')
+        BaseAllTeamsViews.__init__(self, TeamCompetesIn, 'Scouting2017/team_list.html')
 
     def get_metrics_for_team(self, team):
         return get_team_metrics(team)
@@ -45,7 +45,7 @@ class AllMatchesViews2017(BaseAllMatchesView):
 class SingleTeamView2017(BaseSingleTeamView):
 
     def __init__(self):
-        BaseSingleTeamView.__init__(self, Team, TeamPictures, TeamComments, 'Scouting2017/view_team.html')
+        BaseSingleTeamView.__init__(self, Team, TeamPictures, TeamComments, 'Scouting2017/team.html')
 
     def get_metrics(self, team):
         return get_team_metrics(team)
