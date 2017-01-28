@@ -1,0 +1,48 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Home - Arctic Warriors Scouting</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        
+        h2 {
+            text-align: center;
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <h1> WELCOME TO TEAM 174 SCOUTING WEBSTIE </h1>
+    <h2> For the {{ competition.name }} Competition</h2>
+
+    {% block metrics %}
+        <div id="metrics">
+            {% if our_metrics != None %}
+                <h3>Our Metrics</h3>
+                <table>
+                    {% for metrics in our_metrics %}
+                    <th>{{ metrics.0 }}:&nbsp;</th><td>{{ metrics.1 }}</td>
+                    {% endfor %}
+                </table>
+            {% endif %}
+
+            {% if competition_metrics != None %}
+                {% for metrics_pair in competition_metrics %}    
+                <h3>Top teams for {{ metrics_pair.0 }}</h3>
+                <table>
+                    {% for result_pair in metrics_pair.1 %}
+                    <tr>
+                        <td><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code result_pair.0 %}">Team {{ result_pair.0 }}</a>:&nbsp;</td>
+                        <td>{{ result_pair.1 }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endblock metrics %}
+
+{% endblock content %} 

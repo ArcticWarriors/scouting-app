@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+      data-target="#navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <img class="navbar-brand" src="{% static 'BaseScouting/img/174_Favicon.jpg' %}" style="width:50px; padding:0px; margin-right:5px" />
+    </div>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li> <a href="{% url request.resolver_match.namespace|add:':index' regional_code %}">Home</a> </li>
+        <li> <a href="{% url request.resolver_match.namespace|add:':robot_display' regional_code %}">Our Robot</a> </li>
+        <li> <a href="{% url request.resolver_match.namespace|add:':teams' regional_code %}">Team List</a></li>
+        <li> <a href="{% url request.resolver_match.namespace|add:':matches' regional_code %}">Matches</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if "auth.can_modify_model" in perms %}
+        <li> <a href="{% url request.resolver_match.namespace|add:':showForm' regional_code %}">Add Match</a> </li>
+        <li> <a href="{% url request.resolver_match.namespace|add:':info_for_form_edit' regional_code %}">Edit Match</a> </li>
+        <li> <a href="{% url request.resolver_match.namespace|add:':info_for_pit_edit' regional_code %}">Edit Pit</a> </li>
+        <li> <a href="{% url request.resolver_match.namespace|add:':log_user_out' regional_code %}">Logout</a> </li>
+        {% elif user.is_authenticated %}
+        <li> <a href="{% url request.resolver_match.namespace|add:':log_user_out' regional_code %}">Logout</a> </li>
+        {% else %}
+        <li> <a href="{% url request.resolver_match.namespace|add:':showLogin' regional_code %}">Log In</a> </li>
+        {% endif %}
+        </ul>
+    </div>
+  </div>
+</nav>
+<br>

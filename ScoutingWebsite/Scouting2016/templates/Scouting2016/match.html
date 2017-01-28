@@ -1,0 +1,64 @@
+{% extends 'BaseScouting/match.html' %}
+{% load staticfiles %}
+
+{% block stats %}
+	<h2>Scoring Stats.</h2>
+	<table border="1" class = "sortable">
+        <thead>
+        	<th>Teams</th>
+        	<th>Low goal scores</th>
+        	<th>High goal scores</th>
+        	<th>Low auto scores</th>
+        	<th>High auto scores</th>
+        	<th>Spybot?</th>
+        	<th>Tech. Fouls</th>
+        </thead>
+        <tbody>
+             {% for sr in score_result_list %}
+            <tr>
+                <td><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
+                <td>{{sr.low_score_successful}}</td>
+                <td>{{sr.high_score_successful}}</td>
+                <td>{{sr.auto_score_low}}</td>
+                <td>{{sr.auto_score_high}}</td>
+                <td>{{sr.auto_spy}}</td>
+                <td>{{sr.score_tech_foul}}</td>	
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br></br>
+    <h2>Defense Stats.</h2>
+    <table border="1" class = "sortable">
+        <thead>
+            <tr>
+               <th>Teams</th>
+                <th>Low Bar</th>
+                <th>Ramparts</th>
+                <th>Cheval</th>
+                <th>Sally Port</th>
+                <th>Rock Wall</th>
+                <th>Drawbridge</th>
+                <th>Moat</th>
+                <th>Rough Terrain</th>
+                <th>Portcullis</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sr in score_result_list %}
+            <tr>
+                <td><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
+                <td>{{sr.low_bar}}</td>
+                <td>{{sr.cheval_de_frise}}</td>
+                <td>{{sr.ramparts}}</td>
+                <td>{{sr.sally_port}}</td>
+                <td>{{sr.rock_wall}}</td>
+                <td>{{sr.draw_bridge}}</td>
+                <td>{{sr.moat}}</td>
+                <td>{{sr.rough_terrain}}</td>
+                <td>{{sr.portcullis}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock stats %}
