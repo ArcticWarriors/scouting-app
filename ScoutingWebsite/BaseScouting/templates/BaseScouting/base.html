@@ -1,14 +1,23 @@
 {% load staticfiles %} 
+<!DOCTYPE html>
 <html>
 <head>
-    {% include "BaseScouting/core_head.html" %}
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <!-- Responsive on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- jQuery -->
+    <script src="{% static 'BaseScouting/lib/jquery/jquery-2.2.1.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'BaseScouting/lib/bootstrap/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'BaseScouting/lib/bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'BaseScouting/css/style.css' %}" />
     {% block head %}{% endblock %}
 </head>
 <body>
-    {% include "BaseScouting/banner.html" %}
     <div class="container-fluid">
+        {% include "BaseScouting/navbar.html" %}
         {% block content %}{% endblock %}
     </div>
 </body>
 </html>
-
