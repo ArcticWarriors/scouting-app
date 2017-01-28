@@ -25,14 +25,13 @@ td{
 	<div class="fluid_container">
 		<table border = "1">
 			<thead>
-				<th> Team # </th>x
-				<th> Gears </th>
-				<th> Fuel </th>
-				<th> Rope </th>
+				<th> Team # </th>
+				<th> Temp TH </th>
 				<th> Bookmarked? </th>
 				<th> High Fuel </th>
 				<th> Low Fuel </th>
 				<th> Gear Score </th>
+				<th> Rope Percentage </th>
 			</thead>
 			<tbody>
 				{% for team in teams %}
@@ -47,8 +46,6 @@ td{
 						{% else %}
 							<img src="{% static 'Scouting2017/Icons/gear_yellow.png' %}" style="width:50px;"> </img>
 						{% endif %} {# {{ team.gear_z }} #}
-					</td>
-					<td>
 						{% if team.fuel_z >= 0.675 %} 
 							<img src="{% static 'Scouting2017/Icons/fuel_green.png' %}" style="width:50px;"> </img>
 						{% elif team.fuel_z <= -0.675 %}
@@ -56,12 +53,19 @@ td{
 						{% else %}
 					 		<img src="{% static 'Scouting2017/Icons/fuel_yellow.png' %}" style="width:50px;"> </img>
 					 	{% endif %} {# {{ team.fuel_z }} #}
-					</td>
-					<td> <img src="{% static 'Scouting2017/Icons/rope_yellow.png' %}" style="height:50px;"> </img> </td>
+						{% if team.rope_z >= 0.675 %}
+							<img src="{% static 'Scouting2017/Icons/rope_green.png' %}" style="height:50px;"> </img>
+						{% elif team.rope_z <= -0.675 %}
+							<img src="{% static 'Scouting2017/Icons/rope_red.png' %}" style="height:50px;"> </img>
+						{% else %}		
+							<img src="{% static 'Scouting2017/Icons/rope_yellow.png' %}" style="height:50px;"> </img>
+						{% endif %}
+				    </td>
 					<td> <img src="{% static 'Scouting2017/Icons/star.png' %}" style="width:50px;"> </img> </td>
 					<td> {{ team.metrics.fuel_score_hi__avg }} </td>
 					<td> {{ team.metrics.fuel_score_low__avg }} </td>
 					<td> {{ team.metrics.gears_score__avg }} </td>
+					<td> {{ team.rope_pct}} %  </td>
 				
 				</tr>
 				{% endfor %}
