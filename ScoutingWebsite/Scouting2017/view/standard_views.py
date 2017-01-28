@@ -2,7 +2,7 @@ from BaseScouting.views.base_views import BaseHomepageView, BaseAllTeamsViews,\
     BaseAllMatchesView, BaseSingleTeamView
 from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments
 from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
-from django.db.models.aggregates import Avg
+from django.db.models.aggregates import Avg, Sum
 import math
 
 class HomepageView2017(BaseHomepageView):
@@ -61,8 +61,8 @@ def get_statistics(regional_code, teams_at_competition):
                                                     Avg('fuel_score_hi'),
                                                     Avg('fuel_score_hi_auto'),
                                                     Avg('fuel_score_low'),
-                                                    Avg('fuel_score_low_auto'))   
-    
+                                                    Avg('fuel_score_low_auto'))
+    num_srs = 0  
     gear_avg = competition_averages['gears_score__avg']
     fuel_avg = competition_averages['fuel_score_hi_auto__avg'] + (competition_averages['fuel_score_hi__avg'] / 3 ) + (competition_averages['fuel_score_low_auto__avg'] / 3) + (competition_averages['fuel_score_low__avg'] / 9)
     gear_v2 = 0
@@ -70,7 +70,7 @@ def get_statistics(regional_code, teams_at_competition):
     num_srs = 0 
 
     
-    for sr in competition_srs:
+    for sr in competition_srs: 
         sr_gear = sr.gears_score - gear_avg
         sr_fuel = ((sr.fuel_score_hi_auto)+(sr.fuel_score_hi / 3) + (sr.fuel_score_low_auto / 3) + (sr.fuel_score_low / 9)) - fuel_avg
         gear_v2 += sr_gear * sr_gear
@@ -85,10 +85,14 @@ def get_statistics(regional_code, teams_at_competition):
                                         Avg('fuel_score_hi'),
                                         Avg('fuel_score_hi_auto'),
                                         Avg('fuel_score_low'),
-                                        Avg('fuel_score_low_auto'))   
-           
+                                        Avg('fuel_score_low_auto'),
+                                        Sum('rope'))
+                                      
+        team_rope_avg = team_avgs['rope__sum'] / len(teams_srs) 
+        print team_rope_avg
         team.fuel_z = 'NA'
         team.gear_z = 'NA'
+        team.rope_z = 'NA'
         if len(teams_srs)!= 0:
             team.gear_z = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
             team.fuel_z = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev

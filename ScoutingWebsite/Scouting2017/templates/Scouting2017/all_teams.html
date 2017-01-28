@@ -25,7 +25,7 @@ td{
 	<div class="fluid_container">
 		<table border = "1">
 			<thead>
-				<th> Team # </th>
+				<th> Team # </th>x
 				<th> Gears </th>
 				<th> Fuel </th>
 				<th> Rope </th>
@@ -40,24 +40,24 @@ td{
 					<!-- 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282 -->
 					<td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
 					<td>
-						{% if team.gear_z >= 0.8416 %}
-						GREEN
-						{% elif team.gear_z <= -0.8416 %}
-						RED
+						{% if team.gear_z >= 0.675 %}
+							<img src="{% static 'Scouting2017/Icons/gear_green.png' %}" style="width:50px;"> </img>
+						{% elif team.gear_z <= -0.675 %}
+							<img src="{% static 'Scouting2017/Icons/gear_red.png' %}" style="width:50px;"> </img>
 						{% else %}
-						<img src="{% static 'Scouting2017/Icons/gear.png' %}" style="width:50px;"> </img>
-						{% endif %} {{ team.gear_z }}
+							<img src="{% static 'Scouting2017/Icons/gear_yellow.png' %}" style="width:50px;"> </img>
+						{% endif %} {# {{ team.gear_z }} #}
 					</td>
 					<td>
-						{% if team.fuel_z >= 0.8416 %} 
-						GREEN
-						{% elif team.fuel_z <= -0.8416 %}
-						RED
+						{% if team.fuel_z >= 0.675 %} 
+							<img src="{% static 'Scouting2017/Icons/fuel_green.png' %}" style="width:50px;"> </img>
+						{% elif team.fuel_z <= -0.675 %}
+							<img src="{% static 'Scouting2017/Icons/fuel_red.png' %}" style="width:50px;"> </img>
 						{% else %}
-					 	<img src="{% static 'Scouting2017/Icons/fuel.png' %}" style="width:50px;"> </img>
-					 	{% endif %} {{ team.fuel_z }}
+					 		<img src="{% static 'Scouting2017/Icons/fuel_yellow.png' %}" style="width:50px;"> </img>
+					 	{% endif %} {# {{ team.fuel_z }} #}
 					</td>
-					<td> <img src="{% static 'Scouting2017/Icons/rope.png' %}" style="width:50px;"> </img> </td>
+					<td> <img src="{% static 'Scouting2017/Icons/rope_yellow.png' %}" style="height:50px;"> </img> </td>
 					<td> <img src="{% static 'Scouting2017/Icons/star.png' %}" style="width:50px;"> </img> </td>
 					<td> {{ team.metrics.fuel_score_hi__avg }} </td>
 					<td> {{ team.metrics.fuel_score_low__avg }} </td>
