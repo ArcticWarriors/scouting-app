@@ -4,7 +4,9 @@
 {% include "BaseScouting/core_head.html" %}
 {% include "Scouting2017/standard_header.html" %}
 
-
+<style>
+tr:nth-child(even) {background-color: #f2f2f2}
+</style>
 
 <script type="text/javascript">
 	function addRow(){
@@ -37,7 +39,7 @@
 					<th>Low Fuel Score</th>
 					<th>Gear Score</th>
 					<th>Rope Climbed</th>
-				
+					<th>Delete</th>	
 				</tr>
 			</thead>
 			<tbody>
@@ -51,12 +53,12 @@
 					<td contenteditable="true"></td>
 					<td contenteditable="true"></td>
 					<td contenteditable="true"></td>
+					<td contendeditable="true"><button>&times;</button></td>
 				</tr>
 			</tbody>	
 		</table>
 	</div>
-	<button type="button" class="btn btn-default" onclick="addRow()">Add Row </button>
-	<button type="button" class="btn btn-default" onclick="deleteRow">Delete Row</button>	
+	<button type="button" class="btn btn-default" onclick="addRow()">Add Row </button>	
 	
 	
 </body>
