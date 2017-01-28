@@ -41,6 +41,8 @@
                 </colgroup>
                 <thead>
                     <tr>
+                        <th class="col-numeric"><a role="button" tabindex=0>Bookmarked</a></th>
+                        <th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
                         {% for key, field in metric_fields.items %}
                         <th class="col-numeric"><a role="button">{{ field.display_name }}</a></th>
                         {% endfor %}
@@ -49,8 +51,6 @@
                 <tbody>
                     {% for team in teams %}
                     <tr>
-                        <th class="col-numeric"><a role="button" tabindex=0>Bookmarked</a></th>
-                        <th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
                         <td style="{% if team.bookmark == 'yes' %}background-color:#ff5a14; color:white;{% endif %}">{{team.bookmark}}</td>
                         <td><a href="{% url 'Scouting2016:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a></td>
                         {% for key, metric in team.metrics.items %}
