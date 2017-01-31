@@ -92,7 +92,7 @@
     </table>
 {% endblock robot_satts %}
 
-
+{% block pit_robot_stats %}
     <div class="row">
         <div class="col-md-2"><b>Drive Exceptionally? </b></div>
         <div class="col-md-1">{{team.teampitscouting.drive}}</div>
@@ -135,4 +135,5 @@
         <div class="col-md-2"><b>Scale? </b></div>
         <div class="col-md-1">{{team.teampitscouting.scale}}</div>
     </div>
+{% endblok pit_robot_stats %}
     

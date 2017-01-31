@@ -2,17 +2,17 @@
 {% load saticfiles %}
 
 {% block head %}
-    <title>Team {{ team_number }} - Arctic Warriors Scouting</title>
+    <title>Team {{ team.team_number }} - Arctic Warriors Scouting</title>
     <style>
-	      table {
+	    table, th {
             text-align: center;
-	      }
+	    }
 	</style>
 {% endblock head %}
 
 {% block content %}
-    <h1>Team {{ team.teamNumber }}</h1>
-    <B> Team Website </B> <a href="{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
+    <h1>Team {{ team.team_number }}</h1>
+    Team Website: <a href="{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
 
     <h1>Matches Information:</h1>
 
@@ -20,23 +20,57 @@
         No matches scouted
     {% else %}
         <h2>Matches Scouted:</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Match#</th> 
+                    <th>Win?</th> 
+                    <th>Team Mates</th> 
+                    <th>Opponents</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sr in score_result_list %}
+                <tr>
+                    <td>#</td> 
+                    <td>Yes/No</td> 
+                    <td>
+                        <ul>
+                            <li>1234</li>
+                            <li>1234</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>345</li>
+                            <li>345</li>
+                            <li>345</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% comment %}
+        {# ORIGINAL CODE #}
         <ul>
             {% for sr in score_result_list %}
-            <li><a href="{% url 'Scouting2016:view_match' regional_code sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a>{%if sr.notes_text_area != "" %} - {{sr.notes_text_area}}{% endif %}</li>
+            <li><a href="{% url request.resolver_match.namespace|add:':view_match' regional_code sr.match.matchNumber %}">{{ sr.match.matchNumber }}</a>{%if sr.notes_text_area != "" %} - {{sr.notes_text_area}}{% endif %}</li>
             {% endfor %}
         </ul>
+        {% endcomment %}
     {% endif %}
      	
     <h2>Pictures</h2>
     
     {% if "auth.can_add_pictures" in perms %}
-        <form action="{% url 'Scouting2016:upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url request.resolver_match.namespace|add:':upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name='team_number' value={{team.teamNumber}}>
             <input type="file" name='image_name' accept="image/*">
             <input type="submit">
         </form>
     {% endif %}
+
     {% if pictures|length != 0 %}
         {% for picture in pictures %}
         <img src="{% static picture.path %}" width='500'>
@@ -58,7 +92,7 @@
 
 
     {% if "auth.can_add_pictures" in perms %}
-        <form action="{% url 'Scouting2016:add_team_comments' regional_code team.teamNumber %}" method="POST">
+        <form action="{% url 'request.resolver_match.namespace|add:':add_team_comments' regional_code team.teamNumber %}" method="POST">
         {% csrf_token %}
             <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
             <br><br>
@@ -70,8 +104,26 @@
     
     {% block robot_stats %}{% endblock robot_stats %}
     
-    <h2>Additional Info.</h2>
-    Tech fouls: {{metrics.score_tech_foul__sum}}
+    <h2>Fouls</h2>
+    <table class="table">
+        <tr>
+            <th scope="row">Foul</th>
+            <td>#</td>
+        </tr>
+        <tr>
+            <th scope="row">Tech Foul</th>
+            <td>#</td>
+        </tr>
+        <tr>
+            <th scope="row">Yellow Card</th>
+            <td>Yes/No?</td>
+        </tr>
+        <tr>
+            <th scope="row">Red Card</th>
+            <td>Yes/No?</td>
+        </tr>
+    </table>
+    {# ORIGINAL: Tech fouls: {{metrics.score_tech_foul__sum}} #}
     
     <h2>Pit Scouting</h2>
     {% if team.team_pit_couting == None %}

@@ -135,11 +135,10 @@ class TeamPitScouting(models.Model):
 
     bookmark = models.CharField(max_length=1000, default="no")
 
-    teamOrganized = models.CharField(max_length=1000)
-    teamLikeable = models.CharField(max_length=1000)
-    teamSwag = models.CharField(max_length=1000)
-    teamAwards = models.CharField(max_length=1000)
-    teamAlliances = models.CharField(max_length=1000, default="no")
+    team_organized = models.CharField(max_length=1000)
+    team_likeable = models.CharField(max_length=1000)
+    team_auto_abilities = models.CharField(max_length=1000)
+    team_alliances = models.CharField(max_length=1000, default="no")
 
     drive = models.CharField(max_length=1000, default="no")
     Auto = models.CharField(max_length=1000, default="no")
@@ -156,9 +155,9 @@ class TeamPitScouting(models.Model):
     lowBar = models.CharField(max_length=1000, default="no")
     scale = models.CharField(max_length=1000, default="no")
 
-    teamAlly174 = models.CharField(max_length=3)
-    teamOperational = models.CharField(max_length=3)
-    teamOperationProblems = models.CharField(max_length=1000)
+    ally_174 = models.CharField(max_length=3)
+    team_operational = models.CharField(max_length=3)
+    operation_problems = models.CharField(max_length=1000)
 
 #     audienceSelectionCategory = models.CharField(max_length=1, default='A')
 

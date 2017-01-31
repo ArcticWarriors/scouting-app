@@ -117,27 +117,6 @@ class BaseTeamListView(TemplateView):
         context['teams'] = teams_with_metrics
         context['metric_fields'] = self.score_result_model.get_fields()
         return context
-
-# TODO: Remove once Scouting2017 can be refactored
-class BaseAllTeamsViews(TemplateView):
-    def __init__(self, team_competesin_model, template_name):
-        self.team_competesin_model = team_competesin_model
-        self.template_name = template_name
-
-    def get_context_data(self, **kwargs):
-        competes_in_query = self.team_competesin_model.objects.filter(competition__code=kwargs["regional_code"])
-
-        teams_with_metrics = []
-
-        for competes_in in competes_in_query:
-            team = competes_in.team
-            team.metrics = self.get_metrics_for_team(team)
-            teams_with_metrics.append(team)
-
-        context = super(BaseAllTeamsViews, self).get_context_data(**kwargs)
-        context['teams'] = teams_with_metrics
-
-        return context
     
 class BaseSingleTeamView(TemplateView):
 
@@ -180,10 +159,6 @@ class BaseMatchListView(TemplateView):
         context['unscouted_matches'] = unscouted_matches
 
         return context
-
-# TODO: Remove once Scouting2017 can be refactored
-class BaseAllMatchesView(BaseMatchListView):
-    pass
 
 class BaseSingleMatchView(TemplateView):
     """
