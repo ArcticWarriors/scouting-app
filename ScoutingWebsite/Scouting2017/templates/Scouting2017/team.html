@@ -1,16 +1,19 @@
-<html>
-<head>
-{% load staticfiles %} 
-{% include "BaseScouting/base.html" %}
-<title> Team {{ team.teamNumber }} </title>
-</head>
-<style>
-table{
-margin:auto
-}
-</style>
+{% extend 'BaseScouting/base.html' %}
+{% load staticfiles %}
 
-<body>
+{% block head %}
+	<title>Team {{ team.teamNumber }} - Arctic Warriors Scouting</title>
+	
+	<style>
+	table{
+	margin:auto
+	}
+	</style>
+{% endblock head %}
+
+{% block content %}
+
+{% endblock content %}
 <h1 style="text-align: center;">Team {{ team.teamNumber }}</h1>
 
 <h2 style="text-align: center;">Match Information</h2>
