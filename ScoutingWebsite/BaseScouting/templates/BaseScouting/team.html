@@ -1,5 +1,5 @@
 {% extends 'BaseScouting/base.html' %}
-{% load saticfiles %}
+{% load staticfiles %}
 
 {% block head %}
     <title>Team {{ team.team_number }} - Arctic Warriors Scouting</title>
@@ -48,6 +48,7 @@
                         </ul>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
         {% comment %}
@@ -92,7 +93,7 @@
 
 
     {% if "auth.can_add_pictures" in perms %}
-        <form action="{% url 'request.resolver_match.namespace|add:':add_team_comments' regional_code team.teamNumber %}" method="POST">
+        <form action="{% url request.resolver_match.namespace|add:':add_team_comments' regional_code team.teamNumber %}" method="POST">
         {% csrf_token %}
             <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
             <br><br>
@@ -140,7 +141,7 @@
         
         <h4>What could the robot do?</h4>
         {# ------- Tagging system should be here, till then... -------- #}
-        {% block pit_robot_stats %}{% endblok pit_robot_stats %}
+        {% block pit_robot_stats %}{% endblock pit_robot_stats %}
         
         <h4>Who was considering forming an alliance with them?</h4>
         {{team.team_pit_scouting.team_alliances}}
