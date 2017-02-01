@@ -1,0 +1,63 @@
+{% extend 'BaseScouting/team.html' %}
+{% load staticfiles %}
+
+{% block robot_stats %}
+    <h2>Capabilities</h2>
+    <h3>Fuel</h3>
+    <h4>General Statistics</h4>
+
+    <ul class="list-group" style="text-align: center; width: 50%;margin-left: auto;margin-right: auto"> 
+         <li class="list-group-item"> <u>Overall Fuel Success Rate:</u> </li> 
+         <li class="list-group-item">High Success Rate:</li> 
+         <li class="list-group-item">Low Success Rate:</li> 
+         <li class="list-group-item">High Attempts:</li>
+         <li class="list-group-item">Low Attempts:</li> 
+    </ul>
+
+    <h4>Specifics Statistics</h4>
+    <table class="table">
+        <thead>
+            <th></th>
+            <th scope="col">High Success Rate</th>
+            <th scope="col">High Attempts</th>
+            <th scope="col">Low Success Rate</th>
+            <th scope="col">Low Attempts</th>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Auto</th>
+                <td>%</td>
+                <td>#</td>
+                <td>%</td>
+                <td>#</td>
+            </tr>
+            <tr>
+                <th scope="row">Teleop</th>
+                <td>%</td>
+                <td>#</td>
+                <td>%</td>
+                <td>#</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Gears</h3>
+
+    <table class="table">
+        <tr>
+            <th scope="row">Ground Acquire</th>
+            <td>Yes/No</td>
+        </tr>
+        <tr>
+            <th scope="row">Teleop Success</th>
+            <td>Percentage</td>
+        </tr>
+        <tr>
+            <th scope="row">Autonomous Success</th>
+            <td>Percentage</td>
+        </tr>
+    </table>
+{% endblock robot_stats %}
+
+
+

@@ -1,0 +1,21 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Login - Arctic Warriors Scouting</title>
+{% endblock head %}
+
+{% block content %}
+    {% if error_message != None %}
+    {{error_message}}
+    {% endif %}
+	
+	<form action="{% url request.resolver_match.namespace|add:':auth_login' regional_code %}" method="post">
+        {% csrf_token %}
+        {% if request.GET.next != None %} <input type="hidden" name="next" value="{{ request.GET.next }}" />{% endif %}
+      
+        Username: <input name="username"><br>
+        Password: <input name="password" type="password" ><br>
+        <input type="submit" value="Submit">
+	</form>
+{% endblock content %}

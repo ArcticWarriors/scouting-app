@@ -135,11 +135,10 @@ class TeamPitScouting(models.Model):
 
     bookmark = models.CharField(max_length=1000, default="no")
 
-    teamOrganized = models.CharField(max_length=1000)
-    teamLikeable = models.CharField(max_length=1000)
-    teamSwag = models.CharField(max_length=1000)
-    teamAwards = models.CharField(max_length=1000)
-    teamAlliances = models.CharField(max_length=1000, default="no")
+    team_organized = models.CharField(max_length=1000)
+    team_likeable = models.CharField(max_length=1000)
+    team_auto_abilities = models.CharField(max_length=1000)
+    team_alliances = models.CharField(max_length=1000, default="no")
 
     drive = models.CharField(max_length=1000, default="no")
     Auto = models.CharField(max_length=1000, default="no")
@@ -156,9 +155,9 @@ class TeamPitScouting(models.Model):
     lowBar = models.CharField(max_length=1000, default="no")
     scale = models.CharField(max_length=1000, default="no")
 
-    teamAlly174 = models.CharField(max_length=3)
-    teamOperational = models.CharField(max_length=3)
-    teamOperationProblems = models.CharField(max_length=1000)
+    ally_174 = models.CharField(max_length=3)
+    team_operational = models.CharField(max_length=3)
+    operation_problems = models.CharField(max_length=1000)
 
 #     audienceSelectionCategory = models.CharField(max_length=1, default='A')
 
@@ -357,8 +356,8 @@ class ScoreResult(models.Model):
         output = {}
 
         # Auto
-        output['auto_defense'] = ScoreResultMetric('auto_defense', 'Auto Defense', 'no_reach', 0)
-        output['auto_spy'] = ScoreResultMetric('auto_spy', 'no', 0)
+        output['auto_defense'] = ScoreResultMetric('auto_defense', 'Auto Defense', 'no_reach')
+        output['auto_spy'] = ScoreResultMetric('auto_spy', 'Spy Bot', 'no')
         output['auto_score_high'] = ScoreResultMetric('auto_score_high', 'Auto High Goals', 0, "Average")
         output['auto_score_low'] = ScoreResultMetric('auto_score_low', 'Auto Low Goals', 0, "Average")
 
@@ -373,7 +372,7 @@ class ScoreResult(models.Model):
         output['cheval_de_frise'] = ScoreResultMetric('cheval_de_frise', 'Cheval De Frise Crosses', 0, "Sum")
         output['moat'] = ScoreResultMetric('moat', 'Moat Crosses', 0, "Average")
         output['ramparts'] = ScoreResultMetric('ramparts', 'Ramparts Crosses', 0, "Sum")
-        output['draw_bridge'] = ScoreResultMetric('draw_bridge', 'Draw Bridge Crosses', 0, "Sum")
+        output['draw_bridge'] = ScoreResultMetric('draw_bridge', 'Drawbridge Crosses', 0, "Sum")
         output['sally_port'] = ScoreResultMetric('sally_port', 'Sally Port Crosses', 0, "Sum")
         output['rock_wall'] = ScoreResultMetric('rock_wall', 'Rock Wall Crosses', 0, "Sum")
         output['rough_terrain'] = ScoreResultMetric('rough_terrain', 'Rough Terrain Crosses', 0, "Sum")
@@ -381,17 +380,17 @@ class ScoreResult(models.Model):
 
         # Defense Speed
         output['slow_fast_portcullis'] = ScoreResultMetric('slow_fast_portcullis', 'Portcullis Speed', 'no_move')
-        output['slow_fast_cheval_de_frise'] = ScoreResultMetric('slow_fast_cheval_de_frise', 'Portcullis Speed', 'no_move')
-        output['slow_fast_moat'] = ScoreResultMetric('slow_fast_moat', 'Portcullis Speed', 'no_move')
-        output['slow_fast_ramparts'] = ScoreResultMetric('slow_fast_ramparts', 'Portcullis Speed', 'no_move')
-        output['slow_fast_draw_bridge'] = ScoreResultMetric('slow_fast_draw_bridge', 'Portcullis Speed', 'no_move')
-        output['slow_fast_sally_port'] = ScoreResultMetric('slow_fast_sally_port', 'Portcullis Speed', 'no_move')
-        output['slow_fast_rock_wall'] = ScoreResultMetric('slow_fast_rock_wall', 'Portcullis Speed', 'no_move')
-        output['slow_fast_rough_terrain'] = ScoreResultMetric('slow_fast_rough_terrain', 'Portcullis Speed', 'no_move')
-        output['slow_fast_low_bar'] = ScoreResultMetric('slow_fast_low_bar', 'Portcullis Speed', 'no_move')
+        output['slow_fast_cheval_de_frise'] = ScoreResultMetric('slow_fast_cheval_de_frise', 'Cheval de Frise Speed', 'no_move')
+        output['slow_fast_moat'] = ScoreResultMetric('slow_fast_moat', 'Moat Speed', 'no_move')
+        output['slow_fast_ramparts'] = ScoreResultMetric('slow_fast_ramparts', 'Ramparts Speed', 'no_move')
+        output['slow_fast_draw_bridge'] = ScoreResultMetric('slow_fast_draw_bridge', 'Drawbridge Speed', 'no_move')
+        output['slow_fast_sally_port'] = ScoreResultMetric('slow_fast_sally_port', 'Sally Port Speed', 'no_move')
+        output['slow_fast_rock_wall'] = ScoreResultMetric('slow_fast_rock_wall', 'Rock Wall Speed', 'no_move')
+        output['slow_fast_rough_terrain'] = ScoreResultMetric('slow_fast_rough_terrain', 'Rough Terrain Speed', 'no_move')
+        output['slow_fast_low_bar'] = ScoreResultMetric('slow_fast_low_bar', 'Low Bar Speed', 'no_move')
 
         # General
-        output['scale_challenge'] = ScoreResultMetric('scale_challenge', 'Portcullis Speed', 'no')
+        output['scale_challenge'] = ScoreResultMetric('scale_challenge', 'Scale Channenge', 'no')
         output['score_tech_foul'] = ScoreResultMetric('score_tech_foul', 'Tech Fouls', 0, "Sum")
 
         # Comments

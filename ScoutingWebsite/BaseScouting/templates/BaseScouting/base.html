@@ -1,14 +1,57 @@
 {% load staticfiles %} 
+<!DOCTYPE html>
 <html>
 <head>
-    {% include "BaseScouting/core_head.html" %}
-    {% block head %}{% endblock %}
+    <meta charset="UTF-8">
+    <!-- Responsive on mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- jQuery -->
+    <script src="{% static 'BaseScouting/lib/jquery/jquery-2.2.1.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'BaseScouting/lib/bootstrap/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'BaseScouting/lib/bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'BaseScouting/css/style.css' %}" />
+    {% block head %}{% endblock head %}
 </head>
 <body>
-    {% include "BaseScouting/banner.html" %}
     <div class="container-fluid">
-        {% block content %}{% endblock %}
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+		      data-target="#navbar" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <img class="navbar-brand" src="{% static 'BaseScouting/img/174_Favicon.jpg' %}" style="width:50px; padding:0px; margin-right:5px" />
+		    </div>
+		    <div class="collapse navbar-collapse" id="navbar">
+		      <ul class="nav navbar-nav">
+		        <li> <a href="{% url request.resolver_match.namespace|add:':index' regional_code %}">Home</a> </li>
+		        <li> <a href="{% url request.resolver_match.namespace|add:':teams' regional_code %}">Team List</a></li>
+		        <li> <a href="{% url request.resolver_match.namespace|add:':matches' regional_code %}">Matches</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		      {% comment %}
+		        {% if 'auth.can_modify_model' in perms %}
+		        <li> <a href="{% url request.resolver_match.namespace|add:':showForm' regional_code %}">Add Match</a> </li>
+		        <li> <a href="{% url request.resolver_match.namespace|add:':info_for_form_edit' regional_code %}">Edit Match</a> </li>
+		        <li> <a href="{% url request.resolver_match.namespace|add:':info_for_pit_edit' regional_code %}">Edit Pit</a> </li>
+		        <li> <a href="{% url request.resolver_match.namespace|add:':log_user_out' regional_code %}">Logout</a> </li>
+		        {% elif user.is_authenticated %}
+		        <li> <a href="{% url request.resolver_match.namespace|add:':log_user_out' regional_code %}">Logout</a> </li>
+		        {% else %}
+		        <li> <a href="{% url request.resolver_match.namespace|add:':showLogin' regional_code %}">Log In</a> </li>
+		        {% endif %}
+		      {% endcomment %}  
+		        </ul>
+		    </div>
+		  </div>
+		</nav>
+		<br>
+        {% block content %}{% endblock content %}
     </div>
 </body>
 </html>
-

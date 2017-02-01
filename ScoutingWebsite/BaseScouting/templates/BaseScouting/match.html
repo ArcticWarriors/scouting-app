@@ -1,0 +1,45 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Match {{ match_display }} - Arctic Warriors Scouting</title>
+    <style>
+        h2, table {
+            text-align: center;
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    {% if official_mismatch != None and has_official_data %}
+        <center>
+        <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
+        <table border=1>
+            <thead>
+                <tr>
+                    <th> Field </th>
+                    <th> Expected </th>
+                    <th> Actual </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for field, results in official_mismatch.items %}
+                <tr>
+                    <td> {{ field }} </td>
+                    <td> {{ results.0 }} </td>
+                    <td> {{ results.1 }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </center>
+        {% elif not has_official_data %}
+        <center>
+            <h1> Warning: No official results available. Data from this match cannot be verified. </h1>
+        </center>
+    {% endif %}
+
+    <h1>Match {{ match.matchNumber }}</h1>
+    {% block stats %}{% endblock stats %}
+
+{% endblock content %}

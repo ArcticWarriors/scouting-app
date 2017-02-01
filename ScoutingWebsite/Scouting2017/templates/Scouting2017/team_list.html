@@ -1,0 +1,75 @@
+<html>
+<style>
+table{ 
+
+}
+th{
+	text-align: center;
+	width: 75px;
+	height: 45px;
+	vertical-align: middle;
+}
+td{
+	text-align: center;
+	height: 30px;
+	vertical-align: middle;
+}
+</style>
+<head>
+{% load staticfiles %} 
+{% include "BaseScouting/base.html" %}
+<title>Teams - Arctic Warriors Scouting</title>
+</head>
+<body>
+	<div class="fluid_container">
+		<table border = "1" class="table">
+			<thead>
+				<th> Team # </th>
+				<th> Skills </th>
+				<th> Bookmarked? </th>
+				<th> High Fuel </th>
+				<th> Low Fuel </th>
+				<th> Gear Score </th>
+				<th> Rope Percentage </th>
+			</thead>
+			<tbody>
+				{% for team in teams %}
+				<tr>
+					<!-- 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282 -->
+					<td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
+					<td>
+						{% if team.gear_z >= 0.675 %}
+							<img src="{% static 'Scouting2017/Icons/gear_green.png' %}" style="width:50px;"> </img>
+						{% elif team.gear_z <= -0.675 %}
+							<img src="{% static 'Scouting2017/Icons/gear_red.png' %}" style="width:50px;"> </img>
+						{% else %}
+							<img src="{% static 'Scouting2017/Icons/gear_yellow.png' %}" style="width:50px;"> </img>
+						{% endif %} {# {{ team.gear_z }} #}
+						{% if team.fuel_z >= 0.675 %} 
+							<img src="{% static 'Scouting2017/Icons/fuel_green.png' %}" style="width:50px;"> </img>
+						{% elif team.fuel_z <= -0.675 %}
+							<img src="{% static 'Scouting2017/Icons/fuel_red.png' %}" style="width:50px;"> </img>
+						{% else %}
+					 		<img src="{% static 'Scouting2017/Icons/fuel_yellow.png' %}" style="width:50px;"> </img>
+					 	{% endif %} {# {{ team.fuel_z }} #}
+						{% if team.rope_z >= 0.675 %}
+							<img src="{% static 'Scouting2017/Icons/rope_green.png' %}" style="height:50px;"> </img>
+						{% elif team.rope_z <= -0.675 %}
+							<img src="{% static 'Scouting2017/Icons/rope_red.png' %}" style="height:50px;"> </img>
+						{% else %}		
+							<img src="{% static 'Scouting2017/Icons/rope_yellow.png' %}" style="height:50px;"> </img>
+						{% endif %}
+				    </td>
+					<td> <img src="{% static 'Scouting2017/Icons/star.png' %}" style="width:50px;"> </img> </td>
+					<td> {{ team.metrics.fuel_score_hi__avg }} </td>
+					<td> {{ team.metrics.fuel_score_low__avg }} </td>
+					<td> {{ team.metrics.gears_score__avg }} </td>
+					<td> {{ team.rope_pct}} %  </td>
+				
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

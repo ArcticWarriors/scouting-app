@@ -1,0 +1,79 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Teams - Arctic Warriors Scouting</title>
+    <!--script src="{% static 'BaseScouting/js/sorttable.js' %}"></script-->
+    <style>
+        h2 {
+            display: inline;
+        }
+        table, th {
+            text-align: center;
+            overflow-y: auto;
+        }
+        th > a, th > a:focus, th > a:active, th > a:visited, th > a:hover {
+            text-decoration: none;
+            color:black;
+            outline: none;
+            vertical-align: middle;
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading" style="overflow:auto;">
+            <h2>List of All Teams</h2>
+            <div class="btn-group pull-right">
+                <button type="button" id="col-select" class="btn btn-default">Select Columns</a>
+                <button type="button" id="graph-data" class="btn btn-default">Graph Data</a>
+            </div>
+        </div>    
+        <div style="overflow-x: auto">
+            <table class="sortable sortable sortable-filterable no-manual-sort table table-hover">
+                <colgroup>
+                    <col id="bookmark" data-graphable=false>
+                    <col id="teamnum" data-graphable=false>
+                    {% for key, field in metric_fields.items %}
+                    <col id="{{ field.field_name }}" data-graphable=true>
+                    {% endfor %}
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="col-numeric"><a role="button" tabindex=0>Bookmarked</a></th>
+                        <th class="col-numeric"><a role="button" tabindex=0>Team Number</a></th>
+                        {% for key, field in metric_fields.items %}
+                        <th class="col-numeric"><a role="button">{{ field.display_name }}</a></th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in teams %}
+                    <tr>
+                        <td style="{% if team.bookmark == 'yes' %}background-color:#ff5a14; color:white;{% endif %}">{{team.bookmark}}</td>
+                        <td><a href="{% url 'Scouting2016:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a></td>
+                        {% for key, metric in team.metrics.items %}
+                        <td>{{ metric }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+	<!-- Modal for graph, shown through sorttable.js -->
+    <div class="modal fade" id="team-data-graph" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Team Data Graph</h4>
+                </div>
+                <div class="modal-body">
+                    <img id ="tdgimg" src="">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

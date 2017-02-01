@@ -11,7 +11,6 @@ from Scouting2017.model.reusable_models import Team, \
 
 
 def get_team_metrics(team):
-    
     metrics = team.scoreresult_set.aggregate(Avg("fuel_score_hi"),
                                              Avg("fuel_score_low"),
                                              Avg("gears_score"),
@@ -87,6 +86,7 @@ class ScoreResult(models.Model):
     #collecting
     ground_fuel = models.BooleanField(default=False)
     ground_gear = models.BooleanField(default=False)
+    #stats
     
 
     @staticmethod

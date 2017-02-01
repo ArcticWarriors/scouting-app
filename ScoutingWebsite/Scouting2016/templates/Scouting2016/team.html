@@ -1,0 +1,139 @@
+{% extends 'BaseScouting/team.html' %}
+{% load staticfiles %}
+
+{% block robot_stats %}
+    <h2>Defenses Crossed:</h2>
+    
+    <h3>Manipulative Defenses</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Defene</th>
+                <th>Total Times Crossed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cheval de Frise</td>
+                <td>{{metrics.cheval_de_frise__sum}}
+            </tr>
+            <tr>
+                <td>Portcullis</td>
+                <td>{{metrics.portcullis__sum}}
+            </tr>
+            <tr>
+                <td>Sally Port</td>
+                <td>{{metrics.sally_port__sum}}</td>
+            </tr>
+            <tr>
+                <td>Draw Bridge</td>
+                <td>{{metrics.draw_bridge__sum}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h3>Driving Defenses</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Defense</th>
+                <th>Total Times Crossed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ramparts</td>
+                <td>{{metrics.ramparts__sum}}
+            </tr>
+            <tr>
+                <td>Moat</td>
+                <td>{{metrics.moat__sum}}</td>
+            </tr>
+            <tr>
+                <td>Rock Wall</td>
+                <td>{{metrics.rock_wall__sum}}
+            </tr>
+            <tr>
+                <td>Rough Terrain</td>
+                <td>{{metris.rough_terrain__um}}
+            </tr>
+            <tr>
+                <td>Low Bar</td>
+                <td>{{metrics.low_bar__sum}}
+            <tr>
+        </tbody>
+    </table>
+
+    <h2>Goals Scored</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th scope="col">Average Scored</th>
+                <th scope="col">Average Missed</th>
+                <t scope="col"h>Autonomous</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Low Goal</td>
+                <td>{{metrics.low_score_successful__avg}}</td>
+                <td>{{metrics.low_score_fail__avg}}</td>
+                <td>{{metrics.auto_score_low__avg}}</td>
+            </tr>
+            <tr>
+                <th scope="row">High Goal</th>
+                <td>{{metrics.high_score_successful__avg}}</td>
+                <td>{{metrics.high_score_fail__avg}}</td>
+                <td>{{metrics.auto_score_high__avg}}</td>
+             </tr>
+        </tbody>
+    </table>
+{% endblock robot_satts %}
+
+{% block pit_robot_stats %}
+    <div class="row">
+        <div class="col-md-2"><b>Drive Exceptionally? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.drive}}</div>
+        <div class="col-md-2"><b>Have Autonomous? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.Auto}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"><b>Score High? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.ScoreHigh}}</div>
+        <div class="col-md-2"><b>Score Low? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.ScoreLow}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"><b>Cross Portcullis? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.portcullis}}</div>
+        <div class="col-md-2"><b>Cross CDF? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.cheval}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"><b>Cross Moat? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.moat}}</div>
+        <div class="col-md-2"><b>Cross Ramparts? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.ramparts}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"><b>Cross Sally Port? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.sally}}</div>
+        <div class="col-md-2"><b>Cross Draw Bridge? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.drawbridge}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"><b>Cross Rock Wall? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.rockwall}}</div>
+        <div class="col-md-2"><b>Cross Rough Terrain? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.rough}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"><b>Cross Low Bar? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.lowBar}}</div>
+        <div class="col-md-2"><b>Scale? </b></div>
+        <div class="col-md-1">{{team.teampitscouting.scale}}</div>
+    </div>
+{% endblok pit_robot_stats %}
+    
