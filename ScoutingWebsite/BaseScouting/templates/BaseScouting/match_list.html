@@ -64,7 +64,7 @@
                 <tbody>
                     {% for match in unscouted_matches %}
                         <tr>
-                            <td> <a href="{% url request.resolver_match.namespace|add:':match_prediction' regional_code match.matchNumber %}">{{ match.matchNumber }} </a></td>
+                            {# <td> <a href="{% url request.resolver_match.namespace|add:':match_prediction' regional_code match.matchNumber %}">{{ match.matchNumber }} </a></td> #}
                             {# TODO: Team Numbers/Links #}
                         </tr>
                     {% endfor %}

@@ -1,5 +1,5 @@
-from BaseScouting.views.base_views import BaseHomepageView, BaseTeamListViews,\
-    BaseMatcheListView, BaseSingleTeamView, BaseMatchEntryView
+from BaseScouting.views.base_views import BaseHomepageView, BaseTeamListView,\
+    BaseSingleMatchView, BaseMatchListView, BaseSingleTeamView, BaseMatchEntryView
 from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments
 from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
 from django.db.models.aggregates import Avg, Sum
@@ -21,15 +21,15 @@ class HomepageView2017(BaseHomepageView):
  
         return output
 
-class TeamListViews2017(BaseTeamListViews):
+class TeamListView2017(BaseTeamListView):
     def __init__(self):
-        BaseTeamListViews.__init__(self, TeamCompetesIn, ScoreResult, 'Scouting2017/team_list.html')
+        BaseTeamListView.__init__(self, TeamCompetesIn, ScoreResult, 'Scouting2017/team_list.html')
 
     def get_metrics_for_team(self, team):
         return get_team_metrics(team)
     
     def get_context_data(self, **kwargs):
-        context = BaseTeamListViews.get_context_data(self, **kwargs)
+        context = BaseTeamListView.get_context_data(self, **kwargs)
         reg_code = kwargs['regional_code']
         
 #         teams_at_competition = TeamCompetesIn.objects.filter(competition__code=reg_code)
@@ -37,10 +37,17 @@ class TeamListViews2017(BaseTeamListViews):
         get_statistics(reg_code, context['teams']) 
         return context
         
+class SingleMatchView2017(BaseSingleMatchView):
 
-class AllMatchesViews2017(BaseMatchListView):
     def __init__(self):
-        BaseAllMatchesView.__init__(self, Match, OfficialMatch)
+        BaseSingleMatchView.__init__(self, Match, 'Scouting2017/match.html')
+
+    def get_metrics(self, score_result):
+        return []
+
+class MatchListView2017(BaseMatchListView):
+    def __init__(self):
+        BaseMatchListView.__init__(self, Match, OfficialMatch)
         
     def get_metrics_for_match(self,match):
         pass
