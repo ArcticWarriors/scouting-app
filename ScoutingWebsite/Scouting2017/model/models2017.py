@@ -51,6 +51,7 @@ class OfficialMatchScoreResult(models.Model):
     
     fuel_high = models.IntegerField(default=0)
     fuel_low = models.IntegerField(default=0)
+    gears = models.IntegerField(default=0)
     takeoffs = models.IntegerField(default=0)
     fouls  = models.IntegerField(default=0)
     techFouls = models.IntegerField(default=0)

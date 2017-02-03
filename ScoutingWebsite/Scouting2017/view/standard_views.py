@@ -48,9 +48,6 @@ class SingleMatchView2017(BaseSingleMatchView):
 class MatchListView2017(BaseMatchListView):
     def __init__(self):
         BaseMatchListView.__init__(self, Match, OfficialMatch)
-        
-    def get_metrics_for_match(self,match):
-        pass
 
 class SingleTeamView2017(BaseSingleTeamView):
 
