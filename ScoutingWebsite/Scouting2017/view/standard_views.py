@@ -64,6 +64,7 @@ class MatchEntryView2017(BaseMatchEntryView):
     def __init__(self):
         BaseMatchEntryView.__init__(self, 'Scouting2017/match_entry.html')
 
+    
 '''
 When get_statistics() function is called, it grabs live data from all the teams and all their score results.
 It then will use that data to determine a mean and standard deviation for bots' gears,fuel,and rope capabilities.
