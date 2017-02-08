@@ -13,9 +13,9 @@ from BaseScouting.load_django import load_django
 from BaseScouting.api_scraper_FIRST.ApiDownloader import ApiDownloader
 from Scouting2017.api_scraper_FIRST.PopulateResultsFromApi2017 import PopulateRegionalresults2017
 
-download_season_info = False
-download_results = False
-populate_results = True
+download_season_info = True
+download_results = True
+populate_results = False
 
 year = 2017
 json_root = os.path.abspath("../../Scouting{0}/api_scraper_FIRST/api_scraping_results".format(year)) + "/"
