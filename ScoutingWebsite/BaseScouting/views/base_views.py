@@ -276,3 +276,6 @@ class BaseMatchEntryView(TemplateView):
         
         return context
 
+class BaseFormView(TemplateView):
+    pass
+    
