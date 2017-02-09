@@ -34,7 +34,7 @@
                     <tr>
                         <td> <a href="{% url request.resolver_match.namespace|add:':view_match' regional_code match.matchNumber %}">{{match.matchNumber}}</a></td>
                         <td class="{% if match.validity == 'Yes' %}match-valid{% elif match.validity == 'No' %}match-invalid{% endif %}">{{match.validity}}</td>
-                        <td>[Winner]</td>
+                        <td>[Winner]</td> <!-- This is literally just a td that says "winner" with nothing else in it -->
                         {% comment %}
                         {# BROKEN! This doesn't correlate the teams to the appropriate alliance #}
                         {% for sr in match.scoreresult_set.all %}

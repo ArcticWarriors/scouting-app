@@ -13,9 +13,9 @@ from BaseScouting.load_django import load_django
 from BaseScouting.api_scraper_FIRST.ApiDownloader import ApiDownloader
 from Scouting2017.api_scraper_FIRST.PopulateResultsFromApi2017 import PopulateRegionalresults2017
 
-download_season_info = True
-download_results = True
-populate_results = False
+download_season_info = False
+download_results = False
+populate_results = True
 
 year = 2017
 json_root = os.path.abspath("../../Scouting{0}/api_scraper_FIRST/api_scraping_results".format(year)) + "/"
@@ -35,7 +35,8 @@ for pair in json_struct:
     code = pair[0]
     week = pair[1]
 
-    events_to_do.append((code, week))
+    if code == "NYRO":
+        events_to_do.append((code, week))
 
 if populate_results:
     load_django()
@@ -55,6 +56,6 @@ for event_pair in events_to_do:
         print event_path
 
         populater = PopulateRegionalresults2017()
-        populater.update_team_info(code, event_path)
-        populater.update_schedule(code, event_path)
+#         populater.update_team_info(code, event_path)
+#         populater.update_schedule(code, event_path)
         populater.update_matchresults(code, event_path)

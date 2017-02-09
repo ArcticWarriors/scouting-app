@@ -1,9 +1,14 @@
 {
     "MatchScores": [
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -31,10 +36,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 80.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 95.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -62,16 +98,55 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 115.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 150, 
+                    "teleopPoints": 190.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 265.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "1"
+=======
+            "matchNumber": "1"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -99,10 +174,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -130,16 +236,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 115.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "2"
+=======
+            "matchNumber": "2"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -167,10 +312,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 130.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 145.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -198,16 +374,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 280.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "3"
+=======
+            "matchNumber": "3"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -235,10 +450,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 8.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 170.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 83.0, 
+                    "teleopFuelPoints": 18.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 108.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 191.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -266,16 +512,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 150, 
+                    "teleopPoints": 230.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 245.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "4"
+=======
+            "matchNumber": "4"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -303,10 +588,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 2.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 22.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 77.0, 
+                    "teleopFuelPoints": 2.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 142.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 219.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -334,16 +650,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 9.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 216.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 84.0, 
+                    "teleopFuelPoints": 24.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 114.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 198.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "5"
+=======
+            "matchNumber": "5"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -371,10 +726,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 8.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 124.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 83.0, 
+                    "teleopFuelPoints": 13.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 153.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 236.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -402,16 +788,55 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 110.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 180.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 195.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "6"
+=======
+            "matchNumber": "6"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -439,10 +864,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -468,18 +924,55 @@
                     "teleopRotorPoints": 0, 
                     "teleopTakeoffPoints": 100, 
                     "teleopPoints": 100.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "None", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 70.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+>>>>>>> refs/heads/pjmessedup
                     "foulPoints": 0, 
                     "totalPoints": 110.0, 
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "7"
+=======
+            "matchNumber": "7"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -507,10 +1000,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 160.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 1, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 0, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 120, 
+                    "autoPoints": 135.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 0, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 100.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 235.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -538,16 +1062,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 1, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 0, 
+                    "rotor3Engaged": 1, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 120, 
+                    "autoPoints": 135.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 175.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "8"
+=======
+            "matchNumber": "8"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -575,10 +1138,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -606,16 +1200,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 2, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 70.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 10, 
+                    "totalPoints": 110.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "9"
+=======
+            "matchNumber": "9"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -643,10 +1276,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 110.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -674,16 +1338,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 70.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 210.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "10"
+=======
+            "matchNumber": "10"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -711,10 +1414,41 @@
                     "teleopPoints": 0.0, 
                     "foulPoints": 0, 
                     "totalPoints": 60.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "None", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 1.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 4.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 71.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 111.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -742,16 +1476,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 9.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 142.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 84.0, 
+                    "teleopFuelPoints": 15.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 105.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 189.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "11"
+=======
+            "matchNumber": "11"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -779,10 +1552,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -810,16 +1614,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 115.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "12"
+=======
+            "matchNumber": "12"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -847,10 +1690,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 80.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 95.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -878,16 +1752,55 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 125.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 8.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 170.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 83.0, 
+                    "teleopFuelPoints": 18.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 158.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 241.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "13"
+=======
+            "matchNumber": "13"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -915,10 +1828,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 9.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 216.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 24.0, 
+                    "teleopFuelPoints": 24.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 204.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 228.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -946,16 +1890,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "14"
+=======
+            "matchNumber": "14"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -983,10 +1966,41 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 60.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1014,16 +2028,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 150, 
+                    "teleopPoints": 190.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 265.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "15"
+=======
+            "matchNumber": "15"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1051,10 +2104,41 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 55.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 10.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 80.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 90.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -1082,16 +2166,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "16"
+=======
+            "matchNumber": "16"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1119,10 +2242,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 8.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 170.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 83.0, 
+                    "teleopFuelPoints": 18.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 158.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 241.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -1150,16 +2304,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 175.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 7.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 120.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 1, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 82.0, 
+                    "teleopFuelPoints": 13.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 143.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 225.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "17"
+=======
+            "matchNumber": "17"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1187,10 +2380,41 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 120.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 2.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 22.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 77.0, 
+                    "teleopFuelPoints": 2.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 142.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 219.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1218,16 +2442,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 115.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "18"
+=======
+            "matchNumber": "18"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -1255,10 +2518,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 225.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 1, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 0, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 120, 
+                    "autoPoints": 130.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 0, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 0.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 130.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -1286,16 +2580,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 175.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "None", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 70.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 160.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "19"
+=======
+            "matchNumber": "19"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1323,10 +2656,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 225.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 1, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 25, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1354,16 +2718,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "20"
+=======
+            "matchNumber": "20"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1391,10 +2794,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 275.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 1.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 4.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 16.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 180.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 196.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -1422,16 +2856,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 115.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "21"
+=======
+            "matchNumber": "21"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1459,10 +2932,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 1, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 120, 
+                    "teleopTakeoffPoints": 150, 
+                    "teleopPoints": 270.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 285.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -1488,18 +2992,55 @@
                     "teleopRotorPoints": 0, 
                     "teleopTakeoffPoints": 100, 
                     "teleopPoints": 100.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+>>>>>>> refs/heads/pjmessedup
                     "foulPoints": 0, 
                     "totalPoints": 115.0, 
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "22"
+=======
+            "matchNumber": "22"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1527,10 +3068,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1558,16 +3130,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 130.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 145.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "23"
+=======
+            "matchNumber": "23"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1595,10 +3206,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 130.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 145.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1626,16 +3268,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "24"
+=======
+            "matchNumber": "24"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -1663,10 +3344,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 275.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 1.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 4.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 76.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 166.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -1695,15 +3407,55 @@
                     "foulPoints": 0, 
                     "totalPoints": 55.0, 
                     "kPaRankingPointAchieved": false, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 16.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 336.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 91.0, 
+                    "teleopFuelPoints": 37.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 177.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 268.0, 
+                    "kPaRankingPointAchieved": true, 
+>>>>>>> refs/heads/pjmessedup
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "25"
+=======
+            "matchNumber": "25"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -1731,10 +3483,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 285.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -1762,16 +3545,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 225.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 130.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 145.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "26"
+=======
+            "matchNumber": "26"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -1799,10 +3621,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 160.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 8.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 170.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 78.0, 
+                    "teleopFuelPoints": 18.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 158.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 236.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -1830,16 +3683,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 100.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "27"
+=======
+            "matchNumber": "27"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -1867,10 +3759,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 115.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1898,16 +3821,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "28"
+=======
+            "matchNumber": "28"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -1935,10 +3897,41 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 120.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 115.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -1966,16 +3959,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 110.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "None", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 70.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 160.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "29"
+=======
+            "matchNumber": "29"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -2003,10 +4035,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 175.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 2.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 22.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 77.0, 
+                    "teleopFuelPoints": 2.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 142.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 219.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -2032,18 +4095,55 @@
                     "teleopRotorPoints": 0, 
                     "teleopTakeoffPoints": 100, 
                     "teleopPoints": 100.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+>>>>>>> refs/heads/pjmessedup
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "30"
+=======
+            "matchNumber": "30"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -2071,10 +4171,41 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 125.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 150, 
+                    "teleopPoints": 190.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 265.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -2102,16 +4233,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 140.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 215.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "31"
+=======
+            "matchNumber": "31"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -2139,10 +4309,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "None", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 9.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 216.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 79.0, 
+                    "teleopFuelPoints": 24.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 164.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 243.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -2170,16 +4371,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 105.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 1, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 80.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 155.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "32"
+=======
+            "matchNumber": "32"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -2238,16 +4478,87 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 235.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 1, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 0, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 120, 
+                    "autoPoints": 135.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 0, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 0.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 135.0, 
+                    "kPaRankingPointAchieved": false, 
+                    "rotorRankingPointAchieved": false
+                }, 
+                {
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "33"
+=======
+            "matchNumber": "33"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -2275,10 +4586,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 180.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 195.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -2306,16 +4648,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 220.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 8.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 170.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 23.0, 
+                    "teleopFuelPoints": 18.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 148.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 171.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "34"
+=======
+            "matchNumber": "34"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -2343,10 +4724,41 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 225.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "None", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 2.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 1, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 22.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 0, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 120, 
+                    "autoPoints": 132.0, 
+                    "teleopFuelPoints": 2.0, 
+                    "teleopRotorPoints": 0, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 102.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 234.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -2374,16 +4786,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 215.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 130.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 145.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "35"
+=======
+            "matchNumber": "35"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -2411,10 +4862,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 110.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 165.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "None", 
@@ -2442,16 +4924,55 @@
                     "teleopPoints": 150.0, 
                     "foulPoints": 0, 
                     "totalPoints": 210.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "None", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 1, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 1, 
+                    "foulCount": 0, 
+                    "techFoulCount": 1, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 70.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 180.0, 
+                    "foulPoints": 25, 
+                    "totalPoints": 250.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "36"
+=======
+            "matchNumber": "36"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -2479,10 +5000,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 1, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 0, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 120, 
+                    "autoPoints": 130.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 0, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 50.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 180.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -2510,16 +5062,55 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "None", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 10.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 180.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 190.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "37"
+=======
+            "matchNumber": "37"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -2547,10 +5138,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 165.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 1.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 4.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 71.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 161.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "None", 
                     "robot2Auto": "None", 
                     "robot3Auto": "Mobility", 
@@ -2578,16 +5200,55 @@
                     "teleopPoints": 50.0, 
                     "foulPoints": 0, 
                     "totalPoints": 115.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 0, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 1, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 1, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 0, 
+                    "autoPoints": 15.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 80, 
+                    "teleopTakeoffPoints": 100, 
+                    "teleopPoints": 180.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 195.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "38"
+=======
+            "matchNumber": "38"
+>>>>>>> refs/heads/pjmessedup
         }, 
         {
+<<<<<<< HEAD
             "match_level": "Qualification", 
+=======
+            "matchLevel": "Qualification", 
+>>>>>>> refs/heads/pjmessedup
             "Alliances": [
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "Mobility", 
@@ -2615,10 +5276,41 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 175.0, 
+=======
+                    "alliance": "Red", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "None", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 1, 
+                    "touchpadFar": 0, 
+                    "foulCount": 1, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 10, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 70.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 50, 
+                    "teleopPoints": 90.0, 
+                    "foulPoints": 5, 
+                    "totalPoints": 160.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }, 
                 {
+<<<<<<< HEAD
                     "robot1Auto": "Mobility", 
                     "robot2Auto": "Mobility", 
                     "robot3Auto": "None", 
@@ -2646,11 +5338,45 @@
                     "teleopPoints": 100.0, 
                     "foulPoints": 0, 
                     "totalPoints": 170.0, 
+=======
+                    "alliance": "Blue", 
+                    "robot1Auto": "Mobility", 
+                    "robot2Auto": "Mobility", 
+                    "robot3Auto": "Mobility", 
+                    "autoFuelLow": 0.0, 
+                    "autoFuelHigh": 0.0, 
+                    "rotor1Auto": 1, 
+                    "rotor2Auto": 0, 
+                    "teleopFuelLow": 0.0, 
+                    "teleopFuelHigh": 0.0, 
+                    "rotor1Engaged": 0, 
+                    "rotor2Engaged": 1, 
+                    "rotor3Engaged": 0, 
+                    "rotor4Engaged": 0, 
+                    "touchpadNear": 0, 
+                    "touchpadMiddle": 0, 
+                    "touchpadFar": 0, 
+                    "foulCount": 0, 
+                    "techFoulCount": 0, 
+                    "autoMobilityPoints": 15, 
+                    "autoRotorPoints": 60, 
+                    "autoPoints": 75.0, 
+                    "teleopFuelPoints": 0.0, 
+                    "teleopRotorPoints": 40, 
+                    "teleopTakeoffPoints": 0, 
+                    "teleopPoints": 40.0, 
+                    "foulPoints": 0, 
+                    "totalPoints": 115.0, 
+>>>>>>> refs/heads/pjmessedup
                     "kPaRankingPointAchieved": false, 
                     "rotorRankingPointAchieved": false
                 }
             ], 
+<<<<<<< HEAD
             "match_number": "39"
+=======
+            "matchNumber": "39"
+>>>>>>> refs/heads/pjmessedup
         }
     ]
 }
