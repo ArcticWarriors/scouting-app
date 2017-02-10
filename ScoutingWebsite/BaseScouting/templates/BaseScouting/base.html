@@ -31,6 +31,7 @@
 		      <ul class="nav navbar-nav">
 		        <li> <a href="{% url request.resolver_match.namespace|add:':index' regional_code %}">Home</a> </li>
 		        <li> <a href="{% url request.resolver_match.namespace|add:':teams' regional_code %}">Team List</a></li>
+		        <li> <a href="{% url request.resolver_match.namespace|add:':match_entry' regional_code %}">Match Entry</a></li>
 		        <li> <a href="{% url request.resolver_match.namespace|add:':matches' regional_code %}">Matches</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
