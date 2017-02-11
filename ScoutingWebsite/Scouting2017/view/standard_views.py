@@ -121,3 +121,33 @@ def get_statistics(regional_code, teams_at_competition):
             team.rope_pct = team_avgs['team_rope__avg'] * 100
     stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['fuel_score_hi__avg'], 'fuel_low_avg': team_avgs['fuel_score_low__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
     return stats   
+
+
+def add_match(request, some_data_array):
+    
+    
+    for individual_data in some_data_array:
+        match = Match.objects.get_or_create(matchNumber=individual_data["match"])
+        team = Team.objects.get_or_create(teamNumber=individual_data['team_number'])
+        
+        score_result = ScoreResult.objects.create(
+            gears_score = individual_data['    gears_score'],
+            fuel_shot_hi = individual_data['    fuel_shot_hi'],
+            fuel_shot_low = individual_data['    fuel_shot_low'],
+            fuel_score_hi = individual_data['    fuel_score_hi'],
+            fuel_score_low = individual_data['    fuel_score_low'],
+            rope = individual_data['    rope'],
+            hopper = individual_data['    hopper'],
+            tech_foul = individual_data['    tech_foul'],
+            foul = individual_data['    foul'],
+            red_card = individual_data['    red_card'],
+            yellow_card = individual_data['    yellow_card'],
+            fuel_shot_hi_auto = individual_data['    fuel_shot_hi_auto'],
+            fuel_shot_low_auto = individual_data['    fuel_shot_low_auto'],
+            fuel_score_hi_auto = individual_data['    fuel_score_hi_auto'],
+            fuel_score_low_auto = individual_data['    fuel_score_low_auto'],
+            gears_score_auto = individual_data['    gears_score_auto'],
+            baseline = individual_data['    baseline'],
+            ground_fuel = individual_data['    ground_fuel'],
+            ground_gear = individual_data['    ground_gear'],
+    )
