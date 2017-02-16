@@ -17,14 +17,12 @@
 			<td ><input type="number" id = "lowFuelShot" name="lowFuelShot-__i__" value=0 style="text-align:center;"></td>
 			<td ><input type="number" id = "highFuelScore" name="highFuelScore-__i__" value=0 style="text-align:center;"></td>	
 			<td ><input type="number" id = "lowFuelScore" name="lowFuelScore-__i__" value=0 style="text-align:center;"></td>
-			<td ><input type="number" id = "autoGear" name="autoGear-__i__" value=0 style="text-align:center;"></td>
+			<td ><input type="number" id = "autoGear" name="gearScore-__i__" value=0 style="text-align:center;"></td>
 			<td style="text-align:center;"><input type="checkbox" id = "ropeClimbed" name="ropeClimbed-__i__"></td>
-			<td style="text-align:center;"><input type="checkbox" id = "toucPad" name="touchPad-__i__"></td>
 			<td style="text-align:center;"><input type="checkbox" id = "defesnive" name="defesnive-__i__"></td>
-			<td><input type="number" id = "lowBoiler" name="lowBoiler-__i__" value=0 style="text-align:center;"></td>
-			<td><input type="number" id= "highBoiler" name="highBoiler- __i__ value=0 style"text-align:center;"></td>
-			<td style="text-align:center;"><input type="checkbox" id = "gearScore" name="gearScore-__i__"></td>
+			<td style="text-align:center;"><input type="checkbox" id = "autoGear" name="autoGear-__i__"></td>
 			<td><textarea rows="1" cols="50"></textarea></td>
+			<input type="hidden" id="rowCounter" name="rowCounter" value=__i__ style="text-align:center;">
 			<td><button type="button" class="btn btn-default" onclick="deleteRow(this)">Delete</button></td>
 		</tr>
 	</script>
@@ -32,8 +30,8 @@
 	<script type="text/javascript">
 		i=0;
 		function addRow(){
-			$("#entry-table tbody").append($("#row-template").html().replace(/__i__/g, i));
 			i++;
+			$("#entry-table tbody").append($("#row-template").html().replace(/__i__/g, i));
 		}
 	
 		$(function(){
@@ -54,7 +52,7 @@
 
 {% block content %}
 	<div style="overflow-x: scroll;">
-		<form action="{% url 'Scouting2017:submit_new_match'}" method="post" >
+		<form action="{% url 'Scouting2017:submit_new_match' regional_code %}" method="post" >
 		{% csrf_token %}
 		<table id="entry-table" class="table" style="margin: 0;">
 			<thead>
@@ -66,13 +64,10 @@
 						<th style="text-align:center;">Low Fuel Shot</th>
 						<th style="text-align:center;">High Fuel Score</th>
 						<th style="text-align:center;">Low Fuel Score</th>
-						<th style="text-align:center;">Auto Gear</th>
-						<th style="text-align:center;">Rope Climbed</th>
+						<th style="text-align:center;">Gear Score</th>
 						<th style="text-align:center;">Touch Pad</th>
 						<th style="text-align:center;">Defensive</th>
-						<th style="text-align:center;">Low Boiler</th>
-						<th style="text-align:center;">High Boiler</th>
-						<th style="text-align:center;">Gear Score</th>
+						<th style="text-align:center;">Auto Gear</th>
 						<th style="text-align:center;">Notes</th>
 						<th style="text-align:center;">Delete</th>
 					</tr>

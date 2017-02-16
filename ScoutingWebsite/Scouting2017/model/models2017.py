@@ -89,6 +89,7 @@ class ScoreResult(models.Model):
     fuel_score_low = models.IntegerField(default=0)
     rope = models.BooleanField(default=False)
     hopper = models.BooleanField(default=False)
+    defensive = models.BooleanField(default=False)
     
     # Fouls
     tech_foul = models.IntegerField(default=0)
@@ -103,6 +104,7 @@ class ScoreResult(models.Model):
     fuel_score_low_auto = models.IntegerField(default=0)
     gears_score_auto = models.IntegerField(default=0)
     baseline = models.BooleanField(default=False)
+    scored_gear_in_auto = models.BooleanField(default=False)
     
     #collecting
     ground_fuel = models.BooleanField(default=False)
