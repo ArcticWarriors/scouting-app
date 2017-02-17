@@ -80,7 +80,6 @@ def submit_new_match(request, regional_code):
         kargs = __get_create_kargs(request)
         ScoreResult.objects.create(match=match, team=team, competition=competition, **kargs)
 
-        return HttpResponseRedirect(reverse('Scouting2016:view_match', args=(regional_code, match.matchNumber,)))
 
 
 def edit_prev_match(request):

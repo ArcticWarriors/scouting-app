@@ -54,7 +54,7 @@
 
 {% block content %}
 	<div style="overflow-x: scroll;">
-		<form action="{% url 'Scouting2017:submit_new_match'}" method="post" >
+		<form action="{% url 'Scouting2017:submit_new_match' regional_code %}" method="post" ></form>
 		{% csrf_token %}
 		<table id="entry-table" class="table" style="margin: 0;">
 			<thead>
