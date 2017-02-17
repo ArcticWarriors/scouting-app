@@ -7,6 +7,7 @@ from django.db.models.expressions import Case, When
 import math
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+import math,json
 
 class HomepageView2017(BaseHomepageView):
  
@@ -35,7 +36,8 @@ class TeamListView2017(BaseTeamListView):
         reg_code = kwargs['regional_code']
 #         teams_at_competition = TeamCompetesIn.objects.filter(competition__code=reg_code)
         stats = get_statistics(reg_code, context['teams'])
-        context['stats'] = stats 
+        context['stats'] = stats[0]
+        context['skills'] = stats[1]
         return context
         
 class SingleMatchView2017(BaseSingleMatchView):
@@ -69,6 +71,10 @@ It then will use that data to determine a mean and standard deviation for bots' 
 get_statistics() will also calculate z-scores along the St. Dev. for those elements and store them in the model to be called later.
 '''
 def get_statistics(regional_code, teams_at_competition):
+    
+    skills = []
+       
+    
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
     competition_averages = competition_srs.aggregate(Avg('gears_score'),
                                                     Avg('fuel_score_hi'),
@@ -111,16 +117,25 @@ def get_statistics(regional_code, teams_at_competition):
                                         team_rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
                                       
         team_rope_avg = team_avgs['team_rope__avg']
-        team.fuel_z = 'NA'
-        team.gear_z = 'NA'
-        team.rope_z = 'NA'
-        team.rope_pct = 'NA'
+        team.skills = {}
+        team.skills['fuel_z'] = 'NA'
+        team.skills['gear_z'] = 'NA'
+        team.skills['rope_z'] = 'NA'
+        team.skills['rope_pct'] = 'NA'
         if len(teams_srs)!= 0:
-            team.fuel_score = ((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9))
-            team.gear_z = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
-            team.fuel_z = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev
-            team.rope_z = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
-            team.rope_pct = team_avgs['team_rope__avg'] * 100
+            team.skills['fuel_score'] = ((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9))
+            team.skills['gear_z'] = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
+            team.skills['fuel_z'] = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev
+            team.skills['rope_z'] = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
+            team.skills['rope_pct'] = team_avgs['team_rope__avg'] * 100
+            
+        skills.append({'team': team.teamNumber, 'skills':team.skills})
+        
+    stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['fuel_score_hi__avg'], 'fuel_low_avg': team_avgs['fuel_score_low__avg'],
+             'fuel_hi_auto_avg': team_avgs['fuel_score_hi_auto__avg'], 'fuel_low_auto_avg': team_avgs['fuel_score_low_auto__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
+    
+    return (stats,json.dumps(skills))   
+
     stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['fuel_score_hi__avg'], 'fuel_low_avg': team_avgs['fuel_score_low__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
     return stats   
 
