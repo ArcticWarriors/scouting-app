@@ -29,15 +29,16 @@ td{
 </script>
 <script type="text/javascript">
 	function skills(){
-		//get the skill list
-		// loop thru skill list
-		var skills = $('th:contains(Skills)').index()
-		console.log(skills)
-		var zCutoff = 0.675;
-		var skill_list = JSON.parse($("#skills-data").html())
+		var skills = $('th:contains(Skills)').index() //Obtains the number of the column containing the icons
+		//console.log(skills)
+		var zCutoff = 0.675; // 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282
+		var skill_list = JSON.parse($("#skills-data").html()) // Grabs list of skills from backend
 		for (i=0;i< skill_list.length;i++){
+			/*
+			The for loop grabs z-scores for each individual team, compares them to the cutoff value, and changes the icon accordingly.
+			*/
 			console.log(skill_list[i]);
-			var gear_z = skill_list[i].skills.gear_z;
+			var gear_z = skill_list[i].skills.gear_z; 
 			var fuel_z = skill_list[i].skills.fuel_z;
 			var rope_z = skill_list[i].skills.rope_z;
 			if (gear_z > zCutoff) {
@@ -90,35 +91,11 @@ td{
 			<tbody>
 				{% for team in teams %}
 				<tr>
-					<!-- 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282 -->
 					<td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
 					<td>
 					    <img data-gearz="{{team.skills.gear_z}}" src="{%static 'Scouting2017/Icons/gear_yellow.png' %}" style = "width:50px;"> </img>
 					    <img data-fuelz="{{team.skills.fuel_z}}" src="{%static 'Scouting2017/Icons/fuel_yellow.png' %}" style = "width:50px;"> </img>
 					    <img data-ropez="{{team.skills.rope_z}}" src="{%static 'Scouting2017/Icons/rope_yellow.png' %}" style = "height:50px;"> </img>
-						{% comment %}
-					    {% if team.gear_z >= 0.675 %}
-                        <img data-value="{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_green.png' %}" style="width:50px;"> </img>
-                        {% elif team.gear_z <= -0.675 %}
-                        <img data-value="{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_red.png' %}" style="width:50px;"> </img>
-                        {% else %}
-                        <img data-value="{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_yellow.png' %}" style="width:50px;"> </img>
-                        {% endif %} {# {{ team.gear_z }} #}
-                        {% if team.fuel_z >= 0.675 %} 
-                        <img data-value="{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_green.png' %}" style="width:50px;"> </img>
-                        {% elif team.fuel_z <= -0.675 %}
-                        <img data-value="{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_red.png' %}" style="width:50px;"> </img>
-                        {% else %}
-                        <img data-value = "{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_yellow.png' %}" style="width:50px;"> </img>
-                        {% endif %} {# {{ team.fuel_z }} #}
-                        {% if team.rope_z >= 0.675 %}
-                        <img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_green.png' %}" style="height:50px;"> </img>
-						{% elif team.rope_z <= -0.675 %}
-                        <img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_red.png' %}" style="height:50px;"> </img>
-						{% else %}		
-						<img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_yellow.png' %}" style="height:50px;"> </img>
-                        {% endif %}
-                        {% endcomment %}
 							
 				    </td>
 					<td> <img src="{% static 'Scouting2017/Icons/star.png' %}" style="width:50px;"> </img> </td>
