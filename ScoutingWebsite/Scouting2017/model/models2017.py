@@ -7,6 +7,7 @@ from django.db.models.aggregates import Avg, Sum
 from django.db import models
 from Scouting2017.model.reusable_models import Team, \
     OfficialMatch, Match, Competition, ScoreResultMetric
+from django.db.models.expressions import Case, When
 
 
 
@@ -14,6 +15,19 @@ def get_team_metrics(team):
     metrics = team.scoreresult_set.aggregate(Avg("fuel_score_hi"),
                                              Avg("fuel_score_low"),
                                              Avg("gears_score"),
+                                             Avg("gears_score_auto"),
+                                             Avg("fuel_shot_hi"),
+                                             Avg("fuel_shot_low"),
+                                             Avg("fuel_score_hi_auto"),
+                                             Avg("fuel_score_low_auto"),
+                                             Avg("fuel_shot_hi_auto"),
+                                             Avg("fuel_shot_low_auto"),
+                                             Sum("foul"),
+                                             Sum("tech_foul"),
+                                             Sum("yellow_card"),
+                                             Sum("red_card"),
+                                             baseline__avg = Avg(Case(When(baseline=True, then=1),When(baseline=False, then=0))),
+                                             rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))),
                                              )
                                            
                                             

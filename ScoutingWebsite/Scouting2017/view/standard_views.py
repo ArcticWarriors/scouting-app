@@ -57,6 +57,15 @@ class SingleTeamView2017(BaseSingleTeamView):
     def __init__(self):
         BaseSingleTeamView.__init__(self, Team, TeamPictures, TeamComments, 'Scouting2017/team.html')
 
+    def get_context_data(self, **kwargs):
+        context = BaseSingleTeamView.get_context_data(self, **kwargs)
+        context['metrics']['fuel_shot_hi_missed__avg'] = float(context['metrics']['fuel_shot_hi__avg']) - float(context['metrics']['fuel_score_hi__avg'])
+        context['metrics']['fuel_shot_hi_missed_auto__avg'] = float(context['metrics']['fuel_shot_hi_auto__avg']) - float(context['metrics']['fuel_score_hi_auto__avg'])
+        context['metrics']['fuel_shot_low_missed__avg'] = float(context['metrics']['fuel_shot_low__avg']) - float(context['metrics']['fuel_score_low__avg'])
+        context['metrics']['fuel_shot_low_missed_auto__avg'] = float(context['metrics']['fuel_shot_low_auto__avg']) - float(context['metrics']['fuel_score_low_auto__avg'])
+        
+        return context
+        
     def get_metrics(self, team):
         return get_team_metrics(team)
 
