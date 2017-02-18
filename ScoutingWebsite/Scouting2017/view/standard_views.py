@@ -5,6 +5,9 @@ from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
 from django.db.models.aggregates import Avg, Sum
 from django.db.models.expressions import Case, When
 import math
+from django.http.response import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+import math,json
 
 class HomepageView2017(BaseHomepageView):
  
@@ -33,7 +36,8 @@ class TeamListView2017(BaseTeamListView):
         reg_code = kwargs['regional_code']
 #         teams_at_competition = TeamCompetesIn.objects.filter(competition__code=reg_code)
         stats = get_statistics(reg_code, context['teams'])
-        context['stats'] = stats 
+        context['stats'] = stats[0]
+        context['skills'] = stats[1]
         return context
         
 class SingleMatchView2017(BaseSingleMatchView):
@@ -67,6 +71,10 @@ It then will use that data to determine a mean and standard deviation for bots' 
 get_statistics() will also calculate z-scores along the St. Dev. for those elements and store them in the model to be called later.
 '''
 def get_statistics(regional_code, teams_at_competition):
+    
+    skills = []
+       
+    
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
     competition_averages = competition_srs.aggregate(Avg('gears_score'),
                                                     Avg('fuel_score_hi'),
@@ -109,47 +117,72 @@ def get_statistics(regional_code, teams_at_competition):
                                         team_rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
                                       
         team_rope_avg = team_avgs['team_rope__avg']
-        team.fuel_z = 'NA'
-        team.gear_z = 'NA'
-        team.rope_z = 'NA'
-        team.rope_pct = 'NA'
+        team.skills = {}
+        team.skills['fuel_z'] = 'NA'
+        team.skills['gear_z'] = 'NA'
+        team.skills['rope_z'] = 'NA'
+        team.skills['rope_pct'] = 'NA'
         if len(teams_srs)!= 0:
-            team.fuel_score = ((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9))
-            team.gear_z = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
-            team.fuel_z = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev
-            team.rope_z = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
-            team.rope_pct = team_avgs['team_rope__avg'] * 100
+            team.skills['fuel_score'] = ((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9))
+            team.skills['gear_z'] = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
+            team.skills['fuel_z'] = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev
+            team.skills['rope_z'] = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
+            team.skills['rope_pct'] = team_avgs['team_rope__avg'] * 100
+            
+        skills.append({'team': team.teamNumber, 'skills':team.skills})
+        
+    stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['fuel_score_hi__avg'], 'fuel_low_avg': team_avgs['fuel_score_low__avg'],
+             'fuel_hi_auto_avg': team_avgs['fuel_score_hi_auto__avg'], 'fuel_low_auto_avg': team_avgs['fuel_score_low_auto__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
+    
+    return (stats,json.dumps(skills))   
+
     stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['fuel_score_hi__avg'], 'fuel_low_avg': team_avgs['fuel_score_low__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
     return stats   
 
 
-def add_match(request, some_data_array):
+def add_match(request, regional_code):
     
-    
-    for individual_data in some_data_array:
-        match = Match.objects.get_or_create(matchNumber=individual_data["match"])
-        team = Team.objects.get_or_create(teamNumber=individual_data['team_number'])
+    print regional_code
+    post = request.POST
+    num_rows = int(post['rowCounter'])
+    for i in range(num_rows):
+        comp = Competition.objects.get(code=regional_code)
+        team = Team.objects.get_or_create(teamNumber=int(post['teamNumber-%s' % (i + 1)]))[0]
+        match = Match.objects.get_or_create(competition=comp, matchNumber=int(post['matchNumber-%s' % (i + 1)]))[0]
+        
+        ropeclimbed = 'ropeClimbed-%s' % (i + 1) in post
+        auto_baseline = 'autoBaseline-%s' % (i + 1) in post
+        auto_gear_scored = 'autoGear-%s' % (i+1) in post
+        defensive_play = 'defesnive-%s' % (i+1) in post
+        
+        print ropeclimbed
         
         score_result = ScoreResult.objects.create(
-            gears_score = individual_data['    gears_score'],
-            fuel_shot_hi = individual_data['    fuel_shot_hi'],
-            fuel_shot_low = individual_data['    fuel_shot_low'],
-            fuel_score_hi = individual_data['    fuel_score_hi'],
-            fuel_score_low = individual_data['    fuel_score_low'],
-            rope = individual_data['    rope'],
-            hopper = individual_data['    hopper'],
-            tech_foul = individual_data['    tech_foul'],
-            foul = individual_data['    foul'],
-            red_card = individual_data['    red_card'],
-            yellow_card = individual_data['    yellow_card'],
-            fuel_shot_hi_auto = individual_data['    fuel_shot_hi_auto'],
-            fuel_shot_low_auto = individual_data['    fuel_shot_low_auto'],
-            fuel_score_hi_auto = individual_data['    fuel_score_hi_auto'],
-            fuel_score_low_auto = individual_data['    fuel_score_low_auto'],
-            gears_score_auto = individual_data['    gears_score_auto'],
-            baseline = individual_data['    baseline'],
-            ground_fuel = individual_data['    ground_fuel'],
-            ground_gear = individual_data['    ground_gear'],
-    )
+            competition = comp,
+            team = team,
+            match = match,
+            gears_score = int(post['gearScore-%s' % (i + 1)]),
+            fuel_shot_hi = int(post['highFuelShot-%s' % (i + 1)]),
+            fuel_shot_low = int(post['lowFuelShot-%s' % (i + 1)]),
+            fuel_score_hi = int(post['highFuelScore-%s' % (i + 1)]),
+            fuel_score_low = int(post['lowFuelScore-%s' % (i + 1)]),
+            rope = bool(ropeclimbed),
+#             hopper = individual_data['    hopper'],
+#              tech_foul = individual_data['    tech_foul'],
+#             foul = individual_data['    foul'],
+#             red_card = individual_data['    red_card'],
+#             yellow_card = individual_data['    yellow_card'],
+#             fuel_shot_hi_auto = individual_data['    fuel_shot_hi_auto'],
+#             fuel_shot_low_auto = individual_data['    fuel_shot_low_auto'],
+#             fuel_score_hi_auto = individual_data['    fuel_score_hi_auto'],
+#             fuel_score_low_auto = individual_data['    fuel_score_low_auto'],
+#             gears_score_auto = individual_data['    gears_score_auto'],
+            baseline = bool(auto_baseline),
+            scored_gear_in_auto = bool(auto_gear_scored),
+#             defensive = bool(defensive_play),
+#             ground_fuel = individual_data['    ground_fuel'],
+#             ground_gear = individual_data['    ground_gear'],
+        )
+        score_result.save()
         
-    
+    return HttpResponseRedirect(reverse('Scouting2017:index', args=(regional_code,)))

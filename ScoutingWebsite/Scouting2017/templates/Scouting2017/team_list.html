@@ -1,11 +1,16 @@
+{% load staticfiles %} 
+
 <html>
+<head>
+{% include "BaseScouting/base.html" %}
+<title>Teams - Arctic Warriors Scouting</title>
+	
 <style>
 table{ 
 
 }
 th{
 	text-align: center;
-	width: 75px;
 	height: 45px;
 	vertical-align: middle;
 }
@@ -19,12 +24,55 @@ td{
 	font-weight: bold;
 }
 </style>
-<head>
-{% load staticfiles %} 
-{% include "BaseScouting/base.html" %}
-<title>Teams - Arctic Warriors Scouting</title>
+<script id="skills-data" type="text/json">
+	{{skills|safe}}
+</script>
+<script type="text/javascript">
+	function skills(){
+		//get the skill list
+		// loop thru skill list
+		var skills = $('th:contains(Skills)').index()
+		console.log(skills)
+		var zCutoff = 0.675;
+		var skill_list = JSON.parse($("#skills-data").html())
+		for (i=0;i< skill_list.length;i++){
+			console.log(skill_list[i]);
+			var gear_z = skill_list[i].skills.gear_z;
+			var fuel_z = skill_list[i].skills.fuel_z;
+			var rope_z = skill_list[i].skills.rope_z;
+			if (gear_z > zCutoff) {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-gearz] ' ).attr('src','{% static 'Scouting2017/Icons/gear_green.png' %}')
+			}
+			else if (gear_z < 0-(zCutoff)) {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-gearz] ' ).attr('src','{% static 'Scouting2017/Icons/gear_red.png' %}')
+			}
+			else {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-gearz] ' ).attr('src','{% static 'Scouting2017/Icons/gear_yellow.png' %}')
+			}
+			if (fuel_z > zCutoff) {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-fuelz] ' ).attr('src','{% static 'Scouting2017/Icons/fuel_green.png' %}')
+			}
+			else if (fuel_z < 0-(zCutoff)) {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-fuelz] ' ).attr('src','{% static 'Scouting2017/Icons/fuel_red.png' %}')
+			}
+			else {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-fuelz] ' ).attr('src','{% static 'Scouting2017/Icons/fuel_yellow.png' %}')
+			}
+			if (rope_z > zCutoff) {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-ropez] ' ).attr('src','{% static 'Scouting2017/Icons/rope_green.png' %}')
+			}
+			else if (rope_z < 0-(zCutoff)) {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-ropez] ' ).attr('src','{% static 'Scouting2017/Icons/rope_red.png' %}')
+			}
+			else {
+			$('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-ropez] ' ).attr('src','{% static 'Scouting2017/Icons/rope_yellow.png' %}')
+			}
+		}
+	}
+
+</script>
 </head>
-<body>
+<body onload="skills()">
 	<div class="fluid_container">
 		<table border = "1" class="table">
 			<thead>
@@ -33,6 +81,8 @@ td{
 				<th> Bookmarked? </th>
 				<th> High Fuel </th>
 				<th> Low Fuel </th>
+				<th> High Auto Fuel </th>
+				<th> Low Auto Fuel </th>
 				<th data-value = {{stats.fuel_stdev}} > Avg. Fuel Score </th>
 				<th data-value = {{stats.gear_stdev}} > Gears Scored </th>
 				<th data-value = {{stats.rope_stdev}} > Rope Percentage </th>
@@ -43,35 +93,42 @@ td{
 					<!-- 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282 -->
 					<td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
 					<td>
-						{% if team.gear_z >= 0.675 %}
-							<img data-value = "{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_green.png' %}" style="width:50px;"> </img>
-						{% elif team.gear_z <= -0.675 %}
-							<img data-value = "{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_red.png' %}" style="width:50px;"> </img>
-						{% else %}
-							<img data-value = "{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_yellow.png' %}" style="width:50px;"> </img>
-						{% endif %} {# {{ team.gear_z }} #}
-						{% if team.fuel_z >= 0.675 %} 
-							<img data-value = "{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_green.png' %}" style="width:50px;"> </img>
-						{% elif team.fuel_z <= -0.675 %}
-							<img data-value = "{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_red.png' %}" style="width:50px;"> </img>
-						{% else %}
-					 		<img data-value = "{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_yellow.png' %}" style="width:50px;"> </img>
-					 	{% endif %} {# {{ team.fuel_z }} #}
-						{% if team.rope_z >= 0.675 %}
-							<img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_green.png' %}" style="height:50px;"> </img>
+					    <img data-gearz="{{team.skills.gear_z}}" src="{%static 'Scouting2017/Icons/gear_yellow.png' %}" style = "width:50px;"> </img>
+					    <img data-fuelz="{{team.skills.fuel_z}}" src="{%static 'Scouting2017/Icons/fuel_yellow.png' %}" style = "width:50px;"> </img>
+					    <img data-ropez="{{team.skills.rope_z}}" src="{%static 'Scouting2017/Icons/rope_yellow.png' %}" style = "height:50px;"> </img>
+						{% comment %}
+					    {% if team.gear_z >= 0.675 %}
+                        <img data-value="{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_green.png' %}" style="width:50px;"> </img>
+                        {% elif team.gear_z <= -0.675 %}
+                        <img data-value="{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_red.png' %}" style="width:50px;"> </img>
+                        {% else %}
+                        <img data-value="{{team.gear_z}}" src="{% static 'Scouting2017/Icons/gear_yellow.png' %}" style="width:50px;"> </img>
+                        {% endif %} {# {{ team.gear_z }} #}
+                        {% if team.fuel_z >= 0.675 %} 
+                        <img data-value="{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_green.png' %}" style="width:50px;"> </img>
+                        {% elif team.fuel_z <= -0.675 %}
+                        <img data-value="{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_red.png' %}" style="width:50px;"> </img>
+                        {% else %}
+                        <img data-value = "{{team.fuel_z}}" src="{% static 'Scouting2017/Icons/fuel_yellow.png' %}" style="width:50px;"> </img>
+                        {% endif %} {# {{ team.fuel_z }} #}
+                        {% if team.rope_z >= 0.675 %}
+                        <img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_green.png' %}" style="height:50px;"> </img>
 						{% elif team.rope_z <= -0.675 %}
-							<img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_red.png' %}" style="height:50px;"> </img>
+                        <img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_red.png' %}" style="height:50px;"> </img>
 						{% else %}		
-							<img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_yellow.png' %}" style="height:50px;"> </img>
-						{% endif %}
+						<img data-value = "{{team.rope_z}}" src="{% static 'Scouting2017/Icons/rope_yellow.png' %}" style="height:50px;"> </img>
+                        {% endif %}
+                        {% endcomment %}
 							
 				    </td>
 					<td> <img src="{% static 'Scouting2017/Icons/star.png' %}" style="width:50px;"> </img> </td>
 					<td> {{ team.metrics.fuel_score_hi__avg }} </td>
 					<td> {{ team.metrics.fuel_score_low__avg }} </td>
-					<td> {{ team.fuel_score|floatformat:2 }} </td>
+					<td> {{ team.metrics.fuel_score_hi_auto__avg }}</td>
+					<td> {{ team.metrics.fuel_score_low_auto__avg }}	</td>
+					<td> {{ team.skills.fuel_score|floatformat:2 }} </td>
 					<td> {{ team.metrics.gears_score__avg }} </td>
-					<td> {{ team.rope_pct}} %  </td>
+					<td> {{ team.skills.rope_pct}} %  </td>
 				
 				</tr>
 				{% endfor %}
@@ -81,9 +138,11 @@ td{
 				<td> - </td>
 				<td> {{stats.fuel_hi_avg|floatformat:2}} </td>
 				<td> {{stats.fuel_low_avg|floatformat:2}} </td>
+				<td> {{stats.fuel_hi_auto_avg|floatformat:2}} </td>
+				<td> {{stats.fuel_low_auto_avg|floatformat:2}} </td>
 				<td> {{stats.fuel_avg|floatformat:2}} </td>
 				<td> {{stats.gear_avg|floatformat:2}} </td>
-				<td> {{stats.rope_avg|floatformat:2}} </td>
+				<td> {{stats.rope_avg|floatformat:2}}% </td>
 				</tr>
 			</tbody>
 		</table>
