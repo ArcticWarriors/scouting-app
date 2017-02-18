@@ -51,6 +51,19 @@ class TeamPitScouting(models.Model):
     short_fat = models.BooleanField(default=False)
     tall_wide = models.BooleanField(default=False)
 
+    OrganizedFunctional = models.CharField(max_length=1000, default="no")
+    FuelCapacity = models.CharField(max_length=1000, default="no")
+    Gears = models.CharField(max_length=1000, default="no")
+    Strategy = models.CharField(max_length=1000)
+    Size = models.CharField(max_length=1000)
+    FuelAcquire = models.CharField(max_length=1000)
+    AllianceStrategy  = models.CharField(max_length=1000, default="no")
+    AllanceCompetent = models.CharField(max_length=1000, default="no")
+    CompetnetConfident = models.CharField(max_length=1000, default="no")
+    Competitions = models.CharField(max_length=1000, default="no")
+    Random = models.CharField(max_length=1000)   
+              
+    
 class OfficialMatchScoreResult(models.Model):
 
     official_match = models.ForeignKey(OfficialMatch)
