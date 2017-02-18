@@ -4,7 +4,7 @@ from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Matc
 from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
 from django.db.models.aggregates import Avg, Sum
 from django.db.models.expressions import Case, When
-import math
+import math,json
 
 class HomepageView2017(BaseHomepageView):
  
@@ -31,10 +31,10 @@ class TeamListView2017(BaseTeamListView):
     def get_context_data(self, **kwargs):
         context = BaseTeamListView.get_context_data(self, **kwargs)
         reg_code = kwargs['regional_code']
-        
 #         teams_at_competition = TeamCompetesIn.objects.filter(competition__code=reg_code)
-        
-        get_statistics(reg_code, context['teams']) 
+        stats = get_statistics(reg_code, context['teams'])
+        context['stats'] = stats[0]
+        context['skills'] = stats[1]
         return context
         
 class SingleMatchView2017(BaseSingleMatchView):
@@ -48,9 +48,6 @@ class SingleMatchView2017(BaseSingleMatchView):
 class MatchListView2017(BaseMatchListView):
     def __init__(self):
         BaseMatchListView.__init__(self, Match, OfficialMatch)
-        
-    def get_metrics_for_match(self,match):
-        pass
 
 class SingleTeamView2017(BaseSingleTeamView):
 
@@ -73,12 +70,16 @@ class MatchEntryView2017(BaseMatchEntryView):
     def __init__(self):
         BaseMatchEntryView.__init__(self, 'Scouting2017/match_entry.html')
 
+    
 '''
-When get_statistics() function is called, it grabs live data from all the teams and all their score results.
-It then will use that data to determine a mean and standard deviation for bots' gears,fuel,and rope capabilities.
-get_statistics() will also calculate z-scores along the St. Dev. for those elements and store them in the model to be called later.
+The get_statistics function() returns two lists of metrics.
+The first thing it returns, stats, is a dictionary containing the values of overall averages for all score results, along with standard deviations for those same score results along the mean.
+The function also returns a list called skills, which contains data for each team including their z-scores, calculated fuel scores for both hi, low, autonomous, teleop, and overall, and their accuracy in climbing the rope. 
 '''
-def get_statistics(regional_code, teams_at_competition):
+def get_statistics(regional_code, teams_at_competition, team=0):
+    
+    skills = []
+       
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
     competition_averages = competition_srs.aggregate(Avg('gears_score'),
                                                     Avg('fuel_score_hi'),
@@ -86,16 +87,15 @@ def get_statistics(regional_code, teams_at_competition):
                                                     Avg('fuel_score_low'),
                                                     Avg('fuel_score_low_auto'),
                                                     rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
-    num_srs = 0 
     rope_avg = competition_averages['rope__avg']
-    print rope_avg
     gear_avg = competition_averages['gears_score__avg']
     fuel_avg = competition_averages['fuel_score_hi_auto__avg'] + (competition_averages['fuel_score_hi__avg'] / 3 ) + (competition_averages['fuel_score_low_auto__avg'] / 3) + (competition_averages['fuel_score_low__avg'] / 9)
+   # This part of the function (above) obtains overall averages for all score results
+    num_srs = 0 
     gear_v2 = 0
     fuel_v2 = 0
     rope_v2 = 0
     num_srs = 0 
-
     
     for sr in competition_srs: 
         if sr.rope==True:
@@ -111,9 +111,9 @@ def get_statistics(regional_code, teams_at_competition):
     gear_stdev = math.sqrt(gear_v2/num_srs) 
     fuel_stdev = math.sqrt(fuel_v2/num_srs)
     rope_stdev = math.sqrt(rope_v2/num_srs)
-    print rope_stdev
-    
-    for team in teams_at_competition:
+    # This part of the function (above) obtains overall standard deviations for all score results
+    teams = team if bool(team) else teams_at_competition
+    for team in teams:
         teams_srs = team.scoreresult_set.filter(competition__code=regional_code) 
         team_avgs = teams_srs.aggregate(Avg('gears_score'),
                                         Avg('fuel_score_hi'),
@@ -123,13 +123,20 @@ def get_statistics(regional_code, teams_at_competition):
                                         team_rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
                                       
         team_rope_avg = team_avgs['team_rope__avg']
-        print team_rope_avg
-        team.fuel_z = 'NA'
-        team.gear_z = 'NA'
-        team.rope_z = 'NA'
-        team.rope_pct = 'NA'
+        team.skills = {}
+        team.skills['fuel_z'] = 'NA'
+        team.skills['gear_z'] = 'NA'
+        team.skills['rope_z'] = 'NA'
+        team.skills['rope_pct'] = 'NA'
         if len(teams_srs)!= 0:
-            team.gear_z = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
-            team.fuel_z = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev
-            team.rope_z = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
-            team.rope_pct = team_avgs['team_rope__avg'] * 100
+            team.skills['fuel_score'] = ((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9))
+            team.skills['gear_z'] = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
+            team.skills['fuel_z'] = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev
+            team.skills['rope_z'] = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
+            team.skills['rope_pct'] = team_avgs['team_rope__avg'] * 100
+        skills.append({'team': team.teamNumber, 'skills':team.skills})
+    
+    stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['fuel_score_hi__avg'], 'fuel_low_avg': team_avgs['fuel_score_low__avg'],
+             'fuel_hi_auto_avg': team_avgs['fuel_score_hi_auto__avg'], 'fuel_low_auto_avg': team_avgs['fuel_score_low_auto__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
+    #This part of the function creates the lists that are passed back.
+    return (stats,json.dumps(skills))   

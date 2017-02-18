@@ -259,7 +259,6 @@ class BaseGenGraphView(View):
         plt.xlabel("Match")
 
         matplotlib.pyplot.close(f)
-
         canvas = FigureCanvasAgg(f)
         response = HttpResponse(content_type='image/png')
         canvas.print_png(response)
@@ -276,3 +275,6 @@ class BaseMatchEntryView(TemplateView):
         
         return context
 
+class BaseFormView(TemplateView):
+    pass
+    

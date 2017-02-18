@@ -35,14 +35,13 @@ for pair in json_struct:
     code = pair[0]
     week = pair[1]
 
-    if week == 999:
+    if code == "NYRO":
         events_to_do.append((code, week))
 
 if populate_results:
     load_django()
 
 
-print events_to_do
 for event_pair in events_to_do:
     code = event_pair[0]
     week = event_pair[1]
@@ -57,6 +56,6 @@ for event_pair in events_to_do:
         print event_path
 
         populater = PopulateRegionalresults2017()
-        populater.update_team_info(code, event_path)
+#         populater.update_team_info(code, event_path)
 #         populater.update_schedule(code, event_path)
-#         populater.update_matchresults(code, event_path)
+        populater.update_matchresults(code, event_path)
