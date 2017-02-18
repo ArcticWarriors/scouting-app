@@ -75,15 +75,6 @@
         No pictures available
     {% endif %}
     
-    <h2>Team Comments</h2>
-    {% if team_comments|length != 0 %}
-        Team Comments
-        <ul>
-            {% for comment in team_comments %}
-            <li>{{comment.comment}}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
 
     {% if "auth.can_add_pictures" in perms %}
@@ -99,31 +90,50 @@
     
     {% block robot_stats %}{% endblock robot_stats %}
     
-    <h2>Fouls</h2>
-    <table class="table">
-        <tr>
-            <th scope="row">Foul</th>
-            <td>#</td>
-        </tr>
-        <tr>
-            <th scope="row">Tech Foul</th>
-            <td>#</td>
-        </tr>
-        <tr>
-            <th scope="row">Yellow Card</th>
-            <td>Yes/No?</td>
-        </tr>
-        <tr>
-            <th scope="row">Red Card</th>
-            <td>Yes/No?</td>
-        </tr>
-    </table>
-    {# ORIGINAL: Tech fouls: {{metrics.score_tech_foul__sum}} #}
     
+{% block fouls %}
+	<div class ="row">
+		
+		<div class ="col-md-6"></div>
+		<div class ="col-md-6">
+		<h2>Fouls</h2>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th scope="row">Foul</th>
+						<td>#</td>
+					</tr>
+					<tr>
+						<th scope="row">Tech Foul</th>
+						<td>#</td>
+					<tr>
+						<th scope="row">Yellow Card</th>
+						<td>Yes/No?</td>
+					</tr>
+					<tr>
+						<th scope="row">Red Card</th>
+						<td>Yes/No?</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	{% endblock fouls %}
+    {# ORIGINAL: Tech fouls: {{metrics.score_tech_foul__sum}} #}
+ <h2>Comments</h2>
+    {% if team_comments|length != 0 %}
+        Team Comments
+        <ul>
+            {% for comment in team_comments %}
+            <li>{{comment.comment}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <h2>Pit Scouting</h2>
     {% if team.team_pit_couting == None %}
-    	No infomation available. (this next section must be deleted at a later date)
-    	hello
+    	No infomation available.
     {% else %}
     	<h4>Was the team organized?</h4>
         {{team.team_pit_scoutng.team_organized}}
@@ -154,4 +164,5 @@
         <h4>Any operation problems?</h4>
         {{team.team_pit_scouting.operation_problems}}
 	{% endif %}
+
 {% endblock content %}
