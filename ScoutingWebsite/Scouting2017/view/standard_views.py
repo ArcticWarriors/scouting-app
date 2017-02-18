@@ -67,7 +67,7 @@ The get_statistics function() returns two lists of metrics.
 The first thing it returns, stats, is a dictionary containing the values of overall averages for all score results, along with standard deviations for those same score results along the mean.
 The function also returns a list called skills, which contains data for each team including their z-scores, calculated fuel scores for both hi, low, autonomous, teleop, and overall, and their accuracy in climbing the rope. 
 '''
-def get_statistics(regional_code, teams_at_competition):
+def get_statistics(regional_code, teams_at_competition, team=0):
     
     skills = []
        
@@ -103,7 +103,8 @@ def get_statistics(regional_code, teams_at_competition):
     fuel_stdev = math.sqrt(fuel_v2/num_srs)
     rope_stdev = math.sqrt(rope_v2/num_srs)
     # This part of the function (above) obtains overall standard deviations for all score results
-    for team in teams_at_competition:
+    teams = team if bool(team) else teams_at_competition
+    for team in teams:
         teams_srs = team.scoreresult_set.filter(competition__code=regional_code) 
         team_avgs = teams_srs.aggregate(Avg('gears_score'),
                                         Avg('fuel_score_hi'),
