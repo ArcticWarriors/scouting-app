@@ -1,5 +1,5 @@
 from BaseScouting.views.base_views import BaseHomepageView, BaseTeamListView,\
-    BaseSingleMatchView, BaseMatchListView, BaseSingleTeamView, BaseMatchEntryView
+    BaseSingleMatchView, BaseMatchListView, BaseSingleTeamView, BaseMatchEntryView, BaseAddTeamPictureView
 from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments
 from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
 from django.db.models.aggregates import Avg, Sum
@@ -39,6 +39,12 @@ class TeamListView2017(BaseTeamListView):
         context['stats'] = stats[0]
         context['skills'] = stats[1]
         return context
+        
+class AddTeamPictureView2017(BaseAddTeamPictureView):
+
+    def __init__(self):
+        BaseAddTeamPictureView.__init__(self, Team, TeamPictures, 'Scouting2017/static', 'Scouting2017/robot_pics', 'Scouting2017:view_team')
+
         
 class SingleMatchView2017(BaseSingleMatchView):
 
