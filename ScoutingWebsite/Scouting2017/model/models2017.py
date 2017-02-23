@@ -68,10 +68,8 @@ class OfficialMatchScoreResult(models.Model):
 
     official_match = models.ForeignKey(OfficialMatch)
     competition = models.ForeignKey(Competition)
-
-    team1 = models.ForeignKey(Team, related_name='da_team1')
-    team2 = models.ForeignKey(Team, related_name='da_team2')
-    team3 = models.ForeignKey(Team, related_name='da_team3')
+    
+    alliance_color = models.CharField(max_length=1, choices=(('R', 'Red'), ('B', 'Blue')))
     
     robot1Auto = models.CharField(max_length=2000, default="")
     robot2Auto = models.CharField(max_length=2000, default="")
