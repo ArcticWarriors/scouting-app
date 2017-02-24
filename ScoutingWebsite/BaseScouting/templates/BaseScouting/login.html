@@ -6,11 +6,14 @@
 {% endblock head %}
 
 {% block content %}
-    {% if error_message != None %}
-    {{error_message}}
-    {% endif %}
-	
-	<form action="{% url request.resolver_match.namespace|add:':auth_login' regional_code %}" method="post">
+    {% for message in messages %}
+      {% if 'error' in message.tags %}
+        ERROR: {{ message }}
+      {% endif %}
+      <br><br>
+    {% endfor %}
+    
+    <form action="{% url request.resolver_match.namespace|add:':auth_login' regional_code %}" method="post">
         {% csrf_token %}
         {% if request.GET.next != None %} <input type="hidden" name="next" value="{{ request.GET.next }}" />{% endif %}
       

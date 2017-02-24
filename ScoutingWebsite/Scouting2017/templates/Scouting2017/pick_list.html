@@ -1,0 +1,49 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+{% endblock head %}
+
+{% block content %}
+    <h1>Overall List</h1>
+    	<ul>
+        {% for team in original_overall_list %}
+          <li> {{ team.teamNumber }} </li>
+        {% endfor %}
+        </ul>
+    
+    <h1>Fuel List</h1>
+    	<ul>
+        {% for team in original_fuel_list %}
+          <li> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a></li>
+        {% endfor %}
+        </ul>
+    
+    <h1>Gear List</h1>
+    	<ul>
+        {% for team in original_gear_list %}
+          <li> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a></li>
+        {% endfor %}
+        </ul>
+    
+    <h1>Defense List</h1>
+    	<ul>
+        {% for team in original_defense_list %}
+          <li> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a></li>
+        {% endfor %}
+        </ul>
+    
+    <h1>DO NOT PICK</h1>
+    	<ul>
+        {% for team in original_dnp_list %}
+          <li> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a></li>
+        {% endfor %}
+        </ul>
+    
+    <h1>All teams</h1>
+    	<ul>
+        {% for team in all_teams %}
+          <li> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a></li>
+        {% endfor %}
+        </ul>
+{% endblock content %}
