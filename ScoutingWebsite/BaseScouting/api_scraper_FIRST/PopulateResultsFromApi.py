@@ -165,11 +165,12 @@ class PopulateRegionalResults:
             match_number = match_info["matchNumber"]
 
             for alliance_info in match_info["Alliances"]:
-                official_match = self.official_match_model.objects.get(matchNumber=match_number, competition=competition)
+                official_match = self.official_match_model.objects.get_or_create(matchNumber=match_number, competition=competition)[0]
                 official_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
                 if len(official_sr_search) != 2:
-                    print("Uh oh...")
-                    continue
+                    comp1 = self.official_match_sr_model.objects.create(competition=competition, official_match=official_match, alliance_color='R')
+                    comp2 = self.official_match_sr_model.objects.create(competition=competition, official_match=official_match, alliance_color='B')
+                    official_sr_search = [comp1, comp2]
 
                 color = alliance_info["alliance"]
                 if color == "Red":

@@ -65,10 +65,19 @@ class SingleTeamView2017(BaseSingleTeamView):
 
     def get_context_data(self, **kwargs):
         context = BaseSingleTeamView.get_context_data(self, **kwargs)
-        context['metrics']['fuel_shot_hi_missed__avg'] = float(context['metrics']['fuel_shot_hi__avg']) - float(context['metrics']['fuel_score_hi__avg'])
-        context['metrics']['fuel_shot_hi_missed_auto__avg'] = float(context['metrics']['fuel_shot_hi_auto__avg']) - float(context['metrics']['fuel_score_hi_auto__avg'])
-        context['metrics']['fuel_shot_low_missed__avg'] = float(context['metrics']['fuel_shot_low__avg']) - float(context['metrics']['fuel_score_low__avg'])
-        context['metrics']['fuel_shot_low_missed_auto__avg'] = float(context['metrics']['fuel_shot_low_auto__avg']) - float(context['metrics']['fuel_score_low_auto__avg'])
+        
+        if context['metrics']['fuel_shot_hi__avg'] != "NA":
+        
+            context['metrics']['fuel_shot_hi_missed__avg'] = float(context['metrics']['fuel_shot_hi__avg']) - float(context['metrics']['fuel_score_hi__avg'])
+            context['metrics']['fuel_shot_hi_missed_auto__avg'] = float(context['metrics']['fuel_shot_hi_auto__avg']) - float(context['metrics']['fuel_score_hi_auto__avg'])
+            context['metrics']['fuel_shot_low_missed__avg'] = float(context['metrics']['fuel_shot_low__avg']) - float(context['metrics']['fuel_score_low__avg'])
+            context['metrics']['fuel_shot_low_missed_auto__avg'] = float(context['metrics']['fuel_shot_low_auto__avg']) - float(context['metrics']['fuel_score_low_auto__avg'])
+        else:
+            context['metrics']['fuel_shot_hi_missed__avg'] = "NA"
+            context['metrics']['fuel_shot_hi_missed_auto__avg'] = "NA"
+            context['metrics']['fuel_shot_low_missed__avg'] = "NA"
+            context['metrics']['fuel_shot_low_missed_auto__avg'] = "NA"
+            
         
         return context
         
@@ -98,7 +107,12 @@ def get_statistics(regional_code, teams_at_competition, team=0):
                                                     rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
     rope_avg = competition_averages['rope__avg']
     gear_avg = competition_averages['gears_score__avg']
-    fuel_avg = competition_averages['fuel_score_hi_auto__avg'] + (competition_averages['fuel_score_hi__avg'] / 3 ) + (competition_averages['fuel_score_low_auto__avg'] / 3) + (competition_averages['fuel_score_low__avg'] / 9)
+
+    if competition_averages['fuel_score_hi_auto__avg'] and competition_averages['fuel_score_hi__avg'] and competition_averages['fuel_score_low_auto__avg'] and competition_averages['fuel_score_low__avg']:
+        
+        fuel_avg = competition_averages['fuel_score_hi_auto__avg'] + (competition_averages['fuel_score_hi__avg'] / 3 ) + (competition_averages['fuel_score_low_auto__avg'] / 3) + (competition_averages['fuel_score_low__avg'] / 9)
+    else:
+        fuel_avg = 0
    # This part of the function (above) obtains overall averages for all score results
     num_srs = 0 
     gear_v2 = 0
@@ -117,9 +131,16 @@ def get_statistics(regional_code, teams_at_competition, team=0):
         fuel_v2 += sr_fuel * sr_fuel
         rope_v2 += sr_rope * sr_rope 
         num_srs += 1  
-    gear_stdev = math.sqrt(gear_v2/num_srs) 
-    fuel_stdev = math.sqrt(fuel_v2/num_srs)
-    rope_stdev = math.sqrt(rope_v2/num_srs)
+        
+    if num_srs == 0:
+        gear_stdev = 0 
+        fuel_stdev = 0
+        rope_stdev = 0
+    else:
+        gear_stdev = math.sqrt(gear_v2/num_srs) 
+        fuel_stdev = math.sqrt(fuel_v2/num_srs)
+        rope_stdev = math.sqrt(rope_v2/num_srs)
+        
     # This part of the function (above) obtains overall standard deviations for all score results
     teams = team if bool(team) else teams_at_competition
     for team in teams:
