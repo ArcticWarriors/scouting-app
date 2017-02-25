@@ -2,5 +2,123 @@
 {% load staticfiles %}
 
 {% block stats %}
-    <h1>ADD ME!</h1>
+<div class="panel panel-default">
+    <div class="panel-heading" style="overflow:auto;">
+        <h2>Red Alliance</h2>
+    </div>
+
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+            <tr>
+                <th>Teams</th>
+                <th> Auto Gear </th>
+                <th> Auto Fuel High</th>
+                <th> Auto Fuel Low </th>
+                <th> Tele Gear </th>
+                <th> Tele Fuel High</th>
+                <th> Tele Fuel Low</th>
+                <th> Climbed</th>
+            </tr>
+            
+            
+            <tr>
+                <th>{{ red.sr1.team.teamNumber }}</th>
+                <th>{{ red.sr1.auto_gears }}</th>
+                <th>{{ red.sr1.auto_fuel_high_score }}</th>
+                <th>{{ red.sr1.auto_fuel_low_score }}</th>
+                <th>{{ red.sr1.tele_gears }}</th>
+                <th>{{ red.sr1.tele_fuel_high_score }}</th>
+                <th>{{ red.sr1.tele_fuel_low_score }}</th>
+                <th>{{ red.sr1.rope }}</th>
+            </tr>
+            
+            
+            <tr>
+                <th>{{ red.sr2.team.teamNumber }}</th>
+                <th>{{ red.sr2.auto_gears }}</th>
+                <th>{{ red.sr2.auto_fuel_high_score }}</th>
+                <th>{{ red.sr2.auto_fuel_low_score }}</th>
+                <th>{{ red.sr2.tele_gears }}</th>
+                <th>{{ red.sr2.tele_fuel_high_score }}</th>
+                <th>{{ red.sr2.tele_fuel_low_score }}</th>
+                <th>{{ red.sr2.rope }}</th>
+            </tr>
+            
+            
+            <tr>
+                <th>{{ red.sr3.team.teamNumber }}</th>
+                <th>{{ red.sr3.auto_gears }}</th>
+                <th>{{ red.sr3.auto_fuel_high_score }}</th>
+                <th>{{ red.sr3.auto_fuel_low_score }}</th>
+                <th>{{ red.sr3.tele_gears }}</th>
+                <th>{{ red.sr3.tele_fuel_high_score }}</th>
+                <th>{{ red.sr3.tele_fuel_low_score }}</th>
+                <th>{{ red.sr3.rope }}</th>
+            </tr>
+            
+            
+        </table>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="overflow:auto;">
+        <h2>Blue Alliance</h2>
+    </div>
+
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+            <tr>
+                <th>Teams</th>
+                <th> Auto Gear </th>
+                <th> Auto Fuel High</th>
+                <th> Auto Fuel Low </th>
+                <th> Tele Gear </th>
+                <th> Tele Fuel High</th>
+                <th> Tele Fuel Low</th>
+                <th> Climbed</th>
+            </tr>
+            
+            
+            <tr>
+                <th>{{ blue.sr1.team.teamNumber }}</th>
+                <th>{{ blue.sr1.auto_gears }}</th>
+                <th>{{ blue.sr1.auto_fuel_high_score }}</th>
+                <th>{{ blue.sr1.auto_fuel_low_score }}</th>
+                <th>{{ blue.sr1.tele_gears }}</th>
+                <th>{{ blue.sr1.tele_fuel_high_score }}</th>
+                <th>{{ blue.sr1.tele_fuel_low_score }}</th>
+                <th>{{ blue.sr1.rope }}</th>
+            </tr>
+            
+            
+            <tr>
+                <th>{{ blue.sr2.team.teamNumber }}</th>
+                <th>{{ blue.sr2.auto_gears }}</th>
+                <th>{{ blue.sr2.auto_fuel_high_score }}</th>
+                <th>{{ blue.sr2.auto_fuel_low_score }}</th>
+                <th>{{ blue.sr2.tele_gears }}</th>
+                <th>{{ blue.sr2.tele_fuel_high_score }}</th>
+                <th>{{ blue.sr2.tele_fuel_low_score }}</th>
+                <th>{{ blue.sr2.rope }}</th>
+            </tr>
+            
+            
+            <tr>
+                <th>{{ blue.sr3.team.teamNumber }}</th>
+                <th>{{ blue.sr3.auto_gears }}</th>
+                <th>{{ blue.sr3.auto_fuel_high_score }}</th>
+                <th>{{ blue.sr3.auto_fuel_low_score }}</th>
+                <th>{{ blue.sr3.tele_gears }}</th>
+                <th>{{ blue.sr3.tele_fuel_high_score }}</th>
+                <th>{{ blue.sr3.tele_fuel_low_score }}</th>
+                <th>{{ blue.sr3.rope }}</th>
+            </tr>
+            
+            
+        </table>
+    </div>
+</div>
+
 {% endblock stats %}

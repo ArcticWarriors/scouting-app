@@ -222,6 +222,25 @@ class SingleMatchView2017(BaseSingleMatchView):
 
     def __init__(self):
         BaseSingleMatchView.__init__(self, Match, 'Scouting2017/match.html')
+        
+    def get_context_data(self, **kwargs):
+        context = BaseSingleMatchView.get_context_data(self, **kwargs)
+        
+        match = context['match']
+        
+        print match.red1.scoreresult_set.filter(match=match)[0].team
+         
+        context['red'] = {}
+        context['red']['sr1'] = match.red1.scoreresult_set.filter(match=match)[0]
+        context['red']['sr2'] = match.red2.scoreresult_set.filter(match=match)[0]
+        context['red']['sr3'] = match.red3.scoreresult_set.filter(match=match)[0]
+         
+        context['blue'] = {}
+        context['blue']['sr1'] = match.blue1.scoreresult_set.filter(match=match)[0]
+        context['blue']['sr2'] = match.blue2.scoreresult_set.filter(match=match)[0]
+        context['blue']['sr3'] = match.blue3.scoreresult_set.filter(match=match)[0]
+        
+        return context
 
     def get_metrics(self, score_result):
         return []
