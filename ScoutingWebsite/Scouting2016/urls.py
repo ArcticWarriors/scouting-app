@@ -24,7 +24,7 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2016.as_view(), name='index'),
 
                # Add match form
-               url(r'^(?P<regional_code>\w+)/form$', match_forms.show_add_form, name='showForm'),
+               url(r'^(?P<regional_code>\w+)/form$', match_forms.show_add_form, name='match_entry'),
                url(r'^(?P<regional_code>\w+)/edit_form$', match_forms.show_edit_form, name='show_edit_form'),
                url(r'^(?P<regional_code>\w+)/pre_edit_form$', match_forms.info_for_form_edit, name='info_for_form_edit'),
                url(r'^(?P<regional_code>\w+)/submit_form$', match_forms.submit_new_match, name='show_add_form'),
