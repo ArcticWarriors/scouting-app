@@ -1,0 +1,202 @@
+{% extends 'BaseScouting/match_prediction.html' %}
+{% load staticfiles %}
+
+
+{% block overall_results %}
+
+
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+        
+          <tr>
+              <th></th>
+              <th>Score</th>
+              <th>KPA Bonus</th>
+              <th>Rotor Bonus</th>
+          </tr>
+          <tr>
+              <td>Red</td>
+              <td>{{ predicted_results.red_prediction.total_score }}</td>
+              <td>{{ predicted_results.red_prediction.kpa_bonus }}</td>
+              <td>{{ predicted_results.red_prediction.rotor_bonus }}</td>
+          </tr>
+          <tr>
+              <td>Blue</td>
+              <td>{{ predicted_results.blue_prediction.total_score }}</td>
+              <td>{{ predicted_results.blue_prediction.kpa_bonus }}</td>
+              <td>{{ predicted_results.blue_prediction.rotor_bonus }}</td>
+          </tr>
+        </table>
+    </div>
+    
+{% endblock overall_results %}
+
+
+
+{% block red_stats %}
+<div class="panel panel-default">
+    <div class="panel-heading" style="overflow:auto;">
+        <h2>Red Alliance</h2>
+    </div>
+
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+            <tr>
+                <th>Teams</th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team1.team_number %}">{{ predicted_results.red_prediction.team1.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team2.team_number %}">{{ predicted_results.red_prediction.team2.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team3.team_number %}">{{ predicted_results.red_prediction.team3.team_number }}</a></th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Auto Gears</td>
+                <td>{{ predicted_results.red_prediction.team1.auto_gears }}</td>
+                <td>{{ predicted_results.red_prediction.team2.auto_gears }}</td>
+                <td>{{ predicted_results.red_prediction.team3.auto_gears }}</td>
+                <td>{{ predicted_results.red_prediction.averages.auto_gears }}</td>
+            </tr>
+            <tr>
+                <td>Auto Fuel Low</td>
+                <td>{{ predicted_results.red_prediction.team1.auto_fuel_low }}</td>
+                <td>{{ predicted_results.red_prediction.team2.auto_fuel_low }}</td>
+                <td>{{ predicted_results.red_prediction.team3.auto_fuel_low }}</td>
+                <td>{{ predicted_results.red_prediction.averages.auto_fuel_low }}</td>
+            </tr>
+            <tr>
+                <td>Auto Fuel High</td>
+                <td>{{ predicted_results.red_prediction.team1.auto_fuel_high }}</td>
+                <td>{{ predicted_results.red_prediction.team2.auto_fuel_high }}</td>
+                <td>{{ predicted_results.red_prediction.team3.auto_fuel_high }}</td>
+                <td>{{ predicted_results.red_prediction.averages.auto_fuel_high }}</td>
+            </tr>
+            <tr>
+                <td>Auto Baseline</td>
+                <td>{{ predicted_results.red_prediction.team1.baseline }}</td>
+                <td>{{ predicted_results.red_prediction.team2.baseline }}</td>
+                <td>{{ predicted_results.red_prediction.team3.baseline }}</td>
+                <td>{{ predicted_results.red_prediction.averages.baseline }}</td>
+            </tr>
+            <tr>
+                <td>Tele Gears</td>
+                <td>{{ predicted_results.red_prediction.team1.tele_gears }}</td>
+                <td>{{ predicted_results.red_prediction.team2.tele_gears }}</td>
+                <td>{{ predicted_results.red_prediction.team3.tele_gears }}</td>
+                <td>{{ predicted_results.red_prediction.averages.tele_gears }}</td>
+            </tr>
+            <tr>
+                <td>Tele Fuel Low</td>
+                <td>{{ predicted_results.red_prediction.team1.tele_fuel_low }}</td>
+                <td>{{ predicted_results.red_prediction.team2.tele_fuel_low }}</td>
+                <td>{{ predicted_results.red_prediction.team3.tele_fuel_low }}</td>
+                <td>{{ predicted_results.red_prediction.averages.tele_fuel_low }}</td>
+            </tr>
+            <tr>
+                <td>Tele Fuel High</td>
+                <td>{{ predicted_results.red_prediction.team1.tele_fuel_high }}</td>
+                <td>{{ predicted_results.red_prediction.team2.tele_fuel_high }}</td>
+                <td>{{ predicted_results.red_prediction.team3.tele_fuel_high }}</td>
+                <td>{{ predicted_results.red_prediction.averages.tele_fuel_high }}</td>
+            </tr>
+            <tr>
+                <td>Climb</td>
+                <td>{{ predicted_results.red_prediction.team1.rope }}</td>
+                <td>{{ predicted_results.red_prediction.team2.rope }}</td>
+                <td>{{ predicted_results.red_prediction.team3.rope }}</td>
+                <td>{{ predicted_results.red_prediction.averages.rope }}</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>{{ predicted_results.red_prediction.team1.total_score }}</td>
+                <td>{{ predicted_results.red_prediction.team2.total_score }}</td>
+                <td>{{ predicted_results.red_prediction.team3.total_score }}</td>
+                <td>{{ predicted_results.red_prediction.averages.total_score }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock red_stats %}
+
+
+{% block blue_stats %}
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="overflow:auto;">
+        <h2>Blue Alliance</h2>
+    </div>
+
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+            <tr>
+                <th>Teams</th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.blue_prediction.team1.team_number %}">{{ predicted_results.blue_prediction.team1.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.blue_prediction.team2.team_number %}">{{ predicted_results.blue_prediction.team2.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.blue_prediction.team3.team_number %}">{{ predicted_results.blue_prediction.team3.team_number }}</a></th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Auto Gears</td>
+                <td>{{ predicted_results.blue_prediction.team1.auto_gears }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.auto_gears }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.auto_gears }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.auto_gears }}</td>
+            </tr>
+            <tr>
+                <td>Auto Fuel Low</td>
+                <td>{{ predicted_results.blue_prediction.team1.auto_fuel_low }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.auto_fuel_low }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.auto_fuel_low }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.auto_fuel_low }}</td>
+            </tr>
+            <tr>
+                <td>Auto Fuel High</td>
+                <td>{{ predicted_results.blue_prediction.team1.auto_fuel_high }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.auto_fuel_high }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.auto_fuel_high }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.auto_fuel_high }}</td>
+            </tr>
+            <tr>
+                <td>Auto Baseline</td>
+                <td>{{ predicted_results.blue_prediction.team1.baseline }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.baseline }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.baseline }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.baseline }}</td>
+            </tr>
+            <tr>
+                <td>Tele Gears</td>
+                <td>{{ predicted_results.blue_prediction.team1.tele_gears }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.tele_gears }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.tele_gears }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.tele_gears }}</td>
+            </tr>
+            <tr>
+                <td>Tele Fuel Low</td>
+                <td>{{ predicted_results.blue_prediction.team1.tele_fuel_low }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.tele_fuel_low }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.tele_fuel_low }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.tele_fuel_low }}</td>
+            </tr>
+            <tr>
+                <td>Tele Fuel High</td>
+                <td>{{ predicted_results.blue_prediction.team1.tele_fuel_high }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.tele_fuel_high }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.tele_fuel_high }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.tele_fuel_high }}</td>
+            </tr>
+            <tr>
+                <td>Climb</td>
+                <td>{{ predicted_results.blue_prediction.team1.rope }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.rope }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.rope }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.rope }}</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>{{ predicted_results.blue_prediction.team1.total_score }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.total_score }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.total_score }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.total_score }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock blue_stats %}

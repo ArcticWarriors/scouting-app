@@ -228,15 +228,15 @@ class BaseMatchPredictionView(TemplateView):
 
     def get_context_data(self, **kwargs):
 
-        match_model = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"])
+        match_model = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"], competition__code=kwargs["regional_code"])
 
         context = super(BaseMatchPredictionView, self).get_context_data(**kwargs)
         context['match_number'] = match_model.matchNumber
-        context['results'] = self.get_score_results(match_model)
+        context['predicted_results'] = self.get_score_results(match_model, kwargs["regional_code"])
 
         return context
     
-    def get_score_results(self, match_model):
+    def get_score_results(self, match_model, regional_code):
         raise NotImplementedError()
 
 

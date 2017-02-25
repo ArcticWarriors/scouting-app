@@ -298,20 +298,68 @@ class SingleTeamView2017(BaseSingleTeamView):
     def get_metrics(self, team):
         return get_team_metrics(team)
     
+
+def get_team_average_for_match_prediction(team, regional_code):
+    
+    output = team.scoreresult_set.filter(competition__code=regional_code).aggregate(
+        auto_fuel_high=Avg("fuel_score_hi_auto"),
+        auto_fuel_low=Avg("fuel_score_low_auto"),
+        auto_gears=Avg("gears_score_auto"),
+        tele_fuel_high=Avg("fuel_score_hi"),
+        tele_fuel_low=Avg("fuel_score_low"),
+        tele_gears=Avg("gears_score"),
+        baseline=Avg(Case(When(baseline=True, then=1),When(baseline=False, then=0))),
+        rope=Avg(Case(When(rope=True, then=1),When(rope=False, then=0))),
+        )
+    
+    output["team_number"] = team.teamNumber
+    
+    fuel_total = output['auto_fuel_high'] + \
+                 output['auto_fuel_low'] / 3.0 + \
+                 output['tele_fuel_high'] / 3.0 + \
+                 output['tele_fuel_low'] / 9.0
+    
+    output["fuel_total"] = fuel_total
+    output["total_score"] = fuel_total + \
+                              output['baseline'] * 5 + \
+                              output['rope'] * 50
+    
+    return output
+    
+    
+def get_alliance_average_for_match_prediction(team1, team2, team3, regional_code):
+    
+    team1_metrics = get_team_average_for_match_prediction(team1, regional_code)
+    team2_metrics = get_team_average_for_match_prediction(team2, regional_code)
+    team3_metrics = get_team_average_for_match_prediction(team3, regional_code)
+    
+    averages = {}
+    
+    for key in team1_metrics.keys():
+        averages[key] = float(team1_metrics[key]) + float(team2_metrics[key]) + float(team3_metrics[key]) 
+        
+    
+    output = {}
+    output['team1'] = team1_metrics
+    output['team2'] = team2_metrics
+    output['team3'] = team3_metrics
+    output['averages'] = averages
+    output['total_score'] = averages["total_score"]
+    output['kpa_bonus'] = "Yes" if averages["fuel_total"] >= 40 else "No"
+    output['rotor_bonus'] = "Yes"
+        
+    return output
     
 class MatchPredictionView2017(BaseMatchPredictionView):
     def __init__(self):
-        BaseMatchPredictionView.__init__(self, Match, 'BaseScouting/match_prediction.html')
+        BaseMatchPredictionView.__init__(self, Match, 'Scouting2017/match_prediction.html')
         
-    def get_score_results(self, match):
+    def get_score_results(self, match, regional_code):
         
         output = {}
-        output['red1'] = match.red1
-        output['red2'] = match.red2
-        output['red3'] = match.red3
-        output['blue1'] = match.blue1
-        output['blue2'] = match.blue2
-        output['blue3'] = match.blue3
+        
+        output['red_prediction'] = get_alliance_average_for_match_prediction(match.red1, match.red2, match.red3, regional_code)
+        output['blue_prediction'] = get_alliance_average_for_match_prediction(match.blue1, match.blue2, match.blue3, regional_code)
 
         return output
 
