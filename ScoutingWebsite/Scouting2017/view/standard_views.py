@@ -1,5 +1,6 @@
 from BaseScouting.views.base_views import BaseHomepageView, BaseTeamListView,\
-    BaseSingleMatchView, BaseMatchListView, BaseSingleTeamView, BaseMatchEntryView, BaseAddTeamPictureView
+    BaseSingleMatchView, BaseMatchListView, BaseSingleTeamView, BaseMatchEntryView, BaseAddTeamPictureView,\
+    BaseMatchPredictionView
 from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments
 from Scouting2017.model.models2017 import get_team_metrics, ScoreResult
 from django.db.models.aggregates import Avg, Sum
@@ -8,6 +9,174 @@ import math
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 import math,json
+
+
+def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
+    team1sr = None
+    team2sr = None
+    team3sr = None
+    
+    # TODO: there has to be a better way... but I'd rather not touch the DB
+    for sr in team1.scoreresult_set.all():
+        if sr.match.matchNumber == official_sr.official_match.matchNumber:
+            team1sr = sr
+            break
+    
+    for sr in team2.scoreresult_set.all():
+        if sr.match.matchNumber == official_sr.official_match.matchNumber:
+            team2sr = sr
+            break
+    
+    for sr in team3.scoreresult_set.all():
+        if sr.match.matchNumber == official_sr.official_match.matchNumber:
+            team3sr = sr
+            break
+        
+    warning_messages = []
+    error_messages = []
+
+    team_srs = [team1sr, team2sr, team3sr]
+    
+    auto_fuel_low_sum = 0
+    auto_fuel_high_sum = 0
+    tele_fuel_low_sum = 0
+    tele_fuel_high_sum = 0
+    
+    auto_gear_sum = 0
+    tele_gear_sum = 0
+    
+    climb_sum = 0
+    basline_sum = 0
+    
+    for sr in team_srs:
+        auto_fuel_low_sum += sr.fuel_score_low_auto
+        auto_fuel_high_sum += sr.fuel_score_hi_auto
+        tele_fuel_low_sum += sr.fuel_score_low
+        tele_fuel_high_sum += sr.fuel_score_hi
+        
+        auto_gear_sum += sr.gears_score_auto
+        tele_gear_sum += sr.gears_score
+        
+        climb_sum += 1 if sr.rope else 0
+        basline_sum += 1 if sr.baseline else 0
+        
+    ######################
+    # Fuel
+    ######################
+    if official_sr.autoFuelLow != auto_fuel_low_sum:
+        warning_messages.append((alliance_color + "Auto Low Fuel", official_sr.autoFuelLow, auto_fuel_low_sum))
+        
+    if official_sr.autoFuelHigh != auto_fuel_high_sum:
+        warning_messages.append((alliance_color + "Auto High Fuel", official_sr.autoFuelHigh, auto_fuel_high_sum))
+        
+    if official_sr.teleopFuelLow != tele_fuel_low_sum:
+        warning_messages.append((alliance_color + "Tele Low Fuel", official_sr.teleopFuelLow, tele_fuel_low_sum))
+        
+    if official_sr.teleopFuelHigh != tele_fuel_high_sum:
+        warning_messages.append((alliance_color + "Tele High Fuel", official_sr.teleopFuelHigh, tele_fuel_high_sum))
+        
+        
+    #######################
+    # Gears
+    #######################    
+    auto_rotors = 0
+    if auto_gear_sum >= 1:
+        auto_rotors += 1
+    if auto_gear_sum >= 3:
+        auto_rotors += 1
+        
+    tele_rotors = 0
+    if tele_gear_sum >= 1:
+        tele_rotors += 1
+    if tele_gear_sum >= 3:
+        tele_rotors += 1
+    if tele_gear_sum >= 7:
+        tele_rotors += 1
+    if tele_gear_sum >= 13:
+        tele_rotors += 1
+        
+    if official_sr.rotor1Auto == 1 and (auto_rotors >= 1) :
+        error_messages.append((alliance_color + "Auto Rotors", 1, auto_rotors))
+       
+    if official_sr.rotor2Auto == 1 and (auto_rotors >= 2) :
+        error_messages.append((alliance_color + "Auto Rotors", 2, auto_rotors))
+        
+    if len(error_messages) != 0:
+        print error_messages
+        
+    
+    #######################
+    # Other
+    #######################   
+    official_rope_sum = 0
+    if official_sr.touchpadNear:
+        official_rope_sum += 1
+    if official_sr.touchpadMiddle:
+        official_rope_sum += 1
+    if official_sr.touchpadFar:
+        official_rope_sum += 1
+        
+    official_baseline_sum = 0
+    if official_sr.robot1Auto:
+        official_baseline_sum += 1
+    if official_sr.robot2Auto:
+        official_baseline_sum += 1
+    if official_sr.robot3Auto:
+        official_baseline_sum += 1
+        
+    if official_rope_sum != climb_sum:
+        error_messages.append((alliance_color + "Climbing", official_rope_sum, climb_sum))
+        
+    if official_baseline_sum != basline_sum:
+        error_messages.append((alliance_color + "Baseline", official_baseline_sum, basline_sum))
+        
+    if len(error_messages) != 0:
+        print error_messages
+        
+    print warning_messages
+    print error_messages
+
+    return warning_messages, error_messages
+        
+        
+#     if (auto_fuel_low_sum / 3.0 + tele_fuel_low_sum) !=  official_sr.
+        
+#     print auto_fuel_low_sum, auto_fuel_high_sum, tele_fuel_low_sum, tele_fuel_high_sum
+
+
+def calculate_match_scouting_validity(match, official_match, official_match_srs):
+    
+    error_level = 0
+    warning_messages = []
+    error_messages = []
+    
+    if len(match.scoreresult_set.all()) != 6:
+        error_level = 2
+    elif len(official_match_srs) == 2:
+        red_official = official_match_srs[0]
+        blue_official = official_match_srs[1]
+        
+        red_warning, red_error = validate_alliance_score("Red", match.red1, match.red2, match.red3, red_official)
+        blue_warning, blue_error = validate_alliance_score("Blue", match.blue1, match.blue2, match.blue3, blue_official)
+        
+        warning_messages.extend(red_warning)
+        warning_messages.extend(blue_warning)
+        error_messages.extend(red_error)
+        error_messages.extend(blue_error)
+        
+        if len(error_messages) != 0:
+            error_level = 2
+        elif len(warning_messages) != 0:
+            error_level = 1
+            
+        
+#         print match.red1
+    else:
+        error_level = 1
+                
+        
+    
+    return error_level, warning_messages, error_messages
 
 class HomepageView2017(BaseHomepageView):
  
@@ -53,10 +222,55 @@ class SingleMatchView2017(BaseSingleMatchView):
 
     def get_metrics(self, score_result):
         return []
+    
+    def get_match_validation(self, match):
+
+        official_match = OfficialMatch.objects.get(matchNumber=match.matchNumber)
+        official_sr_search = official_match.officialmatchscoreresult_set.all()
+        if len(official_sr_search) == 2:
+            _, warnings, errors = calculate_match_scouting_validity(match, official_match, official_sr_search)
+
+            return True, warnings, errors
+
+        return False, [], []
 
 class MatchListView2017(BaseMatchListView):
     def __init__(self):
-        BaseMatchListView.__init__(self, Match, OfficialMatch)
+        BaseMatchListView.__init__(self, Match)
+    
+    def append_scouted_info(self, match, regional_code):
+        
+        output = match
+        
+        output.match_error_level = 0
+        output.match_error_warning_messages = []
+        output.match_error_error_messages = []
+        output.winning_alliance = "Unofficial"
+        output.redScore = "Unknown"
+        output.blueScore = "Unknown"
+        
+        
+        official_match_search = OfficialMatch.objects.filter(competition__code=regional_code, matchNumber=match.matchNumber)
+        if len(official_match_search) == 1:
+            official_match = official_match_search[0]
+            official_sr_search = official_match.officialmatchscoreresult_set.all()
+            if len(official_sr_search) == 2:
+                red_score = official_sr_search[0].totalPoints
+                blue_score = official_sr_search[1].totalPoints
+                
+                output.redScore = red_score
+                output.blueScore = blue_score
+                
+                if red_score > blue_score:
+                    output.winning_alliance = "Red"
+                elif blue_score > red_score:
+                    output.winning_alliance = "Blue"
+                else:
+                    output.winning_alliance = "Tie"
+                
+            output.match_error_level, output.match_error_warning_messages, output.match_error_error_messages = calculate_match_scouting_validity(match, official_match, official_sr_search)
+
+        return output
 
 class SingleTeamView2017(BaseSingleTeamView):
 
@@ -83,6 +297,24 @@ class SingleTeamView2017(BaseSingleTeamView):
         
     def get_metrics(self, team):
         return get_team_metrics(team)
+    
+    
+class MatchPredictionView2017(BaseMatchPredictionView):
+    def __init__(self):
+        BaseMatchPredictionView.__init__(self, Match, 'BaseScouting/match_prediction.html')
+        
+    def get_score_results(self, match):
+        
+        output = {}
+        output['red1'] = match.red1
+        output['red2'] = match.red2
+        output['red3'] = match.red3
+        output['blue1'] = match.blue1
+        output['blue2'] = match.blue2
+        output['blue3'] = match.blue3
+
+        return output
+
 
 class MatchEntryView2017(BaseMatchEntryView):
     def __init__(self):

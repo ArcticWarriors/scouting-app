@@ -97,10 +97,10 @@ class GenGraphView2016(BaseGenGraphView):
         BaseGenGraphView.__init__(self, Team)
 
 
-class OfficialMatchView2016(BaseOfficialMatchView):
+class OfficialMatchView2016(BaseMatchPredictionView):
 
     def __init__(self):
-        BaseOfficialMatchView.__init__(self, OfficialMatch, 'Scouting2016/official_match.html')
+        BaseMatchPredictionView.__init__(self, OfficialMatch, 'Scouting2016/official_match.html')
 
     def __get_sorted_defense_stats(self, official_score_result):
         results = {}

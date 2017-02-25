@@ -144,21 +144,34 @@ class BaseSingleTeamView(TemplateView):
 
 class BaseMatchListView(TemplateView):
 
-    def __init__(self, match_model, official_match_model, template_name='BaseScouting/match_list.html'):
+    def __init__(self, match_model, template_name='BaseScouting/match_list.html'):
         self.match_model = match_model
-        self.official_match_model = official_match_model
         self.template_name = template_name
 
     def get_context_data(self, **kwargs):
         matches = self.match_model.objects.filter(competition__code=kwargs["regional_code"])
-        scouted_numbers = [match.matchNumber for match in matches]
-        unscouted_matches = self.official_match_model.objects.filter(competition__code=kwargs["regional_code"]).exclude(matchNumber__in=scouted_numbers)
+
+        scouted_matches = []
+        unscouted_matches = []
+
+        for match in matches:
+            srs = match.scoreresult_set.all()
+            if len(srs) == 0:
+                unscouted_matches.append(match)
+            else:
+                scouted_matches.append(self.append_scouted_info(match, kwargs["regional_code"]))
 
         context = super(BaseMatchListView, self).get_context_data(**kwargs)
-        context['scouted_matches'] = matches
+        context['scouted_matches'] = scouted_matches
         context['unscouted_matches'] = unscouted_matches
 
         return context
+    
+    def append_scouted_info(self, match, regional_code):
+        
+        output = match
+        
+        return output
 
 class BaseSingleMatchView(TemplateView):
     """
@@ -179,6 +192,12 @@ class BaseSingleMatchView(TemplateView):
         context = super(BaseSingleMatchView, self).get_context_data(**kwargs)
         context['match'] = the_match
         context['score_result_list'] = [sr for sr in the_match.scoreresult_set.all()]
+        
+        has_official_data, warnings, errors = self.get_match_validation(the_match)
+        context['official_result_warnings'] = warnings
+        context['official_result_errors'] = errors 
+        context['has_official_data'] = has_official_data
+        print context
 
         metrics = []
         for sr in the_match.scoreresult_set.all():
@@ -186,9 +205,13 @@ class BaseSingleMatchView(TemplateView):
         context['metrics'] = metrics
 
         return context
+    
+    def get_match_validation(self, match):
+        raise NotImplementedError()
+        
 
 
-class BaseOfficialMatchView(TemplateView):
+class BaseMatchPredictionView(TemplateView):
     """
     This page is displayed when a match which has not happened yet would be requested
     the page is useful for upcoming matches, as it can display which defenses each ALLIANCE
@@ -199,19 +222,22 @@ class BaseOfficialMatchView(TemplateView):
     @param match_number is the match which is being predicted.
     """
 
-    def __init__(self, official_match_model, template_name):
-        self.official_match_model = official_match_model
+    def __init__(self, match_model, template_name):
+        self.match_model = match_model
         self.template_name = template_name
 
     def get_context_data(self, **kwargs):
 
-        official_match = get_object_or_404(self.official_match_model, matchNumber=kwargs["match_number"])
+        match_model = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"])
 
-        context = super(BaseOfficialMatchView, self).get_context_data(**kwargs)
-        context['match_number'] = official_match.matchNumber
-        context['results'] = self.get_score_results(official_match)
+        context = super(BaseMatchPredictionView, self).get_context_data(**kwargs)
+        context['match_number'] = match_model.matchNumber
+        context['results'] = self.get_score_results(match_model)
 
         return context
+    
+    def get_score_results(self, match_model):
+        raise NotImplementedError()
 
 
 class BaseGenGraphView(View):

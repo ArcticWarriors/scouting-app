@@ -1,0 +1,40 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Match {{ match_number }} - Arctic Warriors Scouting</title>
+    
+    <style>
+        h2 {
+            text-decoration: underline
+        }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <table border="1">
+      <tr><th scope="row">Red Prediction</th><td>{{ results.red_results.predict }}</td></tr>
+      <tr><th scope="row">Blue Prediction</th><td>{{ results.blue_results.predict  }}</td></tr>
+    </table>
+
+    <h1> Prediction for Match {{match_number}}</h1>
+    <h2>Red Alliance</h2>
+    <ul>
+        <li><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code results.red1.teamNumber %}">{{ results.red1.teamNumber }}</a></li>
+        <li><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code results.red2.teamNumber %}">{{ results.red2.teamNumber }}</a></li>
+        <li><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code results.red3.teamNumber %}">{{ results.red3.teamNumber }}</a></li>
+    </ul>
+    <br>
+    {% block red_stats %}{% endblock red_stats %}
+    <br>
+    
+    <h2>Blue Alliance</h2>
+    <ul>
+        <li><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code results.blue1.teamNumber %}">{{ results.blue1.teamNumber }}</a></li>
+        <li><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code results.blue2.teamNumber %}">{{ results.blue2.teamNumber }}</a></li>
+        <li><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code results.blue3.teamNumber %}">{{ results.blue3.teamNumber }}</a></li>
+    </ul>
+    <br>
+    {% block blue_stats %}{% endblock blue_stats %}
+{% endblock content %}
+
