@@ -6,90 +6,98 @@
 <div class = "row">
     
     <div class="col-md-6">
-    <h2>Gears</h2>
-<table class="table">
-        <thead>
-            <th scope="col" style height = 80>Autonomous</th>
-            <th scope="col">Teleop</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ metrics.auto_gears__avg }}</td>
-                <td>{{ metrics.tele_gears__avg }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="col-md-6">
-    <h2>Fuel</h2>
-    <table class="table">
-        <thead>
-            <th></th>
-            <th scope="col" style height = 80>High Scores</th>
-            <th scope="col">High Misses</th>
-            <th scope="col">Low Scores</th>
-            <th scope="col">Low Misses</th>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Auto</th>
-                <td>{{ metrics.auto_fuel_high_score__avg }}</td>
-                <td>{{ metrics.auto_fuel_high_misses__avg }}</td>
-                <td>{{ metrics.auto_fuel_low_score__avg }}</td>
-                <td>{{ metrics.auto_fuel_low_misses__avg }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Teleop</th>
-                <td>{{ metrics.tele_fuel_high_score__avg }}</td>
-                <td>{{ metrics.tele_fuel_high_misses__avg }}</td>
-                <td>{{ metrics.tele_fuel_low_score__avg }}</td>
-                <td>{{ metrics.tele_fuel_low_misses__avg }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h2>Gears</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" height = 80>Autonomous</th>
+                    <th scope="col">Teleop</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ metrics.auto_gears__avg }}</td>
+                    <td>{{ metrics.tele_gears__avg }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    </div>
-    <div class = "row">
+
     <div class="col-md-6">
-    <h2>Climb/Cross</h2>
-<table class="table">
-        <thead>
-            <th scope="col">Baseline Cross</th>
-            <th scope="col">Scale</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ metrics.baseline__avg }}</td>
-                <td>{{ metrics.rope__avg }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h2>Fuel</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col" style height = 80>High Scores</th>
+                    <th scope="col">High Misses</th>
+                    <th scope="col">Low Scores</th>
+                    <th scope="col">Low Misses</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Auto</th>
+                    <td>{{ metrics.auto_fuel_high_score__avg }}</td>
+                    <td>{{ metrics.auto_fuel_high_misses__avg }}</td>
+                    <td>{{ metrics.auto_fuel_low_score__avg }}</td>
+                    <td>{{ metrics.auto_fuel_low_misses__avg }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Teleop</th>
+                    <td>{{ metrics.tele_fuel_high_score__avg }}</td>
+                    <td>{{ metrics.tele_fuel_high_misses__avg }}</td>
+                    <td>{{ metrics.tele_fuel_low_score__avg }}</td>
+                    <td>{{ metrics.tele_fuel_low_misses__avg }}</td>
+                </tr>
+            </tbody>
+        </table>
+     </div>
+</div>
+
+
+<div class = "row">
+    <div class="col-md-6">
+        <h2>Climb/Cross</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Baseline Cross</th>
+                    <th scope="col">Scale</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ metrics.baseline__avg }}</td>
+                    <td>{{ metrics.rope__avg }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class ="col-md-6"></div>
-        <div class ="col-md-6">
+    <div class ="col-md-6">
         <h2>Fouls</h2>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th scope="row">Foul</th>
-                        <td>{{ metrics.foul__sum }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Tech Foul</th>
-                        <td>{{ metrics.tech_foul__sum }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Yellow Card</th>
-                        <td>{{ metrics.yellow_card__sum }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Red Card</th>
-                        <td>{{ metrics.red_card__sum }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">Foul</th>
+                    <td>{{ metrics.foul__sum }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Tech Foul</th>
+                    <td>{{ metrics.tech_foul__sum }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Yellow Card</th>
+                    <td>{{ metrics.yellow_card__sum }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Red Card</th>
+                    <td>{{ metrics.red_card__sum }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
 {% endblock robot_stats %}
 
 {% block fouls %}{% endblock fouls %}

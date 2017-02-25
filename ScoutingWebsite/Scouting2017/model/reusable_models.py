@@ -4,6 +4,7 @@ Created on Jan 15, 2017
 @author: PJ
 '''
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class ScoreResultMetric:
@@ -84,3 +85,11 @@ class OfficialMatch(models.Model):
     competition = models.ForeignKey(Competition)
 
     hasOfficialData = models.BooleanField(default=False)
+    
+    
+class Scout(models.Model):
+    
+    user = models.OneToOneField(User)
+    bookmarked_teams = models.ManyToManyField(Team, related_name="bookmarks")
+    do_not_pick_teams = models.ManyToManyField(Team, related_name="do_not_picks")
+    

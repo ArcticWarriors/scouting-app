@@ -70,6 +70,44 @@ td{
             }
         }
     }
+    
+    function bookmark(team_number, bookmark_type)
+    {
+        $.post("{% url 'Scouting2017:update_bookmark' regional_code %}", 
+            {
+                csrfmiddlewaretoken: '{{ csrf_token}}' ,
+                team_number: team_number,
+                bookmark_type: bookmark_type
+            },
+            function(result)
+            {
+                console.log(result);
+                
+                if(bookmark_type == "bookmark")
+                {
+                    if(result.is_bookmarked)
+                    {
+                        document.getElementById("bookmark-" + team_number).src="{%static 'Scouting2017/Icons/star_bookmarked.png' %}"
+                    }
+                    else
+                    {
+                        document.getElementById("bookmark-" + team_number).src="{%static 'Scouting2017/Icons/star_not_bookmarked.png' %}"
+                    }
+                }
+                else
+                {
+                     if(result.is_bookmarked)
+                     {
+                         document.getElementById("dnp-bookmark-" + team_number).src="{%static 'Scouting2017/Icons/dnp_bookmarked.png' %}"
+                     }
+                     else
+                     {
+                         document.getElementById("dnp-bookmark-" + team_number).src="{%static 'Scouting2017/Icons/dnp_not_bookmarked.png' %}"
+                     }
+                }
+            }  
+        );
+    }
 
 </script>
 </head>
@@ -77,31 +115,47 @@ td{
     <div class="fluid_container">
         <table border = "1" class="table">
             <thead>
-                <th> Team # </th>
-                <th> Skills </th>
-                <th> Bookmarked? </th>
-
-                <th> Auto Gears </th>
-                <th> Auto High Fuel </th>
-                <th> Auto Low Fuel </th>
-                
-                <th> Tele Gears Scored </th>
-                <th> Tele High Fuel </th>
-                <th> Tele Low Fuel </th>
-                
-                <th> Rope Percentage </th>
+                <tr>
+                    <th> Team # </th>
+                    <th> Skills </th>
+                    {% if user.is_authenticated %}<th> Bookmarks </th> {% endif %}
+                    
+                    <th> Auto Gears </th>
+                    <th> Auto High Fuel </th>
+                    <th> Auto Low Fuel </th>
+                    
+                    <th> Tele Gears Scored </th>
+                    <th> Tele High Fuel </th>
+                    <th> Tele Low Fuel </th>
+                    
+                    <th> Rope Percentage </th>
+                </tr>
             </thead>
             <tbody>
                 {% for team in teams %}
                 <tr>
                     <td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
                     <td>
-                        <img data-gearz="{{team.skills.gear_z}}" src="{%static 'Scouting2017/Icons/gear_yellow.png' %}" style = "width:50px;"> </img>
-                        <img data-fuelz="{{team.skills.fuel_z}}" src="{%static 'Scouting2017/Icons/fuel_yellow.png' %}" style = "width:50px;"> </img>
-                        <img data-ropez="{{team.skills.rope_z}}" src="{%static 'Scouting2017/Icons/rope_yellow.png' %}" style = "height:50px;"> </img>
+                        <img data-gearz="{{team.skills.gear_z}}" src="{%static 'Scouting2017/Icons/gear_yellow.png' %}" style = "width:50px;" />
+                        <img data-fuelz="{{team.skills.fuel_z}}" src="{%static 'Scouting2017/Icons/fuel_yellow.png' %}" style = "width:50px;" />
+                        <img data-ropez="{{team.skills.rope_z}}" src="{%static 'Scouting2017/Icons/rope_yellow.png' %}" style = "height:50px;" />
                             
                     </td>
-                    <td> <img src="{% static 'Scouting2017/Icons/star.png' %}" style="width:50px;"> </img> </td>
+                    {% if user.is_authenticated %}
+                    <td> 
+                        {% if team.isBookmarked %}
+                        <input type="image" id="bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/star_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "bookmark");'>
+                        {% else %}
+                        <input type="image" id="bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/star_not_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "bookmark");'>
+                        {% endif %} 
+                        <br>
+                        {% if team.isDoNotPick %}
+                        <input type="image" id="dnp-bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/dnp_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "do_not_pick");'>
+                        {% else %}
+                        <input type="image" id="dnp-bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/dnp_not_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "do_not_pick");'>
+                        {% endif %} 
+                    </td>
+                    {% endif %}
                     <td> {{ team.metrics.auto_gears__avg }} </td>
                     <td> {{ team.metrics.auto_fuel_high_score__avg }} </td>
                     <td> {{ team.metrics.auto_fuel_low_score__avg }} </td>
@@ -115,16 +169,16 @@ td{
                 </tr>
                 {% endfor %}
                 <tr class="bold">
-                <td> Avg </td>
-                <td> - </td>
-                <td> - </td>
-                <td> {{stats.fuel_hi_avg|floatformat:2}} </td>
-                <td> {{stats.fuel_low_avg|floatformat:2}} </td>
-                <td> {{stats.fuel_hi_auto_avg|floatformat:2}} </td>
-                <td> {{stats.fuel_low_auto_avg|floatformat:2}} </td>
-                <td> {{stats.fuel_avg|floatformat:2}} </td>
-                <td> {{stats.gear_avg|floatformat:2}} </td>
-                <td> {{stats.rope_avg|floatformat:2}}% </td>
+                    <td> Avg </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> {{stats.fuel_hi_avg|floatformat:2}} </td>
+                    <td> {{stats.fuel_low_avg|floatformat:2}} </td>
+                    <td> {{stats.fuel_hi_auto_avg|floatformat:2}} </td>
+                    <td> {{stats.fuel_low_auto_avg|floatformat:2}} </td>
+                    <td> {{stats.fuel_avg|floatformat:2}} </td>
+                    <td> {{stats.gear_avg|floatformat:2}} </td>
+                    <td> {{stats.rope_avg|floatformat:2}}% </td>
                 </tr>
             </tbody>
         </table>

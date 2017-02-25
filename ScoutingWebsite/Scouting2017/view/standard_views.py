@@ -1,17 +1,22 @@
 from BaseScouting.views.base_views import BaseHomepageView, BaseTeamListView,\
     BaseSingleMatchView, BaseMatchListView, BaseSingleTeamView, BaseMatchEntryView, BaseAddTeamPictureView,\
     BaseMatchPredictionView
-from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments
+from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments,\
+    Scout
 from Scouting2017.model.models2017 import ScoreResult, get_team_metrics
 from django.db.models.aggregates import Avg, Sum
 from django.db.models.expressions import Case, When
 from django.db.models import Q, F
 import math
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponse,\
+    HttpResponseNotFound
 from django.core.urlresolvers import reverse
 import math,json
 from django.views.generic.base import TemplateView
 import operator
+from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 
 def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
@@ -204,12 +209,26 @@ class TeamListView2017(BaseTeamListView):
         return get_team_metrics(team)
     
     def get_context_data(self, **kwargs):
+        
+        user = self.request.user
+        
         context = BaseTeamListView.get_context_data(self, **kwargs)
         reg_code = kwargs['regional_code']
 #         teams_at_competition = TeamCompetesIn.objects.filter(competition__code=reg_code)
         stats = get_statistics(reg_code, context['teams'])
         context['stats'] = stats[0]
         context['skills'] = stats[1]
+        
+        for team in context['teams']:
+            team.bookmarkCount = team.bookmarks.count()
+            team.dnpCount = team.do_not_picks.count()
+            
+            if user != None and user.is_authenticated():
+                team.isBookmarked = team in user.scout.bookmarked_teams.all()
+                team.isDoNotPick = team in user.scout.do_not_pick_teams.all()
+#             team.isBookmarked = user.scou
+        
+        
         return context
         
 class AddTeamPictureView2017(BaseAddTeamPictureView):
@@ -420,6 +439,36 @@ class PickListView2017(TemplateView):
         
         return context
 
+
+def update_bookmark(request, **kwargs):
+    
+    if request.user == None or not request.user.is_authenticated():
+        return HttpResponseNotFound('<h1>Must be logged in!</h1>')  
+    
+    user = request.user
+    team = Team.objects.get(teamNumber=request.POST['team_number'])
+    bookmark_type = request.POST["bookmark_type"]
+    
+    if bookmark_type == "bookmark":
+        is_bookmarked = team in user.scout.bookmarked_teams.all()
+        
+        if is_bookmarked:
+            user.scout.bookmarked_teams.remove(team)
+        else:
+            user.scout.bookmarked_teams.add(team)
+    elif bookmark_type == "do_not_pick":
+        is_bookmarked = team in user.scout.do_not_pick_teams.all()
+        
+        if is_bookmarked:
+            user.scout.do_not_pick_teams.remove(team)
+        else:
+            user.scout.do_not_pick_teams.add(team)
+    else:
+        print "unknown bookmark type %s" % bookmark_type
+    
+    response = {'is_bookmarked': not is_bookmarked}
+    
+    return HttpResponse(json.dumps(response), content_type='application/json')
     
 '''
 The get_statistics function() returns two lists of metrics.
