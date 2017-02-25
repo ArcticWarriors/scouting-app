@@ -12,24 +12,25 @@ from django.db.models.expressions import Case, When
 
 
 def get_team_metrics(team):
-    metrics = team.scoreresult_set.aggregate(Avg("fuel_score_hi"),
-                                             Avg("fuel_score_low"),
-                                             Avg("fuel_score_hi_auto"),
-                                             Avg("fuel_score_low_auto"),
-                                             Avg("gears_score"),
-                                             Avg("gears_score_auto"),
-                                             Avg("fuel_shot_hi"),
-                                             Avg("fuel_shot_low"),
-                                             Avg("fuel_score_hi_auto"),
-                                             Avg("fuel_score_low_auto"),
-                                             Avg("fuel_shot_hi_auto"),
-                                             Avg("fuel_shot_low_auto"),
+    metrics = team.scoreresult_set.aggregate(Avg("auto_fuel_high_score"),
+                                             Avg("auto_fuel_high_shots"),
+                                             Avg("auto_fuel_low_score"),
+                                             Avg("auto_fuel_low_shots"),
+                                             Avg("auto_gears"),
+                                             
+                                             Avg("tele_fuel_high_score"),
+                                             Avg("tele_fuel_high_shots"),
+                                             Avg("tele_fuel_low_score"),
+                                             Avg("tele_fuel_low_shots"),
+                                             Avg("tele_gears"),
+                                             
                                              Sum("foul"),
                                              Sum("tech_foul"),
                                              Sum("yellow_card"),
                                              Sum("red_card"),
-                                             baseline__avg = Avg(Case(When(baseline=True, then=1),When(baseline=False, then=0))),
+                                             
                                              rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))),
+                                             baseline__avg=Avg(Case(When(auto_baseline=True, then=1),When(auto_baseline=False, then=0))),
                                              )
                                            
                                             
@@ -61,9 +62,9 @@ class TeamPitScouting(models.Model):
     AllanceCompetent = models.CharField(max_length=1000, default="no")
     CompetnetConfident = models.CharField(max_length=1000, default="no")
     Competitions = models.CharField(max_length=1000, default="no")
-    Random = models.CharField(max_length=1000)   
-              
-    
+    Random = models.CharField(max_length=1000)
+
+
 class OfficialMatchScoreResult(models.Model):
 
     official_match = models.ForeignKey(OfficialMatch)
@@ -108,15 +109,25 @@ class ScoreResult(models.Model):
     match = models.ForeignKey(Match)
     competition = models.ForeignKey(Competition)
     
+    # Auto
+    auto_gears = models.IntegerField(default=0)
+    auto_fuel_high_shots = models.IntegerField(default=0)
+    auto_fuel_high_score = models.IntegerField(default=0)
+    auto_fuel_low_shots = models.IntegerField(default=0)
+    auto_fuel_low_score = models.IntegerField(default=0)
+    auto_baseline = models.BooleanField(default=False)
+    
     # Teleop
-    gears_score = models.IntegerField(default=0)
-    fuel_shot_hi = models.IntegerField(default=0)
-    fuel_shot_low = models.IntegerField(default=0)
-    fuel_score_hi = models.IntegerField(default=0)
-    fuel_score_low = models.IntegerField(default=0)
+    tele_gears = models.IntegerField(default=0)
+    tele_fuel_high_shots = models.IntegerField(default=0)
+    tele_fuel_high_score = models.IntegerField(default=0)
+    tele_fuel_low_shots = models.IntegerField(default=0)
+    tele_fuel_low_score = models.IntegerField(default=0)
+    
+    # Endgame
     rope = models.BooleanField(default=False)
-    hopper = models.BooleanField(default=False)
-#     defensive = models.BooleanField(default=False)
+    
+    hoppers_dumped = models.BooleanField(default=False)
     
     # Fouls
     tech_foul = models.IntegerField(default=0)
@@ -124,42 +135,27 @@ class ScoreResult(models.Model):
     red_card = models.BooleanField(default=False)
     yellow_card = models.BooleanField(default=False)
     
-    # Auto
-    fuel_shot_hi_auto = models.IntegerField(default=0)
-    fuel_shot_low_auto = models.IntegerField(default=0)
-    fuel_score_hi_auto = models.IntegerField(default=0)
-    fuel_score_low_auto = models.IntegerField(default=0)
-    gears_score_auto = models.IntegerField(default=0)
-    baseline = models.BooleanField(default=False)
-    #scored_gear_in_auto = models.BooleanField(default=False)
-    
     #collecting
-    ground_fuel = models.BooleanField(default=False)
-    ground_gear = models.BooleanField(default=False)
-    #stats
+    gathered_fuel_from_ground = models.BooleanField(default=False)
+    gathered_gear_from_ground = models.BooleanField(default=False)
     
 
     @staticmethod
     def get_fields():
 
         output = {}
-        
-        # Auto 
-        
-        # Fuel
-        output['fuel_score_hi'] = ScoreResultMetric ('fuel_score_hi', 'High Fuel Scored', 0, "Average")
-        output['fuel_score_low'] = ScoreResultMetric ('fuel_score_low', 'Low Fuel Scored', 0, "Average")
-        output['gears_score'] = ScoreResultMetric ('gears_score', 'Gears Scored', 0, "Average")
 
         return output
 
     def __str__(self):
-        output = "Score Result:\n"
+        output = "Score Result:{"
 
         attributes = sorted(self.get_fields().keys())
         for attr_name in attributes:
             value = getattr(self, attr_name)
-            output += "  {0:25} = {1}\n".format(attr_name, value)
+            output += "{0}: {1}".format(attr_name, value)
+            
+        output += "}"
 
         return output
 

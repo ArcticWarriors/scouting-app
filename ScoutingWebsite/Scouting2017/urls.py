@@ -28,7 +28,7 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/upload_image$', standard_views.AddTeamPictureView2017.as_view(), name = 'upload_image'),
                
                # User Auth
-               url(r'^(?P<regional_code>\w+)/show_login/$', user_auth.show_login, name='show_login'),
+               url(r'^(?P<regional_code>\w+)/show_login$', user_auth.show_login, name='show_login'),
                url(r'^(?P<regional_code>\w+)/log_user_out$', user_auth.log_user_out, name='log_user_out'),
                url(r'^(?P<regional_code>\w+)/auth_login$', user_auth.auth_login, name='auth_login'),
 

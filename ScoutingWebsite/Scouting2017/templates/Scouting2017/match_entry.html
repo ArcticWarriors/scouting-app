@@ -10,20 +10,33 @@
 	
 	<script type="text/template" id="row-template"> 
 		<tr>
-			<td><input type="number" id = "teamNumber" name="teamNumber-__i__" value=0 style="text-align:center;"></td>
-			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" value=0 style="text-align:center;"></td>
-			<td style="text-align:center;"><input type="checkbox" id = "autoBaseline" name="autoBaseline-__i__" ></td>			
-			<td><input type="number" id = "highFuelShot" name="highFuelShot-__i__" value=0 style="text-align:center;"></td>
-			<td ><input type="number" id = "lowFuelShot" name="lowFuelShot-__i__" value=0 style="text-align:center;"></td>
-			<td ><input type="number" id = "highFuelScore" name="highFuelScore-__i__" value=0 style="text-align:center;"></td>	
-			<td ><input type="number" id = "lowFuelScore" name="lowFuelScore-__i__" value=0 style="text-align:center;"></td>
-			<td ><input type="number" id = "autoGear" name="gearScore-__i__" value=0 style="text-align:center;"></td>
+			// Match Info
+			<td><input type="number" id = "teamNumber" name="teamNumber-__i__" value=174 style="text-align:center;"></td>
+			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" value=5 style="text-align:center;"></td>
+
+			// Auto
+			<td style="text-align:center;"><input type="checkbox" id = "autoBaseline" name="autoBaseline-__i__" ></td>		
+			<td><input type="number" id = "autoGears" name="autoGears-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "autoFuelHigh" name="autoFuelHigh-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "autoFuelLow" name="autoFuelLow-__i__" value=0 style="text-align:center;"></td>
+
+			// Tele
+			<td><input type="number" id = "teleGears" name="teleGears-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "teleFuelHighShot" name="teleFuelHighShot-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "teleFuelLowShot" name="teleFuelLowShot-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "teleFuelHighScore" name="teleFuelHighScore-__i__" value=0 style="text-align:center;"></td>	
+			<td><input type="number" id = "teleFuelLowScore" name="teleFuelLowScore-__i__" value=0 style="text-align:center;"></td>
+
+			// Endgame
 			<td style="text-align:center;"><input type="checkbox" id = "ropeClimbed" name="ropeClimbed-__i__"></td>
+
+			// General
 			<td style="text-align:center;"><input type="checkbox" id = "defesnive" name="defesnive-__i__"></td>
-			<td style="text-align:center;"><input type="checkbox" id = "autoGear" name="autoGear-__i__"></td>
 			<td><textarea rows="1" cols="50"></textarea></td>
-			<input type="hidden" id="rowCounter" name="rowCounter" value=__i__ style="text-align:center;">
+
+			// Maintenance
 			<td><button type="button" class="btn btn-default" onclick="deleteRow(this)">Delete</button></td>
+			<input type="hidden" id="rowCounter" name="rowCounter" value=__i__ style="text-align:center;">
 		</tr>
 	</script>
 	
@@ -57,18 +70,30 @@
 		<table id="entry-table" class="table" style="margin: 0;">
 			<thead>
 				<tr>
+						<!-- Match Info  -->
 						<th style="text-align:center;">Team Number</th>
 						<th style="text-align:center;">Match Number</th>
+						
+						<!-- Auto  -->
 						<th style="text-align:center;">Auto Baseline</th>
+						<th style="text-align:center;">Auto Gears</th>
+						<th style="text-align:center;">Auto Fuel High</th>
+						<th style="text-align:center;">Auto Fuel Low</th>
+						
+						<!-- Tele  -->
 						<th style="text-align:center;">High Fuel Shot</th>
 						<th style="text-align:center;">Low Fuel Shot</th>
 						<th style="text-align:center;">High Fuel Score</th>
 						<th style="text-align:center;">Low Fuel Score</th>
-						<th style="text-align:center;">Gear Score</th>
-						<th style="text-align:center;">Touch Pad</th>
-						<th style="text-align:center;">Defensive</th>
-						<th style="text-align:center;">Auto Gear</th>
+
+						<!-- Endgame -->
+						<th style="text-align:center;">Climbing</th>
+						
+						<!-- General -->
+						<th style="text-align:center;">Played Defense</th>
 						<th style="text-align:center;">Notes</th>
+						
+						<!-- Maintenance -->
 						<th style="text-align:center;">Delete</th>
 					</tr>
 				</thead>

@@ -4,8 +4,8 @@
 {% block robot_stats %}
 
 <div class = "row">
-	
-	<div class="col-md-6">
+    
+    <div class="col-md-6">
     <h2>Gears</h2>
 <table class="table">
         <thead>
@@ -14,8 +14,8 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{ metrics.gears_score_auto__avg }}</td>
-                <td>{{ metrics.gears_score__avg }}</td>
+                <td>{{ metrics.auto_gears__avg }}</td>
+                <td>{{ metrics.tele_gears__avg }}</td>
             </tr>
         </tbody>
     </table>
@@ -33,25 +33,25 @@
         <tbody>
             <tr>
                 <th scope="row">Auto</th>
-                <td>{{ metrics.fuel_score_hi_auto__avg }}</td>
-                <td>{{ metrics.fuel_shot_hi_missed_auto__avg }}</td>
-                <td>{{ metrics.fuel_score_low_auto__avg }}</td>
-                <td>{{ metrics.fuel_shot_low_missed_auto__avg }}</td>
+                <td>{{ metrics.auto_fuel_high_score__avg }}</td>
+                <td>{{ metrics.auto_fuel_high_misses__avg }}</td>
+                <td>{{ metrics.auto_fuel_low_score__avg }}</td>
+                <td>{{ metrics.auto_fuel_low_misses__avg }}</td>
             </tr>
             <tr>
                 <th scope="row">Teleop</th>
-                <td>{{ metrics.fuel_score_hi__avg }}</td>
-                <td>{{ metrics.fuel_shot_hi_missed__avg }}</td>
-                <td>{{ metrics.fuel_score_low__avg }}</td>
-                <td>{{ metrics.fuel_shot_low_missed__avg }}</td>
+                <td>{{ metrics.tele_fuel_high_score__avg }}</td>
+                <td>{{ metrics.tele_fuel_high_misses__avg }}</td>
+                <td>{{ metrics.tele_fuel_low_score__avg }}</td>
+                <td>{{ metrics.tele_fuel_low_misses__avg }}</td>
             </tr>
         </tbody>
     </table>
     </div>
-	</div>
-	<div class = "row">
-	<div class="col-md-6">
-	<h2>Climb/Cross</h2>
+    </div>
+    <div class = "row">
+    <div class="col-md-6">
+    <h2>Climb/Cross</h2>
 <table class="table">
         <thead>
             <th scope="col">Baseline Cross</th>
@@ -64,32 +64,32 @@
             </tr>
         </tbody>
     </table>
-	</div>
-	<div class ="col-md-6"></div>
-		<div class ="col-md-6">
-		<h2>Fouls</h2>
-			<table class="table">
-				<tbody>
-					<tr>
-						<th scope="row">Foul</th>
-						<td>{{ metrics.foul__sum }}</td>
-					</tr>
-					<tr>
-						<th scope="row">Tech Foul</th>
-						<td>{{ metrics.tech_foul__sum }}</td>
-					</tr>
-					<tr>
-						<th scope="row">Yellow Card</th>
-						<td>{{ metrics.yellow_card__sum }}</td>
-					</tr>
-					<tr>
-						<th scope="row">Red Card</th>
-						<td>{{ metrics.red_card__sum }}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+    </div>
+    <div class ="col-md-6"></div>
+        <div class ="col-md-6">
+        <h2>Fouls</h2>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Foul</th>
+                        <td>{{ metrics.foul__sum }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tech Foul</th>
+                        <td>{{ metrics.tech_foul__sum }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Yellow Card</th>
+                        <td>{{ metrics.yellow_card__sum }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Red Card</th>
+                        <td>{{ metrics.red_card__sum }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock robot_stats %}
 
 {% block fouls %}{% endblock fouls %}

@@ -52,16 +52,16 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
     basline_sum = 0
     
     for sr in team_srs:
-        auto_fuel_low_sum += sr.fuel_score_low_auto
-        auto_fuel_high_sum += sr.fuel_score_hi_auto
-        tele_fuel_low_sum += sr.fuel_score_low
-        tele_fuel_high_sum += sr.fuel_score_hi
+        auto_fuel_low_sum += sr.auto_fuel_low_score
+        auto_fuel_high_sum += sr.auto_fuel_high_score
+        tele_fuel_low_sum += sr.tele_fuel_low_score
+        tele_fuel_high_sum += sr.tele_fuel_high_score
         
-        auto_gear_sum += sr.gears_score_auto
-        tele_gear_sum += sr.gears_score
+        auto_gear_sum += sr.tele_gears
+        tele_gear_sum += sr.tele_gears
         
         climb_sum += 1 if sr.rope else 0
-        basline_sum += 1 if sr.baseline else 0
+        basline_sum += 1 if sr.auto_baseline else 0
         
     ######################
     # Fuel
@@ -283,18 +283,20 @@ class SingleTeamView2017(BaseSingleTeamView):
     def get_context_data(self, **kwargs):
         context = BaseSingleTeamView.get_context_data(self, **kwargs)
         
-        if context['metrics']['fuel_shot_hi__avg'] != "NA":
+        if context['metrics']['tele_fuel_high_score__avg'] != "NA":
         
-            context['metrics']['fuel_shot_hi_missed__avg'] = float(context['metrics']['fuel_shot_hi__avg']) - float(context['metrics']['fuel_score_hi__avg'])
-            context['metrics']['fuel_shot_hi_missed_auto__avg'] = float(context['metrics']['fuel_shot_hi_auto__avg']) - float(context['metrics']['fuel_score_hi_auto__avg'])
-            context['metrics']['fuel_shot_low_missed__avg'] = float(context['metrics']['fuel_shot_low__avg']) - float(context['metrics']['fuel_score_low__avg'])
-            context['metrics']['fuel_shot_low_missed_auto__avg'] = float(context['metrics']['fuel_shot_low_auto__avg']) - float(context['metrics']['fuel_score_low_auto__avg'])
+            context['metrics']['tele_fuel_high_misses__avg'] = float(context['metrics']['tele_fuel_high_shots__avg']) - float(context['metrics']['tele_fuel_high_score__avg'])
+            context['metrics']['auto_fuel_high_misses__avg'] = float(context['metrics']['auto_fuel_high_shots__avg']) - float(context['metrics']['auto_fuel_high_score__avg'])
+            context['metrics']['tele_fuel_low_misses__avg']  = float(context['metrics']['tele_fuel_low_shots__avg'])  - float(context['metrics']['tele_fuel_low_score__avg'])
+            context['metrics']['auto_fuel_low_misses__avg']  = float(context['metrics']['auto_fuel_low_shots__avg'])  - float(context['metrics']['auto_fuel_low_score__avg'])
+#             context['metrics']['fuel_shot_hi_missed_auto__avg'] = float(context['metrics']['fuel_shot_hi_auto__avg']) - float(context['metrics']['fuel_score_hi_auto__avg'])
+#             context['metrics']['fuel_shot_low_missed__avg'] = float(context['metrics']['fuel_shot_low__avg']) - float(context['metrics']['fuel_score_low__avg'])
+#             context['metrics']['fuel_shot_low_missed_auto__avg'] = float(context['metrics']['fuel_shot_low_auto__avg']) - float(context['metrics']['fuel_score_low_auto__avg'])
         else:
-            context['metrics']['fuel_shot_hi_missed__avg'] = "NA"
-            context['metrics']['fuel_shot_hi_missed_auto__avg'] = "NA"
+            context['metrics']['tele_fuel_high_misses__avg'] = "NA"
+            context['metrics']['auto_fuel_high_misses__avg'] = "NA"
             context['metrics']['fuel_shot_low_missed__avg'] = "NA"
             context['metrics']['fuel_shot_low_missed_auto__avg'] = "NA"
-            
         
         return context
         
@@ -305,13 +307,13 @@ class SingleTeamView2017(BaseSingleTeamView):
 def get_team_average_for_match_prediction(team, regional_code):
     
     output = team.scoreresult_set.filter(competition__code=regional_code).aggregate(
-        auto_fuel_high=Avg("fuel_score_hi_auto"),
-        auto_fuel_low=Avg("fuel_score_low_auto"),
-        auto_gears=Avg("gears_score_auto"),
-        tele_fuel_high=Avg("fuel_score_hi"),
-        tele_fuel_low=Avg("fuel_score_low"),
-        tele_gears=Avg("gears_score"),
-        baseline=Avg(Case(When(baseline=True, then=1),When(baseline=False, then=0))),
+        auto_fuel_high=Avg("auto_fuel_high_score"),
+        auto_fuel_low=Avg("auto_fuel_low_score"),
+        auto_gears=Avg("tele_gears"),
+        tele_fuel_high=Avg("tele_fuel_high_score"),
+        tele_fuel_low=Avg("tele_fuel_low_score"),
+        tele_gears=Avg("tele_gears"),
+        baseline=Avg(Case(When(auto_baseline=True, then=1),When(auto_baseline=False, then=0))),
         rope=Avg(Case(When(rope=True, then=1),When(rope=False, then=0))),
         )
     
@@ -324,7 +326,7 @@ def get_team_average_for_match_prediction(team, regional_code):
     
     output["fuel_total"] = fuel_total
     output["total_score"] = fuel_total + \
-                              output['baseline'] * 5 + \
+                              output['auto_baseline'] * 5 + \
                               output['rope'] * 50
     
     return output
@@ -410,18 +412,19 @@ def get_statistics(regional_code, teams_at_competition, team=0):
     skills = []
        
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
-    competition_averages = competition_srs.aggregate(Avg('gears_score'),
-                                                    Avg('fuel_score_hi'),
-                                                    Avg('fuel_score_hi_auto'),
-                                                    Avg('fuel_score_low'),
-                                                    Avg('fuel_score_low_auto'),
-                                                    rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
+    competition_averages = competition_srs.aggregate(
+                                                     Avg('auto_fuel_high_score'),
+                                                     Avg('auto_fuel_low_score'),
+                                                     Avg('tele_gears'),
+                                                     Avg('tele_fuel_high_score'),
+                                                     Avg('tele_fuel_low_score'),
+                                                     rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
     rope_avg = competition_averages['rope__avg']
-    gear_avg = competition_averages['gears_score__avg']
+    gear_avg = competition_averages['tele_gears__avg']
 
-    if competition_averages['fuel_score_hi_auto__avg'] and competition_averages['fuel_score_hi__avg'] and competition_averages['fuel_score_low_auto__avg'] and competition_averages['fuel_score_low__avg']:
+    if competition_averages['auto_fuel_high_score__avg'] and competition_averages['tele_fuel_high_score__avg'] and competition_averages['auto_fuel_low_score__avg'] and competition_averages['tele_fuel_low_score__avg']:
         
-        fuel_avg = competition_averages['fuel_score_hi_auto__avg'] + (competition_averages['fuel_score_hi__avg'] / 3 ) + (competition_averages['fuel_score_low_auto__avg'] / 3) + (competition_averages['fuel_score_low__avg'] / 9)
+        fuel_avg = competition_averages['auto_fuel_high_score__avg'] + (competition_averages['tele_fuel_high_score__avg'] / 3 ) + (competition_averages['auto_fuel_low_score__avg'] / 3) + (competition_averages['tele_fuel_low_score__avg'] / 9)
     else:
         fuel_avg = 0
    # This part of the function (above) obtains overall averages for all score results
@@ -436,8 +439,8 @@ def get_statistics(regional_code, teams_at_competition, team=0):
             sr_rope =1-rope_avg
         else:
             sr_rope = 0-rope_avg     
-        sr_gear = sr.gears_score - gear_avg
-        sr_fuel = ((sr.fuel_score_hi_auto)+(sr.fuel_score_hi / 3) + (sr.fuel_score_low_auto / 3) + (sr.fuel_score_low / 9)) - fuel_avg
+        sr_gear = sr.tele_gears - gear_avg
+        sr_fuel = ((sr.auto_fuel_high_score)+(sr.tele_fuel_high_score / 3) + (sr.auto_fuel_low_score / 3) + (sr.tele_fuel_low_score / 9)) - fuel_avg
         gear_v2 += sr_gear * sr_gear
         fuel_v2 += sr_fuel * sr_fuel
         rope_v2 += sr_rope * sr_rope 
@@ -456,11 +459,11 @@ def get_statistics(regional_code, teams_at_competition, team=0):
     teams = team if bool(team) else teams_at_competition
     for team in teams:
         teams_srs = team.scoreresult_set.filter(competition__code=regional_code) 
-        team_avgs = teams_srs.aggregate(Avg('gears_score'),
-                                        Avg('fuel_score_hi'),
-                                        Avg('fuel_score_hi_auto'),
-                                        Avg('fuel_score_low'),
-                                        Avg('fuel_score_low_auto'),
+        team_avgs = teams_srs.aggregate(Avg('tele_gears'),
+                                        Avg('tele_fuel_high_score'),
+                                        Avg('auto_fuel_high_score'),
+                                        Avg('tele_fuel_low_score'),
+                                        Avg('auto_fuel_low_score'),
                                         team_rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))))
                                       
         team_rope_avg = team_avgs['team_rope__avg']
@@ -470,16 +473,16 @@ def get_statistics(regional_code, teams_at_competition, team=0):
         team.skills['rope_z'] = 'NA'
         team.skills['rope_pct'] = 'NA'
         if len(teams_srs)!= 0:
-            team.skills['fuel_score'] = ((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9))
-            team.skills['gear_z'] = (team_avgs['gears_score__avg'] - gear_avg ) / gear_stdev 
-            team.skills['fuel_z'] = (((team_avgs['fuel_score_hi_auto__avg']) + (team_avgs['fuel_score_hi__avg'] / 3) + (team_avgs['fuel_score_low_auto__avg'] / 3) + (team_avgs['fuel_score_low__avg']/ 9)) - fuel_avg) / fuel_stdev
+            team.skills['fuel_score'] = ((team_avgs['auto_fuel_high_score__avg']) + (team_avgs['tele_fuel_high_score__avg'] / 3) + (team_avgs['auto_fuel_low_score__avg'] / 3) + (team_avgs['tele_fuel_low_score__avg']/ 9))
+            team.skills['gear_z'] = (team_avgs['tele_gears__avg'] - gear_avg ) / gear_stdev 
+            team.skills['fuel_z'] = (((team_avgs['auto_fuel_high_score__avg']) + (team_avgs['tele_fuel_high_score__avg'] / 3) + (team_avgs['auto_fuel_low_score__avg'] / 3) + (team_avgs['tele_fuel_low_score__avg']/ 9)) - fuel_avg) / fuel_stdev
             team.skills['rope_z'] = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
             team.skills['rope_pct'] = team_avgs['team_rope__avg'] * 100
             
         skills.append({'team': team.teamNumber, 'skills':team.skills})
 
-    stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['fuel_score_hi__avg'], 'fuel_low_avg': team_avgs['fuel_score_low__avg'],
-             'fuel_hi_auto_avg': team_avgs['fuel_score_hi_auto__avg'], 'fuel_low_auto_avg': team_avgs['fuel_score_low_auto__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
+    stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['tele_fuel_high_score__avg'], 'fuel_low_avg': team_avgs['tele_fuel_low_score__avg'],
+             'fuel_hi_auto_avg': team_avgs['auto_fuel_high_score__avg'], 'fuel_low_auto_avg': team_avgs['auto_fuel_low_score__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
 
     
     return (stats,json.dumps(skills))   
