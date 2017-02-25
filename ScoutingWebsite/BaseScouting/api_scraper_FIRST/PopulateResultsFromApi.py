@@ -10,8 +10,9 @@ from django.db import transaction
 
 class PopulateRegionalResults:
 
-    def __init__(self, team_model, competition_model, official_match_model, official_match_sr_model):
+    def __init__(self, team_model, match_model, competition_model, official_match_model, official_match_sr_model):
         self.team_model = team_model
+        self.match_model = match_model
         self.competition_model = competition_model
         self.official_match_model = official_match_model
         self.official_match_sr_model = official_match_sr_model
@@ -138,16 +139,29 @@ class PopulateRegionalResults:
                     blue_teams.append(team)
 
             official_match, _ = self.official_match_model.objects.get_or_create(matchNumber=match_number, competition=competition)
-            match_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
-
-            if len(match_sr_search) == 2:
-                print("Updating teams for match %s" % official_match.matchNumber)
-            elif len(match_sr_search) == 0:
-                self.official_match_sr_model.objects.create(official_match=official_match, competition=competition, team1=red_teams[0], team2=red_teams[1], team3=red_teams[2],)
-                self.official_match_sr_model.objects.create(official_match=official_match, competition=competition, team1=blue_teams[0], team2=blue_teams[1], team3=blue_teams[2],)
-                print("Creating official match %s" % official_match.matchNumber)
+            official_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
+            match_search = self.match_model.objects.filter(matchNumber=match_number)
+            
+            if len(match_search) == 0:
+                match = self.match_model.objects.create(matchNumber=match_number, competition=competition, 
+                                                        red1=red_teams[0], red2=red_teams[1], red3=red_teams[2], 
+                                                        blue1=blue_teams[0], blue2=blue_teams[1], blue3=blue_teams[2])
             else:
-                print("UH OH")
+                match = match_search[0]
+                
+                match.red1=red_teams[0]
+                match.red2=red_teams[1]
+                match.red3=red_teams[2]
+                match.blue1=blue_teams[0]
+                match.blue2=blue_teams[1]
+                match.blue3=blue_teams[2]
+                match.save()
+                print("Updating teams for match %s" % match.matchNumber)
+
+            if len(official_sr_search) == 0:
+                self.official_match_sr_model.objects.create(official_match=official_match, competition=competition)
+                self.official_match_sr_model.objects.create(official_match=official_match, competition=competition)
+                print("Creating official match %s" % official_match.matchNumber)
 
     @transaction.atomic
     def update_matchresults(self, event_code, json_path):

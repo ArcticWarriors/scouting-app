@@ -10,11 +10,12 @@ from BaseScouting.api_scraper_FIRST.PopulateResultsFromApi import PopulateRegion
 class PopulateRegionalresults2017(PopulateRegionalResults):
 
     def __init__(self):
-        from Scouting2017.model import Team, Competition, OfficialMatch, OfficialMatchScoreResult
-        PopulateRegionalResults.__init__(self, Team, Competition, OfficialMatch, OfficialMatchScoreResult)
+        from Scouting2017.model import Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult
+        PopulateRegionalResults.__init__(self, Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult)
 
     def populate_official_sr(self, official_match_sr, alliance_info):
         
+        official_match_sr.alliance_color = alliance_info['alliance'][0]
         official_match_sr.robot1Auto = alliance_info['robot1Auto']
         official_match_sr.robot2Auto = alliance_info['robot2Auto']
         official_match_sr.robot3Auto = alliance_info['robot3Auto']
