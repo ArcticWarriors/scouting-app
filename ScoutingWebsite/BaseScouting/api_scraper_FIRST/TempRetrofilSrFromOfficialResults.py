@@ -5,7 +5,7 @@ Created on Feb 8, 2017
 '''
 
 
-class TempRetrofilSrFromOfficialResults:
+class TempRetrofillSrFromOfficialResults:
     
     
     def populate_sr(self, **kargs):
@@ -37,13 +37,13 @@ class TempRetrofilSrFromOfficialResults:
         red_sr = official_srs[0]
         blue_sr = official_srs[1]
 
-        self.save_sr(score_result_class, match, red_sr.team1, **self.populate_sr(**self.get_team1_stats(red_sr)))
-        self.save_sr(score_result_class, match, red_sr.team2, **self.populate_sr(**self.get_team2_stats(red_sr)))
-        self.save_sr(score_result_class, match, red_sr.team3, **self.populate_sr(**self.get_team3_stats(red_sr)))
+        self.save_sr(score_result_class, match, match.red1, **self.populate_sr(**self.get_team1_stats(red_sr)))
+        self.save_sr(score_result_class, match, match.red2, **self.populate_sr(**self.get_team2_stats(red_sr)))
+        self.save_sr(score_result_class, match, match.red3, **self.populate_sr(**self.get_team3_stats(red_sr)))
         
-        self.save_sr(score_result_class, match, blue_sr.team1, **self.populate_sr(**self.get_team1_stats(blue_sr)))
-        self.save_sr(score_result_class, match, blue_sr.team2, **self.populate_sr(**self.get_team2_stats(blue_sr)))
-        self.save_sr(score_result_class, match, blue_sr.team3, **self.populate_sr(**self.get_team3_stats(blue_sr)))
+        self.save_sr(score_result_class, match, match.blue1, **self.populate_sr(**self.get_team1_stats(blue_sr)))
+        self.save_sr(score_result_class, match, match.blue2, **self.populate_sr(**self.get_team2_stats(blue_sr)))
+        self.save_sr(score_result_class, match, match.blue3, **self.populate_sr(**self.get_team3_stats(blue_sr)))
 
         official_match.hasOfficialData = True
         official_match.save()

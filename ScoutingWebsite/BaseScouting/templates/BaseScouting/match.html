@@ -11,8 +11,9 @@
 {% endblock head %}
 
 {% block content %}
-    {% if official_mismatch != None and has_official_data %}
+    {% if has_official_data %}
         <center>
+        {% if official_result_warnings|length != 0 or official_result_errors|length != 0 %}
         <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
         <table border=1>
             <thead>
@@ -23,17 +24,27 @@
                 </tr>
             </thead>
             <tbody>
-                {% for field, results in official_mismatch.items %}
+                {% for result_tuple in official_result_warnings %}
                 <tr>
-                    <td> {{ field }} </td>
-                    <td> {{ results.0 }} </td>
-                    <td> {{ results.1 }} </td>
+                    <td style='background-color: yellow'> {{ result_tuple.0 }} </td>
+                    <td style='background-color: yellow'> {{ result_tuple.1 }} </td>
+                    <td style='background-color: yellow'> {{ result_tuple.2 }} </td>
+                </tr>
+                {% endfor %}
+                {% for result_tuple in official_result_errors %}
+                <tr>
+                    <td style='background-color: red'> {{ result_tuple.0 }} </td>
+                    <td style='background-color: red'> {{ result_tuple.1 }} </td>
+                    <td style='background-color: red'> {{ result_tuple.2 }} </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <h1 style='color: green;'> Match data is consistent with official results</h1>
+        {% endif %}
         </center>
-        {% elif not has_official_data %}
+    {% else %}
         <center>
             <h1> Warning: No official results available. Data from this match cannot be verified. </h1>
         </center>

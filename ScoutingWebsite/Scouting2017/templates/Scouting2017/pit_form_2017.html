@@ -1,0 +1,51 @@
+<html>
+<head>
+
+{% load staticfiles %}
+{% include "Scouting2017/standard_header.html" %}
+<title>Edit Pit Form</title>
+</head>
+<body>
+
+{% include "Scouting2017/banner.html" %}
+<form action="{% url 'Scouting2017:submit_new_pit' regional_code %}" method="post">
+	{% csrf_token %}
+		<p> Team number </p>
+			<input type="number" name="team_number"  value="{{team.teamNumber}}" readonly> 
+			
+		<p> Was the pit team functional? Are they organized? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_organized"> Enter if they are organized and functional as a team </textarea>
+			
+		<p> Can their robot hold fuel? If applicable, how much fuel can their robot hold? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_fuel_capacity"> Enter their fuel capacity </textarea>
+			
+		<p> Can their robot acquire and score gears? How? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_gears"> Enter gear information </textarea>
+			
+		<p> What is their strategy? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_strategy"> Enter what their strategy is in a game </textarea>
+			
+		<p> What size constraint robot are they? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_size"> Enter what size robot did they chose </textarea>
+			
+		<p> In what ways can they acquire fuel? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_acquire_fuel"> Enter the ways they acquire fuel </textarea> 
+			
+		<p> Should we consider being in an alliance with them, based on strategy? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_alliance_strategy"> Enter if we should alliance due to strategy </textarea>
+			
+		<p> Should we consider being in an alliance with them, based on competence? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_alliacne_competence">Enter if we should alliance due to strategy </textarea>
+			
+		<p> Are they competent? Are they confident?</p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_competent_confident"> Enter if know what they are doing and if they are confident about it </textarea>
+					
+		<p> Have they been in other competitions? If applicable have they been on the leader board before? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_Misc"> Enter if they are new to this or not </textarea>
+			
+		<p> Anything else? </p>
+			<textarea rows="8" cols="75" wrap="soft" name="notes_Misc"> Enter extra information </textarea>
+	
+</form>
+</body>
+</html>

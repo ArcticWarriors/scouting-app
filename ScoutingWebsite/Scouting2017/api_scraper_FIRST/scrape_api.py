@@ -57,5 +57,5 @@ for event_pair in events_to_do:
 
         populater = PopulateRegionalresults2017()
 #         populater.update_team_info(code, event_path)
-#         populater.update_schedule(code, event_path)
+        populater.update_schedule(code, event_path)
         populater.update_matchresults(code, event_path)

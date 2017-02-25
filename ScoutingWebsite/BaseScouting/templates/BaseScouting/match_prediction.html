@@ -1,0 +1,77 @@
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Match {{ match_number }} - Arctic Warriors Scouting</title>
+{% endblock head %}
+
+{% block content %}
+
+<h1> Prediction for Match {{match_number}}</h1>
+    
+<div class="panel panel-default">
+    <div class="panel-heading" style="overflow:auto;">
+        <h2>Results</h2>
+    </div>
+    
+    {% block overall_results %}
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+        
+          <tr>
+              <th></th>
+              <th>Score</th>
+          </tr>
+          <tr>
+              <td>Red</td>
+              <td>{{ predicted_results.red_prediction.total_score }}</td>
+          </tr>
+          <tr>
+              <td>Blue</td>
+              <td>{{ predicted_results.red_prediction.total_score }}</td>
+          </tr>
+        </table>
+    </div>
+    {% endblock overall_results %}
+</div>
+    
+    
+    {% block red_stats %}
+    
+    <div class="panel-heading" style="overflow:auto;">
+        <h2>Red Alliance</h2>
+    </div>
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+            <tr>
+                <th>Teams</th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team1.team_number %}">{{ predicted_results.red_prediction.team1.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team2.team_number %}">{{ predicted_results.red_prediction.team2.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team3.team_number %}">{{ predicted_results.red_prediction.team3.team_number }}</a></th>
+            </tr>
+        </table>
+    </div>
+    
+    {% endblock red_stats %}
+    
+    <br>
+    
+    {% block blue_stats %}
+    
+    <div class="panel-heading" style="overflow:auto;">
+        <h2>Blue Alliance</h2>
+    </div>
+    <div style="overflow-x: auto">
+        <table class="table table-hover">
+            <tr>
+                <th>Teams</th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team1.team_number %}">{{ predicted_results.red_prediction.team1.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team2.team_number %}">{{ predicted_results.red_prediction.team2.team_number }}</a></th>
+                <th><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code predicted_results.red_prediction.team3.team_number %}">{{ predicted_results.red_prediction.team3.team_number }}</a></th>
+            </tr>
+        </table>
+    </div>
+    
+    {% endblock blue_stats %}
+{% endblock content %}
+

@@ -3,7 +3,7 @@ from Scouting2011.model.reusable_models import Team, Match, OfficialMatch, TeamP
 from Scouting2011.model.models2011 import ScoreResult, get_team_metrics
 from BaseScouting.views.base_views import BaseAddTeamCommentsView, \
     BaseAddTeamPictureView, BaseAllTeamsViews, BaseSingleTeamView, \
-    BaseAllMatchesView, BaseSingleMatchView, BaseOfficialMatchView, \
+    BaseAllMatchesView, BaseSingleMatchView, BaseMatchPredictionView, \
     BaseGenGraphView, BaseHomepageView
 from django.db.models.aggregates import Avg, Sum
 
@@ -119,10 +119,10 @@ class GenGraphView2011(BaseGenGraphView):
         BaseGenGraphView.__init__(self, Team)
 
 
-class OfficialMatchView2011(BaseOfficialMatchView):
+class OfficialMatchView2011(BaseMatchPredictionView):
 
     def __init__(self):
-        BaseOfficialMatchView.__init__(self, OfficialMatch, 'Scouting2011/view_official_match.html')
+        BaseMatchPredictionView.__init__(self, OfficialMatch, 'Scouting2011/view_official_match.html')
 
     def get_score_results(self, official_match):
 

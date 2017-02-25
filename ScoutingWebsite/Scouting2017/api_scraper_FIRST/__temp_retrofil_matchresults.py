@@ -3,11 +3,11 @@ Created on Mar 1, 2016
 
 @author: PJ
 '''
-from BaseScouting.api_scraper_FIRST.TempRetrofilSrFromOfficialResults import TempRetrofilSrFromOfficialResults
+from BaseScouting.api_scraper_FIRST.TempRetrofilSrFromOfficialResults import TempRetrofillSrFromOfficialResults
 from BaseScouting.load_django import load_django
 
 
-class TempRetrofilSrFromOfficialResults2017(TempRetrofilSrFromOfficialResults):
+class TempRetrofillSrFromOfficialResults2017(TempRetrofillSrFromOfficialResults):
     
     gear_lookup = {
                   0: 0,
@@ -75,7 +75,7 @@ def retrofill_results(min_match_number, max_match_number):
     from Scouting2017.model.models2017 import OfficialMatchScoreResult, ScoreResult
     
 
-    populater = TempRetrofilSrFromOfficialResults2017()
+    populater = TempRetrofillSrFromOfficialResults2017()
     
     for match_number in range(min_match_number, max_match_number):
         official_matches = OfficialMatch.objects.filter(matchNumber=match_number)
@@ -83,6 +83,9 @@ def retrofill_results(min_match_number, max_match_number):
             continue
         
         official_match = official_matches[0]
+        official_srs = OfficialMatchScoreResult.objects.filter(official_match=official_match)
+        print official_srs[0]
+        print official_srs
         match, _ = Match.objects.get_or_create(matchNumber=official_match.matchNumber)
         
         populater.populate_matchresults(official_match, Match, ScoreResult, OfficialMatchScoreResult)

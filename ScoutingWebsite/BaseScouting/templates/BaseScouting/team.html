@@ -57,14 +57,14 @@
      	
     <h2>Pictures</h2>
     
-    {% if "auth.can_add_pictures" in perms %}
+    {#% if "auth.can_add_pictures" in perms %#}
         <form action="{% url request.resolver_match.namespace|add:':upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name='team_number' value={{team.teamNumber}}>
             <input type="file" name='image_name' accept="image/*">
             <input type="submit">
         </form>
-    {% endif %}
+    {#% endif %#}
 
     {% if pictures|length != 0 %}
         {% for picture in pictures %}

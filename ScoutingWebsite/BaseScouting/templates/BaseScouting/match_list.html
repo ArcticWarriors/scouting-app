@@ -4,11 +4,42 @@
 {% block head %}
     <title>Match List - Arctic Warriors Scouting</title>
     <style>
-        .match-valid {
-            
+        td {
+            text-align: center;
         }
-        .match-invalid {
-            
+        th {
+            text-align: center;
+        }
+        .match-error-level {
+            background-color: black;
+        }
+        .match-error-level0 {
+            background-color: green;
+        }
+        .match-error-level1 {
+            background-color: yellow;
+        }
+        .match-error-level2 {
+            background-color: red;
+        }
+        
+        .red_alliance {
+            background-color: #e21231;
+            text-align: center;
+        }
+        
+        .red_alliance a {
+            color: white;
+        }
+        
+        .blue_alliance {
+            text-align: center;
+            background-color: blue;
+        }
+        
+        .blue_alliance a {
+            color: white;
+            text-align: center
         }
     </style>
 {% endblock head%}
@@ -24,23 +55,26 @@
                     <tr>
                         <th>Match Number</th>
                         <th>Valid Data</th>
-                        <th>Winner</th>
-                        <th colspan='3'>Red Alliance</th>
-                        <th colspan='3'>Blue Alliance</th>
+                        <th colspan='3' >Red Alliance</th>
+                        <th colspan='3' >Blue Alliance</th>
+                        <th>Red Score</th>
+                        <th>Blue Score</th>
                     </tr>
                 </thead>
                 {% for match in scouted_matches %}
                 <tbody>
                     <tr>
                         <td> <a href="{% url request.resolver_match.namespace|add:':view_match' regional_code match.matchNumber %}">{{match.matchNumber}}</a></td>
-                        <td class="{% if match.validity == 'Yes' %}match-valid{% elif match.validity == 'No' %}match-invalid{% endif %}">{{match.validity}}</td>
-                        <td>[Winner]</td> <!-- This is literally just a td that says "winner" with nothing else in it -->
-                        {% comment %}
-                        {# BROKEN! This doesn't correlate the teams to the appropriate alliance #}
-                        {% for sr in match.scoreresult_set.all %}
-                        <td> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code sr.team.teamNumber %}">{{ sr.team.teamNumber }}</a></td>
-                        {% endfor %}
-                        {% endcomment %}
+                        <td class="match-error-level{{ match.match_error_level }}">{%if match.match_error_level == None %} UPDATE VIEW!!! {%else%}{%if match.match_error_level != 0 %}{{match.match_error_warning_messages|length }} Warning, {{match.match_error_error_messages|length }} Errors{% endif %}{% endif %}</td>
+                        <td class="red_alliance" {% if match.winning_alliance  == "Red" %} style='font-weight: bold; font-style: italic;'{% endif %}> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red1.teamNumber %}"> {{ match.red1.teamNumber }} </td>
+                        <td class="red_alliance" {% if match.winning_alliance  == "Red" %} style='font-weight: bold; font-style: italic;'{% endif %}> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red2.teamNumber %}"> {{ match.red2.teamNumber }} </td>
+                        <td class="red_alliance" {% if match.winning_alliance  == "Red" %} style='font-weight: bold; font-style: italic;'{% endif %}> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red3.teamNumber %}"> {{ match.red3.teamNumber }} </td>
+                        <td class="blue_alliance" {% if match.winning_alliance  == "Blue" %} style='font-weight: bold; font-style: italic;'{% endif %}> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue1.teamNumber %}"> {{ match.blue1.teamNumber }} </td>
+                        <td class="blue_alliance" {% if match.winning_alliance  == "Blue" %} style='font-weight: bold; font-style: italic;'{% endif %}> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue2.teamNumber %}"> {{ match.blue2.teamNumber }} </td>
+                        <td class="blue_alliance" {% if match.winning_alliance  == "Blue" %} style='font-weight: bold; font-style: italic;'{% endif %}> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue3.teamNumber %}"> {{ match.blue3.teamNumber }} </td>
+                        
+                        <td {% if match.winning_alliance  == "Red" %} style='font-weight: bold; font-style: italic;'{% endif %}> {{ match.redScore }} </td>
+                        <td {% if match.winning_alliance  == "Blue" %} style='font-weight: bold; font-style: italic;'{% endif %}> {{ match.blueScore }} </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -63,10 +97,16 @@
                 </thead>
                 <tbody>
                     {% for match in unscouted_matches %}
-                        <tr>
-                            {# <td> <a href="{% url request.resolver_match.namespace|add:':match_prediction' regional_code match.matchNumber %}">{{ match.matchNumber }} </a></td> #}
-                            {# TODO: Team Numbers/Links #}
-                        </tr>
+                    <tr>
+                        <td> <a href="{% url request.resolver_match.namespace|add:':match_prediction' regional_code match.matchNumber %}">{{ match.matchNumber }} </a></td>
+                        <td> {{ match.matchNumber }} </a></td>
+                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red1.teamNumber %}"> {{ match.red1.teamNumber }} </td>
+                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red2.teamNumber %}"> {{ match.red2.teamNumber }} </td>
+                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red3.teamNumber %}"> {{ match.red3.teamNumber }} </td>
+                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue1.teamNumber %}"> {{ match.blue1.teamNumber }} </td>
+                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue2.teamNumber %}"> {{ match.blue2.teamNumber }} </td>
+                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue3.teamNumber %}"> {{ match.blue3.teamNumber }} </td>
+                    </tr>
                     {% endfor %}
                 </tbody>
   

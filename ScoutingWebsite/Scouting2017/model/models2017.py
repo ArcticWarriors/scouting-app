@@ -51,14 +51,25 @@ class TeamPitScouting(models.Model):
     short_fat = models.BooleanField(default=False)
     tall_wide = models.BooleanField(default=False)
 
+    OrganizedFunctional = models.CharField(max_length=1000, default="no")
+    FuelCapacity = models.CharField(max_length=1000, default="no")
+    Gears = models.CharField(max_length=1000, default="no")
+    Strategy = models.CharField(max_length=1000)
+    Size = models.CharField(max_length=1000)
+    FuelAcquire = models.CharField(max_length=1000)
+    AllianceStrategy  = models.CharField(max_length=1000, default="no")
+    AllanceCompetent = models.CharField(max_length=1000, default="no")
+    CompetnetConfident = models.CharField(max_length=1000, default="no")
+    Competitions = models.CharField(max_length=1000, default="no")
+    Random = models.CharField(max_length=1000)   
+              
+    
 class OfficialMatchScoreResult(models.Model):
 
     official_match = models.ForeignKey(OfficialMatch)
     competition = models.ForeignKey(Competition)
-
-    team1 = models.ForeignKey(Team, related_name='da_team1')
-    team2 = models.ForeignKey(Team, related_name='da_team2')
-    team3 = models.ForeignKey(Team, related_name='da_team3')
+    
+    alliance_color = models.CharField(max_length=1, choices=(('R', 'Red'), ('B', 'Blue')))
     
     robot1Auto = models.CharField(max_length=2000, default="")
     robot2Auto = models.CharField(max_length=2000, default="")
@@ -120,7 +131,7 @@ class ScoreResult(models.Model):
     fuel_score_low_auto = models.IntegerField(default=0)
     gears_score_auto = models.IntegerField(default=0)
     baseline = models.BooleanField(default=False)
-    scored_gear_in_auto = models.BooleanField(default=False)
+    #scored_gear_in_auto = models.BooleanField(default=False)
     
     #collecting
     ground_fuel = models.BooleanField(default=False)
