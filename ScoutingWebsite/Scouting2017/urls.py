@@ -5,14 +5,18 @@ Created on Jan 15, 2017
 '''
 from django.conf.urls import url
 from django.views.generic.base import RedirectView
-from Scouting2017.view import standard_views, match_forms
+from Scouting2017.view import standard_views, match_forms, tba_webook
 from Scouting2017.view import user_auth
 from django.contrib.auth.decorators import permission_required
 
 
 app_name = 'Scouting2017'
 urlpatterns = [
+
+               # TBA Webhook
+               url(r'^tba_webhook$', tba_webook.tba_webook, name='tba_webhook'),
     
+               # Standard Views
                url(r'^$', RedirectView.as_view(url='/2017/NYRO', permanent=False)),
                url(r'^(?P<regional_code>\w+)$', standard_views.HomepageView2017.as_view(), name='index'),
                url(r'^(?P<regional_code>\w+)/teams$', standard_views.TeamListView2017.as_view(), name='teams'),
@@ -31,6 +35,6 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/show_login$', user_auth.show_login, name='show_login'),
                url(r'^(?P<regional_code>\w+)/log_user_out$', user_auth.log_user_out, name='log_user_out'),
                url(r'^(?P<regional_code>\w+)/auth_login$', user_auth.auth_login, name='auth_login'),
-
+               
               
                ]
