@@ -38,18 +38,17 @@ def add_match(request, regional_code):
             match=match,
             
             # Auto
-            fuel_score_hi_auto=int(post['autoFuelHigh-%s' % (i + 1)]),
-            fuel_score_low_auto=int(post['autoFuelLow-%s' % (i + 1)]),
-            gears_score_auto=int(post['autoGears-%s' % (i + 1)]),
-            baseline=auto_baseline,
-            #scored_gear_in_auto = models.BooleanField(default=False)
+            auto_fuel_high_score=int(post['autoFuelHighMade-%s' % (i + 1)]),
+            auto_fuel_low_score=int(post['autoFuelLowMade-%s' % (i + 1)]),
+            auto_gears=int(post['autoGears-%s' % (i + 1)]),
+            auto_baseline=auto_baseline,
             
             # Tele-op
-            gears_score=int(post['teleGears-%s' % (i + 1)]),
-            fuel_shot_hi=int(post['teleFuelHighShot-%s' % (i + 1)]),
-            fuel_shot_low=int(post['teleFuelLowShot-%s' % (i + 1)]),
-            fuel_score_hi=int(post['teleFuelHighScore-%s' % (i + 1)]),
-            fuel_score_low=int(post['teleFuelLowScore-%s' % (i + 1)]),
+            tele_gears=int(post['teleGears-%s' % (i + 1)]),
+            tele_fuel_high_shots=int(post['teleFuelHighShots-%s' % (i + 1)]),
+            tele_fuel_high_score=int(post['teleFuelHighScore-%s' % (i + 1)]),
+            tele_fuel_low_shots=int(post['teleFuelLowShots-%s' % (i + 1)]),
+            tele_fuel_low_score=int(post['teleFuelLowScore-%s' % (i + 1)]),
             
             # Endgame
             rope=rope_climbed,

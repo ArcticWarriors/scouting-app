@@ -15,23 +15,34 @@
 			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" value=5 style="text-align:center;"></td>
 
 			// Auto
-			<td style="text-align:center;"><input type="checkbox" id = "autoBaseline" name="autoBaseline-__i__" ></td>		
 			<td><input type="number" id = "autoGears" name="autoGears-__i__" value=0 style="text-align:center;"></td>
-			<td><input type="number" id = "autoFuelHigh" name="autoFuelHigh-__i__" value=0 style="text-align:center;"></td>
-			<td><input type="number" id = "autoFuelLow" name="autoFuelLow-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "autoFuelHighShot" name="autoFuelHighShot-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "autoFuelHighMade" name="autoFuelHighMade-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "autoFuelLowShot" name="autoFuelLowShot-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "autoFuelLowMade" name="autoFuelLowMade-__i__" value=0 style="text-align:center;"></td>
+			<td style="text-align:center;"><input type="checkbox" id = "autoBaseline" name="autoBaseline-__i__" ></td>		
 
 			// Tele
 			<td><input type="number" id = "teleGears" name="teleGears-__i__" value=0 style="text-align:center;"></td>
-			<td><input type="number" id = "teleFuelHighShot" name="teleFuelHighShot-__i__" value=0 style="text-align:center;"></td>
-			<td><input type="number" id = "teleFuelLowShot" name="teleFuelLowShot-__i__" value=0 style="text-align:center;"></td>
-			<td><input type="number" id = "teleFuelHighScore" name="teleFuelHighScore-__i__" value=0 style="text-align:center;"></td>	
+			<td><input type="number" id = "teleFuelHighShots" name="teleFuelHighShots-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "teleFuelHighScore" name="teleFuelHighScore-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "teleFuelLowShots" name="teleFuelLowShots-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "teleFuelLowScore" name="teleFuelLowScore-__i__" value=0 style="text-align:center;"></td>
 
 			// Endgame
 			<td style="text-align:center;"><input type="checkbox" id = "ropeClimbed" name="ropeClimbed-__i__"></td>
 
+			// Fouls
+			<td><input type="number" id = "fouls" name="fouls-__i__" value=0 style="text-align:center;"></td>
+			<td><input type="number" id = "techFouls" name="techFouls-__i__" value=0 style="text-align:center;"></td>
+			<td style="text-align:center;"><input type="checkbox" id = "yellowCard" name="yellowCard-__i__"></td>
+			<td style="text-align:center;"><input type="checkbox" id = "redCard" name="redCard-__i__"></td>
+
 			// General
-			<td style="text-align:center;"><input type="checkbox" id = "defesnive" name="defesnive-__i__"></td>
+			<td style="text-align:center;"><input type="checkbox" id = "gathredGearFromGround" name="gathredGearFromGround-__i__"></td>
+			<td style="text-align:center;"><input type="checkbox" id = "gathredFuelFromGround" name="gathredFuelFromGround-__i__"></td>
+			<td><input type="number" id = "hoppersDumped" name="hoppersDumped-__i__" value=0 style="text-align:center;"></td>
+			<td style="text-align:center;"><input type="checkbox" id = "playedDefense" name="playedDefense-__i__"></td>
 			<td><textarea rows="1" cols="50"></textarea></td>
 
 			// Maintenance
@@ -75,21 +86,33 @@
 						<th style="text-align:center;">Match Number</th>
 						
 						<!-- Auto  -->
-						<th style="text-align:center;">Auto Baseline</th>
 						<th style="text-align:center;">Auto Gears</th>
-						<th style="text-align:center;">Auto Fuel High</th>
-						<th style="text-align:center;">Auto Fuel Low</th>
+						<th style="text-align:center;">Auto Fuel High Shots</th>
+						<th style="text-align:center;">Auto Fuel High Made</th>
+						<th style="text-align:center;">Auto Fuel Low Shots</th>
+						<th style="text-align:center;">Auto Fuel Low Made</th>
+						<th style="text-align:center;">Auto Baseline</th>
 						
 						<!-- Tele  -->
-						<th style="text-align:center;">High Fuel Shot</th>
-						<th style="text-align:center;">Low Fuel Shot</th>
-						<th style="text-align:center;">High Fuel Score</th>
-						<th style="text-align:center;">Low Fuel Score</th>
+						<th style="text-align:center;">Tele Gears</th>
+						<th style="text-align:center;">Tele High Fuel Shots</th>
+						<th style="text-align:center;">Tele High Fuel Score</th>
+						<th style="text-align:center;">Tele Low Fuel Shots</th>
+						<th style="text-align:center;">Tele Low Fuel Score</th>
 
 						<!-- Endgame -->
 						<th style="text-align:center;">Climbing</th>
 						
+						<!-- Fouls -->
+						<th style="text-align:center;">Fouls</th>
+						<th style="text-align:center;">Tech Fouls</th>
+						<th style="text-align:center;">Red Card</th>
+						<th style="text-align:center;">Yellow Card</th>
+						
 						<!-- General -->
+						<th style="text-align:center;">Gathered Gear From Ground</th>
+						<th style="text-align:center;">Gathered Fuel From Ground</th>
+						<th style="text-align:center;">Hoppers Dumped</th>
 						<th style="text-align:center;">Played Defense</th>
 						<th style="text-align:center;">Notes</th>
 						

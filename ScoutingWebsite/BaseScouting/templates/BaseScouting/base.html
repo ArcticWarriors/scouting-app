@@ -34,15 +34,8 @@
                 <li> <a href="{% url request.resolver_match.namespace|add:':matches' regional_code %}">Matches</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                {% if 'auth.can_modify_model' in perms %}
-                <li> <a href="{% url request.resolver_match.namespace|add:':showForm' regional_code %}">Add Match</a> </li>
-                <li> <a href="{% url request.resolver_match.namespace|add:':info_for_form_edit' regional_code %}">Edit Match</a> </li>
-                <li> <a href="{% url request.resolver_match.namespace|add:':info_for_pit_edit' regional_code %}">Edit Pit</a> </li>
-                <li> <a href="{% url request.resolver_match.namespace|add:':log_user_out' regional_code %}">Logout</a> </li>
-                {% elif user.is_authenticated %}
-                <li> <a href="{% url request.resolver_match.namespace|add:':log_user_out' regional_code %}">Logout</a> </li>
-                {% else %}
-                <li> <a href="{% url request.resolver_match.namespace|add:':show_login' regional_code %}">Log In</a> </li>
+                {% if True %}
+                <li> <a href="{% url request.resolver_match.namespace|add:':match_entry' regional_code %}">Add Match</a> </li>
                 {% endif %}
               </ul>
             </div>
