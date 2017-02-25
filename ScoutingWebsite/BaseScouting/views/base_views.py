@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.views.generic.base import TemplateView, View
 from django.shortcuts import get_object_or_404
+import operator
 
 
 class BaseHomepageView(TemplateView):
@@ -105,6 +106,7 @@ class BaseTeamListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         competes_in_query = self.team_competes_in_model.objects.filter(competition__code=kwargs["regional_code"])
+        competes_in_query = sorted(competes_in_query, key=operator.attrgetter('team.teamNumber')) 
 
         teams_with_metrics = []
 
@@ -150,6 +152,7 @@ class BaseMatchListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         matches = self.match_model.objects.filter(competition__code=kwargs["regional_code"])
+        matches = sorted(matches, key=operator.attrgetter('matchNumber'))
 
         scouted_matches = []
         unscouted_matches = []
@@ -207,7 +210,7 @@ class BaseSingleMatchView(TemplateView):
         return context
     
     def get_match_validation(self, match):
-        raise NotImplementedError()
+        raise NotImplementedError("You need to implement the get_match_validation function")
         
 
 

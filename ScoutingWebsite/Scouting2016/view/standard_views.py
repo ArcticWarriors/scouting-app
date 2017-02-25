@@ -70,7 +70,7 @@ class TeamListView2016(BaseTeamListView):
 class SingleTeamView2016(BaseSingleTeamView):
 
     def __init__(self):
-        BaseSingleTeamView.__init__(self, Team, TeamPictures, TeamComments, 'Scouting2016/view_team.html')
+        BaseSingleTeamView.__init__(self, Team, TeamPictures, TeamComments, 'BaseScouting/team_list.html')
 
     def get_metrics(self, team):
         return get_team_metrics(team)
@@ -79,7 +79,7 @@ class SingleTeamView2016(BaseSingleTeamView):
 class MatchListView2016(BaseMatchListView):
 
     def __init__(self):
-        BaseMatchListView.__init__(self, Match, OfficialMatch)
+        BaseMatchListView.__init__(self, Match, template_name='Scouting2016/match_list.html')
 
 
 class SingleMatchView2016(BaseSingleMatchView):
@@ -89,6 +89,9 @@ class SingleMatchView2016(BaseSingleMatchView):
 
     def get_metrics(self, score_result):
         return []
+    
+    def get_match_validation(self, match):
+        return False, [], []
 
 
 class GenGraphView2016(BaseGenGraphView):
