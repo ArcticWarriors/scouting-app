@@ -67,6 +67,4 @@ def add_match(request, regional_code):
         )
         score_result.save()
         
-    raise
-        
     return HttpResponseRedirect(reverse('Scouting2017:index', args=(regional_code,)))

@@ -165,8 +165,10 @@ def calculate_match_scouting_validity(match, official_match, official_match_srs)
     warning_messages = []
     error_messages = []
     
-    if len(match.scoreresult_set.all()) != 6:
+    sr_count =  match.scoreresult_set.count()
+    if sr_count != 6:
         error_level = 2
+        error_messages.append(("Num Teams", 6, sr_count))
     elif len(official_match_srs) == 2:
         red_official = official_match_srs[0]
         blue_official = official_match_srs[1]
