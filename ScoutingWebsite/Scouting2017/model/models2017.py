@@ -127,7 +127,6 @@ class ScoreResult(models.Model):
     # Endgame
     rope = models.BooleanField(default=False)
     
-    hoppers_dumped = models.BooleanField(default=False)
     
     # Fouls
     tech_foul = models.IntegerField(default=0)
@@ -136,8 +135,11 @@ class ScoreResult(models.Model):
     yellow_card = models.BooleanField(default=False)
     
     #collecting
+    hoppers_dumped = models.IntegerField(default=0)
     gathered_fuel_from_ground = models.BooleanField(default=False)
     gathered_gear_from_ground = models.BooleanField(default=False)
+    
+    match_comments = models.CharField(max_length=1000, default="")
     
 
     @staticmethod

@@ -29,8 +29,8 @@ def add_match(request, regional_code):
         
         rope_climbed = 'ropeClimbed-%s' % (i + 1) in post
         auto_baseline = 'autoBaseline-%s' % (i + 1) in post
-        auto_gear_scored = 'autoGear-%s' % (i+1) in post
-        defensive_play = 'defesnive-%s' % (i+1) in post
+        yellow_card = 'yellowCard-%s' % (i + 1) in post
+        red_card = 'redCard-%s' % (i + 1) in post
 
         score_result = ScoreResult.objects.create(
             competition=comp,
@@ -39,7 +39,9 @@ def add_match(request, regional_code):
             
             # Auto
             auto_fuel_high_score=int(post['autoFuelHighMade-%s' % (i + 1)]),
+            auto_fuel_high_shots=int(post['autoFuelHighShot-%s' % (i + 1)]),
             auto_fuel_low_score=int(post['autoFuelLowMade-%s' % (i + 1)]),
+            auto_fuel_low_shots=int(post['autoFuelLowShot-%s' % (i + 1)]),
             auto_gears=int(post['autoGears-%s' % (i + 1)]),
             auto_baseline=auto_baseline,
             
@@ -53,11 +55,15 @@ def add_match(request, regional_code):
             # Endgame
             rope=rope_climbed,
             
+            # General
+            hoppers_dumped=int(post['hoppersDumped-%s' % (i + 1)]),
+            match_comments=post['comments-%s' % (i + 1)],
+            
             # Fouls
-            tech_foul=0,
-            foul=0,
-            red_card=0,
-            yellow_card=0,
+            tech_foul=int(post['techFouls-%s' % (i + 1)]),
+            foul=int(post['fouls-%s' % (i + 1)]),
+            yellow_card=yellow_card,
+            red_card=red_card,
         )
         score_result.save()
         
