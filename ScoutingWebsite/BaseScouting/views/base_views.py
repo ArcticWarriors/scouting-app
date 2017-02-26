@@ -200,7 +200,6 @@ class BaseSingleMatchView(TemplateView):
         context['official_result_warnings'] = warnings
         context['official_result_errors'] = errors 
         context['has_official_data'] = has_official_data
-        print context
 
         metrics = []
         for sr in the_match.scoreresult_set.all():

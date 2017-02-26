@@ -62,7 +62,7 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
         tele_fuel_low_sum += sr.tele_fuel_low_score
         tele_fuel_high_sum += sr.tele_fuel_high_score
         
-        auto_gear_sum += sr.tele_gears
+        auto_gear_sum += sr.auto_gears
         tele_gear_sum += sr.tele_gears
         
         climb_sum += 1 if sr.rope else 0
@@ -86,33 +86,25 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
         
     #######################
     # Gears
-    #######################    
-    auto_rotors = 0
-    if auto_gear_sum >= 1:
-        auto_rotors += 1
-    if auto_gear_sum >= 3:
-        auto_rotors += 1
-        
-    tele_rotors = 0
-    if tele_gear_sum >= 1:
-        tele_rotors += 1
-    if tele_gear_sum >= 3:
-        tele_rotors += 1
-    if tele_gear_sum >= 7:
-        tele_rotors += 1
-    if tele_gear_sum >= 13:
-        tele_rotors += 1
-        
-    if official_sr.rotor1Auto == 1 and (auto_rotors >= 1) :
-        error_messages.append((alliance_color + "Auto Rotors", 1, auto_rotors))
+    #######################
+    if official_sr.rotor1Auto == 1 and (auto_gear_sum < 1) :
+        error_messages.append((alliance_color + "Auto Rotors", 1, auto_gear_sum))
        
-    if official_sr.rotor2Auto == 1 and (auto_rotors >= 2) :
-        error_messages.append((alliance_color + "Auto Rotors", 2, auto_rotors))
-        
-    if len(error_messages) != 0:
-        print error_messages
-        
-    
+    if official_sr.rotor2Auto == 1 and (auto_gear_sum < 3) :
+        error_messages.append((alliance_color + "Auto Rotors", 2, auto_gear_sum))
+       
+    if official_sr.rotor1Engaged == 1 and (tele_gear_sum < 1) :
+        error_messages.append((alliance_color + "Tele Rotors", 1, tele_gear_sum))
+       
+    if official_sr.rotor2Engaged == 1 and (tele_gear_sum < 2) :
+        error_messages.append((alliance_color + "Tele Rotors", 2, tele_gear_sum))
+       
+    if official_sr.rotor3Engaged == 1 and (tele_gear_sum < 3) :
+        error_messages.append((alliance_color + "Tele Rotors", 3, tele_gear_sum))
+       
+    if official_sr.rotor4Engaged == 1 and (tele_gear_sum < 4) :
+        error_messages.append((alliance_color + "Tele Rotors", 4, tele_gear_sum))
+
     #######################
     # Other
     #######################   
@@ -125,24 +117,24 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
         official_rope_sum += 1
         
     official_baseline_sum = 0
-    if official_sr.robot1Auto:
+    if official_sr.robot1Auto == "Mobility":
         official_baseline_sum += 1
-    if official_sr.robot2Auto:
+    if official_sr.robot2Auto == "Mobility":
         official_baseline_sum += 1
-    if official_sr.robot3Auto:
+    if official_sr.robot3Auto == "Mobility":
         official_baseline_sum += 1
-        
+
     if official_rope_sum != climb_sum:
         error_messages.append((alliance_color + "Climbing", official_rope_sum, climb_sum))
         
     if official_baseline_sum != basline_sum:
         error_messages.append((alliance_color + "Baseline", official_baseline_sum, basline_sum))
         
-    if len(error_messages) != 0:
-        print error_messages
-        
-    print warning_messages
-    print error_messages
+#     if len(error_messages) != 0:
+#         print error_messages
+#         
+#     print warning_messages
+#     print error_messages
 
     return warning_messages, error_messages
         
@@ -246,8 +238,6 @@ class SingleMatchView2017(BaseSingleMatchView):
         context = BaseSingleMatchView.get_context_data(self, **kwargs)
         
         match = context['match']
-        
-        print match.red1.scoreresult_set.filter(match=match)[0].team
          
         context['red'] = {}
         context['red']['sr1'] = match.red1.scoreresult_set.filter(match=match)[0]
@@ -270,6 +260,7 @@ class SingleMatchView2017(BaseSingleMatchView):
         official_sr_search = official_match.officialmatchscoreresult_set.all()
         if len(official_sr_search) == 2:
             _, warnings, errors = calculate_match_scouting_validity(match, official_match, official_sr_search)
+            print warnings, errors
 
             return True, warnings, errors
 
