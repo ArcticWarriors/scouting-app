@@ -16,13 +16,13 @@
           </tr>
           <tr>
               <td>Red</td>
-              <td>{{ predicted_results.red_prediction.total_score }}</td>
+              <td>{{ predicted_results.red_prediction.total_score|floatformat:2 }}</td>
               <td>{{ predicted_results.red_prediction.kpa_bonus }}</td>
               <td>{{ predicted_results.red_prediction.rotor_bonus }}</td>
           </tr>
           <tr>
               <td>Blue</td>
-              <td>{{ predicted_results.blue_prediction.total_score }}</td>
+              <td>{{ predicted_results.blue_prediction.total_score|floatformat:2 }}</td>
               <td>{{ predicted_results.blue_prediction.kpa_bonus }}</td>
               <td>{{ predicted_results.blue_prediction.rotor_bonus }}</td>
           </tr>
@@ -106,10 +106,10 @@
             </tr>
             <tr>
                 <td>Total</td>
-                <td>{{ predicted_results.red_prediction.team1.total_score }}</td>
-                <td>{{ predicted_results.red_prediction.team2.total_score }}</td>
-                <td>{{ predicted_results.red_prediction.team3.total_score }}</td>
-                <td>{{ predicted_results.red_prediction.averages.total_score }}</td>
+                <td>{{ predicted_results.red_prediction.team1.total_score|floatformat:2 }}</td>
+                <td>{{ predicted_results.red_prediction.team2.total_score|floatformat:2 }}</td>
+                <td>{{ predicted_results.red_prediction.team3.total_score|floatformat:2 }}</td>
+                <td>{{ predicted_results.red_prediction.averages.total_score|floatformat:2 }}</td>
             </tr>
         </table>
     </div>
@@ -191,10 +191,10 @@
             </tr>
             <tr>
                 <td>Total</td>
-                <td>{{ predicted_results.blue_prediction.team1.total_score }}</td>
-                <td>{{ predicted_results.blue_prediction.team2.total_score }}</td>
-                <td>{{ predicted_results.blue_prediction.team3.total_score }}</td>
-                <td>{{ predicted_results.blue_prediction.averages.total_score }}</td>
+                <td>{{ predicted_results.blue_prediction.team1.total_score|floatformat:2 }}</td>
+                <td>{{ predicted_results.blue_prediction.team2.total_score|floatformat:2 }}</td>
+                <td>{{ predicted_results.blue_prediction.team3.total_score|floatformat:2 }}</td>
+                <td>{{ predicted_results.blue_prediction.averages.total_score|floatformat:2 }}</td>
             </tr>
         </table>
     </div>

@@ -87,23 +87,38 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
     #######################
     # Gears
     #######################
-    if official_sr.rotor1Auto == 1 and (auto_gear_sum < 1) :
-        error_messages.append((alliance_color + "Auto Rotors", 1, auto_gear_sum))
+    actual_auto_rotor1 = official_sr.rotor1Auto == 1
+    actual_auto_rotor2 = official_sr.rotor2Auto == 1
+    actual_tele_rotor1 = official_sr.rotor1Engaged == 1
+    actual_tele_rotor2 = official_sr.rotor2Engaged == 1
+    actual_tele_rotor3 = official_sr.rotor3Engaged == 1
+    actual_tele_rotor4 = official_sr.rotor4Engaged == 1
+    
+    expected_auto_rotor1 = auto_gear_sum >= 1
+    expected_auto_rotor2 = auto_gear_sum >= 3
+    expected_tele_rotor1 = tele_gear_sum >= 1 and not expected_auto_rotor1
+    expected_tele_rotor2 = tele_gear_sum >= 3 and not expected_auto_rotor2
+    expected_tele_rotor3 = tele_gear_sum >= 7
+    expected_tele_rotor4 = tele_gear_sum >= 13
+    
+    
+    if actual_auto_rotor1 != expected_auto_rotor1:
+        error_messages.append((alliance_color + "Auto Rotor 1", actual_auto_rotor1, "%s (sum=%s)" % (expected_auto_rotor1, auto_gear_sum)))
        
-    if official_sr.rotor2Auto == 1 and (auto_gear_sum < 3) :
-        error_messages.append((alliance_color + "Auto Rotors", 2, auto_gear_sum))
+    if actual_auto_rotor2 != expected_auto_rotor2:
+        error_messages.append((alliance_color + "Auto Rotor 2", actual_auto_rotor2, "%s (sum=%s)" % (expected_auto_rotor2, auto_gear_sum)))
        
-    if official_sr.rotor1Engaged == 1 and (tele_gear_sum < 1) :
-        error_messages.append((alliance_color + "Tele Rotors", 1, tele_gear_sum))
+    if actual_tele_rotor1 != expected_tele_rotor1:
+        error_messages.append((alliance_color + "Tele Rotor 1", actual_tele_rotor1, "%s (sum=%s)" % (expected_tele_rotor1, tele_gear_sum)))
        
-    if official_sr.rotor2Engaged == 1 and (tele_gear_sum < 2) :
-        error_messages.append((alliance_color + "Tele Rotors", 2, tele_gear_sum))
+    if actual_tele_rotor2 != expected_tele_rotor2:
+        error_messages.append((alliance_color + "Tele Rotor 2", actual_tele_rotor2, "%s (sum=%s)" % (expected_tele_rotor2, tele_gear_sum)))
        
-    if official_sr.rotor3Engaged == 1 and (tele_gear_sum < 3) :
-        error_messages.append((alliance_color + "Tele Rotors", 3, tele_gear_sum))
+    if actual_tele_rotor3 != expected_tele_rotor3:
+        error_messages.append((alliance_color + "Tele Rotor 3", actual_tele_rotor3, "%s (sum=%s)" % (expected_tele_rotor3, tele_gear_sum)))
        
-    if official_sr.rotor4Engaged == 1 and (tele_gear_sum < 4) :
-        error_messages.append((alliance_color + "Tele Rotors", 4, tele_gear_sum))
+    if actual_tele_rotor4 != expected_tele_rotor4:
+        error_messages.append((alliance_color + "Tele Rotor 4", actual_tele_rotor4, "%s (sum=%s)" % (expected_tele_rotor4, tele_gear_sum)))
 
     #######################
     # Other
@@ -354,8 +369,9 @@ def get_team_average_for_match_prediction(team, regional_code):
                  output['tele_fuel_low'] / 9.0
     
     output["fuel_total"] = fuel_total
+    output["gear_total"] = output['auto_gears'] + output['tele_gears']
     output["total_score"] = fuel_total + \
-                              output['auto_baseline'] * 5 + \
+                              output['baseline'] * 5 + \
                               output['rope'] * 50
     
     return output
@@ -380,7 +396,7 @@ def get_alliance_average_for_match_prediction(team1, team2, team3, regional_code
     output['averages'] = averages
     output['total_score'] = averages["total_score"]
     output['kpa_bonus'] = "Yes" if averages["fuel_total"] >= 40 else "No"
-    output['rotor_bonus'] = "Yes"
+    output['rotor_bonus'] = "Yes" if averages["gear_total"] >= 40 else "No"
         
     return output
     
