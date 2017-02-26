@@ -427,6 +427,12 @@ class PickListView2017(TemplateView):
             
         all_teams = sorted(all_teams, key=operator.attrgetter('teamNumber'))
         
+        overall_teams = []
+        gear_teams = []
+        fuel_teams = []
+        defense_teams = []
+        do_not_pick_teams = []
+        
         context['original_overall_list'] = []
         context['original_fuel_list'] = []
         context['original_gear_list'] = []
@@ -434,15 +440,15 @@ class PickListView2017(TemplateView):
         context['original_dnp_list'] = []
         context['all_teams'] = all_teams
         
-        context['original_overall_list'].append(Team.objects.get(teamNumber=174))
-        context['original_fuel_list'].append(Team.objects.get(teamNumber=1507))
-        context['original_fuel_list'].append(Team.objects.get(teamNumber=1126))
-        context['original_fuel_list'].append(Team.objects.get(teamNumber=340))
-        context['original_gear_list'].append(Team.objects.get(teamNumber=174))
-        context['original_gear_list'].append(Team.objects.get(teamNumber=191))
-        context['original_gear_list'].append(Team.objects.get(teamNumber=1507))
-        context['original_defense_list'].append(Team.objects.get(teamNumber=1405))
-        context['original_dnp_list'].append(Team.objects.get(teamNumber=1450))
+        for i, team in enumerate(Team.objects.all()):
+            
+            if i < 24:
+                context['original_overall_list'].append(team)
+                context['original_fuel_list'].append(team)
+                context['original_gear_list'].append(team)
+                context['original_defense_list'].append(team)
+            elif i < 30:
+                context['original_dnp_list'].append(team)
         
         return context
 

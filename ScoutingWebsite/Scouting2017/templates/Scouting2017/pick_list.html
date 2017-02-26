@@ -6,8 +6,44 @@
 <style>
 td{
     text-align: center;
+    cursor: move;
 }
+
 </style>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript">
+
+//http://stackoverflow.com/questions/25093983/jquery-sortable-ui-remove-item-when-is-dragged-to-a-specific-div
+$(document).ready(function () {
+    
+    $(".sortableList").sortable({
+        update: function(event, ui) {
+            $('.sortableList tr').each(function() {
+                var first_col = $(this).children('td:first-child')
+                first_col.css("display", "");
+                first_col.html($(this).index() + 1)
+            });
+        },
+        
+        drop: function(event, ui) {
+            console.log("Dropping")
+        },
+    });
+    $(".draggable").draggable({
+        connectToSortable: '.sortableList',
+        cursor: 'pointer',
+        helper: 'clone',
+        revert: 'invalid'
+    });
+    
+    $('.droppableArea').droppable({
+        accept: 'tr',
+        drop: function(event, ui) {
+            ui.helper.remove();
+        }
+    });
+});
+</script>
 
 {% endblock head %}
 
@@ -16,24 +52,28 @@ td{
 <div class = "row">
     <div class="col-md-6">
     
-        <div class="panel-heading" style="text-align: center;"><h2>Top 24</h2></div>
+        <div class="droppableArea panel-heading" style="text-align: center;"><h2>Top 24</h2></div>
         <div style="overflow-x: auto">
             <table class="table table-hover">
-                {% for team in original_overall_list %}
-                  <tr><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
-                {% endfor %}
+                <tbody class="sortableList">
+                    {% for team in original_overall_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% endfor %}
+                </tbody>  
             </table>
         </div>
     </div>
     
 
     <div class="col-md-6">
-        <div class="panel-heading" style="text-align: center;;"><h2>DO NOT PICK</h2></div>
+        <div class="droppableArea panel-heading" style="text-align: center;"><h2>DO NOT PICK</h2></div>
         <div style="overflow-x: auto">
             <table class="table table-hover">
-                {% for team in original_dnp_list %}
-                  <tr><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
-                {% endfor %}
+                <tbody class="sortableList">
+                  {% for team in original_dnp_list %}
+                  <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                  {% endfor %}
+                </tbody>  
             </table>
         </div>
     </div>
@@ -41,46 +81,57 @@ td{
 
 <div class = "row">
     <div class="col-md-4">
-        <div class="panel-heading" style="text-align: center;;"><h2>Fuel</h2></div>
+        <div class="droppableArea panel-heading" style="text-align: center;"><h2>Fuel</h2></div>
         <div style="overflow-x: auto">
             <table class="table table-hover">
-                {% for team in original_fuel_list %}
-                  <tr><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
-                {% endfor %}
+                <tbody class="sortableList">
+                    {% for team in original_fuel_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td><a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% endfor %}
+                </tbody>  
             </table>
         </div>
     </div>
     
     <div class="col-md-4">
-        <div class="panel-heading" style="text-align: center;;"><h2>Gears</h2></div>
+        <div class="droppableArea panel-heading" style="text-align: center;"><h2>Gears</h2></div>
         <div style="overflow-x: auto">
             <table class="table table-hover">
-                {% for team in original_gear_list %}
-                  <tr><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
-                {% endfor %}
+                <tbody class="sortableList">
+                    {% for team in original_gear_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td><a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% endfor %}
+                </tbody>  
             </table>
         </div>
     </div>
     
     <div class="col-md-4">
-        <div class="panel-heading" style="text-align: center;;"><h2>Defense</h2></div>
+        <div class="droppableArea panel-heading" style="text-align: center;"><h2>Defense</h2></div>
         <div style="overflow-x: auto">
             <table class="table table-hover">
-                {% for team in original_defense_list %}
-                  <tr><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
-                {% endfor %}
+                <tbody class="sortableList">
+                    {% for team in original_defense_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% endfor %}
+                </tbody>  
             </table>
         </div>
     </div>
+</div>
+
+
+<div class = "droppableArea">
+<br>
 </div>
 
 <div class = "row">
     <div class="col-md-12">
-        <div class="panel-heading" style="text-align: center;;"><h2>All Teams</h2></div>
+        <div class="droppableArea panel-heading" style="text-align: center;"><h2>All Teams</h2></div>
         <div style="overflow-x: auto">
             <table class="table table-hover">
                 {% for team in all_teams %}
-                  <tr><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                  <tr class="draggable"><td style="display:none;">XX</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
                 {% endfor %}
             </table>
         </div>
