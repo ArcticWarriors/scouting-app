@@ -68,8 +68,7 @@
 
     {% if pictures|length != 0 %}
         {% for picture in pictures %}
-        <img src="{% static picture.path %}" width='500'>
-        <br></br>
+        <a href="{% static picture.path %}"><img src="{% static picture.path %}" width='100'></a>
         {% endfor %}
     {% else %}
         No pictures available
