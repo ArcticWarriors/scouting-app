@@ -13,6 +13,15 @@ td{
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script type="text/javascript">
 
+var changed = false;
+
+window.onbeforeunload = function(event) {
+    if(changed)
+    {
+        return 'You have unsaved changes?';
+    }
+};
+
 //http://stackoverflow.com/questions/25093983/jquery-sortable-ui-remove-item-when-is-dragged-to-a-specific-div
 $(document).ready(function () {
     
@@ -22,6 +31,7 @@ $(document).ready(function () {
                 var first_col = $(this).children('td:first-child')
                 first_col.css("display", "");
                 first_col.html($(this).index() + 1)
+                changed = true;
             });
         },
         
@@ -40,6 +50,7 @@ $(document).ready(function () {
         accept: 'tr',
         drop: function(event, ui) {
             ui.helper.remove();
+            changed = true;
         }
     });
 });
