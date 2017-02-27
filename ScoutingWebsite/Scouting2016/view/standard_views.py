@@ -1,7 +1,7 @@
 import operator
 from Scouting2016.model.reusable_models import Team, Match, OfficialMatch, TeamPictures, TeamComments, TeamCompetesIn, Competition
 from Scouting2016.model.models2016 import get_team_metrics, get_defense_stats, \
-    get_advanced_team_metrics, ScoreResult
+    get_advanced_team_metrics, ScoreResult, validate_match
 from BaseScouting.views.base_views import *
 from django.db.models.aggregates import Avg, Sum
 
@@ -40,7 +40,6 @@ class HomepageView2016(BaseHomepageView):
             result = ScoreResult.objects.filter(competition=competition).values('team__teamNumber').annotate(the_result=Avg(metric)).order_by('-the_result')[0:num_to_display]
 
             this_result = [(x['team__teamNumber'], "%.2f" % x['the_result']) for x in result]
-            print this_result
             output.append((full_name, this_result))
 
         return output
@@ -80,6 +79,26 @@ class MatchListView2016(BaseMatchListView):
 
     def __init__(self):
         BaseMatchListView.__init__(self, Match, template_name='Scouting2016/match_list.html')
+    
+    def append_scouted_info(self, match, regional_code):
+        
+        output = match
+        
+        output.match_error_level = 0
+        output.match_error_warning_messages = []
+        output.match_error_error_messages = []
+        output.winning_alliance = "Unofficial"
+        output.redScore = "Unknown"
+        output.blueScore = "Unknown"
+        
+        
+        official_match_search = OfficialMatch.objects.filter(competition__code=regional_code, matchNumber=match.matchNumber)
+        if len(official_match_search) == 1:
+            official_match = official_match_search[0]
+            official_sr_search = official_match.officialmatchscoreresult_set.all()
+            output.match_error_level, output.match_error_warning_messages, output.match_error_error_messages = validate_match(match, official_match, official_sr_search)
+
+        return output
 
 
 class SingleMatchView2016(BaseSingleMatchView):
@@ -90,7 +109,15 @@ class SingleMatchView2016(BaseSingleMatchView):
     def get_metrics(self, score_result):
         return []
     
-    def get_match_validation(self, match):
+    def get_match_validation(self, regional_code, match):
+
+        official_match = OfficialMatch.objects.get(competition__code=regional_code, matchNumber=match.matchNumber)
+        official_sr_search = official_match.officialmatchscoreresult_set.all()
+        if len(official_sr_search) == 2:
+            _, warnings, errors = validate_match(match, official_match, official_sr_search)
+
+            return True, warnings, errors
+        
         return False, [], []
 
 

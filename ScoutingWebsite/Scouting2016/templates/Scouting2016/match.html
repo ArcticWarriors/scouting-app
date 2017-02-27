@@ -1,6 +1,21 @@
 {% extends 'BaseScouting/match.html' %}
 {% load staticfiles %}
 
+{% block head %}
+<style>
+.stats_view td
+{
+   color: white;
+   text-align: center;
+}
+
+a
+{
+	color: white;
+}
+</style>
+{% endblock head %}
+
 {% block stats %}
 	<h2>Scoring Stats.</h2>
 	<table border="1" class = "sortable">
@@ -15,7 +30,7 @@
         </thead>
         <tbody>
              {% for sr in score_result_list %}
-            <tr>
+            <tr class='stats_view' style='background-color: {%if sr.color == "Red" %} #e21231 {% elif sr.color == "Blue" %} Blue{%else %} {% endif %};'>
                 <td><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
                 <td>{{sr.low_score_successful}}</td>
                 <td>{{sr.high_score_successful}}</td>
@@ -46,7 +61,7 @@
         </thead>
         <tbody>
             {% for sr in score_result_list %}
-            <tr>
+            <tr class='stats_view' style='background-color: {%if sr.color == "Red" %} #e21231 {% elif sr.color == "Blue" %} Blue{%else %} {% endif %};'>
                 <td><a href="{% url request.resolver_match.namespace|add:':view_team' regional_code sr.team.teamNumber %}">{{sr.team.teamNumber}}</a></td>
                 <td>{{sr.low_bar}}</td>
                 <td>{{sr.cheval_de_frise}}</td>

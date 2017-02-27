@@ -30,15 +30,6 @@ class Competition(models.Model):
         return "Competition %s - %s" % (self.code, self.name)
 
 
-class Match(models.Model):
-
-    matchNumber = models.IntegerField()
-    competition = models.ForeignKey(Competition)
-
-    def __str__(self):
-        return "Match %s at Competitions %s" % (self.matchNumber, self.competition)
-
-
 class Team(models.Model):
 
     teamNumber = models.IntegerField()
@@ -53,6 +44,22 @@ class Team(models.Model):
 
     def __str__(self):
         return "Team %s" % self.teamNumber
+
+class Match(models.Model):
+
+    matchNumber = models.IntegerField()
+    competition = models.ForeignKey(Competition)
+    
+    
+    red1 = models.ForeignKey(Team, related_name='red1_matches', null=True)
+    red2 = models.ForeignKey(Team, related_name='red2_matches', null=True)
+    red3 = models.ForeignKey(Team, related_name='red3_matches', null=True)
+    blue1 = models.ForeignKey(Team, related_name='blue1_matches', null=True)
+    blue2 = models.ForeignKey(Team, related_name='blue2_matches', null=True)
+    blue3 = models.ForeignKey(Team, related_name='blue3_matches', null=True)
+
+    def __str__(self):
+        return "Match %s at Competitions %s" % (self.matchNumber, self.competition)
 
 
 class TeamCompetesIn(models.Model):

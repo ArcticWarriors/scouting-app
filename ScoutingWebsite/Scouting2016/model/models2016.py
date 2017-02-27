@@ -7,6 +7,76 @@ from django.db.models.aggregates import Avg, Sum
 from django.db import models
 from Scouting2016.model.reusable_models import ScoreResultMetric, Team, \
     OfficialMatch, Match, Competition
+    
+def __validate_alliance_score(alliance_color, teams, match, official_match):
+
+    high_goals, low_goals, defense_crossings, defenses_crossed, alliance_error = __get_alliance_results(match, teams)
+    
+    warning_messages = []
+    error_messages = []
+    
+
+    actual_defenses = []
+    actual_defenses.append(official_match.defense2Name)
+    actual_defenses.append(official_match.defense3Name)
+    actual_defenses.append(official_match.defense4Name)
+    actual_defenses.append(official_match.defense5Name)
+
+    unexpected_red_crossings = []
+    for exp_def in defenses_crossed:
+        if exp_def not in actual_defenses and exp_def != "low_bar":
+            unexpected_red_crossings.append(exp_def)
+     
+    if alliance_error:
+        expected = [team.teamNumber for team in teams]
+        all_teams = [sr.team.teamNumber for sr in match.scoreresult_set.all()]
+        error_messages.append((alliance_color + "Teams", expected, all_teams))
+ 
+    if high_goals != official_match.teleBouldersHigh:
+        warning_messages.append((alliance_color + "High Goals", official_match.teleBouldersHigh, high_goals, ))
+  
+    if low_goals != official_match.teleBouldersLow:
+        warning_messages.append((alliance_color + "Low Goals", official_match.teleBouldersLow, low_goals, ))
+  
+    if defense_crossings != official_match.teleDefenseCrossings:
+        warning_messages.append((alliance_color + "Defense Crossings (Tele)", official_match.teleDefenseCrossings, defense_crossings, ))
+  
+    if len(unexpected_red_crossings) != 0:
+        warning_messages.append((alliance_color + "Available Defenses", actual_defenses, unexpected_red_crossings))
+        
+    return warning_messages, error_messages
+    
+
+def validate_match(match, official_match, official_srs):
+    
+    error_level = 0
+    warning_messages = []
+    error_messages = []
+
+    red_teams = [match.red1, match.red2, match.red3]
+    blue_teams = [match.blue1, match.blue2, match.blue3]
+    
+    red_warning, red_error = __validate_alliance_score("Red", red_teams, match, official_srs[0])
+    blue_warning, blue_error = __validate_alliance_score("Blue",blue_teams, match, official_srs[1])
+    
+    warning_messages.extend(red_warning)
+    warning_messages.extend(blue_warning)
+    error_messages.extend(red_error)
+    error_messages.extend(blue_error)
+
+    num_results = len(match.scoreresult_set.all())
+    if num_results != 6:
+        error_messages.append(("Team Count", 6, num_results))
+        
+    
+    if len(error_messages) != 0:
+        error_level = 2
+    elif len(warning_messages) != 0:
+        error_level = 1
+        
+    print "\n".join(str(x) for x in error_messages)
+
+    return error_level, warning_messages, error_messages
 
 
 def __get_alliance_results(match, teams,):
