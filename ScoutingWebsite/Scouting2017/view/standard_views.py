@@ -19,6 +19,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 import collections
+import re
 
 
 def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
@@ -253,6 +254,14 @@ class SingleMatchView2017(BaseSingleMatchView):
     def __init__(self):
         BaseSingleMatchView.__init__(self, Match, 'Scouting2017/match.html')
         
+    def get_sr(self, team, match):
+        
+        sr_search = team.scoreresult_set.filter(match=match)
+        if len(sr_search) == 1:
+            return sr_search[0]
+    
+        return None
+        
     def get_context_data(self, **kwargs):
         context = BaseSingleMatchView.get_context_data(self, **kwargs)
         
@@ -262,15 +271,15 @@ class SingleMatchView2017(BaseSingleMatchView):
          
         context['alliances']['Red'] = {}
         context['alliances']['Red']['score_results'] = []
-        context['alliances']['Red']['score_results'].append(match.red1.scoreresult_set.get(match=match))
-        context['alliances']['Red']['score_results'].append(match.red2.scoreresult_set.get(match=match))
-        context['alliances']['Red']['score_results'].append(match.red3.scoreresult_set.get(match=match))
+        context['alliances']['Red']['score_results'].append(self.get_sr(match.red1, match))
+        context['alliances']['Red']['score_results'].append(self.get_sr(match.red2, match))
+        context['alliances']['Red']['score_results'].append(self.get_sr(match.red3, match))
          
         context['alliances']['Blue'] = {}
         context['alliances']['Blue']['score_results'] = []
-        context['alliances']['Blue']['score_results'].append(match.blue1.scoreresult_set.get(match=match))
-        context['alliances']['Blue']['score_results'].append(match.blue2.scoreresult_set.get(match=match))
-        context['alliances']['Blue']['score_results'].append(match.blue3.scoreresult_set.get(match=match))
+        context['alliances']['Blue']['score_results'].append(self.get_sr(match.blue1, match))
+        context['alliances']['Blue']['score_results'].append(self.get_sr(match.blue2, match))
+        context['alliances']['Blue']['score_results'].append(self.get_sr(match.blue3, match))
         
         context['form_editable_text'] = "" # "contenteditable=true"
         
@@ -498,10 +507,75 @@ def submit_pit_scouting(request, **kargs):
 
 def submit_match_edit(request, **kwargs):
     
-    print kwargs
-    print request.POST
+    def convertBool(value):
+        
+        output = True
+        
+        if value.lower() == "true":
+            output = True
+        elif value.lower() == "false":
+            output = False
+        elif value.lower() == "yes":
+            output = True
+        elif value.lower() == "no":
+            output = False
+        elif value.lower() == "y":
+            output = True
+        elif value.lower() == "n":
+            output = False
+        elif value.lower() == "t":
+            output = True
+        elif value.lower() == "f":
+            output = False
+        
+        return output
+
+    success = False
     
-    return HttpResponse(json.dumps({"success": False}), content_type='application/json')
+    creation_dict = {}
+    
+    print kwargs
+    
+    
+    try:
+        for arg in request.POST:
+            matches = re.findall("edit_([0-9]+)_(.*)", arg)
+            if len(matches) == 1:
+                team_number, field = matches[0]
+                if team_number not in creation_dict:
+                    creation_dict[team_number] = {}
+                    
+                creation_dict[team_number][field] = request.POST[arg]
+#                 print team_number, field
+
+        competition = Competition.objects.get(code=kwargs['regional_code'])
+        match = Match.objects.get(competition=competition, matchNumber=request.POST['match_number'])
+        for team_number in creation_dict:
+            team = Team.objects.get(teamNumber=team_number)
+            sr = ScoreResult.objects.get(competition=competition, team=team, match=match)
+            
+            for key, value in creation_dict[team_number].iteritems():
+                attr = getattr(sr, key)
+                if type(attr) is bool:
+                    value = convertBool(value)
+                    setattr(sr, key, value)
+                else:
+                    setattr(sr, key, value)
+
+            sr.save()
+            
+    except Exception as e:
+        print "ERROR %s" % e
+        
+        
+#     for key, value in creation_dict.items():
+#         print key, value
+        
+#         print arg.split("_")
+#         print arg
+    
+    
+    return HttpResponse(json.dumps({"success": success}), content_type='application/json')
 
 def update_bookmark(request, **kwargs):
     
