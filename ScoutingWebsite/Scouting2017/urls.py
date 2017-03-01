@@ -32,6 +32,7 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', standard_views.submit_pit_scouting, name='submit_pit_scouting'),
                url(r'^(?P<regional_code>\w+)/upload_image$', standard_views.AddTeamPictureView2017.as_view(), name = 'upload_image'),
                url(r'^(?P<regional_code>\w+)/update_bookmark$', standard_views.update_bookmark, name = 'update_bookmark'),
+               url(r'^(?P<regional_code>\w+)/submit_match_edit$', standard_views.submit_match_edit, name = 'submit_match_edit'),
                
                # User Auth
                url(r'^(?P<regional_code>\w+)/show_login$', user_auth.show_login, name='show_login'),

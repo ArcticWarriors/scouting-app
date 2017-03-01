@@ -1,124 +1,145 @@
 {% extends 'BaseScouting/match.html' %}
 {% load staticfiles %}
 
+{% block head %}
+
+<script>
+
+dirty = false
+
+$(window).on('beforeunload', function (e) 
+{
+    if(dirty)
+    {
+        return "Unsaved Changes";
+    }
+});
+
+function saveEdits(e){ 
+    console.log("Saving edits");
+    
+    $("#save_edit_mode").hide();
+    $("#enter_edit_mode").show();
+
+    $('[id^="edit"]').each(function() {
+    	$(this).removeAttr("style")
+    });
+    
+    data = {}
+    data['csrfmiddlewaretoken'] = '{{ csrf_token}}';
+
+    $('[id^="edit"]').each(function() {
+        key = $(this).attr("id")
+        val = $(this).html()
+        data[key] = val
+    });
+
+    $.ajax(
+    {
+        type: "POST",
+        url: "{% url 'Scouting2017:submit_match_edit' regional_code %}",
+        data: data,
+        success: function(msg) 
+        {
+            if(!msg["success"])
+           	{
+                alert("Failed to submit pit scouting")
+                
+                // TODO temp
+                // dirty = false;
+           	}
+            else
+            {
+                dirty = false;
+            }
+        }
+    });
+}
+
+function enterEditMode(e){ 
+    console.log("Entering edit mode");
+
+    $("#save_edit_mode").show();
+    $("#enter_edit_mode").hide();
+    
+    var original_contents = {}
+
+    // Search for all ID's starting with "edit", loop over them, make them editable
+    $('[id^="edit"]').each(function() {
+        $(this).attr("contenteditable", "true");
+        $(this).attr("style", "border-style: dotted;");
+        //$(this).attr("onfocus", "document.execCommand('selectAll',false,null)");
+        $(this).attr("onclick", "document.execCommand('selectAll',false,null)");
+        orig_key = $(this).attr("id")
+        orig_val = $(this).html()
+        original_contents[orig_key] = orig_val
+        
+        
+        $(this).blur(function() {
+            old_text = original_contents[$(this).attr("id")]
+            new_text = $(this).html()
+            if (old_text != new_text)
+            {
+                console.log('Detected change on ' + orig_key + ': ' + dirty + ", " + old_text + ", " + new_text);
+                dirty = true;
+            }
+        });
+    });
+}
+
+// TODO Debugging
+// window.onload = enterEditMode;
+</script>
+
+{% endblock head %}
+
 {% block stats %}
+
+{% if user.is_authenticated %}
+
+<button id="enter_edit_mode" onclick="enterEditMode();">Enter Edit Mode</button>
+<button id="save_edit_mode" onclick="saveEdits();" hidden=true>Save Edit Mode</button>
+
+{% endif %}
+
+{% for color, alliance_info in alliances.items %}
 <div class="panel panel-default">
     <div class="panel-heading" style="overflow:auto;">
-        <h2>Red Alliance</h2>
+        <h2>{{color}} Alliance</h2>
     </div>
 
     <div style="overflow-x: auto">
         <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Teams</th>
+                    <th> Auto Gear </th>
+                    <th> Auto Fuel High</th>
+                    <th> Auto Fuel Low </th>
+                    <th> Tele Gear </th>
+                    <th> Tele Fuel High</th>
+                    <th> Tele Fuel Low</th>
+                    <th> Climbed</th>
+                </tr>
+            </thead>
+
+            {% for sr in alliance_info.score_results %}
             <tr>
-                <th>Teams</th>
-                <th> Auto Gear </th>
-                <th> Auto Fuel High</th>
-                <th> Auto Fuel Low </th>
-                <th> Tele Gear </th>
-                <th> Tele Fuel High</th>
-                <th> Tele Fuel Low</th>
-                <th> Climbed</th>
+                <td><a href="{% url 'Scouting2017:view_team' regional_code sr.team.teamNumber %}">{{ sr.team.teamNumber }}</a></td>
+                <td id="edit_{{ sr.team.teamNumber }}_auto_gears">{{ sr.auto_gears }}</td>
+                <td id="edit_{{ sr.team.teamNumber }}_auto_fuel_high_score">{{ sr.auto_fuel_high_score }}</td>
+                <td id="edit_{{ sr.team.teamNumber }}_auto_fuel_low_score">{{ sr.auto_fuel_low_score }}</td>
+                <td id="edit_{{ sr.team.teamNumber }}_tele_gears">{{ sr.tele_gears }}</td>
+                <td id="edit_{{ sr.team.teamNumber }}_tele_fuel_high_score">{{ sr.tele_fuel_high_score }}</td>
+                <td id="edit_{{ sr.team.teamNumber }}_tele_fuel_low_score">{{ sr.tele_fuel_low_score }}</td>
+                <td id="edit_{{ sr.team.teamNumber }}_rope">{{ sr.rope }}</td>
             </tr>
-            
-            
-            <tr>
-                <th>{{ red.sr1.team.teamNumber }}</th>
-                <th>{{ red.sr1.auto_gears }}</th>
-                <th>{{ red.sr1.auto_fuel_high_score }}</th>
-                <th>{{ red.sr1.auto_fuel_low_score }}</th>
-                <th>{{ red.sr1.tele_gears }}</th>
-                <th>{{ red.sr1.tele_fuel_high_score }}</th>
-                <th>{{ red.sr1.tele_fuel_low_score }}</th>
-                <th>{{ red.sr1.rope }}</th>
-            </tr>
-            
-            
-            <tr>
-                <th>{{ red.sr2.team.teamNumber }}</th>
-                <th>{{ red.sr2.auto_gears }}</th>
-                <th>{{ red.sr2.auto_fuel_high_score }}</th>
-                <th>{{ red.sr2.auto_fuel_low_score }}</th>
-                <th>{{ red.sr2.tele_gears }}</th>
-                <th>{{ red.sr2.tele_fuel_high_score }}</th>
-                <th>{{ red.sr2.tele_fuel_low_score }}</th>
-                <th>{{ red.sr2.rope }}</th>
-            </tr>
-            
-            
-            <tr>
-                <th>{{ red.sr3.team.teamNumber }}</th>
-                <th>{{ red.sr3.auto_gears }}</th>
-                <th>{{ red.sr3.auto_fuel_high_score }}</th>
-                <th>{{ red.sr3.auto_fuel_low_score }}</th>
-                <th>{{ red.sr3.tele_gears }}</th>
-                <th>{{ red.sr3.tele_fuel_high_score }}</th>
-                <th>{{ red.sr3.tele_fuel_low_score }}</th>
-                <th>{{ red.sr3.rope }}</th>
-            </tr>
-            
-            
+            {% endfor %}
         </table>
     </div>
 </div>
+{% endfor %}
 
 
-<div class="panel panel-default">
-    <div class="panel-heading" style="overflow:auto;">
-        <h2>Blue Alliance</h2>
-    </div>
-
-    <div style="overflow-x: auto">
-        <table class="table table-hover">
-            <tr>
-                <th>Teams</th>
-                <th> Auto Gear </th>
-                <th> Auto Fuel High</th>
-                <th> Auto Fuel Low </th>
-                <th> Tele Gear </th>
-                <th> Tele Fuel High</th>
-                <th> Tele Fuel Low</th>
-                <th> Climbed</th>
-            </tr>
-            
-            
-            <tr>
-                <th>{{ blue.sr1.team.teamNumber }}</th>
-                <th>{{ blue.sr1.auto_gears }}</th>
-                <th>{{ blue.sr1.auto_fuel_high_score }}</th>
-                <th>{{ blue.sr1.auto_fuel_low_score }}</th>
-                <th>{{ blue.sr1.tele_gears }}</th>
-                <th>{{ blue.sr1.tele_fuel_high_score }}</th>
-                <th>{{ blue.sr1.tele_fuel_low_score }}</th>
-                <th>{{ blue.sr1.rope }}</th>
-            </tr>
-            
-            
-            <tr>
-                <th>{{ blue.sr2.team.teamNumber }}</th>
-                <th>{{ blue.sr2.auto_gears }}</th>
-                <th>{{ blue.sr2.auto_fuel_high_score }}</th>
-                <th>{{ blue.sr2.auto_fuel_low_score }}</th>
-                <th>{{ blue.sr2.tele_gears }}</th>
-                <th>{{ blue.sr2.tele_fuel_high_score }}</th>
-                <th>{{ blue.sr2.tele_fuel_low_score }}</th>
-                <th>{{ blue.sr2.rope }}</th>
-            </tr>
-            
-            
-            <tr>
-                <th>{{ blue.sr3.team.teamNumber }}</th>
-                <th>{{ blue.sr3.auto_gears }}</th>
-                <th>{{ blue.sr3.auto_fuel_high_score }}</th>
-                <th>{{ blue.sr3.auto_fuel_low_score }}</th>
-                <th>{{ blue.sr3.tele_gears }}</th>
-                <th>{{ blue.sr3.tele_fuel_high_score }}</th>
-                <th>{{ blue.sr3.tele_fuel_low_score }}</th>
-                <th>{{ blue.sr3.rope }}</th>
-            </tr>
-            
-            
-        </table>
-    </div>
-</div>
 
 {% endblock stats %}

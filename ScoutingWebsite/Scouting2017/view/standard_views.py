@@ -18,6 +18,7 @@ import operator
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+import collections
 
 
 def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
@@ -256,16 +257,22 @@ class SingleMatchView2017(BaseSingleMatchView):
         context = BaseSingleMatchView.get_context_data(self, **kwargs)
         
         match = context['match']
+        
+        context['alliances'] = collections.OrderedDict()
          
-        context['red'] = {}
-        context['red']['sr1'] = match.red1.scoreresult_set.filter(match=match)[0]
-        context['red']['sr2'] = match.red2.scoreresult_set.filter(match=match)[0]
-        context['red']['sr3'] = match.red3.scoreresult_set.filter(match=match)[0]
+        context['alliances']['Red'] = {}
+        context['alliances']['Red']['score_results'] = []
+        context['alliances']['Red']['score_results'].append(match.red1.scoreresult_set.get(match=match))
+        context['alliances']['Red']['score_results'].append(match.red2.scoreresult_set.get(match=match))
+        context['alliances']['Red']['score_results'].append(match.red3.scoreresult_set.get(match=match))
          
-        context['blue'] = {}
-        context['blue']['sr1'] = match.blue1.scoreresult_set.filter(match=match)[0]
-        context['blue']['sr2'] = match.blue2.scoreresult_set.filter(match=match)[0]
-        context['blue']['sr3'] = match.blue3.scoreresult_set.filter(match=match)[0]
+        context['alliances']['Blue'] = {}
+        context['alliances']['Blue']['score_results'] = []
+        context['alliances']['Blue']['score_results'].append(match.blue1.scoreresult_set.get(match=match))
+        context['alliances']['Blue']['score_results'].append(match.blue2.scoreresult_set.get(match=match))
+        context['alliances']['Blue']['score_results'].append(match.blue3.scoreresult_set.get(match=match))
+        
+        context['form_editable_text'] = "" # "contenteditable=true"
         
         return context
 
@@ -488,6 +495,13 @@ def submit_pit_scouting(request, **kargs):
     
     return HttpResponse(json.dumps({"success": success}), content_type='application/json')
 
+
+def submit_match_edit(request, **kwargs):
+    
+    print kwargs
+    print request.POST
+    
+    return HttpResponse(json.dumps({"success": False}), content_type='application/json')
 
 def update_bookmark(request, **kwargs):
     
