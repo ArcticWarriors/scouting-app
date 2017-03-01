@@ -3,7 +3,8 @@ from BaseScouting.views.base_views import BaseHomepageView, BaseTeamListView,\
     BaseMatchPredictionView
 from Scouting2017.model.reusable_models import Competition, TeamCompetesIn, Match, OfficialMatch, Team, TeamPictures, TeamComments,\
     Scout
-from Scouting2017.model.models2017 import ScoreResult, get_team_metrics
+from Scouting2017.model.models2017 import ScoreResult, get_team_metrics,\
+    TeamPitScouting
 from django.db.models.aggregates import Avg, Sum
 from django.db.models.expressions import Case, When
 from django.db.models import Q, F
@@ -271,7 +272,7 @@ class SingleMatchView2017(BaseSingleMatchView):
     def get_metrics(self, score_result):
         return []
     
-    def get_match_validation(self, match):
+    def get_match_validation(self, regional_code, match):
 
         official_match = OfficialMatch.objects.get(matchNumber=match.matchNumber)
         official_sr_search = official_match.officialmatchscoreresult_set.all()
@@ -343,6 +344,10 @@ class SingleTeamView2017(BaseSingleTeamView):
             context['metrics']['auto_fuel_high_misses__avg'] = "NA"
             context['metrics']['fuel_shot_low_missed__avg'] = "NA"
             context['metrics']['fuel_shot_low_missed_auto__avg'] = "NA"
+            
+        pit_scouting_search = TeamPitScouting.objects.filter(team__teamNumber=kwargs["team_number"])
+        if len(pit_scouting_search) == 1:
+            context['pit_scouting'] = pit_scouting_search[0]
         
         return context
         
@@ -453,6 +458,35 @@ class PickListView2017(TemplateView):
                 context['original_dnp_list'].append(team)
         
         return context
+    
+
+def submit_pit_scouting(request, **kargs):
+
+    success = False
+    team_number = int(request.POST['team_number'])
+
+    try:
+        team = Team.objects.get(teamNumber=team_number)
+        team_pit_scouting, _ = TeamPitScouting.objects.get_or_create(team=team)
+    
+        team_pit_scouting.OrganizedFunctional = request.POST['notes_functional']
+        team_pit_scouting.FuelCapacity        = request.POST['notes_fuel_capacity']
+        team_pit_scouting.Gears               = request.POST['notes_gears']
+        team_pit_scouting.Strategy            = request.POST['notes_strategy']
+        team_pit_scouting.Size                = request.POST['notes_size']
+        team_pit_scouting.FuelAcquire         = request.POST['notes_acquire_fuel']
+        team_pit_scouting.AllianceStrategy    = request.POST['notes_alliance_strategy']
+        team_pit_scouting.AllanceCompetent    = request.POST['notes_alliacne_competence']
+        team_pit_scouting.CompetnetConfident  = request.POST['notes_competent_confident']
+        team_pit_scouting.Competitions        = request.POST['notes_compititions']
+        team_pit_scouting.Random              = request.POST['notes_Misc']
+        team_pit_scouting.save()
+        success = True
+    except Exception as e:
+        print e
+    
+    
+    return HttpResponse(json.dumps({"success": success}), content_type='application/json')
 
 
 def update_bookmark(request, **kwargs):

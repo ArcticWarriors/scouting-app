@@ -1,0 +1,85 @@
+
+<h2> Pit Scouting </h2>
+
+
+{% if user.is_authenticated %}
+<form action="" class="pitscouting_form">
+  <fieldset>
+	{% csrf_token %}
+        <p> Was the pit team functional? Are they organized? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_functional">{{ pit_scouting.OrganizedFunctional }}</textarea>
+            
+        <p> Can their robot hold fuel? If applicable, how much fuel can their robot hold? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_fuel_capacity">{{ pit_scouting.FuelCapacity }}</textarea>
+            
+        <p> Can their robot acquire and score gears? How? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_gears">{{ pit_scouting.Gears }}</textarea>
+            
+        <p> What is their strategy? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_strategy">{{ pit_scouting.Strategy }}</textarea>
+            
+        <p> What size constraint robot are they? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_size">{{ pit_scouting.Size }}</textarea>
+            
+        <p> In what ways can they acquire fuel? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_acquire_fuel">{{ pit_scouting.FuelAcquire }}</textarea> 
+            
+        <p> Should we consider being in an alliance with them, based on strategy? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_alliance_strategy">{{ pit_scouting.AllianceStrategy }}</textarea>
+            
+        <p> Should we consider being in an alliance with them, based on competence? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_alliacne_competence">{{ pit_scouting.AllanceCompetent }}</textarea>
+            
+        <p> Are they competent? Are they confident?</p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_competent_confident">{{ pit_scouting.CompetnetConfident }}</textarea>
+                    
+        <p> Have they been in other competitions? If applicable have they been on the leader board before? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_compititions">{{ pit_scouting.Competitions }}</textarea>
+            
+        <p> Anything else? </p>
+            <textarea rows="2" cols="75" wrap="soft" name="notes_Misc">{{ pit_scouting.Random }}</textarea>
+        
+        <br>
+        <input type="submit" class="submit_pitscouting_form">
+  </fieldset>
+    
+</form>
+
+{% else %}
+
+
+        <h4> Was the pit team functional? Are they organized? </h4>
+        <p> {{ pit_scouting.OrganizedFunctional }}</p>
+            
+        <h4> Can their robot hold fuel? If applicable, how much fuel can their robot hold? </h4>
+        <p> {{ pit_scouting.FuelCapacity }}</p>
+            
+        <h4> Can their robot acquire and score gears? How? </h4>
+        <p> {{ pit_scouting.Gears }}</p>
+            
+        <h4> What is their strategy? </h4>
+        <p> {{ pit_scouting.Strategy }}</p>
+            
+        <h4> What size constraint robot are they? </h4>
+        <p> {{ pit_scouting.Size }}</p>
+            
+        <h4> In what ways can they acquire fuel? </h4>
+        <p> {{ pit_scouting.FuelAcquire }}</p> 
+            
+        <h4> Should we consider being in an alliance with them, based on strategy? </h4>
+        <p> {{ pit_scouting.AllianceStrategy }}</p>
+            
+        <h4> Should we consider being in an alliance with them, based on competence? </h4>
+        <p> {{ pit_scouting.AllanceCompetent }}</p>
+            
+        <h4> Are they competent? Are they confident?</h4>
+        <p> {{ pit_scouting.CompetnetConfident }}</p>
+                    
+        <h4> Have they been in other competitions? If applicable have they been on the leader board before? </h4>
+        <p> {{ pit_scouting.Competitions }}</p>
+            
+        <h4> Anything else? </h4>
+        <p> {{ pit_scouting.Random }}</p>
+        
+
+{% endif %}

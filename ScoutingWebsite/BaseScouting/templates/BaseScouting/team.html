@@ -130,38 +130,7 @@
         </ul>
     {% endif %}
 
-    <h2>Pit Scouting</h2>
-    {% if team.team_pit_couting == None %}
-    	No infomation available.
-    {% else %}
-    	<h4>Was the team organized?</h4>
-        {{team.team_pit_scoutng.team_organized}}
-        
-        <h4>Was the team likable?</h4>
-        {{team.team_pit_scouting.team_likeable}}
-        
-        <h4>What could the robot do in autonomous?</h4>
-        {{team.team_pit_scouting.auto_abilities}}
-        
-        <h4>What could the robot do?</h4>
-        {# ------- Tagging system should be here, till then... -------- #}
-        {% block pit_robot_stats %}{% endblock pit_robot_stats %}
-        
-        <h4>Who was considering forming an alliance with them?</h4>
-        {{team.team_pit_scouting.team_alliances}}
-        
-        <h4>Would they choose us as an alliance partner?</h4>
-        {{team.team_pit_scouting.ally_174}}
-        
-        <h4>When was their first year?</h4>
-        {# ------ Should be via API ------- #}
-        {{team.team_pit_scouting.rookie_year}}
-        
-        <h4>Was their robot functional?</h4>
-        {{team.team_pit_scouting.robot_operational}}
-        
-        <h4>Any operation problems?</h4>
-        {{team.team_pit_scouting.operation_problems}}
-	{% endif %}
+    {% block pit_scouting %}
+    {% endblock pit_scouting %}
 
 {% endblock content %}

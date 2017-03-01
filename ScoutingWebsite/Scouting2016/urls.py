@@ -36,7 +36,7 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/submit_pit$', pit_scouting.submit_new_pit, name='submit_new_pit'),
 
                # User Auth
-               url(r'^(?P<regional_code>\w+)/showLogin/$', user_auth.showLogin, name='showLogin'),
+               url(r'^(?P<regional_code>\w+)/showLogin/$', user_auth.showLogin, name='show_login'),
                url(r'^(?P<regional_code>\w+)/log_user_out$', user_auth.log_user_out, name='log_user_out'),
                url(r'^(?P<regional_code>\w+)/auth_login$', user_auth.auth_login, name='auth_login'),
 

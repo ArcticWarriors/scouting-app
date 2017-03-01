@@ -29,6 +29,7 @@ urlpatterns = [
                # Forms
                url(r'^(?P<regional_code>\w+)/match_entry$', match_forms.MatchEntryView2017.as_view(), name='match_entry'),
                url(r'^(?P<regional_code>\w+)/submit_new_match$', match_forms.add_match, name='submit_new_match'),
+               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', standard_views.submit_pit_scouting, name='submit_pit_scouting'),
                url(r'^(?P<regional_code>\w+)/upload_image$', standard_views.AddTeamPictureView2017.as_view(), name = 'upload_image'),
                url(r'^(?P<regional_code>\w+)/update_bookmark$', standard_views.update_bookmark, name = 'update_bookmark'),
                

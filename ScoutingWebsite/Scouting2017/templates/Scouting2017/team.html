@@ -1,6 +1,40 @@
 {% extends 'BaseScouting/team.html' %}
 {% load staticfiles %}
 
+{% block head %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+
+
+$(function() {
+    $(".submit_pitscouting_form").click(function() {
+        
+        var pitscout_data = $(".pitscouting_form").serialize();
+        pitscout_data += "&team_number={{team.teamNumber}}"
+
+        $.ajax(
+        {
+            type: "POST",
+            url: "{% url 'Scouting2017:submit_pit_scouting' regional_code %}",
+            data: pitscout_data,
+            success: function(msg) 
+            {
+                if(!msg["success"])
+               	{
+                    alert("Failed to submit pit scouting")
+               	}
+            }
+        });
+
+        return false;
+	});
+});
+
+</script>
+
+{% endblock head %}
+
 {% block robot_stats %}
 
 <div class = "row">
@@ -101,4 +135,11 @@
 {% endblock robot_stats %}
 
 {% block fouls %}{% endblock fouls %}
+
+
+{% block pit_scouting %}
+
+{% include "Scouting2017/pit_scouting.html" %}
+
+{% endblock pit_scouting %}
 
