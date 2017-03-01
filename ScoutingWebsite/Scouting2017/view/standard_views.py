@@ -563,6 +563,7 @@ def submit_match_edit(request, **kwargs):
                     setattr(sr, key, value)
 
             sr.save()
+            success = True
             
     except Exception as e:
         print "ERROR %s" % e

@@ -2,17 +2,129 @@
 {% load staticfiles %}
 
 {% block head %}
-    <title>Match {{ match_display }} - Arctic Warriors Scouting</title>
+    <title>Match {{ match.matchNumber }} - Arctic Warriors Scouting</title>
     <style>
         h2, table {
             text-align: center;
         }
     </style>
+    
+    
+<script>
+
+dirty = false
+
+$(window).on('beforeunload', function (e) 
+{
+    if(dirty)
+    {
+        return "Unsaved Changes";
+    }
+});
+
+function saveEdits(e){ 
+    console.log("Saving edits");
+    
+    $("#save_edit_mode").hide();
+    $("#enter_edit_mode").show();
+
+    $('[id^="edit"]').each(function() {
+    	$(this).removeAttr("style")
+    });
+    
+    data = {}
+    data['csrfmiddlewaretoken'] = '{{ csrf_token}}';
+    data['match_number'] = {{ match.matchNumber }}
+
+    $('[id^="edit"]').each(function() {
+        key = $(this).attr("id")
+        val = $(this).html()
+        data[key] = val
+    });
+
+    $.ajax(
+    {
+        type: "POST",
+        url: "{% url 'Scouting2017:submit_match_edit' regional_code %}",
+        data: data,
+        success: function(msg) 
+        {
+            if(!msg["success"])
+           	{
+                alert("Failed to submit pit scouting")
+                
+                // TODO temp
+                // dirty = false;
+           	}
+            else
+            {
+                dirty = false;
+            }
+        }
+    });
+}
+
+function isNumeric(n)
+{
+    return !isNaN(parseFloat(n));
+}
+
+function enterEditMode(e){ 
+    console.log("Entering edit mode");
+
+    $("#save_edit_mode").show();
+    $("#enter_edit_mode").hide();
+    
+    var original_contents = {}
+
+    // Search for all ID's starting with "edit", loop over them, make them editable
+    $('[id^="edit"]').each(function() {
+        $(this).attr("contenteditable", "true");
+        $(this).attr("style", "border-style: dotted;");
+        //$(this).attr("onfocus", "document.execCommand('selectAll',false,null)");
+        $(this).attr("onclick", "document.execCommand('selectAll',false,null)");
+        orig_key = $(this).attr("id")
+        orig_val = $(this).html()
+        original_contents[orig_key] = {"value": orig_val, "validator": null};
+        
+        {% block field_validation_setter %}
+        if(isNumeric(orig_val))
+        {
+            console.log(orig_key + " is a number");
+            original_contents[orig_key]["validator"] = isNumeric;
+        }
+        {% endblock field_validation_setter %}
+        
+        $(this).blur(function() {
+
+            validator = original_contents[$(this).attr("id")]["validator"]
+            old_text = original_contents[$(this).attr("id")]["value"]
+            new_text = $(this).html()
+            
+            if(validator != null && !validator(new_text))
+            {
+                $(this).html(old_text)
+                alert("Error occured parsing field " + orig_key);
+                console.log('INVALID CHANGE TO ' + orig_key + ': ' + old_text + ", " + new_text);
+            }
+            
+            else if (old_text != new_text)
+            {
+                console.log('Detected change on ' + orig_key + ': ' + dirty + ", " + old_text + ", " + new_text);
+                dirty = true;
+            }
+        });
+    });
+}
+
+// TODO Debugging
+// window.onload = enterEditMode;
+</script>
 {% endblock head %}
 
 {% block content %}
+    <div id="official_match" align=center>
     {% if has_official_data %}
-        <center>
         {% if official_result_warnings|length != 0 or official_result_errors|length != 0 %}
         <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
         <table border=1>
@@ -49,6 +161,13 @@
             <h1> Warning: No official results available. Data from this match cannot be verified. </h1>
         </center>
     {% endif %}
+    </div>
+    
+
+{% if user.is_authenticated %}
+    <button id="enter_edit_mode" onclick="enterEditMode();">Enter Edit Mode</button>
+    <button id="save_edit_mode" onclick="saveEdits();" hidden=true>Save Edit Mode</button>
+{% endif %}
 
     <h1>Match {{ match.matchNumber }}</h1>
     {% block stats %}{% endblock stats %}
