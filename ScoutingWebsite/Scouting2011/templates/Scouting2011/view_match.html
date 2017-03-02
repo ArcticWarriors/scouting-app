@@ -1,50 +1,36 @@
-<html>
-<head>
+{% extends 'BaseScouting/match.html' %}
 {% load staticfiles %}
-{% include "Scouting2011/standard_header.html" %}
-<title>Match {{ match_display }}</title>
-</head>
-<style>
-h2 {
-	text-align: center;
-}
-
-table {
-	text-align: center;
-}
-</style>
-
-<body>
-
-	{% include "Scouting2011/banner.html" %}
  
+ {% block stats %}
  
-   {% if official_mismatch != None and has_official_data %}
-   <center>
-   <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
-   <table border=1>
-     <tr>
-       <td> Field </td>
-       <td> Expected </td>
-       <td> Actual </td>
-     </tr>
-     {% for field, results in official_mismatch.items %}
-     <tr>
-       <td> {{ field }} </td>
-       <td> {{ results.0 }} </td>
-       <td> {{ results.1 }} </td>
-     </tr>
-     {% endfor %}
-   </table>
-   </center>
-   {% elif not has_official_data %}
-   <center>
-     <h1> Warning: No official results available. Data from this match cannot be verified. </h1>
-   </center>
-   {% endif %}
- 
- 
-
+	<h2>Scoring Stats.</h2>
+	<table border="1" class = "sortable">
+        <thead>
+        	<th>Teams</th>
+		{% for team_metrics in metrics.0 %}
+			  {% if team_metrics.0 != "teamNumber" %}
+		<th>{{team_metrics.0}}</th>
+			   {% endif %}
+		{% endfor %}
+        </thead>
+        <tbody>
+		{% for metric in metrics %}
+		<tr>
+			<td><a href="{% url 'Scouting2011:view_team' regional_code  metric.0.1 %}">{{ metric.0.1 }}</a></td>
+			{% for metric_type in metric %}
+			  {% if metric_type.0 != "teamNumber" %}
+			<td>{{metric_type.1}}</td>
+			   {% endif %}
+		    {% endfor %}
+			
+			
+			
+		</tr>
+		{% endfor %}
+        </tbody>
+    </table>
+    
+<!-- 
  <h1>Match {{ match.matchNumber }}</h1>
 	<table border="1" class = "sortable">
 	  <tr>
@@ -71,5 +57,5 @@ table {
 		{% endfor %}
 	</table>
 	<br></br>
-</body>
-</html>
+	 -->
+{% endblock stats %}

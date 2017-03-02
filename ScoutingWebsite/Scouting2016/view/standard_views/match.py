@@ -13,11 +13,14 @@ class SingleMatchView2016(BaseSingleMatchView):
 
     def get_match_validation(self, regional_code, match):
 
-        official_match = OfficialMatch.objects.get(competition__code=regional_code, matchNumber=match.matchNumber)
-        official_sr_search = official_match.officialmatchscoreresult_set.all()
-        if len(official_sr_search) == 2:
-            _, warnings, errors = validate_match(match, official_match, official_sr_search)
+        official_match_search = OfficialMatch.objects.filter(competition__code=regional_code, matchNumber=match.matchNumber)
 
-            return True, warnings, errors
+        if False:
+            official_match = official_match_search[0]
+            official_sr_search = official_match.officialmatchscoreresult_set.all()
+            if len(official_sr_search) == 2:
+                _, warnings, errors = validate_match(match, official_match, official_sr_search)
+
+                return True, warnings, errors
 
         return False, [], []

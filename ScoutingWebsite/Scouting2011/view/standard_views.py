@@ -2,9 +2,9 @@
 from Scouting2011.model.reusable_models import Team, Match, OfficialMatch, TeamPictures, TeamComments, TeamCompetesIn, Competition
 from Scouting2011.model.models2011 import ScoreResult, get_team_metrics
 from BaseScouting.views.base_views import BaseAddTeamCommentsView, \
-    BaseAddTeamPictureView, BaseAllTeamsViews, BaseSingleTeamView, \
-    BaseAllMatchesView, BaseSingleMatchView, BaseMatchPredictionView, \
-    BaseGenGraphView, BaseHomepageView
+    BaseAddTeamPictureView, BaseSingleTeamView, \
+    BaseSingleMatchView, BaseMatchPredictionView, \
+    BaseGenGraphView, BaseHomepageView, BaseTeamListView, BaseMatchListView
 from django.db.models.aggregates import Avg, Sum
 
 
@@ -65,10 +65,10 @@ class AddTeamPictureView2011(BaseAddTeamPictureView):
         BaseAddTeamPictureView.__init__(self, Team, TeamPictures, 'Scouting2011/static', 'Scouting2011/robot_pics', 'Scouting2011:view_team')
 
 
-class AllTeamsViews2011(BaseAllTeamsViews):
+class AllTeamsViews2011(BaseTeamListView):
 
     def __init__(self):
-        BaseAllTeamsViews.__init__(self, TeamCompetesIn, 'Scouting2011/all_teams.html')
+        BaseTeamListView.__init__(self, TeamCompetesIn, 'Scouting2011/all_teams.html')
 
     def get_metrics_for_team(self, team):
         all_fields = ScoreResult.get_fields()
@@ -91,10 +91,10 @@ class SingleTeamView2011(BaseSingleTeamView):
         return get_team_metrics(team, all_fields)
 
 
-class AllMatchesView2011(BaseAllMatchesView):
+class AllMatchesView2011(BaseMatchListView):
 
     def __init__(self):
-        BaseAllMatchesView.__init__(self, Match, OfficialMatch, 'Scouting2011/all_matches.html')
+        BaseMatchListView.__init__(self, Match, 'Scouting2011/all_matches.html')
 
 
 class SingleMatchView2011(BaseSingleMatchView):
@@ -111,6 +111,9 @@ class SingleMatchView2011(BaseSingleMatchView):
             output.append((sr_field.display_name, getattr(sr, key)))
 
         return output
+    
+    def get_match_validation(self, regional_code, match):
+        return False, [], []
 
 
 class GenGraphView2011(BaseGenGraphView):

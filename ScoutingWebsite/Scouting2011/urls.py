@@ -24,4 +24,9 @@ urlpatterns = [
 
                # Robot Info
                url(r'^(?P<regional_code>\w+)/robot_display$', TemplateView.as_view(template_name='Scouting2011/robot_info/overview.html'), name='robot_display'),
+               
+               # User Auth
+               url(r'^(?P<regional_code>\w+)/showLogin/$', standard_views.HomepageView2011.as_view(), name='show_login'),
+               url(r'^(?P<regional_code>\w+)/log_user_out$', standard_views.HomepageView2011.as_view(), name='log_user_out'),
+               url(r'^(?P<regional_code>\w+)/auth_login$', standard_views.HomepageView2011.as_view(), name='auth_login'),
                ]

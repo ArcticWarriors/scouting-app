@@ -6,7 +6,8 @@ Created on Apr 11, 2016
 import collections
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
-from Scouting2011.model.reusable_models import ScoreResultMetric, Team, Match, Competition
+from Scouting2011.model.reusable_models import ScoreResultMetric, Team, Match, Competition,\
+    OfficialMatch
 
 
 class ScoreResult(models.Model):
@@ -63,6 +64,18 @@ class ScoreResult(models.Model):
         output['comments'] = ScoreResultMetric('comments', 'Comments', "")
 
         return output
+
+
+class OfficialMatchScoreResult(models.Model):
+
+    official_match = models.ForeignKey(OfficialMatch)
+    competition = models.ForeignKey(Competition)
+
+    team1 = models.ForeignKey(Team, related_name='team1')
+    team2 = models.ForeignKey(Team, related_name='team2')
+    team3 = models.ForeignKey(Team, related_name='team3')
+
+    total_score = models.IntegerField()
 
 
 def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
