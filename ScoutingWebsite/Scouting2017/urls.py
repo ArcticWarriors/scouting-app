@@ -5,7 +5,8 @@ Created on Jan 15, 2017
 '''
 from django.conf.urls import url
 from django.views.generic.base import RedirectView
-from Scouting2017.view import standard_views, match_forms, tba_webook
+from Scouting2017.view import standard_views, match_forms
+from Scouting2017.api_scraper_TheBlueAlliance import tba_webook
 from Scouting2017.view import user_auth
 from Scouting2017.view.submissions.submit_pit_scouting import submit_pit_scouting
 from Scouting2017.view.submissions.submit_bookmark import update_bookmark

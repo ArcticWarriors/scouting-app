@@ -102,8 +102,6 @@ class SingleMatchView2017(BaseSingleMatchView):
         context['alliances']['Blue']['score_results'].append(self.get_sr(match.blue2, match))
         context['alliances']['Blue']['score_results'].append(self.get_sr(match.blue3, match))
 
-        context['form_editable_text'] = ""  # "contenteditable=true"
-
         return context
 
     def get_metrics(self, score_result):

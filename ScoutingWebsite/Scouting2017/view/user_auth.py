@@ -27,12 +27,12 @@ def auth_login(request, **kargs):
     password = request.POST['password']
     good_redirect = request.POST.get('next', '/2017/%s' % kargs['regional_code'])
     bad_redirect = 'Scouting2017:show_login'
-    
+
     success = False
 
     try:
         User.objects.get(username=username)
-        
+
         user = authenticate(username=username, password=password)
 #         print user, user.is_active
         if user is not None:
@@ -43,11 +43,11 @@ def auth_login(request, **kargs):
         else:
             messages.add_message(request, messages.ERROR, "Username and password do not match for %s" % username)
 #                 return HttpResponseRedirect(reverse(bad_redirect, args=kargs.values()))
-    
+
     except Exception as e:
         print e
         messages.add_message(request, messages.ERROR, "Username %s was not found" % username)
-        
+
     if success:
         return HttpResponseRedirect(good_redirect)
     else:
