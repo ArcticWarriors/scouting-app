@@ -563,11 +563,29 @@ def submit_match_edit(request, **kwargs):
                     setattr(sr, key, value)
 
             sr.save()
-            success = True
+        success = True
             
     except Exception as e:
         print "ERROR %s" % e
         
+    output = {}
+    output["success"] = success
+    if success:
+        try:
+            official_match_search = OfficialMatch.objects.filter(competition=competition, matchNumber=match.matchNumber)
+            if len(official_match_search) == 1:
+                official_match = official_match_search[0]
+                official_sr_search = official_match.officialmatchscoreresult_set.all()
+                if len(official_sr_search) == 2:
+                    _, warning_messages, error_messages = calculate_match_scouting_validity(match, official_match, official_sr_search)
+                    
+                    official_results = {}
+                    official_results["warning_messages"] = warning_messages
+                    official_results["error_messages"] = error_messages
+                    output["official_match_validation"] = official_results
+        except Exception as e:
+            print "Error %s" % e
+    print output
         
 #     for key, value in creation_dict.items():
 #         print key, value
@@ -576,7 +594,7 @@ def submit_match_edit(request, **kwargs):
 #         print arg
     
     
-    return HttpResponse(json.dumps({"success": success}), content_type='application/json')
+    return HttpResponse(json.dumps(output), content_type='application/json')
 
 def update_bookmark(request, **kwargs):
     

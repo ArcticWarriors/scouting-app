@@ -9,6 +9,44 @@
         }
     </style>
     
+<style>
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 0;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.1s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+    color: white;
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    font-size: 36px;
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+</style>
     
 <script>
 
@@ -22,14 +60,70 @@ $(window).on('beforeunload', function (e)
     }
 });
 
+function showOfficialMatchValidationLoadingOverlay()
+{
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function removeOfficialMatchValidationLoadingOverlay()
+{
+    document.getElementById("myNav").style.height = "0%";
+}
+
+function updateValidationTable(jsonData)
+{
+	validation_table = $("#official_match_validation")
+	
+	warning_message = jsonData["warning_messages"]
+	error_messages = jsonData["error_messages"]
+	
+	if(warning_message.length == 0 && error_messages.length == 0)
+	{
+		 $("#warning_banner").attr("style", "color:green;")
+		 $("#warning_banner").html("Match data is consistent with official results")
+		validation_table.hide()
+	}
+	else
+	{
+		 $("#warning_banner").attr("style", "color:red;")
+		 $("#warning_banner").html("Warning: This match has inconsistent results with the official results")
+		validation_table.show()
+		 
+		validation_table.find("tr:gt(0)").remove();
+		$.each(warning_message, function() {
+			console.log($(this))
+			$('#official_match_validation tbody').append(
+					"<tr>" + 
+					"<td style='background-color: yellow'>" + $(this)[0] + "</td>" + 
+					"<td style='background-color: yellow'>" + $(this)[1] + "</td>" + 
+					"<td style='background-color: yellow'>" + $(this)[2] + "</td>" + 
+					"</tr>");
+		});
+		
+		$.each(error_messages, function() {
+			console.log($(this))
+			$('#official_match_validation tbody').append(
+					"<tr>" + 
+					"<td style='background-color: red'>" + $(this)[0] + "</td>" + 
+					"<td style='background-color: red'>" + $(this)[1] + "</td>" + 
+					"<td style='background-color: red'>" + $(this)[2] + "</td>" + 
+					"</tr>");
+		});
+	}
+	console.log(JSON.stringify(jsonData))
+}
+
 function saveEdits(e){ 
     console.log("Saving edits");
+    
+    showOfficialMatchValidationLoadingOverlay();
     
     $("#save_edit_mode").hide();
     $("#enter_edit_mode").show();
 
     $('[id^="edit"]').each(function() {
     	$(this).removeAttr("style")
+    	$(this).removeAttr("contenteditable")
     });
     
     data = {}
@@ -58,8 +152,10 @@ function saveEdits(e){
            	}
             else
             {
+            	updateValidationTable(msg["official_match_validation"])
                 dirty = false;
             }
+            removeOfficialMatchValidationLoadingOverlay();
         }
     });
 }
@@ -123,11 +219,22 @@ function enterEditMode(e){
 {% endblock head %}
 
 {% block content %}
+
+    <div id="myNav" class="overlay">
+      <div class="overlay-content">
+        Recalculating official results...
+      </div>
+    </div>
+
+
     <div id="official_match" align=center>
     {% if has_official_data %}
         {% if official_result_warnings|length != 0 or official_result_errors|length != 0 %}
-        <h1 style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
-        <table border=1>
+        <h1 id="warning_banner" style='color: red;'> Warning: This match has inconsistent results with the official results</h1>
+        {% else %}
+        <h1 id="warning_banner" style='color: green;'> Match data is consistent with official results</h1>
+        {% endif %}
+        <table id="official_match_validation" border=1 {% if official_result_warnings|length == 0 and official_result_errors|length == 0 %} style="display: none;"{% endif %}>
             <thead>
                 <tr>
                     <th> Field </th>
@@ -136,6 +243,7 @@ function enterEditMode(e){
                 </tr>
             </thead>
             <tbody>
+        {% if official_result_warnings|length != 0 or official_result_errors|length != 0 %}
                 {% for result_tuple in official_result_warnings %}
                 <tr>
                     <td style='background-color: yellow'> {{ result_tuple.0 }} </td>
@@ -150,11 +258,9 @@ function enterEditMode(e){
                     <td style='background-color: red'> {{ result_tuple.2 }} </td>
                 </tr>
                 {% endfor %}
+        {% endif %}
             </tbody>
         </table>
-        {% else %}
-        <h1 style='color: green;'> Match data is consistent with official results</h1>
-        {% endif %}
         </center>
     {% else %}
         <center>
