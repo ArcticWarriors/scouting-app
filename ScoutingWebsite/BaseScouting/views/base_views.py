@@ -106,7 +106,7 @@ class BaseTeamListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         competes_in_query = self.team_competes_in_model.objects.filter(competition__code=kwargs["regional_code"])
-        competes_in_query = sorted(competes_in_query, key=operator.attrgetter('team.teamNumber')) 
+        competes_in_query = sorted(competes_in_query, key=operator.attrgetter('team.teamNumber'))
 
         teams_with_metrics = []
 
@@ -114,12 +114,13 @@ class BaseTeamListView(TemplateView):
             team = competes_in.team
             team.metrics = self.get_metrics_for_team(team)
             teams_with_metrics.append(team)
-        
+
         context = super(BaseTeamListView, self).get_context_data(**kwargs)
         context['teams'] = teams_with_metrics
         context['metric_fields'] = self.score_result_model.get_fields()
         return context
-    
+
+
 class BaseSingleTeamView(TemplateView):
 
     def __init__(self, team_model, team_pictures_model, team_comments_model, template_name):
@@ -169,12 +170,13 @@ class BaseMatchListView(TemplateView):
         context['unscouted_matches'] = unscouted_matches
 
         return context
-    
+
     def append_scouted_info(self, match, regional_code):
-        
+
         output = match
-        
+
         return output
+
 
 class BaseSingleMatchView(TemplateView):
     """
@@ -194,7 +196,7 @@ class BaseSingleMatchView(TemplateView):
 
         context = super(BaseSingleMatchView, self).get_context_data(**kwargs)
         context['match'] = the_match
-        
+
         score_results = []
         for sr in the_match.scoreresult_set.all():
             if sr.team == the_match.red1 or sr.team == the_match.red2 or sr.team == the_match.red3:
@@ -204,12 +206,12 @@ class BaseSingleMatchView(TemplateView):
             else:
                 sr.color = "Error"
             score_results.append(sr)
-            
+
         score_results.sort(key=operator.attrgetter('color'), reverse=True)
-        
+
         has_official_data, warnings, errors = self.get_match_validation(kwargs["regional_code"], the_match)
         context['official_result_warnings'] = warnings
-        context['official_result_errors'] = errors 
+        context['official_result_errors'] = errors
         context['has_official_data'] = has_official_data
         context['score_result_list'] = score_results
 
@@ -219,10 +221,9 @@ class BaseSingleMatchView(TemplateView):
         context['metrics'] = metrics
 
         return context
-    
+
     def get_match_validation(self, regional_code, match):
         raise NotImplementedError("You need to implement the get_match_validation function")
-        
 
 
 class BaseMatchPredictionView(TemplateView):
@@ -249,7 +250,7 @@ class BaseMatchPredictionView(TemplateView):
         context['predicted_results'] = self.get_score_results(match_model, kwargs["regional_code"])
 
         return context
-    
+
     def get_score_results(self, match_model, regional_code):
         raise NotImplementedError()
 
@@ -304,17 +305,18 @@ class BaseGenGraphView(View):
         canvas.print_png(response)
 
         return response
-    
-    
+
+
 class BaseMatchEntryView(TemplateView):
     def __init__(self, template_name):
         self.template_name = template_name
 
     def get_context_data(self, **kwargs):
         context = super(BaseMatchEntryView, self).get_context_data(**kwargs)
-        
+
         return context
+
 
 class BaseFormView(TemplateView):
     pass
-    
+

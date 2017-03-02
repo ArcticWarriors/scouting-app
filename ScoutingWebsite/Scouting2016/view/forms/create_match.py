@@ -1,18 +1,6 @@
-'''
-Created on Mar 29, 2016
-
-@author: PJ
-'''
-from django.core.urlresolvers import reverse, reverse_lazy
-from django.http.response import HttpResponseRedirect
+from Scouting2016.model.reusable_models import Team, Competition, Match
+from Scouting2016.model.models2016 import ScoreResult
 from django.shortcuts import render
-
-from Scouting2016.models import Team, Match, ScoreResult
-from django.contrib.auth.decorators import permission_required
-from Scouting2016.model.reusable_models import Competition
-
-
-login_reverse = reverse_lazy('Scouting2016:showLogin')
 
 
 def __get_create_kargs(request):
@@ -79,66 +67,3 @@ def submit_new_match(request, regional_code):
     else:
         kargs = __get_create_kargs(request)
         ScoreResult.objects.create(match=match, team=team, competition=competition, **kargs)
-
-
-
-def edit_prev_match(request):
-    """
-    Edits an existing match.
-    """
-
-    match = Match.objects.get(matchNumber=request.POST["match_number"])
-    team = Team.objects.get(teamNumber=request.POST["team_number"])
-
-    score_result = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
-
-    sr_fields = request.POST
-    for key, value in sr_fields.iteritems():
-        setattr(score_result, key, value)
-    score_result.save()
-
-    context = {}
-    context['match_display'] = match.matchNumber
-
-    return HttpResponseRedirect(reverse('Scouting2016:match_display', args=(match.matchNumber,)))
-
-
-@permission_required('auth.can_modify_model', login_url=login_reverse)
-def info_for_form_edit(request, regional_code):
-
-    return render(request, 'Scouting2016/match_form/pre_edit_match_form.html', context={"regional_code": regional_code})
-
-
-@permission_required('auth.can_modify_model', login_url=login_reverse)
-def show_add_form(request, regional_code):
-
-    context = {}
-    context['regional_code'] = regional_code
-    context['submit_view'] = "/2016/%s/submit_form" % regional_code
-    context["sr"] = {}
-
-    score_result_fields = ScoreResult.get_fields()
-    for field_name, value in score_result_fields.iteritems():
-        context["sr"][field_name] = value.default
-
-    return render(request, 'Scouting2016/match_form/match_form.html', context)
-
-
-def show_edit_form(request, regional_code):
-
-    match = Match.objects.get(matchNumber=request.GET["match_number"])
-    team = Team.objects.get(teamNumber=request.GET["team_number"])
-
-    score_results = ScoreResult.objects.get(match_id=match.id, team_id=team.id)
-    print(score_results)
-
-    context = {}
-    context["regional_code"] = regional_code
-    context['team_number'] = request.GET["team_number"]
-    context['match_number'] = request.GET["match_number"]
-    context['sr'] = score_results
-    context['submit_view'] = '/2016/submit_edit'
-    if request.user.username != 'scoutmaster':
-        context['lock_team_and_match'] = True
-
-    return render(request, 'Scouting2016/match_form/match_form.html', context)

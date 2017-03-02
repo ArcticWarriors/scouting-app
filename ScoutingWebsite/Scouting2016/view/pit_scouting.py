@@ -13,15 +13,10 @@ from django.contrib.auth.decorators import permission_required
 from Scouting2016.model.models2016 import TeamPitScouting
 
 
-login_reverse = reverse_lazy('Scouting2016:showLogin')
 
 
-@permission_required('auth.can_modify_model', login_url=login_reverse)
-def info_for_pit_edit(request, regional_code):
-    return render(request, 'Scouting2016/pit_form/pre_pit_form.html', context={'regional_code': regional_code})
 
-
-@permission_required('auth.can_modify_model', login_url=login_reverse)
+@permission_required('auth.can_modify_model', login_url=reverse_lazy('Scouting2016:showLogin'))
 def show_add_pit(request, regional_code):
     context = {}
     context["regional_code"] = regional_code
@@ -30,7 +25,7 @@ def show_add_pit(request, regional_code):
     return render(request, 'Scouting2016/pit_form/pit_form.html', context)
 
 
-@permission_required('auth.can_modify_model', login_url=login_reverse)
+@permission_required('auth.can_modify_model', login_url=reverse_lazy('Scouting2016:showLogin'))
 def submit_new_pit(request, regional_code):
 
     team_pit_scouting = TeamPitScouting.objects.get(team__teamNumber=request.POST['team_number'])

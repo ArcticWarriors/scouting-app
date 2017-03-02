@@ -1,23 +1,6 @@
-'''
-Created on Mar 28, 2016
-
-@author: PJ
-'''
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
-
-
-def showLogin(request, **kargs):
-
-    return render(request, 'Scouting2016/login.html', context=kargs)
-
-
-def log_user_out(request, **kargs):
-    logout(request)
-
-    return HttpResponseRedirect(reverse('Scouting2016:showLogin', args=kargs.values()))
+from django.contrib.auth import authenticate, login
 
 
 def auth_login(request, **kargs):
