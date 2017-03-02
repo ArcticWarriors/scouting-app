@@ -12,12 +12,6 @@ class AddTeamCommentsView2016(BaseAddTeamCommentsView):
         BaseAddTeamCommentsView.__init__(self, Team, TeamComments, 'Scouting2016:view_team')
 
 
-class AddTeamPictureView2016(BaseAddTeamPictureView):
-
-    def __init__(self):
-        BaseAddTeamPictureView.__init__(self, Team, TeamPictures, 'Scouting2016/static', 'Scouting2016/robot_pics', 'Scouting2016:view_team')
-
-
 class GenGraphView2016(BaseGenGraphView):
 
     def __init__(self):

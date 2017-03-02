@@ -26,6 +26,7 @@ from Scouting2016.view.standard_views.match_prediction import OfficialMatchView2
 from Scouting2016.view.standard_views.match_list import MatchListView2016
 from Scouting2016.view.standard_views.homepage import HomepageView2016
 from Scouting2016.view.standard_views.pick_list import PickListView2016
+from Scouting2016.view.forms.add_team_pics import AddTeamPictureView2016
 # import views as views
 
 
@@ -60,7 +61,7 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/matches$', MatchListView2016.as_view(), name='matches'),
                url(r'^(?P<regional_code>\w+)/matches/(?P<match_number>[0-9]+)$', SingleMatchView2016.as_view(), name='view_match'),
                url(r'^(?P<regional_code>\w+)/match_prediction/(?P<match_number>[0-9]+)$', OfficialMatchView2016.as_view(), name='match_prediction'),
-#                url(r'^(?P<regional_code>\w+)/upload_image$', AddTeamPictureView2016.as_view(), name='upload_image'),
+                url(r'^(?P<regional_code>\w+)/upload_image$', AddTeamPictureView2016.as_view(), name='upload_image'),
 #                url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', AddTeamCommentsView2016.as_view(), name='add_team_comments'),
                url(r'^(?P<regional_code>\w+)/pick_list$', PickListView2016.as_view(), name='pick_list'),
 
