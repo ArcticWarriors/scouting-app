@@ -6,9 +6,8 @@ Created on Jan 15, 2017
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
 from Scouting2017.model.reusable_models import Team, \
-    OfficialMatch, Match, Competition, ScoreResultMetric
+    OfficialMatch, Match, Competition
 from django.db.models.expressions import Case, When
-
 
 
 def get_team_metrics(team):
@@ -17,23 +16,22 @@ def get_team_metrics(team):
                                              Avg("auto_fuel_low_score"),
                                              Avg("auto_fuel_low_shots"),
                                              Avg("auto_gears"),
-                                             
+
                                              Avg("tele_fuel_high_score"),
                                              Avg("tele_fuel_high_shots"),
                                              Avg("tele_fuel_low_score"),
                                              Avg("tele_fuel_low_shots"),
                                              Avg("tele_gears"),
-                                             
+
                                              Sum("foul"),
                                              Sum("tech_foul"),
                                              Sum("yellow_card"),
                                              Sum("red_card"),
-                                             
-                                             rope__avg = Avg(Case(When(rope=True, then=1),When(rope=False, then=0))),
-                                             baseline__avg=Avg(Case(When(auto_baseline=True, then=1),When(auto_baseline=False, then=0))),
+
+                                             rope__avg=Avg(Case(When(rope=True, then=1), When(rope=False, then=0))),
+                                             baseline__avg=Avg(Case(When(auto_baseline=True, then=1), When(auto_baseline=False, then=0))),
                                              )
-                                           
-                                            
+
     # Format all of the numbers.  If we haven't scouted the team, None will be returned.  Turn that into NA
     for key in metrics:
         if metrics[key] == None:
@@ -47,7 +45,7 @@ def get_team_metrics(team):
 class TeamPitScouting(models.Model):
 
     team = models.OneToOneField(Team)
-    
+
     competent = models.BooleanField(default=False)
     short_fat = models.BooleanField(default=False)
     tall_wide = models.BooleanField(default=False)
@@ -58,7 +56,7 @@ class TeamPitScouting(models.Model):
     Strategy = models.CharField(max_length=1000)
     Size = models.CharField(max_length=1000)
     FuelAcquire = models.CharField(max_length=1000)
-    AllianceStrategy  = models.CharField(max_length=1000, default="no")
+    AllianceStrategy = models.CharField(max_length=1000, default="no")
     AllanceCompetent = models.CharField(max_length=1000, default="no")
     CompetnetConfident = models.CharField(max_length=1000, default="no")
     Competitions = models.CharField(max_length=1000, default="no")
@@ -69,9 +67,9 @@ class OfficialMatchScoreResult(models.Model):
 
     official_match = models.ForeignKey(OfficialMatch)
     competition = models.ForeignKey(Competition)
-    
+
     alliance_color = models.CharField(max_length=1, choices=(('R', 'Red'), ('B', 'Blue')))
-    
+
     robot1Auto = models.CharField(max_length=2000, default="")
     robot2Auto = models.CharField(max_length=2000, default="")
     robot3Auto = models.CharField(max_length=2000, default="")
@@ -108,7 +106,7 @@ class ScoreResult(models.Model):
     team = models.ForeignKey(Team)
     match = models.ForeignKey(Match)
     competition = models.ForeignKey(Competition)
-    
+
     # Auto
     auto_gears = models.IntegerField(default=0)
     auto_fuel_high_shots = models.IntegerField(default=0)
@@ -116,31 +114,29 @@ class ScoreResult(models.Model):
     auto_fuel_low_shots = models.IntegerField(default=0)
     auto_fuel_low_score = models.IntegerField(default=0)
     auto_baseline = models.BooleanField(default=False)
-    
+
     # Teleop
     tele_gears = models.IntegerField(default=0)
     tele_fuel_high_shots = models.IntegerField(default=0)
     tele_fuel_high_score = models.IntegerField(default=0)
     tele_fuel_low_shots = models.IntegerField(default=0)
     tele_fuel_low_score = models.IntegerField(default=0)
-    
+
     # Endgame
     rope = models.BooleanField(default=False)
-    
-    
+
     # Fouls
     tech_foul = models.IntegerField(default=0)
     foul = models.IntegerField(default=0)
     red_card = models.BooleanField(default=False)
     yellow_card = models.BooleanField(default=False)
-    
-    #collecting
+
+    # collecting
     hoppers_dumped = models.IntegerField(default=0)
     gathered_fuel_from_ground = models.BooleanField(default=False)
     gathered_gear_from_ground = models.BooleanField(default=False)
-    
+
     match_comments = models.CharField(max_length=1000, default="")
-    
 
     @staticmethod
     def get_fields():
@@ -156,8 +152,7 @@ class ScoreResult(models.Model):
         for attr_name in attributes:
             value = getattr(self, attr_name)
             output += "{0}: {1}".format(attr_name, value)
-            
+
         output += "}"
 
         return output
-

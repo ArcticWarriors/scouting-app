@@ -30,6 +30,7 @@ class Competition(models.Model):
     def __str__(self):
         return "Competition %s - %s" % (self.code, self.name)
 
+
 class Team(models.Model):
 
     teamNumber = models.IntegerField()
@@ -44,7 +45,8 @@ class Team(models.Model):
 
     def __str__(self):
         return "Team %s" % self.teamNumber
-    
+
+
 class Match(models.Model):
 
     matchNumber = models.IntegerField()
@@ -55,7 +57,7 @@ class Match(models.Model):
     blue1 = models.ForeignKey(Team, related_name='blue1_matches')
     blue2 = models.ForeignKey(Team, related_name='blue2_matches')
     blue3 = models.ForeignKey(Team, related_name='blue3_matches')
-    
+
     def __str__(self):
         return "Match %s at Competitions %s" % (self.matchNumber, self.competition)
 
@@ -85,11 +87,10 @@ class OfficialMatch(models.Model):
     competition = models.ForeignKey(Competition)
 
     hasOfficialData = models.BooleanField(default=False)
-    
-    
+
+
 class Scout(models.Model):
-    
+
     user = models.OneToOneField(User)
     bookmarked_teams = models.ManyToManyField(Team, related_name="bookmarks")
     do_not_pick_teams = models.ManyToManyField(Team, related_name="do_not_picks")
-    
