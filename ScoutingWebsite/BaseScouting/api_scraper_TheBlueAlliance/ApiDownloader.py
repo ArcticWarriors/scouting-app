@@ -25,7 +25,6 @@ class ApiDownloader():
         headers = {}
 #         headers['Accept'] = 'application/json'
         headers['X-TBA-App-Id'] = get_encoded_key()
-        print headers
 
         return headers
 
@@ -42,11 +41,11 @@ class ApiDownloader():
 
         return json_struct
 
-    def download_matches_data(self, event_code, week):
+    def download_matches_data(self, event_code):
         url = self.__api_website + "event/%s/matches" % event_code
-        print url
-        local_file = self.json_path + '/week%s/%s_matches.json' % (week, event_code)
-        self.read_url_and_dump(url, local_file)
+        local_file = self.json_path + '/%s_matches.json' % (event_code)
+        print "Dumping matches from %s to %s" % (url, local_file)
+        return self.read_url_and_dump(url, local_file)
 
 #     def download_event_data(self, first_week=None):
 #         url = self.__api_website + "/{0}/events?".format(self.season)

@@ -8,29 +8,39 @@ from django.views.decorators.csrf import csrf_exempt
 from BaseScouting.api_scraper_TheBlueAlliance.ApiDownloader import ApiDownloader
 import datetime
 import json
+import os
+from Scouting2017.api_scraper_TheBlueAlliance.PopulateResultsFromApi2017 import PopulateResultsFromApi2017
 
 
-week_number = 1
-json_root = r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\results'
+def __download_schedule(event_code, json_dump_dir):
+    print "Download schedule", event_code, json_dump_dir
+    scraper = ApiDownloader(json_dump_dir)
+    json_data = scraper.download_matches_data(event_code)
+
+    populater = PopulateResultsFromApi2017()
+    populater.populate_schedule_match(json_data)
 
 
-def __download_schedule(event_code):
-    scraper = ApiDownloader(json_root)
-    scraper.download_matches_data(event_code, week_number)
-
-
-def __parse_schedule_updated(json_request):
+def __parse_schedule_updated(json_request, json_dump_dir):
     print "Parsing schedule"
 
     try:
         event_code = json_request["message_data"]["event_key"]
-        __download_schedule(event_code)
+        __download_schedule(event_code, json_dump_dir)
     except Exception as e:
         print "ERROR: %s" % e
+        raise
 
 
 def __parse_match_score(json_request):
+
     print "Got match score"
+
+    match_data = json_request["message_data"]["match"]
+
+    from Scouting2017.model import Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult
+    populater = PopulateResultsFromApi2017(Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult)
+    populater.populate_single_match(match_data)
 
 
 @csrf_exempt
@@ -39,8 +49,14 @@ def tba_webook(request, **kargs):
     json_request = json.loads(request.body)
     message_type = str(json_request['message_type'])
 
+    week = 1
+
+    dump_root = os.path.join(os.getcwd(), 'Scouting2017/api_scraper_TheBlueAlliance')
+    json_dump_dir = os.path.join(os.getcwd(), 'Scouting2017/api_scraper_TheBlueAlliance/results/week%s' % week)
     try:
-        with open(r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\tba_log.txt', 'a') as f:
+        dump_file = os.path.join(dump_root, 'tba_log.txt')
+        print dump_file
+        with open(dump_file, 'a') as f:
             cur_time = datetime.datetime.now().time()
             f.write(str(cur_time) + " - " + request.body + "\n")
     except Exception as e:
@@ -48,7 +64,7 @@ def tba_webook(request, **kargs):
         print "UH OH"
 
     if message_type == "schedule_updated":
-        __parse_schedule_updated(json_request)
+        __parse_schedule_updated(json_request, json_dump_dir)
     elif message_type == "match_score":
         __parse_match_score(json_request)
     elif message_type == "upcoming_match":
