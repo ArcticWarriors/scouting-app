@@ -5,11 +5,28 @@ Created on Feb 25, 2017
 '''
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from BaseScouting.api_scraper_TheBlueAlliance.ApiDownloader import ApiDownloader
+import datetime
 import json
+
+
+week_number = 1
+json_root = r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\results'
+
+
+def __download_schedule(event_code):
+    scraper = ApiDownloader(json_root)
+    scraper.download_matches_data(event_code, week_number)
 
 
 def __parse_schedule_updated(json_request):
     print "Parsing schedule"
+
+    try:
+        event_code = json_request["message_data"]["event_key"]
+        __download_schedule(event_code)
+    except Exception as e:
+        print "ERROR: %s" % e
 
 
 def __parse_match_score(json_request):
@@ -24,7 +41,8 @@ def tba_webook(request, **kargs):
 
     try:
         with open(r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\tba_log.txt', 'a') as f:
-            f.write(request.body + "\n")
+            cur_time = datetime.datetime.now().time()
+            f.write(str(cur_time) + " - " + request.body + "\n")
     except Exception as e:
         print e
         print "UH OH"

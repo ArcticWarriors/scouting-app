@@ -43,6 +43,7 @@ user = get_or_create('williams', 'williams', [], [])
 user = get_or_create('nguyen', 'nguyen', [], [])
 user = get_or_create('perrotta', 'perrotta', [], [])
 user = get_or_create('johnson', 'johnson', [], [])
+user = get_or_create('fenner', 'fenner', [], [])
 
 
 
