@@ -9,8 +9,8 @@ from BaseScouting.api_scraper_TheBlueAlliance.PopulateResultsFromApi import Popu
 class PopulateResultsFromApi2017(PopulateResultsFromApi):
 
     def __init__(self):
-        from Scouting2017.model import Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult
-        PopulateResultsFromApi.__init__(self, Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult)
+        from Scouting2017.model import Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult, TeamCompetesIn
+        PopulateResultsFromApi.__init__(self, Team, TeamCompetesIn, Match, Competition, OfficialMatch, OfficialMatchScoreResult)
 
     def parse_score_breakdown(self, score_breakdown, red_official_sr, blue_official_sr):
         self.__populate_official_sr(red_official_sr, score_breakdown["red"], "R")

@@ -8,8 +8,9 @@ import re
 
 class PopulateResultsFromApi:
 
-    def __init__(self, team_model, match_model, competition_model, official_match_model, official_match_sr_model):
+    def __init__(self, team_model, team_competes_in_model, match_model, competition_model, official_match_model, official_match_sr_model):
         self.team_model = team_model
+        self.team_competes_in_model = team_competes_in_model
         self.match_model = match_model
         self.competition_model = competition_model
         self.official_match_model = official_match_model
@@ -25,6 +26,20 @@ class PopulateResultsFromApi:
 
         for match in match_json:
             self.populate_single_match(match)
+
+    def _get_match_kwargs(self, competition, alliance):
+        output = {}
+
+        for alliance_color in alliance.keys():
+            teams = alliance[alliance_color]["teams"]
+            for i, team_info in enumerate(teams):
+                team_number = int(team_info[3:])
+                team, _ = self.team_model.objects.get_or_create(teamNumber=team_number)
+                self.team_competes_in_model.objects.get_or_create(team=team, competition=competition)
+                output["%s%s" % (alliance_color, i + 1)] = team
+
+        return output
+#         print alliance
 
     def populate_single_match(self, match_json):
 
@@ -42,6 +57,10 @@ class PopulateResultsFromApi:
 
             red_sr, _ = self.official_match_sr_model.objects.get_or_create(competition=competition, official_match=official_match, alliance_color="R")
             blue_sr, _ = self.official_match_sr_model.objects.get_or_create(competition=competition, official_match=official_match, alliance_color="B")
+
+            alliances = match_json["alliances"]
+            create_match_kwargs = self._get_match_kwargs(competition, alliances)
+            self.match_model.objects.get_or_create(competition=competition, matchNumber=match_number, **create_match_kwargs)
 
             if match_json["score_breakdown"]:
                 self.parse_score_breakdown(match_json["score_breakdown"], red_sr, blue_sr)

@@ -7,6 +7,7 @@ from BaseScouting.api_scraper_TheBlueAlliance.ApiDownloader import ApiDownloader
 import json
 from BaseScouting.api_scraper_TheBlueAlliance.PopulateResultsFromApi import PopulateResultsFromApi
 from BaseScouting.load_django import load_django
+from Scouting2017.api_scraper_TheBlueAlliance.PopulateResultsFromApi2017 import PopulateResultsFromApi2017
 
 load_django()
 
@@ -21,11 +22,21 @@ json_root = r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Sco
 #     scraper.download_matches_data("2017mndu2", 1)
 # #     scraper.download_team_data()
 
-populater = PopulateResultsFromApi(Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult)
+populater = PopulateResultsFromApi2017()
 
-with open(r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\results\week1\2017flwp_matches.json') as f:
-    json_results = json.load(f)
-    populater.populate_schedule_match(json_results)
+event_codes = []
+event_codes.append("2017flwp")
+event_codes.append("2017milak")
+event_codes.append("2017mndu")
+event_codes.append("2017mndu2")
+event_codes.append("2017mxtl")
+event_codes.append("2017scmb")
+event_codes.append("2017txlu")
+
+for event_code in event_codes:
+    with open(r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\results\week1\%s_matches.json' % event_code) as f:
+        json_results = json.load(f)
+        populater.populate_schedule_match(json_results)
 
 # event_json = """
 # {
