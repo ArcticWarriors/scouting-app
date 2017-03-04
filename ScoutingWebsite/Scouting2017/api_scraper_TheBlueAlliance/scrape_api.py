@@ -4,12 +4,13 @@ Created on Mar 2, 2017
 @author: PJ
 '''
 from BaseScouting.api_scraper_TheBlueAlliance.ApiDownloader import ApiDownloader
-import json
-from BaseScouting.api_scraper_TheBlueAlliance.PopulateResultsFromApi import PopulateResultsFromApi
 from BaseScouting.load_django import load_django
 from Scouting2017.api_scraper_TheBlueAlliance.PopulateResultsFromApi2017 import PopulateResultsFromApi2017
-import os
 from Scouting2017.api_scraper_TheBlueAlliance.results.events_to_week import get_event_to_week_mapping
+import json
+import os
+import sys
+import collections
 
 load_django()
 
@@ -20,8 +21,25 @@ year = 2017
 
 json_root = os.path.abspath('results')
 
-weeks_to_download = [0]  # off by one
 event_codes = get_event_to_week_mapping()
+
+# #################
+# # Trim by weeks #
+# #################
+# weeks_to_download = [1]
+# event_codes = {week: event_codes[week] for week in event_codes if week in weeks_to_download}
+
+# #################
+# # Trim by event #
+# #################
+# events_to_download = ["2017flwp", "2017milak", "2017misou", "2017mndu", "2017mndu2", "2017mxtl", "2017scmb", "2017txlu", "2017waspo"]
+# trimmed_events = collections.defaultdict(list)
+# for week, event_list in event_codes.items():
+#     for code in event_list:
+#         if code in events_to_download:
+#             trimmed_events[week].append(code)
+# event_codes = trimmed_events
+
 
 if download_events_info:
     scraper = ApiDownloader(json_root)

@@ -1,18 +1,28 @@
 from BaseScouting.views.base_views import BaseHomepageView
-from Scouting2017.model.reusable_models import Competition
+from Scouting2017.model.reusable_models import Competition, Match, Team, \
+    OfficialMatch
+from Scouting2017.model.predict_match import predict_match
 
 
 class HomepageView2017(BaseHomepageView):
 
     def __init__(self):
-        BaseHomepageView.__init__(self, Competition, 'BaseScouting/index.html')
+        BaseHomepageView.__init__(self, Competition, Team, Match, OfficialMatch, 'BaseScouting/index.html')
 
-    def get_our_metrics(self):
+    def _get_our_team_number(self):
+        return 174
 
-        return []
+    def _get_our_metrics(self, competition):
 
-    def get_competition_metrics(self, competition):
+        return None
 
-        output = []
+    def _get_competition_metrics(self, competition):
+
+        return None
+
+    def _predict_match(self, match, competition):
+
+        output = predict_match(match, competition)
+        output['matchNumber'] = match.matchNumber
 
         return output

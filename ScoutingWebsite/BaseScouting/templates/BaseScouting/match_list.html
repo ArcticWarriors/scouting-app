@@ -100,12 +100,12 @@
                     <tr>
                         <td> <a href="{% url request.resolver_match.namespace|add:':match_prediction' regional_code match.matchNumber %}">{{ match.matchNumber }} </a></td>
                         <td> {{ match.matchNumber }} </a></td>
-                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red1.teamNumber %}"> {{ match.red1.teamNumber }} </td>
-                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red2.teamNumber %}"> {{ match.red2.teamNumber }} </td>
-                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red3.teamNumber %}"> {{ match.red3.teamNumber }} </td>
-                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue1.teamNumber %}"> {{ match.blue1.teamNumber }} </td>
-                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue2.teamNumber %}"> {{ match.blue2.teamNumber }} </td>
-                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue3.teamNumber %}"> {{ match.blue3.teamNumber }} </td>
+                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red1.teamNumber %}"> {{ match.red1.teamNumber }} </a></td>
+                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red2.teamNumber %}"> {{ match.red2.teamNumber }} </a></td>
+                        <td class="red_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.red3.teamNumber %}"> {{ match.red3.teamNumber }} </a></td>
+                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue1.teamNumber %}"> {{ match.blue1.teamNumber }} </a></td>
+                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue2.teamNumber %}"> {{ match.blue2.teamNumber }} </a></td>
+                        <td class="blue_alliance"> <a href="{% url request.resolver_match.namespace|add:':view_team' regional_code match.blue3.teamNumber %}"> {{ match.blue3.teamNumber }} </a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
