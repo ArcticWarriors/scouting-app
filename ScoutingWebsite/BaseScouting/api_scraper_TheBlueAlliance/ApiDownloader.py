@@ -47,6 +47,43 @@ class ApiDownloader():
         print "Dumping matches from %s to %s" % (url, local_file)
         return self.read_url_and_dump(url, local_file)
 
+    def download_event_data(self, year):
+        url = self.__api_website + "events/%s" % year
+        local_file = self.json_path + '/events.json'
+        json_data = self.read_url_and_dump(url, local_file)
+        self.__dump_week_to_event_mappings(json_data)
+
+        return json_data
+
+    def __dump_week_to_event_mappings(self, json_data):
+
+        with open(self.json_path + "/events_to_week.py", 'w') as f:
+            header = """
+import collections
+
+
+def get_event_to_week_mapping():
+    output = collections.defaultdict(list)
+
+"""
+
+            f.write(header)
+
+            mappings = []
+            for event_json in json_data:
+                week = event_json["week"]
+                key = event_json["key"]
+
+                if week != None:
+                    print week
+                    mappings.append((week + 1, key))
+
+            mappings = sorted(mappings, key=lambda x: x[0])
+            for mapping in mappings:
+                f.write("    output[%s].append('%s')\n" % (mapping[0], mapping[1]))
+
+            f.write("\n    return output\n")
+
 #     def download_event_data(self, first_week=None):
 #         url = self.__api_website + "/{0}/events?".format(self.season)
 #         local_file = self.json_path + 'events/event_query.json'

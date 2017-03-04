@@ -8,75 +8,38 @@ import json
 from BaseScouting.api_scraper_TheBlueAlliance.PopulateResultsFromApi import PopulateResultsFromApi
 from BaseScouting.load_django import load_django
 from Scouting2017.api_scraper_TheBlueAlliance.PopulateResultsFromApi2017 import PopulateResultsFromApi2017
+import os
+from Scouting2017.api_scraper_TheBlueAlliance.results.events_to_week import get_event_to_week_mapping
 
 load_django()
 
-from Scouting2017.model.reusable_models import Team, Match, Competition, OfficialMatch
-from Scouting2017.model.models2017 import OfficialMatchScoreResult
+download_events_info = False
+download_matches = True
+populate_results = False
+year = 2017
 
-download_season_info = True
-json_root = r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\results'
+json_root = os.path.abspath('results')
 
-# if download_season_info:
-#     scraper = ApiDownloader(json_root)
-#     scraper.download_matches_data("2017mndu2", 1)
-# #     scraper.download_team_data()
+weeks_to_download = [0]  # off by one
+event_codes = get_event_to_week_mapping()
 
-populater = PopulateResultsFromApi2017()
+if download_events_info:
+    scraper = ApiDownloader(json_root)
+    scraper.download_event_data(year)
 
-event_codes = []
-event_codes.append("2017flwp")
-event_codes.append("2017milak")
-event_codes.append("2017mndu")
-event_codes.append("2017mndu2")
-event_codes.append("2017mxtl")
-event_codes.append("2017scmb")
-event_codes.append("2017txlu")
 
-for event_code in event_codes:
-    with open(r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper_TheBlueAlliance\results\week1\%s_matches.json' % event_code) as f:
-        json_results = json.load(f)
-        populater.populate_schedule_match(json_results)
+if download_matches:
+    for week, events_list in event_codes.items():
+        for event_code in events_list:
+            scraper = ApiDownloader(os.path.join(json_root, "week%s" % week))
+            scraper.download_matches_data(event_code)
 
-# event_json = """
-# {
-#   "message_data": {
-#     "event_name": "New England FRC Region Championship",
-#     "match": {
-#       "comp_level": "q",
-#       "match_number": 1,
-#       "videos": [],
-#       "time_string": "3:18 PM",
-#       "set_number": 1,
-#       "key": "2014necmp_f1m1",
-#       "time": 1397330280,
-#       "score_breakdown": null,
-#       "alliances": {
-#         "blue": {
-#           "score": 154,
-#           "teams": [
-#             "frc177",
-#             "frc230",
-#             "frc4055"
-#           ]
-#         },
-#         "red": {
-#           "score": 78,
-#           "teams": [
-#             "frc195",
-#             "frc558",
-#             "frc5122"
-#           ]
-#         }
-#       },
-#       "event_key": "2014necmp"
-#     }
-#   },
-#   "message_type": "match_score"
-# }
-# """
-#
-# json_data = json.loads(event_json)
-#
-# populater.populate_single_match(json_data["message_data"]["match"], json_data["message_data"]["match"]["event_key"])
-# print json_data
+
+if populate_results:
+    populater = PopulateResultsFromApi2017()
+
+    for week, events_list in event_codes.items():
+        for event_code in events_list:
+            with open(os.path.join(json_root, r'week%s\%s_matches.json' % (week, event_code))) as f:
+                json_results = json.load(f)
+                populater.populate_schedule_match(json_results)
