@@ -32,9 +32,9 @@ class PopulateResultsFromApi2017(PopulateResultsFromApi):
         official_match_sr.rotor2Engaged = alliance_info['rotor2Engaged']
         official_match_sr.rotor3Engaged = alliance_info['rotor3Engaged']
         official_match_sr.rotor4Engaged = alliance_info['rotor4Engaged']
-        official_match_sr.touchpadNear = alliance_info['touchpadNear']
-        official_match_sr.touchpadMiddle = alliance_info['touchpadMiddle']
-        official_match_sr.touchpadFar = alliance_info['touchpadFar']
+        official_match_sr.touchpadNear = True if alliance_info['touchpadNear'] == "ReadyForTakeoff" else False
+        official_match_sr.touchpadMiddle = True if alliance_info['touchpadMiddle'] == "ReadyForTakeoff" else False
+        official_match_sr.touchpadFar = True if alliance_info['touchpadFar'] == "ReadyForTakeoff" else False
         official_match_sr.foulCount = alliance_info['foulCount']
         official_match_sr.techFoulCount = alliance_info['techFoulCount']
         official_match_sr.autoMobilityPoints = alliance_info['autoMobilityPoints']

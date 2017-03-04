@@ -36,11 +36,14 @@ def __parse_match_score(json_request):
 
     print "Got match score"
 
-    match_data = json_request["message_data"]["match"]
+    try:
+        match_data = json_request["message_data"]["match"]
 
-    from Scouting2017.model import Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult
-    populater = PopulateResultsFromApi2017(Team, Match, Competition, OfficialMatch, OfficialMatchScoreResult)
-    populater.populate_single_match(match_data)
+        populater = PopulateResultsFromApi2017()
+        populater.populate_single_match(match_data)
+    except Exception as e:
+        print "ERROR: %s" % e
+        raise
 
 
 @csrf_exempt

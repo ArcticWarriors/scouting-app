@@ -4,6 +4,7 @@ Created on Mar 2, 2017
 @author: PJ
 '''
 import re
+from django.db import transaction
 
 
 class PopulateResultsFromApi:
@@ -41,6 +42,7 @@ class PopulateResultsFromApi:
         return output
 #         print alliance
 
+    @transaction.atomic
     def populate_single_match(self, match_json):
 
         event_code = str(match_json["event_key"])
@@ -64,6 +66,10 @@ class PopulateResultsFromApi:
 
             if match_json["score_breakdown"]:
                 self.parse_score_breakdown(match_json["score_breakdown"], red_sr, blue_sr)
+
+                if not official_match.hasOfficialData:
+                    official_match.hasOfficialData = True
+                    official_match.save()
 
     def parse_score_breakdown(self, score_breakdown, red_official_sr, blue_official_sr):
         print "Override me!"
