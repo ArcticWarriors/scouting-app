@@ -8,13 +8,77 @@
             text-align: center;
 	    }
 	</style>
+	
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+
+$(function() {
+    $(".submit_pitscouting_form").click(function() {
+        
+        var pitscout_data = $(".pitscouting_form").serialize();
+        pitscout_data += "&team_number={{team.teamNumber}}"
+
+        $.ajax(
+        {
+            type: "POST",
+            url: "{% url request.resolver_match.namespace|add:':submit_pit_scouting' regional_code %}",
+            data: pitscout_data,
+            success: function(msg) 
+            {
+                if(!msg["success"])
+               	{
+                    alert("Failed to submit pit scouting")
+               	}
+            }
+        });
+
+        return false;
+	});
+});
+
+</script>
 {% endblock head %}
 
 {% block content %}
     <h1>Team {{ team.teamNumber }}</h1>
     Team Website: <a href="{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
 
+    <!----------------- Pictures ----------------------->
+    {% block pictures %}
+    <h2>Pictures</h2>
+    
+    {% if "auth.can_add_pictures" in perms %}
+        <form action="{% url request.resolver_match.namespace|add:':add_team_comments' regional_code team.teamNumber %}" method="POST">
+        {% csrf_token %}
+            <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+
+    {% if pictures|length != 0 %}
+        {% for picture in pictures %}
+        <a href="{% static picture.path %}"><img src="{% static picture.path %}" width='100'></a>
+        {% endfor %}
+    {% else %}
+        No pictures available
+    {% endif %}
+    {% endblock pictures %}
+    
+    <!----------------- Stats ----------------------->
+    <h1>Robot Statistics</h1>
+    {% block robot_stats %}
+    {% endblock robot_stats %}
+
+
+    <!----------------- Matches ----------------------->
     <h1>Matches Information:</h1>
+    {% block matches %}
+
+
+xx
+{{ team.match_set }}    
 
     {% if score_result_list|length == 0 %}
         No matches scouted
@@ -48,79 +112,14 @@
                 {% endfor %}
             </tbody>
         </table>
-
-            {% for sr in score_result_list %}
-            
-            {% endfor %}
-
     {% endif %}
      	
-    <h2>Pictures</h2>
-    
-    {#% if "auth.can_add_pictures" in perms %#}
-        <form action="{% url request.resolver_match.namespace|add:':upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name='team_number' value={{team.teamNumber}}>
-            <input type="file" name='image_name' accept="image/*">
-            <input type="submit">
-        </form>
-    {#% endif %#}
-
-    {% if pictures|length != 0 %}
-        {% for picture in pictures %}
-        <a href="{% static picture.path %}"><img src="{% static picture.path %}" width='100'></a>
-        {% endfor %}
-    {% else %}
-        No pictures available
-    {% endif %}
+    {% endblock matches %}
     
 
 
-    {% if "auth.can_add_pictures" in perms %}
-        <form action="{% url request.resolver_match.namespace|add:':add_team_comments' regional_code team.teamNumber %}" method="POST">
-        {% csrf_token %}
-            <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
-            <br><br>
-            <input type="submit" value="Submit">
-        </form>
-    {% endif %}
- 
-    <h1>Robot Statistics</h1>
-    
-    {% block robot_stats %}{% endblock robot_stats %}
-    
-    
-{% block fouls %}
-	<div class ="row">
-		
-		<div class ="col-md-6"></div>
-		<div class ="col-md-6">
-		<h2>Fouls</h2>
-			<table class="table">
-				<tbody>
-					<tr>
-						<th scope="row">Foul</th>
-						<td>#</td>
-					</tr>
-					<tr>
-						<th scope="row">Tech Foul</th>
-						<td>#</td>
-					<tr>
-						<th scope="row">Yellow Card</th>
-						<td>Yes/No?</td>
-					</tr>
-					<tr>
-						<th scope="row">Red Card</th>
-						<td>Yes/No?</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-	</div>
-	{% endblock fouls %}
-    {# ORIGINAL: Tech fouls: {{metrics.score_tech_foul__sum}} #}
- <h2>Comments</h2>
+    <!----------------- Comments ----------------------->
+    <h2>Comments</h2>
     {% if team_comments|length != 0 %}
         Team Comments
         <ul>

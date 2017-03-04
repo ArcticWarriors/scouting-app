@@ -1,140 +1,87 @@
 {% extends 'BaseScouting/team.html' %}
 {% load staticfiles %}
 
-{% block head %}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-<script>
-
-
-$(function() {
-    $(".submit_pitscouting_form").click(function() {
-        
-        var pitscout_data = $(".pitscouting_form").serialize();
-        pitscout_data += "&team_number={{team.teamNumber}}"
-
-        $.ajax(
-        {
-            type: "POST",
-            url: "{% url 'Scouting2017:submit_pit_scouting' regional_code %}",
-            data: pitscout_data,
-            success: function(msg) 
-            {
-                if(!msg["success"])
-               	{
-                    alert("Failed to submit pit scouting")
-               	}
-            }
-        });
-
-        return false;
-	});
-});
-
-</script>
-
-{% endblock head %}
 
 {% block robot_stats %}
 
 <div class = "row">
-    
-    <div class="col-md-6">
-        <h2>Gears</h2>
+    <div class="col-md-12">
+        <h2>Auto</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col" height = 80>Autonomous</th>
-                    <th scope="col">Teleop</th>
+                    <th scope="col">Gears</th>
+                    <th scope="col">High Scores</th>
+                    <th scope="col">High Misses</th>
+                    <th scope="col">Low Scores</th>
+                    <th scope="col">Low Misses</th>
+                    <th scope="col">Baseline</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{{ metrics.auto_gears__avg }}</td>
-                    <td>{{ metrics.tele_gears__avg }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="col-md-6">
-        <h2>Fuel</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th scope="col" style height = 80>High Scores</th>
-                    <th scope="col">High Misses</th>
-                    <th scope="col">Low Scores</th>
-                    <th scope="col">Low Misses</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Auto</th>
                     <td>{{ metrics.auto_fuel_high_score__avg }}</td>
                     <td>{{ metrics.auto_fuel_high_misses__avg }}</td>
                     <td>{{ metrics.auto_fuel_low_score__avg }}</td>
                     <td>{{ metrics.auto_fuel_low_misses__avg }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Teleop</th>
-                    <td>{{ metrics.tele_fuel_high_score__avg }}</td>
-                    <td>{{ metrics.tele_fuel_high_misses__avg }}</td>
-                    <td>{{ metrics.tele_fuel_low_score__avg }}</td>
-                    <td>{{ metrics.tele_fuel_low_misses__avg }}</td>
+                    <td>{{ metrics.baseline__avg }}</td>
                 </tr>
             </tbody>
         </table>
      </div>
 </div>
 
-
 <div class = "row">
-    <div class="col-md-6">
-        <h2>Climb/Cross</h2>
+    <div class="col-md-12">
+        <h2>Tele</h2>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Baseline Cross</th>
-                    <th scope="col">Scale</th>
+                    <th scope="col">Gears</th>
+                    <th scope="col">High Scores</th>
+                    <th scope="col">High Misses</th>
+                    <th scope="col">Low Scores</th>
+                    <th scope="col">Low Misses</th>
+                    <th scope="col">Climb</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ metrics.baseline__avg }}</td>
-                    <td>{{ metrics.rope__avg }}</td>
+                    <td>{{ metrics.tele_gears__avg }}</td>
+                    <td>{{ metrics.tele_fuel_high_score__avg }}</td>
+                    <td>{{ metrics.tele_fuel_high_misses__avg }}</td>
+                    <td>{{ metrics.tele_fuel_low_score__avg }}</td>
+                    <td>{{ metrics.tele_fuel_low_misses__avg }}</td>
+                    {# http://stackoverflow.com/questions/19588160/multiply-in-django-template #}
+                    <td>{% widthratio metrics.rope__avg 1 100  %}%</td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class ="col-md-6">
+     </div>
+</div>
+
+<div class = "row">
+    <div class ="col-md-12">
         <h2>Fouls</h2>
         <table class="table">
             <tbody>
                 <tr>
                     <th scope="row">Foul</th>
-                    <td>{{ metrics.foul__sum }}</td>
-                </tr>
-                <tr>
                     <th scope="row">Tech Foul</th>
-                    <td>{{ metrics.tech_foul__sum }}</td>
-                </tr>
-                <tr>
                     <th scope="row">Yellow Card</th>
-                    <td>{{ metrics.yellow_card__sum }}</td>
+                    <th scope="row">Red Card</th>
                 </tr>
                 <tr>
-                    <th scope="row">Red Card</th>
+                    <td>{{ metrics.foul__sum }}</td>
+                    <td>{{ metrics.tech_foul__sum }}</td>
+                    <td>{{ metrics.yellow_card__sum }}</td>
                     <td>{{ metrics.red_card__sum }}</td>
-                </tr>
             </tbody>
         </table>
     </div>
 </div>
 {% endblock robot_stats %}
-
-{% block fouls %}{% endblock fouls %}
 
 
 {% block pit_scouting %}

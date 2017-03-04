@@ -39,6 +39,20 @@ def get_team_metrics(team):
         elif "__avg" in key:
             metrics[key] = "{:10.2f}".format(metrics[key])
 
+    if metrics['tele_fuel_high_score__avg'] != "NA":
+
+        metrics['auto_fuel_high_misses__avg'] = float(metrics['auto_fuel_high_shots__avg']) - float(metrics['auto_fuel_high_score__avg'])
+        metrics['auto_fuel_low_misses__avg'] = float(metrics['auto_fuel_low_shots__avg']) - float(metrics['auto_fuel_low_score__avg'])
+
+        metrics['tele_fuel_high_misses__avg'] = float(metrics['tele_fuel_high_shots__avg']) - float(metrics['tele_fuel_high_score__avg'])
+        metrics['tele_fuel_low_misses__avg'] = float(metrics['tele_fuel_low_shots__avg']) - float(metrics['tele_fuel_low_score__avg'])
+    else:
+        metrics['auto_fuel_high_misses__avg'] = "NA"
+        metrics['auto_fuel_low_misses__avg'] = "NA"
+
+        metrics['tele_fuel_high_misses__avg'] = "NA"
+        metrics['fuel_shot_low_missed__avg'] = "NA"
+
     return metrics
 
 
