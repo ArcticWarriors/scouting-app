@@ -54,21 +54,78 @@ $(document).ready(function () {
         }
     });
 });
+
+
+function getTableResults(table_name)
+{
+    output = []
+    $('#' + table_name + ' tr').each(function() {
+        var rank = $(this).children('td:eq(0)').text()
+        var team = $(this).children('td:eq(1)').text()
+        output.push([rank, team])
+    });
+
+    return output
+}
+
+function submitChanges()
+{
+    changed = false;
+
+    console.log("Saving changes")
+    
+    pick_list = {}
+
+    pick_list["Overall"] = getTableResults("overall")
+    pick_list["Fuel"] = getTableResults("fuel")
+    pick_list["Gear"] = getTableResults("gear")
+    pick_list["Defense"] = getTableResults("defense")
+    pick_list["Do Not Pick"] = getTableResults("do_not_pick")
+    pick_list = JSON.stringify(pick_list)
+    
+    
+    data = {}
+    data['csrfmiddlewaretoken'] = '{{ csrf_token}}';
+    data['pick_list'] = pick_list;
+    //data = JSON.stringify(data)
+    
+    $.ajax(
+    {
+        type: "POST",
+        url: "{% url 'Scouting2017:submit_pick_list' regional_code %}",
+        data: data,
+        success: function(msg) 
+        {
+            if(!msg["success"])
+            {
+                alert("Failed to submit pick list")
+            }
+            else
+            {
+                console.log("Changes complete")
+            }
+        }
+    });
+}
+
+
 </script>
 
 {% endblock head %}
 
 {% block content %}
 
+<button onclick="submitChanges();">Submit Changes</button>
+
 <div class = "row">
     <div class="col-md-6">
     
         <div class="droppableArea panel-heading" style="text-align: center;"><h2>Top 24</h2></div>
         <div style="overflow-x: auto">
-            <table class="table table-hover">
+            <table id="overall" class="table table-hover">
                 <tbody class="sortableList">
-                    {% for team in original_overall_list %}
-                    <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% for pick_list in original_overall_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code pick_list.team.teamNumber %}">{{ pick_list.team.teamNumber }}</a></td></tr>
                     {% endfor %}
                 </tbody>  
             </table>
@@ -79,10 +136,10 @@ $(document).ready(function () {
     <div class="col-md-6">
         <div class="droppableArea panel-heading" style="text-align: center;"><h2>DO NOT PICK</h2></div>
         <div style="overflow-x: auto">
-            <table class="table table-hover">
+            <table id="do_not_pick" class="table table-hover">
                 <tbody class="sortableList">
-                  {% for team in original_dnp_list %}
-                  <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                  {% for pick_list in original_dnp_list %}
+                  <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code pick_list.team.teamNumber %}">{{ pick_list.team.teamNumber }}</a></td></tr>
                   {% endfor %}
                 </tbody>  
             </table>
@@ -94,10 +151,10 @@ $(document).ready(function () {
     <div class="col-md-4">
         <div class="droppableArea panel-heading" style="text-align: center;"><h2>Fuel</h2></div>
         <div style="overflow-x: auto">
-            <table class="table table-hover">
+            <table id="fuel" class="table table-hover">
                 <tbody class="sortableList">
-                    {% for team in original_fuel_list %}
-                    <tr><td style="width:20px">{{forloop.counter}}</td><td><a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% for pick_list in original_fuel_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td><a href="{% url 'Scouting2017:view_team' regional_code pick_list.team.teamNumber %}">{{ pick_list.team.teamNumber }}</a></td></tr>
                     {% endfor %}
                 </tbody>  
             </table>
@@ -107,10 +164,10 @@ $(document).ready(function () {
     <div class="col-md-4">
         <div class="droppableArea panel-heading" style="text-align: center;"><h2>Gears</h2></div>
         <div style="overflow-x: auto">
-            <table class="table table-hover">
+            <table id="gear" class="table table-hover">
                 <tbody class="sortableList">
-                    {% for team in original_gear_list %}
-                    <tr><td style="width:20px">{{forloop.counter}}</td><td><a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% for pick_list in original_gear_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td><a href="{% url 'Scouting2017:view_team' regional_code pick_list.team.teamNumber %}">{{ pick_list.team.teamNumber }}</a></td></tr>
                     {% endfor %}
                 </tbody>  
             </table>
@@ -120,10 +177,10 @@ $(document).ready(function () {
     <div class="col-md-4">
         <div class="droppableArea panel-heading" style="text-align: center;"><h2>Defense</h2></div>
         <div style="overflow-x: auto">
-            <table class="table table-hover">
+            <table id="defense" class="table table-hover">
                 <tbody class="sortableList">
-                    {% for team in original_defense_list %}
-                    <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                    {% for pick_list in original_defense_list %}
+                    <tr><td style="width:20px">{{forloop.counter}}</td><td> <a href="{% url 'Scouting2017:view_team' regional_code pick_list.team.teamNumber %}">{{ pick_list.team.teamNumber }}</a></td></tr>
                     {% endfor %}
                 </tbody>  
             </table>
@@ -142,7 +199,7 @@ $(document).ready(function () {
         <div style="overflow-x: auto">
             <table class="table table-hover">
                 {% for team in all_teams %}
-                  <tr class="draggable"><td style="display:none;">XX</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }} </a> </td></tr>
+                  <tr class="draggable"><td style="display:none;">XX</td><td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a></td></tr>
                 {% endfor %}
             </table>
         </div>

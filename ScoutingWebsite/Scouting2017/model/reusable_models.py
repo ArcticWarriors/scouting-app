@@ -67,6 +67,14 @@ class TeamCompetesIn(models.Model):
     competition = models.ForeignKey(Competition)
 
 
+class PickList(models.Model):
+
+    competition = models.ForeignKey(Competition)
+    team = models.ForeignKey(Team)
+    grouping = models.CharField(max_length=1000)
+    rank_in_group = models.IntegerField(default=1)
+
+
 class TeamComments(models.Model):
 
     comment = models.CharField(max_length=1000)

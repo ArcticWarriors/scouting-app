@@ -23,6 +23,7 @@ from Scouting2017.view.user_auth.log_user_out import log_user_out
 from Scouting2017.view.user_auth.authorize_login import auth_login
 from Scouting2017.view.forms.add_team_pics import AddTeamPictureView2017
 from Scouting2017.view.standard_views.match_prediction import MatchPredictionView2017
+from Scouting2017.view.submissions.submit_pick_list import submit_pick_list
 
 
 app_name = 'Scouting2017'
@@ -47,6 +48,7 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/upload_image$', AddTeamPictureView2017.as_view(), name='upload_image'),
                url(r'^(?P<regional_code>\w+)/update_bookmark$', update_bookmark, name='update_bookmark'),
                url(r'^(?P<regional_code>\w+)/submit_match_edit$', submit_match_edit, name='submit_match_edit'),
+               url(r'^(?P<regional_code>\w+)/submit_pick_list$', submit_pick_list, name='submit_pick_list'),
 
                # User Auth
                url(r'^(?P<regional_code>\w+)/show_login$', show_login, name='show_login'),
