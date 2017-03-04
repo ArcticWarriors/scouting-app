@@ -168,7 +168,7 @@ class BaseMatchListView(TemplateView):
             if len(srs) == 0:
                 unscouted_matches.append(match)
             else:
-                scouted_matches.append(self.append_scouted_info(match, kwargs["regional_code"]))
+                scouted_matches.append(self._append_scouted_info(match, kwargs["regional_code"]))
 
         context = super(BaseMatchListView, self).get_context_data(**kwargs)
         context['scouted_matches'] = scouted_matches
@@ -176,11 +176,8 @@ class BaseMatchListView(TemplateView):
 
         return context
 
-    def append_scouted_info(self, match, regional_code):
-
-        output = match
-
-        return output
+    def _append_scouted_info(self, match, regional_code):
+        raise NotImplementedError("You need to implement the _append_scouted_info function")
 
 
 class BaseSingleMatchView(TemplateView):

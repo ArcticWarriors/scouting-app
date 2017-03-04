@@ -78,6 +78,10 @@ class OfficialMatchScoreResult(models.Model):
     total_score = models.IntegerField()
 
 
+class TeamPitScouting(models.Model):
+    team = models.OneToOneField(Team)
+
+
 def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
 
     kargs = {}
