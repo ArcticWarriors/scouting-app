@@ -7,9 +7,9 @@ Created on Mar 5, 2017
 
 class PopulateRegionalResultsMixin():
 
-    def parse_score_breakdown(self, score_breakdown, red_official_sr, blue_official_sr):
-        self._populate_official_sr(red_official_sr, score_breakdown["red"], "R")
-        self._populate_official_sr(blue_official_sr, score_breakdown["blue"], "B")
+#     def parse_score_breakdown(self, score_breakdown, red_official_sr, blue_official_sr):
+#         self._populate_official_sr(red_official_sr, score_breakdown["red"], "R")
+#         self._populate_official_sr(blue_official_sr, score_breakdown["blue"], "B")
 
     def _populate_official_sr(self, official_match_sr, alliance_info, alliance_color):
 

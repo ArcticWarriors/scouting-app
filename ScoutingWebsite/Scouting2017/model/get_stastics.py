@@ -75,9 +75,9 @@ def get_statistics(regional_code, teams_at_competition, team=0):
         team.skills['rope_pct'] = 'NA'
         if len(teams_srs) != 0:
             team.skills['fuel_score'] = ((team_avgs['auto_fuel_high_score__avg']) + (team_avgs['tele_fuel_high_score__avg'] / 3) + (team_avgs['auto_fuel_low_score__avg'] / 3) + (team_avgs['tele_fuel_low_score__avg'] / 9))
-            team.skills['gear_z'] = (team_avgs['tele_gears__avg'] - gear_avg) / gear_stdev
-            team.skills['fuel_z'] = (((team_avgs['auto_fuel_high_score__avg']) + (team_avgs['tele_fuel_high_score__avg'] / 3) + (team_avgs['auto_fuel_low_score__avg'] / 3) + (team_avgs['tele_fuel_low_score__avg'] / 9)) - fuel_avg) / fuel_stdev
-            team.skills['rope_z'] = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev
+            team.skills['gear_z'] = (team_avgs['tele_gears__avg'] - gear_avg) / gear_stdev if gear_stdev != 0 else 0
+            team.skills['fuel_z'] = (((team_avgs['auto_fuel_high_score__avg']) + (team_avgs['tele_fuel_high_score__avg'] / 3) + (team_avgs['auto_fuel_low_score__avg'] / 3) + (team_avgs['tele_fuel_low_score__avg'] / 9)) - fuel_avg) / fuel_stdev if fuel_stdev != 0 else 0
+            team.skills['rope_z'] = (team_avgs['team_rope__avg'] - rope_avg) / rope_stdev if rope_stdev != 0 else 0
             team.skills['rope_pct'] = team_avgs['team_rope__avg'] * 100
 
         skills.append({'team': team.teamNumber, 'skills': team.skills})

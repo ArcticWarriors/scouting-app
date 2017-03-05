@@ -54,7 +54,7 @@ class Robot:
         output['auto_fuel_high'] = math.floor(self.auto_high_goal_percentage * self.auto_high_goal_capacity * .01)
         output['auto_fuel_low'] = math.floor(self.auto_low_goal_percentage * self.auto_low_goal_capacity * .01)
 
-        output['climbing'] = 1 if getBoolWithPercentage(self.climb_percentage) else 0
+        output['climbing'] = "ReadyForTakeoff" if getBoolWithPercentage(self.climb_percentage) else "None"
         output['tele_gear'] = math.floor(self.tele_gear_max * self.tele_gear_consistancy * .01)
         output['tele_fuel_high'] = math.floor(self.tele_high_goal_percentage * self.tele_high_goal_capacity * .01)
         output['tele_fuel_low'] = math.floor(self.tele_low_goal_percentage * self.tele_low_goal_capacity * .01)

@@ -7,25 +7,23 @@ import os
 import json
 import sys
 
-sys.path.append("../..")
-
 from BaseScouting.load_django import load_django
-from BaseScouting.api_scraper_FIRST.ApiDownloader import ApiDownloader
-from Scouting2017.api_scraper_FIRST.PopulateResultsFromApi2017 import PopulateRegionalresults2017
+from BaseScouting.api_scraper.official_FIRST.ApiDownloader import ApiDownloader
+from Scouting2017.api_scraper.official_FIRST.PopulateResultsFromApi2017 import PopulateRegionalresults2017
 
 download_matches = False
 download_results = False
 populate_results = True
 
 year = 2017
-json_root = os.path.abspath("../../Scouting{0}/api_scraper_FIRST/api_scraping_results".format(year)) + "/"
+json_root = os.path.abspath("api_scraping_results") + "/"
 
 if download_matches:
     scraper = ApiDownloader(year, json_root)
     scraper.download_event_data(first_week=9)
     scraper.download_team_data()
 
-events_file = json_root + 'events/event_week_mapping.json'
+events_file = json_root + '/events/event_week_mapping.json'
 with open(events_file, 'r') as f:
     json_struct = json.loads(f.read())
 

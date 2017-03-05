@@ -10,8 +10,9 @@ from django.db import transaction
 
 class PopulateRegionalResults:
 
-    def __init__(self, team_model, match_model, competition_model, official_match_model, official_match_sr_model):
+    def __init__(self, team_model, team_competes_in_model, match_model, competition_model, official_match_model, official_match_sr_model):
         self.team_model = team_model
+        self.team_competes_in_model = team_competes_in_model
         self.match_model = match_model
         self.competition_model = competition_model
         self.official_match_model = official_match_model
@@ -141,20 +142,23 @@ class PopulateRegionalResults:
             official_match, _ = self.official_match_model.objects.get_or_create(matchNumber=match_number, competition=competition)
             official_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
             match_search = self.match_model.objects.filter(matchNumber=match_number)
-            
+
+            for team in red_teams + blue_teams:
+                self.team_competes_in_model.objects.get_or_create(team=team, competition=competition)
+
             if len(match_search) == 0:
                 match = self.match_model.objects.create(matchNumber=match_number, competition=competition, 
                                                         red1=red_teams[0], red2=red_teams[1], red3=red_teams[2], 
                                                         blue1=blue_teams[0], blue2=blue_teams[1], blue3=blue_teams[2])
             else:
                 match = match_search[0]
-                
-                match.red1=red_teams[0]
-                match.red2=red_teams[1]
-                match.red3=red_teams[2]
-                match.blue1=blue_teams[0]
-                match.blue2=blue_teams[1]
-                match.blue3=blue_teams[2]
+
+                match.red1 = red_teams[0]
+                match.red2 = red_teams[1]
+                match.red3 = red_teams[2]
+                match.blue1 = blue_teams[0]
+                match.blue2 = blue_teams[1]
+                match.blue3 = blue_teams[2]
                 match.save()
                 print("Updating teams for match %s" % match.matchNumber)
 
@@ -178,22 +182,17 @@ class PopulateRegionalResults:
         for match_info in scores_info:
             match_number = match_info["matchNumber"]
 
-            for alliance_info in match_info["Alliances"]:
-                official_match = self.official_match_model.objects.get_or_create(matchNumber=match_number, competition=competition)[0]
-                official_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
-                if len(official_sr_search) != 2:
-                    comp1 = self.official_match_sr_model.objects.create(competition=competition, official_match=official_match, alliance_color='R')
-                    comp2 = self.official_match_sr_model.objects.create(competition=competition, official_match=official_match, alliance_color='B')
-                    official_sr_search = [comp1, comp2]
+            official_match = self.official_match_model.objects.get_or_create(matchNumber=match_number, competition=competition)[0]
+            official_sr_search = self.official_match_sr_model.objects.filter(official_match=official_match)
+            if len(official_sr_search) != 2:
+                comp1 = self.official_match_sr_model.objects.create(competition=competition, official_match=official_match, alliance_color='R')
+                comp2 = self.official_match_sr_model.objects.create(competition=competition, official_match=official_match, alliance_color='B')
+                official_sr_search = [comp1, comp2]
 
-                color = alliance_info["alliance"]
-                if color == "Red":
-                    self.populate_official_sr(official_sr_search[0], alliance_info)
+            red_breakdown = [x for x in match_info["Alliances"] if x["alliance"] == "Red"][0]
+            blue_breakdown = [x for x in match_info["Alliances"] if x["alliance"] == "Blue"][0]
 
-                if color == "Blue":
-                    self.populate_official_sr(official_sr_search[1], alliance_info)
+            self._populate_official_sr(official_sr_search[0], red_breakdown, "R")
+            self._populate_official_sr(official_sr_search[1], blue_breakdown, "B")
 
             print("Adding stats to official match %s" % official_match.matchNumber)
-
-    def populate_official_sr(self, official_match_sr, alliance_info):
-        raise NotImplementedError()

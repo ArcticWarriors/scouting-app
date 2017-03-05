@@ -9,6 +9,9 @@
 
 <h1> Prediction for Match {{match_number}}</h1>
     
+{% if predicted_results == None %}
+<h1 style='color: red;'>Not enough data available to do prediction</h1>
+{% else %}
 <div class="panel panel-default">
     <div class="panel-heading" style="overflow:auto;">
         <h2>Results</h2>
@@ -73,5 +76,7 @@
     </div>
     
     {% endblock blue_stats %}
+{% endif %}
+
 {% endblock content %}
 

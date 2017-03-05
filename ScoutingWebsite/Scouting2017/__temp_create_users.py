@@ -4,27 +4,24 @@ Created on Feb 25, 2017
 @author: PJ
 '''
 from django.contrib.auth.models import User
-import sys
-
-sys.path.append("../..")
 from BaseScouting.load_django import load_django
+
 
 def get_or_create(username, password, favorites, dnps):
     if len(User.objects.filter(username=username)) == 0:
         User.objects.create_user(username, password=password)
-        
-    from Scouting2017.model.reusable_models import Scout, Team
+
+    from Scouting2017.model import Scout, Team
     user = User.objects.get(username=username)
     scout, _ = Scout.objects.get_or_create(user=user)
-    
+
     for team_number in favorites:
         scout.bookmarked_teams.add(Team.objects.get(teamNumber=team_number))
-    
+
     for team_number in dnps:
         scout.do_not_pick_teams.add(Team.objects.get(teamNumber=team_number))
-        
-    return user
 
+    return user
 
 
 load_django()
@@ -44,7 +41,3 @@ user = get_or_create('nguyen', 'nguyen', [], [])
 user = get_or_create('perrotta', 'perrotta', [], [])
 user = get_or_create('johnson', 'johnson', [], [])
 user = get_or_create('fenner', 'fenner', [], [])
-
-
-
-print user

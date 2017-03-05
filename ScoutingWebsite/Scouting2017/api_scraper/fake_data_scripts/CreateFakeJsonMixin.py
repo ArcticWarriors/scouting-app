@@ -13,6 +13,15 @@ class CreateFakeJsonMixin():
 
         return mobility_sum
 
+    def _count_climbing(self, robot1_climbing, robot2_climbing, robot3_climbing):
+        climbing_sum = 0
+
+        climbing_sum += 1 if robot1_climbing == "ReadyForTakeoff" else 0
+        climbing_sum += 1 if robot2_climbing == "ReadyForTakeoff" else 0
+        climbing_sum += 1 if robot3_climbing == "ReadyForTakeoff" else 0
+
+        return climbing_sum
+
     def _populate_score_breakdown(self, teams):
 
         robot1sr, robot2sr, robot3sr = teams
@@ -54,7 +63,7 @@ class CreateFakeJsonMixin():
         output["touchpadNear"] = robot1sr['climbing']
         output["touchpadMiddle"] = robot2sr['climbing']
         output["touchpadFar"] = robot3sr['climbing']
-        climbing_count = output["touchpadNear"] + output["touchpadMiddle"] + output["touchpadFar"]
+        climbing_count = self._count_climbing(output["touchpadNear"], output["touchpadMiddle"], output["touchpadFar"])
 
         output["foulCount"] = robot1sr['foul_percentage'] + robot2sr['foul_percentage'] + robot3sr['foul_percentage']
         output["techFoulCount"] = robot1sr['tech_foul_percentage'] + robot2sr['tech_foul_percentage'] + robot3sr['tech_foul_percentage']

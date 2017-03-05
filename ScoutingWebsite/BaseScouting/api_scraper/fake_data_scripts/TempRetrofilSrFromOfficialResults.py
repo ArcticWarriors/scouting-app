@@ -15,7 +15,7 @@ class TempRetrofillSrFromOfficialResults:
 
         sr_search = score_result_type.objects.filter(match=match, team=team)
         if len(sr_search) == 0:
-            sr = score_result_type(match=match, team=team, **kargs)
+            sr = score_result_type(match=match, team=team, competition=match.competition, **kargs)
             sr.save()
             pass
         else:
