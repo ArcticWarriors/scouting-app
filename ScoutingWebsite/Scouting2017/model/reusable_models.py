@@ -4,7 +4,6 @@ Created on Jan 15, 2017
 @author: PJ
 '''
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class ScoreResultMetric:
@@ -23,9 +22,8 @@ class Competition(models.Model):
 
     code = models.CharField(max_length=6)
     name = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    week = models.IntegerField(default=-1)
 
     def __str__(self):
         return "Competition %s - %s" % (self.code, self.name)
@@ -51,12 +49,12 @@ class Match(models.Model):
 
     matchNumber = models.IntegerField()
     competition = models.ForeignKey(Competition)
-    red1 = models.ForeignKey(Team, related_name='red1_matches')
-    red2 = models.ForeignKey(Team, related_name='red2_matches')
-    red3 = models.ForeignKey(Team, related_name='red3_matches')
-    blue1 = models.ForeignKey(Team, related_name='blue1_matches')
-    blue2 = models.ForeignKey(Team, related_name='blue2_matches')
-    blue3 = models.ForeignKey(Team, related_name='blue3_matches')
+    red1 = models.ForeignKey(Team, related_name='red1')
+    red2 = models.ForeignKey(Team, related_name='red2')
+    red3 = models.ForeignKey(Team, related_name='red3')
+    blue1 = models.ForeignKey(Team, related_name='blue1')
+    blue2 = models.ForeignKey(Team, related_name='blue2')
+    blue3 = models.ForeignKey(Team, related_name='blue3')
 
     def __str__(self):
         return "Match %s at Competitions %s" % (self.matchNumber, self.competition)
@@ -95,10 +93,3 @@ class OfficialMatch(models.Model):
     competition = models.ForeignKey(Competition)
 
     hasOfficialData = models.BooleanField(default=False)
-
-
-class Scout(models.Model):
-
-    user = models.OneToOneField(User)
-    bookmarked_teams = models.ManyToManyField(Team, related_name="bookmarks")
-    do_not_pick_teams = models.ManyToManyField(Team, related_name="do_not_picks")

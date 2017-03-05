@@ -41,11 +41,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Our Apps
+    'BaseScouting',
 #     'Scouting2011',
 #     'Scouting2013',
 #     'Scouting2015',
-    'BaseScouting',
-    'Scouting2016',
+#     'Scouting2016',
     'Scouting2017',
 )
 
