@@ -8,6 +8,14 @@ from django.db.models.aggregates import Avg, Sum
 from django.db import models
 from Scouting2011.model.reusable_models import ScoreResultMetric, Team, Match, Competition,\
     OfficialMatch
+from django.contrib.auth.models import User
+
+
+class Scout2011(models.Model):
+
+    user = models.OneToOneField(User)
+    bookmarked_teams = models.ManyToManyField(Team, related_name="bookmarks")
+    do_not_pick_teams = models.ManyToManyField(Team, related_name="do_not_picks")
 
 
 class ScoreResult(models.Model):

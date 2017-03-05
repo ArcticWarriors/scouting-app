@@ -5,9 +5,17 @@ Created on Apr 11, 2016
 '''
 from django.db.models.aggregates import Avg, Sum
 from django.db import models
+from django.contrib.auth.models import User
 from Scouting2013.model.reusable_models import ScoreResultMetric, Team, \
     OfficialMatch, Match, Competition
 import collections
+
+
+class Scout2013(models.Model):
+
+    user = models.OneToOneField(User)
+    bookmarked_teams = models.ManyToManyField(Team, related_name="bookmarks")
+    do_not_pick_teams = models.ManyToManyField(Team, related_name="do_not_picks")
 
 
 class ScoreResult(models.Model):
@@ -59,6 +67,22 @@ class ScoreResult(models.Model):
         output['broke_badly'] = ScoreResultMetric('broke_badly', 'Broke Badly', 0, "Sum")
 
         return output
+
+
+class OfficialMatchScoreResult(models.Model):
+
+    official_match = models.ForeignKey(OfficialMatch)
+    competition = models.ForeignKey(Competition)
+
+    team1 = models.ForeignKey(Team, related_name='team1')
+    team2 = models.ForeignKey(Team, related_name='team2')
+    team3 = models.ForeignKey(Team, related_name='team3')
+
+    total_score = models.IntegerField()
+
+
+class TeamPitScouting(models.Model):
+    team = models.OneToOneField(Team)
 
 
 def get_team_metrics(team, all_fields=ScoreResult.get_fields()):
