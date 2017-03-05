@@ -1,6 +1,7 @@
 from BaseScouting.views.base_views import BaseSingleTeamView
 from Scouting2017.model.reusable_models import Team, TeamPictures, TeamComments
-from Scouting2017.model.models2017 import TeamPitScouting, get_team_metrics
+from Scouting2017.model.models2017 import TeamPitScouting
+from Scouting2017.model.get_team_metrics import get_team_metrics
 
 
 class SingleTeamView2017(BaseSingleTeamView):

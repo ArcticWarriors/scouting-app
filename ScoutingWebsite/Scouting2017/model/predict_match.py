@@ -9,7 +9,11 @@ from django.db.models.expressions import Case, When
 
 def __get_team_average_for_match_prediction(team, competition):
 
-    output = team.scoreresult_set.filter(competition=competition).aggregate(
+    score_results = team.scoreresult_set.filter(competition=competition)
+    if len(score_results) == 0:
+        return None
+
+    output = score_results.aggregate(
         auto_fuel_high=Avg("auto_fuel_high_score"),
         auto_fuel_low=Avg("auto_fuel_low_score"),
         auto_gears=Avg("auto_gears"),
@@ -18,6 +22,8 @@ def __get_team_average_for_match_prediction(team, competition):
         tele_gears=Avg("tele_gears"),
         baseline=Avg(Case(When(auto_baseline=True, then=1), When(auto_baseline=False, then=0))),
         rope=Avg(Case(When(rope=True, then=1), When(rope=False, then=0))))
+
+    print output
 
     output["team_number"] = team.teamNumber
 
@@ -38,6 +44,9 @@ def __get_alliance_average_for_match_prediction(team1, team2, team3, competition
     team1_metrics = __get_team_average_for_match_prediction(team1, competition)
     team2_metrics = __get_team_average_for_match_prediction(team2, competition)
     team3_metrics = __get_team_average_for_match_prediction(team3, competition)
+
+    if team1_metrics == None or team2_metrics == None or team3_metrics == None:
+        return None
 
     averages = {}
 
@@ -62,5 +71,8 @@ def predict_match(match, competition):
 
     output['red_prediction'] = __get_alliance_average_for_match_prediction(match.red1, match.red2, match.red3, competition)
     output['blue_prediction'] = __get_alliance_average_for_match_prediction(match.blue1, match.blue2, match.blue3, competition)
+
+    if output['red_prediction'] == None or output['blue_prediction'] == None:
+        output = None
 
     return output

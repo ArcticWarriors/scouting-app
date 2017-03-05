@@ -5,11 +5,11 @@ Created on Feb 25, 2017
 '''
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from BaseScouting.api_scraper_TheBlueAlliance.ApiDownloader import ApiDownloader
+from BaseScouting.api_scraper.the_blue_alliance.ApiDownloader import ApiDownloader
+from Scouting2017.api_scraper.the_blue_alliance.PopulateResultsFromApi2017 import PopulateResultsFromApi2017
 import datetime
 import json
 import os
-from Scouting2017.api_scraper_TheBlueAlliance.PopulateResultsFromApi2017 import PopulateResultsFromApi2017
 
 
 def __download_schedule(event_code, json_dump_dir):

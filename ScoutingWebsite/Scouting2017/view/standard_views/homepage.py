@@ -23,6 +23,8 @@ class HomepageView2017(BaseHomepageView):
     def _predict_match(self, match, competition):
 
         output = predict_match(match, competition)
-        output['matchNumber'] = match.matchNumber
+
+        if output != None:
+            output['matchNumber'] = match.matchNumber
 
         return output

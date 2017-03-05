@@ -9,25 +9,6 @@ import collections
 import math
 
 
-def getBoolWithPercentage(percentage):
-    rando = random.randint(0, 100)
-    
-    return rando > percentage
-    
-
-
-def getRandomNumber(minval, maxval):
-    
-    output_range = maxval - minval
-    
-    rando = random.randint(0, 100)
-    output = math.floor(minval + rando * .01 * output_range)
-    print output_range, output
-    
-    precentage = rando
-    return precentage
-
-
 def count_mobility(robot1, robot2, robot3):
     mobility_sum = 0
     
