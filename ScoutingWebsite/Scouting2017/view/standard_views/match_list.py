@@ -7,7 +7,7 @@ class MatchListView2017(BaseMatchListView):
     def __init__(self):
         BaseMatchListView.__init__(self, Match)
 
-    def append_scouted_info(self, match, regional_code):
+    def _append_scouted_info(self, match, regional_code):
 
         output = match
 

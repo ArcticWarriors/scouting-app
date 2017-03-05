@@ -8,12 +8,12 @@ from Scouting2011.model.reusable_models import Match, OfficialMatch
 class HomepageView2011(BaseHomepageView):
 
     def __init__(self):
-        BaseHomepageView.__init__(self, Competition, 'Scouting2011/index.html')
-        
+        BaseHomepageView.__init__(self, Competition, Team, Match, OfficialMatch, 'Scouting2011/index.html')
+
     def _get_our_team_number(self):
         return 229
 
-    def get_our_metrics(self):
+    def _get_our_metrics(self, competition):
 
         team_search = Team.objects.filter(teamNumber=self._get_our_team_number())
 
@@ -29,7 +29,7 @@ class HomepageView2011(BaseHomepageView):
 
         return get_team_metrics(team_search[0], metrics_of_interest)
 
-    def get_competition_metrics(self, competition):
+    def _get_competition_metrics(self, competition):
 
         num_to_display = 5
 
@@ -49,3 +49,6 @@ class HomepageView2011(BaseHomepageView):
             output.append((full_name, this_result))
 
         return output
+
+    def _predict_match(self, match, competition):
+        return None

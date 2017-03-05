@@ -278,21 +278,23 @@ class BaseMatchPredictionView(TemplateView):
     @param match_number is the match which is being predicted.
     """
 
-    def __init__(self, match_model, template_name):
+    def __init__(self, match_model, competition_model, template_name):
         self.match_model = match_model
+        self.competition_model = competition_model
         self.template_name = template_name
 
     def get_context_data(self, **kwargs):
 
-        match_model = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"], competition__code=kwargs["regional_code"])
+        competition = self.competition_model.objects.get(code=kwargs["regional_code"])
+        match = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"], competition=competition)
 
         context = super(BaseMatchPredictionView, self).get_context_data(**kwargs)
-        context['match_number'] = match_model.matchNumber
-        context['predicted_results'] = self.get_score_results(match_model, kwargs["regional_code"])
+        context['match_number'] = match.matchNumber
+        context['predicted_results'] = self.get_score_results(match, competition)
 
         return context
 
-    def get_score_results(self, match_model, regional_code):
+    def get_score_results(self, match, competition):
         raise NotImplementedError()
 
 

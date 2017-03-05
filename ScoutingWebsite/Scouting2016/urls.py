@@ -27,6 +27,7 @@ from Scouting2016.view.standard_views.match_list import MatchListView2016
 from Scouting2016.view.standard_views.homepage import HomepageView2016
 from Scouting2016.view.standard_views.pick_list import PickListView2016
 from Scouting2016.view.forms.add_team_pics import AddTeamPictureView2016
+from Scouting2016.view.submission.submit_pit_scouting import submit_pit_scouting
 # import views as views
 
 
@@ -48,6 +49,7 @@ urlpatterns = [
 #                url(r'^(?P<regional_code>\w+)/pre_pit_form$', pit_scouting.info_for_pit_edit, name='info_for_pit_edit'),
                url(r'^(?P<regional_code>\w+)/pit_form$', pit_scouting.show_add_pit, name='show_add_pit'),
                url(r'^(?P<regional_code>\w+)/submit_pit$', pit_scouting.submit_new_pit, name='submit_new_pit'),
+               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', submit_pit_scouting, name='submit_pit_scouting'),
 
                # User Auth
                url(r'^(?P<regional_code>\w+)/showLogin/$', showLogin, name='show_login'),

@@ -1,5 +1,6 @@
 from BaseScouting.views.base_views import BaseHomepageView
-from Scouting2016.model.reusable_models import Team, Competition
+from Scouting2016.model.reusable_models import Team, Competition, OfficialMatch, \
+    Match
 from Scouting2016.model.models2016 import ScoreResult, get_advanced_team_metrics
 from django.db.models.aggregates import Avg
 
@@ -7,9 +8,12 @@ from django.db.models.aggregates import Avg
 class HomepageView2016(BaseHomepageView):
 
     def __init__(self):
-        BaseHomepageView.__init__(self, Competition)
+        BaseHomepageView.__init__(self, Competition, Team, Match, OfficialMatch)
 
-    def get_our_metrics(self):
+    def _get_our_team_number(self):
+        return 174
+
+    def _get_our_metrics(self, competition):
 
         team_search = Team.objects.filter(teamNumber=174)
 
@@ -22,7 +26,7 @@ class HomepageView2016(BaseHomepageView):
 
         return get_advanced_team_metrics(team_search[0], metrics_of_interest)
 
-    def get_competition_metrics(self, competition):
+    def _get_competition_metrics(self, competition):
 
         num_to_display = 5
 
