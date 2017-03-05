@@ -28,7 +28,7 @@ event_codes = get_event_to_week_mapping()
 # #################
 # # Trim by weeks #
 # #################
-# weeks_to_download = [1]
+# weeks_to_download = [3]
 # event_codes = {week: event_codes[week] for week in event_codes if week in weeks_to_download}
 
 # #################
@@ -73,7 +73,7 @@ if populate_results:
         for event_code in events_list:
             matches_file = os.path.join(json_root, r'week%s\%s_matches.json' % (week, event_code))
             if os.path.exists(matches_file):
-                with open() as f:
+                with open(matches_file) as f:
                     json_results = json.load(f)
                     populater.populate_schedule_match(json_results)
             else:

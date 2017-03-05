@@ -10,20 +10,21 @@ import collections
 
 class CreateFakeJsonBase():
 
-    def __init__(self, match_model, official_match_model, official_match_sr_model):
+    def __init__(self, competition, match_model, official_match_model, official_match_sr_model):
+        self.competition = competition
         self.match_model = match_model
         self.official_match_model = official_match_model
         self.official_match_sr_model = official_match_sr_model
 
         random.seed(100)
 
-    def create_matches(self, min_match, max_match, robots, competition):
+    def create_matches(self, min_match, max_match, robots):
 
         matches = []
         for match_num in range(min_match, max_match):
 
-            match = self.match_model.objects.get(matchNumber=match_num, competition=competition)
-            official_match = self.official_match_model.objects.get(matchNumber=match_num, competition=competition)
+            match = self.match_model.objects.get(matchNumber=match_num, competition=self.competition)
+            official_match = self.official_match_model.objects.get(matchNumber=match_num, competition=self.competition)
             official_match_srs = self.official_match_sr_model.objects.filter(official_match=official_match)
 
             if len(official_match_srs) == 2:
@@ -53,12 +54,10 @@ class CreateFakeJsonBase():
 
             alliance_data.append(self._populateAlliance(color, [team1sr, team2sr, team3sr]))
 
-        match_scores = collections.OrderedDict()
-        match_scores['matchLevel'] = "Qualification"
-        match_scores['Alliances'] = alliance_data
-        match_scores['matchNumber'] = str(official_match_srs[0].official_match.matchNumber)
+        return self._prepare_match_info(official_match_srs[0].official_match.matchNumber, alliance_data, alliances)
 
-        return match_scores
+    def _populateAlliance(self, teams):
+        raise NotImplementedError()
 
-    def _populate_score_breakdown(self, teams):
-        pass
+    def _prepare_match_info(self, teams):
+        raise NotImplementedError()

@@ -8,6 +8,7 @@ from BaseScouting.load_django import load_django
 from BaseScouting.api_scraper.fake_data_scripts.CreateFakeJson_OfficialFirst import CreateFakeJson_OfficialFirst
 from Scouting2017.api_scraper.fake_data_scripts.Robot import Robot
 from Scouting2017.api_scraper.fake_data_scripts.CreateFakeJsonMixin import CreateFakeJsonMixin
+from BaseScouting.api_scraper.fake_data_scripts.CreateFakeJson_BlueAlliance import CreateFakeJson_BlueAlliance
 
 
 def create_robots():
@@ -72,24 +73,40 @@ def main():
 
     class CreateFakeJson2017_OfficialFirst(CreateFakeJsonMixin, CreateFakeJson_OfficialFirst):
 
-        def __init__(self):
-            CreateFakeJson_OfficialFirst.__init__(self, Match, OfficialMatch, OfficialMatchScoreResult)
-        pass
+        def __init__(self, competition):
+            CreateFakeJson_OfficialFirst.__init__(self, competition, Match, OfficialMatch, OfficialMatchScoreResult)
+
+        def create_and_dump(self, min_match, max_match, robots, dump_file):
+            info_to_dump = self.create_matches(min_match, max_match, robots)
+
+            match_results = {}
+            match_results['MatchScores'] = info_to_dump
+            scoreresult_dump = json.dumps(match_results, indent=4)
+            with open(dump_file, 'w') as f:
+                f.write(scoreresult_dump)
+
+    class CreateFakeJson2017_TheBlueAlliance(CreateFakeJsonMixin, CreateFakeJson_BlueAlliance):
+
+        def __init__(self, competition):
+            CreateFakeJson_BlueAlliance.__init__(self, 2017, competition, Match, OfficialMatch, OfficialMatchScoreResult)
+
+        def create_and_dump(self, min_match, max_match, robots, dump_file):
+            info_to_dump = self.create_matches(min_match, max_match, robots)
+
+#             match_results = []
+#             match_results['MatchScores'] = info_to_dump
+            scoreresult_dump = json.dumps(info_to_dump, indent=4)
+            with open(dump_file, 'w') as f:
+                f.write(scoreresult_dump)
 
     robots = create_robots()
-
     competition = Competition.objects.get(code="NYRO")
 
-    official_dumper = CreateFakeJson2017_OfficialFirst()
-    info_to_dump = official_dumper.create_matches(1, 40, robots, competition)
+    official_dumper = CreateFakeJson2017_OfficialFirst(competition)
+    official_dumper.create_and_dump(1, 40, robots, r"../official_FIRST\api_scraping_results\week3\NYRO_scoreresult_query.json")
 
-    dump_file = r'C:\Users\PJ\GitHub\SnobotScouting\scouting-app\ScoutingWebsite\Scouting2017\api_scraper\official_FIRST\api_scraping_results\week3\NYRO_scoreresult_query.json'
-    match_results = {}
-    match_results['MatchScores'] = info_to_dump
-    scoreresult_dump = json.dumps(match_results, indent=4)
-    with open(dump_file, 'w') as f:
-        f.write(scoreresult_dump)
-    print json.dumps(info_to_dump, indent=4)
+    tba_dumper = CreateFakeJson2017_TheBlueAlliance(competition)
+    tba_dumper.create_and_dump(1, 40, robots, r"../the_blue_alliance/results/week3\2017nyro_matches.json")
 
 
 main()

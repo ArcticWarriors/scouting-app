@@ -115,5 +115,5 @@ def retrofill_results(min_match_number, max_match_number):
 
 if __name__ == "__main__":
     load_django()
-#     retrofill_results(1, 40)
-    retrofill_results(7, 8)
+    retrofill_results(1, 40)
+#     retrofill_results(7, 8)
