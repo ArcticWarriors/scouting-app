@@ -83,14 +83,15 @@ class PopulateResultsFromApi:
             self.match_model.objects.get_or_create(competition=competition, matchNumber=match_number, **create_match_kwargs)
 
             if match_json["score_breakdown"]:
-                self._parse_score_breakdown(match_json["score_breakdown"], red_sr, blue_sr)
+                self._populate_official_sr(red_sr, match_json["score_breakdown"]["red"], "R")
+                self._populate_official_sr(blue_sr, match_json["score_breakdown"]["blue"], "B")
 
                 if not official_match.hasOfficialData:
                     official_match.hasOfficialData = True
                     official_match.save()
 
-    def _parse_score_breakdown(self, score_breakdown, red_official_sr, blue_official_sr):
-        print "Override me!"
+    def _populate_official_sr(self, official_match_sr, alliance_info, alliance_color):
+        raise NotImplementedError()
 
     def __update_team_info(self, local_file):
 

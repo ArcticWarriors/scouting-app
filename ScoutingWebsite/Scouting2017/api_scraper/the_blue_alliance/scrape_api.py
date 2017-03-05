@@ -14,11 +14,11 @@ load_django()
 
 download_events_info = False
 download_teams = False
-download_matches = True
+download_matches = False
 
 populate_events = False
 populate_teams = False
-populate_results = False
+populate_results = True
 year = 2017
 
 json_root = os.path.abspath('results')
@@ -71,6 +71,10 @@ if populate_results:
 
     for week, events_list in event_codes.items():
         for event_code in events_list:
-            with open(os.path.join(json_root, r'week%s\%s_matches.json' % (week, event_code))) as f:
-                json_results = json.load(f)
-                populater.populate_schedule_match(json_results)
+            matches_file = os.path.join(json_root, r'week%s\%s_matches.json' % (week, event_code))
+            if os.path.exists(matches_file):
+                with open() as f:
+                    json_results = json.load(f)
+                    populater.populate_schedule_match(json_results)
+            else:
+                print "Ignoring event %s since it has no updates" % event_code
