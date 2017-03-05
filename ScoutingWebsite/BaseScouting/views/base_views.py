@@ -233,7 +233,7 @@ class BaseSingleMatchView(TemplateView):
         self.template_name = template_name
 
     def get_context_data(self, **kwargs):
-        the_match = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"])
+        the_match = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"], competition__code=kwargs["regional_code"])
 
         context = super(BaseSingleMatchView, self).get_context_data(**kwargs)
         context['match'] = the_match

@@ -143,6 +143,7 @@ function saveEdits(e){
         data: data,
         success: function(msg) 
         {
+            removeOfficialMatchValidationLoadingOverlay();
             if(!msg["success"])
            	{
                 alert("Failed to submit pit scouting")
@@ -155,7 +156,6 @@ function saveEdits(e){
             	updateValidationTable(msg["official_match_validation"])
                 dirty = false;
             }
-            removeOfficialMatchValidationLoadingOverlay();
         }
     });
 }

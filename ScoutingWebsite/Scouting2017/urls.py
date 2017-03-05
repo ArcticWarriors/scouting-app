@@ -8,9 +8,10 @@ from django.views.generic.base import RedirectView
 from Scouting2017.view.forms import create_match
 from Scouting2017.api_scraper.the_blue_alliance import tba_webook
 from Scouting2017.view.submissions.submit_pit_scouting import submit_pit_scouting
-from Scouting2017.view.submissions.submit_bookmark import update_bookmark
-from Scouting2017.view.submissions.submit_match_edit import submit_match_edit
 from Scouting2017.view.submissions.submit_match import add_match
+from Scouting2017.view.submissions.submit_bookmark import UpdateBookmarks2017
+from Scouting2017.view.submissions.submit_match_edit import SubmitMatchEdit2017
+from Scouting2017.view.submissions.submit_pick_list import SubmitPickList2017
 from Scouting2017.view.standard_views.homepage import HomepageView2017
 from Scouting2017.view.standard_views.team_list import TeamListView2017
 from Scouting2017.view.standard_views.match_list import MatchListView2017
@@ -22,7 +23,6 @@ from Scouting2017.view.user_auth.log_user_out import log_user_out
 from Scouting2017.view.user_auth.authorize_login import auth_login
 from Scouting2017.view.forms.add_team_pics import AddTeamPictureView2017
 from Scouting2017.view.standard_views.match_prediction import MatchPredictionView2017
-from Scouting2017.view.submissions.submit_pick_list import submit_pick_list
 
 
 app_name = 'Scouting2017'
@@ -45,9 +45,9 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/submit_new_match$', add_match, name='submit_new_match'),
                url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', submit_pit_scouting, name='submit_pit_scouting'),
                url(r'^(?P<regional_code>\w+)/upload_image$', AddTeamPictureView2017.as_view(), name='upload_image'),
-               url(r'^(?P<regional_code>\w+)/update_bookmark$', update_bookmark, name='update_bookmark'),
-               url(r'^(?P<regional_code>\w+)/submit_match_edit$', submit_match_edit, name='submit_match_edit'),
-               url(r'^(?P<regional_code>\w+)/submit_pick_list$', submit_pick_list, name='submit_pick_list'),
+               url(r'^(?P<regional_code>\w+)/update_bookmark$', UpdateBookmarks2017.as_view(), name='update_bookmark'),
+               url(r'^(?P<regional_code>\w+)/submit_match_edit$', SubmitMatchEdit2017.as_view(), name='submit_match_edit'),
+               url(r'^(?P<regional_code>\w+)/submit_pick_list$', SubmitPickList2017.as_view(), name='submit_pick_list'),
 
                # User Auth
                url(r'^(?P<regional_code>\w+)/show_login$', show_login, name='show_login'),

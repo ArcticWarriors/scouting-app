@@ -43,7 +43,7 @@ class SingleMatchView2017(BaseSingleMatchView):
 
     def get_match_validation(self, regional_code, match):
 
-        official_match = OfficialMatch.objects.get(matchNumber=match.matchNumber)
+        official_match = OfficialMatch.objects.get(matchNumber=match.matchNumber, competition__code=regional_code)
         official_sr_search = official_match.officialmatchscoreresult_set.all()
         if len(official_sr_search) == 2:
             _, warnings, errors = calculate_match_scouting_validity(match, official_match, official_sr_search)

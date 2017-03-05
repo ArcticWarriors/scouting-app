@@ -54,8 +54,8 @@ def tba_webook(request, **kargs):
 
     week = 1
 
-    dump_root = os.path.join(os.getcwd(), 'Scouting2017/api_scraper_TheBlueAlliance')
-    json_dump_dir = os.path.join(os.getcwd(), 'Scouting2017/api_scraper_TheBlueAlliance/results/week%s' % week)
+    dump_root = os.path.join(os.getcwd(), 'Scouting2017/api_scraper/the_blue_alliance')
+    json_dump_dir = os.path.join(os.getcwd(), dump_root, '/results/week%s' % week)
     try:
         dump_file = os.path.join(dump_root, 'tba_log.txt')
         print dump_file
