@@ -13,6 +13,7 @@ from django.views.generic.base import View
 class BaseSubmitPickList(View):
 
     def __init__(self, groupings, competition_model, pick_list_model, team_model):
+        self.groupings = groupings
         self.competition_model = competition_model
         self.pick_list_model = pick_list_model
         self.team_model = team_model
@@ -27,7 +28,7 @@ class BaseSubmitPickList(View):
 
             self.pick_list_model.objects.filter(competition=competition).delete()
 
-            for grouping in groupings:
+            for grouping in self.groupings:
 
                 for overall_pair in pick_list[grouping]:
                     rank = int(overall_pair[0])

@@ -13,4 +13,4 @@ class SubmitPickList2017(BaseSubmitPickList):
     def __init__(self):
 
         groupings = ["Overall", "Fuel", "Gear", "Defense", "Do Not Pick"]
-        BaseSubmitPickList.__init__(groupings, Competition, PickList, Team)
+        BaseSubmitPickList.__init__(self, groupings, Competition, PickList, Team)

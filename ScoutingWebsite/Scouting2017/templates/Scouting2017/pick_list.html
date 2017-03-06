@@ -14,6 +14,7 @@ td{
 <script type="text/javascript">
 
 var changed = false;
+var top_teams = {{top_teams|safe}}
 
 window.onbeforeunload = function(event) {
     if(changed)
@@ -54,6 +55,19 @@ $(document).ready(function () {
         }
     });
 });
+
+function populateTableResults(table_name, teams)
+{
+    $('#' + table_name + " tr").remove()
+
+    $.each(teams, function(index, value) {
+        $('#' + table_name).append(
+                "<tr>" + 
+                "<td>" + (index + 1) + "</td>" + 
+                "<td>" + value + "</td>" + 
+                "</tr>");
+    });
+}
 
 
 function getTableResults(table_name)
@@ -108,6 +122,15 @@ function submitChanges()
     });
 }
 
+function loadTopTeams()
+{
+    populateTableResults("overall", top_teams["overall"])
+    populateTableResults("fuel", top_teams["fuel"])
+    populateTableResults("gear", top_teams["gear"])
+    populateTableResults("defense", top_teams["defense"])
+    populateTableResults("do_not_pick", top_teams["do_not_pick"])
+}
+
 
 </script>
 
@@ -116,6 +139,7 @@ function submitChanges()
 {% block content %}
 
 <button onclick="submitChanges();">Submit Changes</button>
+<button onclick="loadTopTeams();">Re-populate</button>
 
 <div class = "row">
     <div class="col-md-6">
