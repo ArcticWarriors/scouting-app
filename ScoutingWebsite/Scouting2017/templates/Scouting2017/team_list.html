@@ -1,187 +1,232 @@
-{% load staticfiles %} 
+{% extends 'BaseScouting/base.html' %}
+{% load staticfiles %}
+{% load rawinclude %}
 
-<html>
-<head>
-{% include "BaseScouting/base.html" %}
-<title>Teams - Arctic Warriors Scouting</title>
+{% block head %}
+    <title>Teams - Arctic Warriors Scouting</title>
+
+    <style>
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        th {
+            height: 45px;
+        }
+        
+        td {
+            height: 30px;
+        }
+    </style>
+
+    <script id="skills-data" type="text/json">
+        {{skills|safe}}
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'BaseScouting/lib/bootstrap-select/bootstrap-select.min.css' %}">
+
+    <script type="text/javascript" src="{% static 'BaseScouting/lib/bootstrap-select/bootstrap-select.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'BaseScouting/lib/table-wrangler/mustache.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'BaseScouting/lib/table-wrangler/jquery.sortElements.js' %}"></script>
+    <script type="text/html" id="tem_column_selection">{% raw_include 'BaseScouting/lib/table-wrangler/column_selection_hovercard.html' %}</script>    
+    <script type="text/html" id="tem_filter">{% raw_include 'BaseScouting/lib/table-wrangler/filter_hovercard.html' %}</script>
+    <script type="text/javascript" src="{% static 'BaseScouting/lib/table-wrangler/table-wrangler.js' %}"></script>
     
-<style>
-table{ 
-
-}
-th{
-    text-align: center;
-    height: 45px;
-    vertical-align: middle;
-}
-td{
-    text-align: center;
-    height: 30px;
-    vertical-align: middle;    
-}
-
-.bold{
-    font-weight: bold;
-}
-</style>
-<script id="skills-data" type="text/json">
-    {{skills|safe}}
-</script>
-<script type="text/javascript">
-    function skills(){
-        var skills = $('th:contains(Skills)').index() //Obtains the number of the column containing the icons
-        //console.log(skills)
-        var zCutoff = 0.675; // 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282
-        var skill_list = JSON.parse($("#skills-data").html()) // Grabs list of skills from backend
-        for (i=0;i< skill_list.length;i++){
-            /*
-            The for loop grabs z-scores for each individual team, compares them to the cutoff value, and changes the icon accordingly.
-            */
-            console.log(skill_list[i]);
-            var gear_z = skill_list[i].skills.gear_z; 
-            var fuel_z = skill_list[i].skills.fuel_z;
-            var rope_z = skill_list[i].skills.rope_z;
-            if (gear_z > zCutoff) {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-gearz] ' ).attr('src','{% static 'Scouting2017/Icons/gear_green.png' %}')
-            }
-            else if (gear_z < 0-(zCutoff)) {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-gearz] ' ).attr('src','{% static 'Scouting2017/Icons/gear_red.png' %}')
-            }
-            else {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-gearz] ' ).attr('src','{% static 'Scouting2017/Icons/gear_yellow.png' %}')
-            }
-            if (fuel_z > zCutoff) {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-fuelz] ' ).attr('src','{% static 'Scouting2017/Icons/fuel_green.png' %}')
-            }
-            else if (fuel_z < 0-(zCutoff)) {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-fuelz] ' ).attr('src','{% static 'Scouting2017/Icons/fuel_red.png' %}')
-            }
-            else {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-fuelz] ' ).attr('src','{% static 'Scouting2017/Icons/fuel_yellow.png' %}')
-            }
-            if (rope_z > zCutoff) {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-ropez] ' ).attr('src','{% static 'Scouting2017/Icons/rope_green.png' %}')
-            }
-            else if (rope_z < 0-(zCutoff)) {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-ropez] ' ).attr('src','{% static 'Scouting2017/Icons/rope_red.png' %}')
-            }
-            else {
-            $('tr:nth-child('+ (i+1) + ') td:nth-child('+ (skills+1) +') [data-ropez] ' ).attr('src','{% static 'Scouting2017/Icons/rope_yellow.png' %}')
+    <script type="text/javascript">
+        function displaySkills() {
+            // Obtains the number of the column containing the icons
+            var skills = $('th:contains(Skills)').index()
+            // 80th percentile cutoff: 0.8416.  75th: 0.675. 90th: 1.282
+            var zCutoff = 0.675;
+            // Grabs list of skills loaded in by the backend
+            var skill_list = JSON.parse($("#skills-data").html())
+            // Get z-scores for each individual team, compare them to the cutoff value, and changes the icon accordingly.
+            for (i=0;i< skill_list.length;i++) {
+                var gear_z = skill_list[i].skills.gear_z; 
+                var fuel_z = skill_list[i].skills.fuel_z;
+                var rope_z = skill_list[i].skills.rope_z;
+                var cell_selector = 'tr:nth-child(' + (i+1) + ') td:nth-child(' + (skills+1) + ') ';
+                
+                if (gear_z > zCutoff) {
+                    $( cell_selector + '[data-gearz]' ).attr('src','{% static 'Scouting2017/Icons/skills/gear/png/gear-with-check.png' %}');
+                } else if (gear_z < 0-(zCutoff)) {
+                    $( cell_selector + '[data-gearz]' ).attr('src','{% static 'Scouting2017/Icons/skills/gear/png/gear-with-x.png' %}');
+                } else {
+                    $( cell_selector + '[data-gearz]' ).attr('src','{% static 'Scouting2017/Icons/skills/gear/png/gear-with-bar.png' %}');
+                }
+                
+                if (fuel_z > zCutoff) {
+                    $( cell_selector + '[data-fuelz]' ).attr('src','{% static 'Scouting2017/Icons/skills/fuel/png/fuel-with-check.png' %}');
+                } else if (fuel_z < 0-(zCutoff)) {
+                    $(cell_selector + '[data-fuelz]' ).attr('src','{% static 'Scouting2017/Icons/skills/fuel/png/fuel-with-x.png' %}');
+                } else {
+                    $( cell_selector + '[data-fuelz]' ).attr('src','{% static 'Scouting2017/Icons/skills/fuel/png/fuel-with-bar.png' %}');
+                }
+                
+                if (rope_z > zCutoff) {
+                    $( cell_selector + '[data-ropez]' ).attr('src','{% static 'Scouting2017/Icons/skills/rope/png/rope-with-check.png' %}');
+                } else if (rope_z < 0-(zCutoff)) {
+                    $( cell_selector + '[data-ropez]' ).attr('src','{% static 'Scouting2017/Icons/skills/rope/png/rope-with-x.png' %}');
+                } else {
+                    $( cell_selector + '[data-ropez]' ).attr('src','{% static 'Scouting2017/Icons/skills/rope/png/rope-with-bar.png' %}');
+                }
             }
         }
-    }
-    
-    function bookmark(team_number, bookmark_type)
-    {
-        $.post("{% url 'Scouting2017:update_bookmark' regional_code %}", 
-            {
-                csrfmiddlewaretoken: '{{ csrf_token}}' ,
-                team_number: team_number,
-                bookmark_type: bookmark_type
-            },
-            function(result)
-            {
-                console.log(result);
-                
-                if(bookmark_type == "bookmark")
-                {
-                    if(result.is_bookmarked)
-                    {
-                        document.getElementById("bookmark-" + team_number).src="{%static 'Scouting2017/Icons/star_bookmarked.png' %}"
-                    }
-                    else
-                    {
-                        document.getElementById("bookmark-" + team_number).src="{%static 'Scouting2017/Icons/star_not_bookmarked.png' %}"
-                    }
-                }
-                else
-                {
-                     if(result.is_bookmarked)
-                     {
-                         document.getElementById("dnp-bookmark-" + team_number).src="{%static 'Scouting2017/Icons/dnp_bookmarked.png' %}"
-                     }
-                     else
-                     {
-                         document.getElementById("dnp-bookmark-" + team_number).src="{%static 'Scouting2017/Icons/dnp_not_bookmarked.png' %}"
-                     }
-                }
-            }  
-        );
-    }
 
-</script>
-</head>
-<body onload="skills()">
-    <div class="fluid_container">
-        <table border = "1" class="table">
-            <thead>
-                <tr>
-                    <th> Team # </th>
-                    <th> Skills </th>
-                    {% if user.is_authenticated %}<th> Bookmarks </th> {% endif %}
-                    
-                    <th> Auto Gears </th>
-                    <th> Auto High Fuel </th>
-                    <th> Auto Low Fuel </th>
-                    
-                    <th> Tele Gears Scored </th>
-                    <th> Tele High Fuel </th>
-                    <th> Tele Low Fuel </th>
-                    
-                    <th> Rope Percentage </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for team in teams %}
-                <tr>
-                    <td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
-                    <td>
-                        <img data-gearz="{{team.skills.gear_z}}" src="{%static 'Scouting2017/Icons/gear_yellow.png' %}" style = "width:50px;" />
-                        <img data-fuelz="{{team.skills.fuel_z}}" src="{%static 'Scouting2017/Icons/fuel_yellow.png' %}" style = "width:50px;" />
-                        <img data-ropez="{{team.skills.rope_z}}" src="{%static 'Scouting2017/Icons/rope_yellow.png' %}" style = "height:50px;" />
-                            
-                    </td>
-                    {% if user.is_authenticated %}
-                    <td> 
-                        {% if team.isBookmarked %}
-                        <input type="image" id="bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/star_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "bookmark");'>
-                        {% else %}
-                        <input type="image" id="bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/star_not_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "bookmark");'>
-                        {% endif %} 
-                        <br>
-                        {% if team.isDoNotPick %}
-                        <input type="image" id="dnp-bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/dnp_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "do_not_pick");'>
-                        {% else %}
-                        <input type="image" id="dnp-bookmark-{{team.teamNumber}}" src="{%static 'Scouting2017/Icons/dnp_not_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "do_not_pick");'>
-                        {% endif %} 
-                    </td>
-                    {% endif %}
-                    <td> {{ team.metrics.auto_gears__avg }} </td>
-                    <td> {{ team.metrics.auto_fuel_high_score__avg }} </td>
-                    <td> {{ team.metrics.auto_fuel_low_score__avg }} </td>
-                    
-                    <td> {{ team.metrics.tele_gears__avg }} </td>
-                    <td> {{ team.metrics.tele_fuel_high_score__avg }}</td>
-                    <td> {{ team.metrics.tele_fuel_low_score__avg }}    </td>
+        function bookmark(team_number, bookmark_type) {
+            $.post("{% url 'Scouting2017:update_bookmark' regional_code %}", 
+                {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    team_number: team_number,
+                    bookmark_type: bookmark_type
+                },
+                function(result) {
+                    if (bookmark_type == "bookmark") {
+                        if (result.is_bookmarked) {
+                            $("#bookmark-" + team_number).attr("src", "{% static 'Scouting2017/Icons/star_bookmarked.png' %}");
+                        } else {
+                            $("#bookmark-" + team_number).attr("src", "{% static 'Scouting2017/Icons/star_not_bookmarked.png' %}");
+                        }
+                    } else {
+                         if (result.is_bookmarked) {
+                             $("#dnp-bookmark-" + team_number).attr("src", "{%static 'Scouting2017/Icons/dnp_bookmarked.png' %}");
+                         } else {
+                             $("#dnp-bookmark-" + team_number).attr("src", "{%static 'Scouting2017/Icons/dnp_not_bookmarked.png' %}");
+                         }
+                    }
+                }  
+            );
+        }
+        
+        function getSkillLevel(img) {
+            switch (img.attr("src").match(/(check|bar|x).png$/)[1]) {
+                case "check":
+                    return "High";
+                case "bar":
+                    return "Typical";
+                case "x":
+                    return "Low";
+            }
+        }
+        
+        function getBookmarked(img) {
+            switch (img.attr("src").match(/(bookmarked|not_bookmarked).png$/)[1]) {
+                case "bookmarked":
+                    return true;
+                case "not_bookmarked":
+                    return false;
+            }
+        }
+        
+        $(function(){
+            displaySkills();
+            $("table").tableWrangler({
+                filterTargets: [
+                    {colname: "teamNumber", type: "number", required: true},
+                    {colname: "skills", group: "General", multi: [
+                        {name: "Gear Skill", type: "choice", selector: "img[data-gearz]", choices: ["Low", "Typical", "High"], getVal: getSkillLevel},
+                        {name: "Fuel Skill", type: "choice", selector: "img[data-fuelz]", choices: ["Low", "Typical", "High"], getVal: getSkillLevel},
+                        {name: "Rope Skill", type: "choice", selector: "img[data-ropez]", choices: ["Low", "Typical", "High"], getVal: getSkillLevel}
+                    ]},
+                    $("[data-colname=bookmarks]").length>0 ? {colname: "bookmarks", group: "General", multi: [
+                        {name: "Bookmarked", type: "boolean", selector: "[id^='bookmark-']", getVal: getBookmarked},
+                        {name: "Do Not Pick", type: "boolean", selector: "[id^='dnp-bookmark-']", getVal: getBookmarked}
+                    ]} : undefined,
+                    {colname: "autoGears", group: "Autonomous", type: "number"},
+                    {colname: "autoFuelLow", group: "Autonomous", type: "number"},
+                    {colname: "autoFuelHigh",group: "Autonomous", type: "number"},
+                    {colname:"teleGears", group: "Teleop", type: "number"},
+                    {colname: "teleFuelLow", group: "Teleop", type: "number"},
+                    {colname: "teleFuelHigh", group: "Teleop", type: "number"},
+                    {colname: "rope", group: "Teleop", type: "number", getVal: function(td){ return td.text().trim().replace(/%$/, '')} }
+                ].filter(Boolean) // Removed undefined entries (ie, bookmarks when it doesn't exist)
+            });
+        });
+    </script>
+{% endblock head %}
 
-                    <td> {{ team.skills.rope_pct|floatformat:2 }} %  </td>
-                
-                </tr>
-                {% endfor %}
-                <tr class="bold">
-                    <td> Avg </td>
-                    <td> - </td>
-                    <td> - </td>
-                    <td> {{stats.fuel_hi_avg|floatformat:2}} </td>
-                    <td> {{stats.fuel_low_avg|floatformat:2}} </td>
-                    <td> {{stats.fuel_hi_auto_avg|floatformat:2}} </td>
-                    <td> {{stats.fuel_low_auto_avg|floatformat:2}} </td>
-                    <td> {{stats.fuel_avg|floatformat:2}} </td>
-                    <td> {{stats.gear_avg|floatformat:2}} </td>
-                    <td> {{stats.rope_avg|floatformat:2}}% </td>
-                </tr>
-            </tbody>
-        </table>
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading" style="overflow:auto;">
+            <h2>Teams</h2>
+            <div class="btn-group pull-right">
+                <button type="button" id="col-select" class="btn btn-default">Select Columns</a>
+                <!--button type="button" id="graph-data" class="btn btn-default">Graph Data</a-->
+            </div>
+        </div>
+        <div style="overflow-x: auto">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-colname="teamNumber"> Team # </th>
+                        <th data-colname="skills"> Skills </th>
+                        {% if user.is_authenticated %} <th data-colname="bookmarks"> Bookmarks </th> {% endif %}
+
+                        <th data-colname="autoGears"> Auto Gears </th>
+                        <th data-colname="autoFuelLow"> Auto Low Fuel </th>
+                        <th data-colname="autoFuelHigh"> Auto High Fuel </th>
+
+                        <th data-colname="teleGears"> Tele Gears Scored </th>
+                        <th data-colname="teleFuelLow"> Tele Low Fuel </th>
+                        <th data-colname="teleFuelHigh"> Tele High Fuel </th>
+
+                        <th data-colname="rope"> Rope Percentage </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for team in teams %}
+                    <tr>
+                        <td> <a href="{% url 'Scouting2017:view_team' regional_code team.teamNumber %}">{{ team.teamNumber }}</a> </td>
+                        <td>
+                            <img data-gearz="{{team.skills.gear_z}}" src="{% static 'Scouting2017/Icons/skills/gear/png/gear-with-bar.png' %}" style="height:32px;" />
+                            <img data-fuelz="{{team.skills.fuel_z}}" src="{% static 'Scouting2017/Icons/skills/fuel/png/fuel-with-bar.png' %}" style="height:32px;" />
+                            <img data-ropez="{{team.skills.rope_z}}" src="{% static 'Scouting2017/Icons/skills/rope/png/rope-with-bar.png' %}" style="height:32px;" />
+                        </td>
+                        {% if user.is_authenticated %}
+                        <td> 
+                            {% if team.isBookmarked %}
+                            <input type="image" id="bookmark-{{team.teamNumber}}" src="{% static 'Scouting2017/Icons/star_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "bookmark");'>
+                            {% else %}
+                            <input type="image" id="bookmark-{{team.teamNumber}}" src="{% static 'Scouting2017/Icons/star_not_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "bookmark");'>
+                            {% endif %} 
+                            <br>
+                            {% if team.isDoNotPick %}
+                            <input type="image" id="dnp-bookmark-{{team.teamNumber}}" src="{% static 'Scouting2017/Icons/dnp_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "do_not_pick");'>
+                            {% else %}
+                            <input type="image" id="dnp-bookmark-{{team.teamNumber}}" src="{% static 'Scouting2017/Icons/dnp_not_bookmarked.png' %}" style="width:20px;" onClick='bookmark({{team.teamNumber}}, "do_not_pick");'>
+                            {% endif %} 
+                        </td>
+                        {% endif %}
+                        <td> {{ team.metrics.auto_gears__avg }} </td>
+                        <td> {{ team.metrics.auto_fuel_low_score__avg }} </td>
+                        <td> {{ team.metrics.auto_fuel_high_score__avg }} </td>
+                        
+                        <td> {{ team.metrics.tele_gears__avg }} </td>
+                        <td> {{ team.metrics.tele_fuel_low_score__avg }} </td>
+                        <td> {{ team.metrics.tele_fuel_high_score__avg }} </td>
+                        
+
+                        <td> {{ team.skills.rope_pct|floatformat:2 }}% </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr style="font-weight: bold;">
+                        <td> Avg </td>
+                        <td> - </td>
+                        {% if user.is_authenticated %} <td> - </td> {% endif %}
+                        <td> {{ stats.auto_gear_avg|floatformat:2 }} </td>
+                        <td> {{ stats.fuel_low_auto_avg|floatformat:2 }} </td>
+                        <td> {{ stats.fuel_hi_auto_avg|floatformat:2 }} </td>
+                        <td> {{ stats.gear_avg|floatformat:2 }} </td>
+                        <td> {{ stats.fuel_low_avg|floatformat:2 }} </td>
+                        <td> {{ stats.fuel_hi_avg|floatformat:2 }} </td>
+                        <td> {{ stats.rope_avg|floatformat:2 }}% </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
-</body>
-</html>
+{% endblock content %}

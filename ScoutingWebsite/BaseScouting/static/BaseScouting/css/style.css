@@ -3,7 +3,7 @@ div .navbar {
 }
 .nav ul {
   list-style: none;
-	background-color: #1024AD;
+    background-color: #1024AD;
   text-align: center;
   padding: 0;
   margin: 0;
@@ -30,19 +30,19 @@ div .navbar {
   cursor: default;
 }
 body {	
-	background-color: #FFFFFF;
-	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
-	margin: 10px;
+    background-color: #FFFFFF;
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    margin: 10px;
 }
 h1 {
-	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-	color: #000000;
+    font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+    color: #000000;
 }
 h2 {
-	font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
-	color: #000000;
+    font-family: 'Orbitron', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+    color: #000000;
 }
 @font-face {
-  font-family: Orbitron;
-	src: url(/static/Scouting2016/fonts/Orbitron/Orbitron-Medium.ttf);
+    font-family: Orbitron;
+    src: url(/static/BaseScouting/fonts/Orbitron/Orbitron-Medium.ttf);
 }

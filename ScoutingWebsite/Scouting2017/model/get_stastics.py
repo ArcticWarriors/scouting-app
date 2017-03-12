@@ -15,7 +15,8 @@ def get_statistics(regional_code, teams_at_competition, team=0):
     skills = []
 
     competition_srs = ScoreResult.objects.filter(competition__code=regional_code)
-    competition_averages = competition_srs.aggregate(Avg('auto_fuel_high_score'),
+    competition_averages = competition_srs.aggregate(Avg('auto_gears'),
+                                                     Avg('auto_fuel_high_score'),
                                                      Avg('auto_fuel_low_score'),
                                                      Avg('tele_gears'),
                                                      Avg('tele_fuel_high_score'),
@@ -83,6 +84,6 @@ def get_statistics(regional_code, teams_at_competition, team=0):
         skills.append({'team': team.teamNumber, 'skills': team.skills})
 
     stats = {'gear_avg': gear_avg, 'rope_avg': rope_avg, 'fuel_avg': fuel_avg, 'fuel_hi_avg': team_avgs['tele_fuel_high_score__avg'], 'fuel_low_avg': team_avgs['tele_fuel_low_score__avg'],
-             'fuel_hi_auto_avg': team_avgs['auto_fuel_high_score__avg'], 'fuel_low_auto_avg': team_avgs['auto_fuel_low_score__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
+             'fuel_hi_auto_avg': team_avgs['auto_fuel_high_score__avg'], 'fuel_low_auto_avg': team_avgs['auto_fuel_low_score__avg'], 'auto_gear_avg': competition_averages['auto_gears__avg'], 'gear_stdev': gear_stdev, 'rope_stdev': rope_stdev, 'fuel_stdev': fuel_stdev}
 
     return (stats, json.dumps(skills))
