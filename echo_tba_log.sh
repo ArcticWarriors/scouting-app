@@ -1,0 +1,1 @@
+cat ScoutingWebsite/Scouting2017/api_scraper/the_blue_alliance/tba_log.txt

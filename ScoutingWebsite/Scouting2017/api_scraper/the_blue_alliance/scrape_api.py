@@ -3,6 +3,13 @@ Created on Mar 2, 2017
 
 @author: PJ
 '''
+
+import sys
+import os
+import collections
+sys.path.append(os.path.abspath("../../.."))
+
+
 from BaseScouting.load_django import load_django
 from BaseScouting.api_scraper.the_blue_alliance.ApiDownloader import ApiDownloader
 from Scouting2017.api_scraper.the_blue_alliance.PopulateResultsFromApi2017 import PopulateResultsFromApi2017
@@ -14,7 +21,7 @@ load_django()
 
 download_events_info = False
 download_teams = False
-download_matches = False
+download_matches = True
 
 populate_events = False
 populate_teams = False
@@ -34,13 +41,13 @@ event_codes = get_event_to_week_mapping()
 # #################
 # # Trim by event #
 # #################
-# events_to_download = ["2017flwp", "2017milak", "2017misou", "2017mndu", "2017mndu2", "2017mxtl", "2017scmb", "2017txlu", "2017waspo"]
-# trimmed_events = collections.defaultdict(list)
-# for week, event_list in event_codes.items():
-#     for code in event_list:
-#         if code in events_to_download:
-#             trimmed_events[week].append(code)
-# event_codes = trimmed_events
+events_to_download = ["2017azfl"]
+trimmed_events = collections.defaultdict(list)
+for week, event_list in event_codes.items():
+    for code in event_list:
+        if code in events_to_download:
+            trimmed_events[week].append(code)
+event_codes = trimmed_events
 
 
 if download_events_info:
@@ -71,10 +78,11 @@ if populate_results:
 
     for week, events_list in event_codes.items():
         for event_code in events_list:
-            matches_file = os.path.join(json_root, r'week%s\%s_matches.json' % (week, event_code))
+            matches_file = os.path.join(json_root, r'week%s/%s_matches.json' % (week, event_code))
             if os.path.exists(matches_file):
                 with open(matches_file) as f:
                     json_results = json.load(f)
                     populater.populate_schedule_match(json_results)
             else:
+                print matches_file
                 print "Ignoring event %s since it has no updates" % event_code
