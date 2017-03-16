@@ -1,0 +1,27 @@
+<div class="form-group">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        
+        {{#groups}}
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="{{name-escaped}}-heading">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{name-escaped}}-collapse" aria-expanded="true" aria-controls="{{name-escaped}}-collapse">{{name}}</a>
+                </h4>
+            </div>
+            <div id="{{name-escaped}}-collapse" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{name-escaped}}-heading">
+                <div class="panel-body">
+                    {{#columns}}
+                    <input type="checkbox" data-target="{{colname}}"> {{name}}
+                    <br>
+                    {{/columns}}
+                </div>
+            </div>
+        </div>
+        {{/groups}}
+        
+    </div>
+    <div style="margin-top: 20px;">
+          <button type="button" class="btn btn-default btn-apply" style="width:48%">Apply</button>
+          <button type="button" class="btn btn-danger btn-cancel" style="width:49%">Cancel</button>
+      </div>
+</div>
