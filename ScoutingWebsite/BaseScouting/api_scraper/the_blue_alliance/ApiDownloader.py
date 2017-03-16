@@ -64,6 +64,16 @@ class ApiDownloader():
 
         return json_data
 
+
+
+    def download_competes_in_data(self, year, event):
+        url = self.__api_website + "event/%s%s/teams" % (year, event)
+        local_file = self.json_path + '/%s_teams.json' % (event)
+
+        return self.read_url_and_dump(url, local_file)
+
+
+
     def __dump_week_to_event_mappings(self, json_data):
 
         with open(self.json_path + "/events_to_week.py", 'w') as f:

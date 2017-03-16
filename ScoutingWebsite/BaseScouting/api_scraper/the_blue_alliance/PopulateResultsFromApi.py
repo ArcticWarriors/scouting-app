@@ -48,6 +48,20 @@ class PopulateResultsFromApi:
 #                 file_path = os.path.join(team_files_dir, f)
 #                 self.__update_team_info(file_path)
 
+
+
+    @transaction.atomic
+    def populate_competes_in(self, json_path, regional_code):
+        print json_path
+        
+        json_struct = self.__read_local_copy(json_path)
+        for team_json in json_struct:
+            team_number = team_json['team_number']
+            competition = self.competition_model.objects.get(code=regional_code)
+            team = self.team_model.objects.get(teamNumber=team_number)
+            self.team_competes_in_model.objects.get_or_create(team=team, competition=competition)
+
+
     @transaction.atomic
     def populate_schedule_match(self, match_json):
 

@@ -3,6 +3,13 @@ Created on Feb 25, 2017
 
 @author: PJ
 '''
+
+import sys
+sys.path.append("..")
+
+from BaseScouting.load_django import load_django
+load_django()
+
 from django.contrib.auth.models import User
 from BaseScouting.load_django import load_django
 

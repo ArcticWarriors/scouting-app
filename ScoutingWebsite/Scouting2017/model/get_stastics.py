@@ -3,6 +3,7 @@ from django.db.models.aggregates import Avg
 from django.db.models.expressions import Case, When
 import json
 import math
+import collections
 
 
 def get_statistics(regional_code, teams_at_competition, team=0):
@@ -58,8 +59,11 @@ def get_statistics(regional_code, teams_at_competition, team=0):
         fuel_stdev = math.sqrt(fuel_v2 / num_srs)
         rope_stdev = math.sqrt(rope_v2 / num_srs)
 
+    team_avgs = collections.defaultdict(int)
+
     # This part of the function (above) obtains overall standard deviations for all score results
     teams = team if bool(team) else teams_at_competition
+    print teams
     for team in teams:
         teams_srs = team.scoreresult_set.filter(competition__code=regional_code)
         team_avgs = teams_srs.aggregate(Avg('tele_gears'),
