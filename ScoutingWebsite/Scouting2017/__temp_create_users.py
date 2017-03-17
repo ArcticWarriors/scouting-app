@@ -38,7 +38,9 @@ user = get_or_create('lee', 'lee', [174, 20, 1507], [])
 
 user = get_or_create('progbot', 'progbot', [174, 1126, 1507], [])
 user = get_or_create('wilson', 'wilson', [], [])
+user = get_or_create('wong', 'wong', [], [])
 user = get_or_create('dromms', 'dromms', [], [])
+user = get_or_create('larham', 'larham', [], [])
 
 user = get_or_create('goel', 'goel', [], [])
 user = get_or_create('hussak', 'hussak', [], [])

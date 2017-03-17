@@ -48,13 +48,19 @@ $(function() {
     {% block pictures %}
     <h2>Pictures</h2>
     
-    {% if "auth.can_add_pictures" in perms %}
-        <form action="{% url request.resolver_match.namespace|add:':add_team_comments' regional_code team.teamNumber %}" method="POST">
+    {% if user.is_authenticated %}
+ <form action="{% url request.resolver_match.namespace|add:':upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name='team_number' value={{team_number}}>
+    <input type="file" name='image_name' accept="image/*">
+    <input type="submit">
+</form>
+        {% comment %}<form action="{% url request.resolver_match.namespace|add:':add_team_comments' regional_code team.teamNumber %}" method="POST">
         {% csrf_token %}
             <textarea rows="8" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
             <br><br>
             <input type="submit" value="Submit">
-        </form>
+        </form>{% endcomment %}
     {% endif %}
 
     {% if pictures|length != 0 %}
@@ -77,7 +83,6 @@ $(function() {
     {% block matches %}
 
 
-xx
 {{ team.match_set }}    
 
     {% if score_result_list|length == 0 %}

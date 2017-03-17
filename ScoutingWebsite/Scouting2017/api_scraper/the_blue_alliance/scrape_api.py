@@ -23,8 +23,8 @@ download_events_info = False
 download_teams = False
 download_matches = True
 
-populate_events = True
-populate_teams = True
+populate_events = False
+populate_teams = False
 populate_results = True
 year = 2017
 
@@ -51,18 +51,18 @@ event_codes = trimmed_events
 
 
 
-if True:
+#if True:
 #    scraper = ApiDownloader(json_root)
 #    scraper.download_competes_in_data(year, "nyro")
 
-    matches_file = os.path.join(json_root, r'week%s/2017%s_teams.json' % (3, "nyro"))
-    print matches_file
+#    matches_file = os.path.join(json_root, r'week%s/2017%s_teams.json' % (3, "nyro"))
+#    print matches_file
     
-    populater = PopulateResultsFromApi2017()
-    populater.populate_competes_in(matches_file, "NYRO")
+#    populater = PopulateResultsFromApi2017()
+#    populater.populate_competes_in(matches_file, "NYRO")
       
-    import sys
-    sys.exit(0)
+#    import sys
+#    sys.exit(0)
 
 
 if download_events_info:
