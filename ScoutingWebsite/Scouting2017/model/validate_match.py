@@ -30,6 +30,7 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
     error_messages = []
 
     team_srs = [team1sr, team2sr, team3sr]
+    team_srs = [sr for sr in team_srs if sr != None]
 
     auto_fuel_low_sum = 0
     auto_fuel_high_sum = 0
