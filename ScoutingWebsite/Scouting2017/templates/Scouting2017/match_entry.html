@@ -11,8 +11,8 @@
 	<script type="text/html" id="row-template"> 
 		<tr>
 			// Match Info
-			<td><input type="number" id = "teamNumber" name="teamNumber-__i__" value=174 style="text-align:center;"></td>
-			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" value=5 style="text-align:center;"></td>
+			<td><input type="number" id = "teamNumber" name="teamNumber-__i__" value=174 style="text-align:center;" onblur="validateTeam(__i__);"></td>
+			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" value=5 style="text-align:center;" onblur="validateMatch(__i__);"></td>
 
 			// Auto
 			<td><input type="number" id = "autoGears" name="autoGears-__i__" value=0 style="text-align:center;"></td>
@@ -67,10 +67,53 @@
 	function deleteRow(buttonel){
 		$(buttonel).parent().parent().remove();
 	}
+	</script>
 	
+
+	<script type="text/javascript">
+
+	available_teams = {{ teams|safe }};
+	competition_matches = {{ matches|safe }};
 	
-	
-	
+	function validateTeam(i){
+		
+		input = $("[name='teamNumber-" + i + "']")
+		
+		team_number = input.val();
+		if (team_number in available_teams)
+		{
+			input.css('background-color','green');
+		}
+		else
+		{
+			input.css('background-color','red');
+		}
+	}
+	function validateMatch(i){
+
+		team_input = $("[name='teamNumber-" + i + "']")
+		match_input = $("[name='matchNumber-" + i + "']")
+
+		team_number = parseInt(team_input.val());
+		match_number = match_input.val();
+		
+		if (match_number in competition_matches)
+		{
+			unscouted_teams = competition_matches[match_number]
+			if(jQuery.inArray(team_number, unscouted_teams) !== -1)
+			{
+				match_input.css('background-color','green');
+			}
+			else
+			{
+				match_input.css('background-color','yellow');
+			}
+		}
+		else
+		{
+			match_input.css('background-color','red');
+		}
+	}
 	</script>
 {% endblock head %}
 
