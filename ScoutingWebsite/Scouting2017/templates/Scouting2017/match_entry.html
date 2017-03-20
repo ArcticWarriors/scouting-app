@@ -11,8 +11,9 @@
 	<script type="text/html" id="row-template"> 
 		<tr>
 			// Match Info
-			<td><input type="number" id = "teamNumber" name="teamNumber-__i__" value=174 style="text-align:center;" onblur="validateTeam(__i__);"></td>
-			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" value=5 style="text-align:center;" onblur="validateMatch(__i__);"></td>
+			<td class="error_message-__i__" style="white-space: nowrap;"></td>
+			<td><input type="number" id = "teamNumber" name="teamNumber-__i__" style="text-align:center;" onblur="validate_combination(__i__);"></td>
+			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" style="text-align:center;" onblur="validate_combination(__i__);"></td>
 
 			// Auto
 			<td><input type="number" id = "autoGears" name="autoGears-__i__" value=0 style="text-align:center;"></td>
@@ -75,56 +76,96 @@
 	available_teams = {{ teams|safe }};
 	competition_matches = {{ matches|safe }};
 	
-	function validateTeam(i){
-		
-		input = $("[name='teamNumber-" + i + "']")
-		
-		team_number = input.val();
-		if (team_number in available_teams)
-		{
-			input.css('background-color','green');
-		}
-		else
-		{
-			input.css('background-color','red');
-		}
-	}
-	function validateMatch(i){
+	function validate_combination(i){
 
 		team_input = $("[name='teamNumber-" + i + "']")
 		match_input = $("[name='matchNumber-" + i + "']")
+		error_column = $(".error_message-" + i)
 
 		team_number = parseInt(team_input.val());
-		match_number = match_input.val();
+		match_number = parseInt(match_input.val());
 		
-		if (match_number in competition_matches)
+		
+		if (isNaN(team_number) || isNaN(match_number))
+		{
+			return false
+		}
+
+		good_inputs = true
+		if (!(team_number in available_teams))
+		{
+			error_column.css('background-color','red');
+			error_column.html("Invalid Team Number")
+			good_inputs = false
+		}
+		else if (match_number in competition_matches)
 		{
 			unscouted_teams = competition_matches[match_number]
 			if(jQuery.inArray(team_number, unscouted_teams) !== -1)
 			{
-				match_input.css('background-color','green');
+				error_column.css('background','transparent');
+				error_column.html("")
+				good_inputs = true
 			}
 			else
 			{
-				match_input.css('background-color','yellow');
+				error_column.css('background-color','red');
+				error_column.html("Team " + team_number + " is not in match " + match_number)
+				good_inputs = false
 			}
 		}
 		else
 		{
-			match_input.css('background-color','red');
+			error_column.css('background-color','red');
+			error_column.html("Error")
+			good_inputs = false
 		}
+		
+		return good_inputs
 	}
+
+	function validate_inputs(i){
+		failed = false
+		
+          $('#entry-table > tbody  > tr').each(function(index)  {
+              i = index + 1
+              
+              team_input = $("[name='teamNumber-" + i + "']")
+              match_input = $("[name='matchNumber-" + i + "']")
+              error_column = $(".error_message-" + i)
+              team_number = parseInt(team_input.val());
+              match_number = parseInt(match_input.val());
+        
+              if (isNaN(team_number) || isNaN(match_number))
+              {
+                  error_column.html("Need to enter match and team numbers")
+                  error_column.css('background-color','red');
+                  failed = true
+              }
+              else if(!failed)
+              {
+                  failed = !validate_combination(i)
+              }
+          })
+          
+          return !failed
+          
+		};
+
+		//$("#match_form").on("submit", validate_combination())
+
 	</script>
 {% endblock head %}
 
 {% block content %}
 	<div style="overflow-x: scroll;">
-		<form action="{% url 'Scouting2017:submit_new_match' regional_code %}" method="post" >
+		<form action="{% url 'Scouting2017:submit_new_match' regional_code %}" method="post" onsubmit="return validate_inputs() ">
 		{% csrf_token %}
 		<table id="entry-table" class="table" style="margin: 0;">
 			<thead>
 				<tr>
 						<!-- Match Info  -->
+						<th></th>
 						<th style="text-align:center;">Team Number</th>
 						<th style="text-align:center;">Match Number</th>
 						
@@ -168,7 +209,7 @@
 			</table>
 		</div>
 		<button type="button" class="btn btn-default" onclick="addRow()">Add Row </button>
-		<button type="submit" value="submit" class="btn btn-default" >Submit </button>
+		<button type="submit" value="submit" class="btn btn-default">Submit </button>
 		</form>
 		
 		
