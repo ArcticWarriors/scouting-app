@@ -58,6 +58,7 @@ def __get_alliance_average_for_match_prediction(team1, team2, team3, competition
         averages[key] = average
         gear_alliance_total = team1_metrics[gear_total] + team2_metrics[gear_total] + team3_metrics[gear_total]
         auto_gear_alliance = team1_metrics[auto_gears] + team2_metrics[auto_gears] + team3_metrics[auto_gears]
+        kpa_alliance = team1_metrics[fuel_total] + team2_metrics[fuel_total] + team3_metrics[fuel_total]
         gear_score = 40
         if auto_gear_alliance >= 1 gear_score += 20
         if gear_alliance_total >= 2 gear_score += 40
@@ -70,7 +71,7 @@ def __get_alliance_average_for_match_prediction(team1, team2, team3, competition
     output['team3'] = team3_metrics
     output['averages'] = averages
     output['total_score'] = averages["total_score"] + gear_score
-    output['kpa_bonus'] = "Yes" if averages["fuel_total"] >= 40 else "No"
+    output['kpa_bonus'] = "Yes" if kpa_alliance >= 40 else "No"
     output['rotor_bonus'] = "Yes" if gear_alliance_total >= 12 else "No"
 
     return output
