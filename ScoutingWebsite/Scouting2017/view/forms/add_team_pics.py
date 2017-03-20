@@ -1,4 +1,4 @@
-from BaseScouting.views.base_views import BaseAddTeamPictureView
+from BaseScouting.views.submissions.submit_team_picture import BaseAddTeamPictureView
 from Scouting2017.model.reusable_models import Team, TeamPictures
 
 

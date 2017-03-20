@@ -1,6 +1,7 @@
 from BaseScouting.views.standard_views.base_match_list import BaseMatchListView
-from Scouting2017.model.reusable_models import Match, OfficialMatch
+from Scouting2017.model.reusable_models import Match, OfficialMatch, Competition
 from Scouting2017.model.validate_match import calculate_match_scouting_validity
+from Scouting2017.model.predict_match import predict_match
 
 
 class MatchListView2017(BaseMatchListView):
@@ -37,5 +38,27 @@ class MatchListView2017(BaseMatchListView):
                     output.winning_alliance = "Tie"
 
             output.match_error_level, output.match_error_warning_messages, output.match_error_error_messages = calculate_match_scouting_validity(match, official_match, official_sr_search)
+
+        return output
+
+    def _append_unscouted_info(self, match, regional_code):
+        match_prediction = predict_match(match, Competition.objects.get(code=regional_code))
+
+        official_match_search = OfficialMatch.objects.filter(competition__code=regional_code, matchNumber=match.matchNumber)
+
+        output = match
+
+        if len(official_match_search) == 0 or not official_match_search[0].hasOfficialData:
+            output.isPrediction = True
+            output.redScore = "{0:.2f}".format(match_prediction["red_prediction"]["total_score"])
+            output.blueScore = "{0:.2f}".format(match_prediction["blue_prediction"]["total_score"])
+        else:
+            official_match = official_match_search[0]
+            official_sr_search = official_match.officialmatchscoreresult_set.all()
+            output.isPrediction = False
+            if len(official_sr_search) == 2:
+
+                output.redScore = official_sr_search[0].totalPoints
+                output.blueScore = official_sr_search[1].totalPoints
 
         return output
