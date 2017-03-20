@@ -1,4 +1,4 @@
-from BaseScouting.views.base_views import BaseSingleMatchView
+from BaseScouting.views.standard_views.base_match import BaseSingleMatchView
 from Scouting2017.model.reusable_models import Match, OfficialMatch
 from Scouting2017.model.validate_match import calculate_match_scouting_validity
 import collections

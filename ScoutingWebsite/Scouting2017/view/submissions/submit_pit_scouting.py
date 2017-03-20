@@ -5,8 +5,8 @@ Created on Mar 1, 2017
 '''
 from Scouting2017.model.reusable_models import Team
 from Scouting2017.model.models2017 import TeamPitScouting
-import json
 from django.http.response import HttpResponse
+import json
 
 
 def submit_pit_scouting(request, **kargs):

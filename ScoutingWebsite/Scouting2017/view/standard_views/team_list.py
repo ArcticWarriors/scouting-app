@@ -1,4 +1,4 @@
-from BaseScouting.views.base_views import BaseTeamListView
+from BaseScouting.views.standard_views.base_team_list import BaseTeamListView
 from Scouting2017.model.reusable_models import TeamCompetesIn
 from Scouting2017.model.models2017 import ScoreResult
 from Scouting2017.model.get_stastics import get_statistics

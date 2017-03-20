@@ -1,4 +1,4 @@
-from BaseScouting.views.base_views import BaseMatchPredictionView
+from BaseScouting.views.standard_views.base_match_prediction import BaseMatchPredictionView
 from Scouting2017.model.reusable_models import Match, Competition
 from Scouting2017.model.predict_match import predict_match
 

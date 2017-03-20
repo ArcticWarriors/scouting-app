@@ -1,4 +1,4 @@
-from BaseScouting.views.base_views import BaseHomepageView
+from BaseScouting.views.standard_views.base_homepage import BaseHomepageView
 from Scouting2017.model.reusable_models import Competition, Match, Team, \
     OfficialMatch
 from Scouting2017.model.predict_match import predict_match
