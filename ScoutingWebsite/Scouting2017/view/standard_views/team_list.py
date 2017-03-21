@@ -9,8 +9,8 @@ class TeamListView2017(BaseTeamListView):
     def __init__(self):
         BaseTeamListView.__init__(self, TeamCompetesIn, ScoreResult, 'Scouting2017/team_list.html')
 
-    def get_metrics_for_team(self, team):
-        return get_team_metrics(team)
+    def _get_metrics_for_team(self, team, regional_code):
+        return get_team_metrics(team, regional_code)
 
     def get_context_data(self, **kwargs):
 

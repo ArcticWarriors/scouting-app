@@ -43,6 +43,13 @@ $(function() {
 {% block content %}
     <h1>Team {{ team.teamNumber }}</h1>
     Team Website: <a href="{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
+    
+    {% if other_competitions|length != 0 %}
+    <h2>Other Competitions</h2>
+    {% for competition in other_competitions %}
+      <a href="{% url request.resolver_match.namespace|add:':view_team' competition.code team.teamNumber %}">{{ competition.name }}</a>
+    {% endfor %}
+    {% endif %}
 
     <!----------------- Pictures ----------------------->
     {% block pictures %}

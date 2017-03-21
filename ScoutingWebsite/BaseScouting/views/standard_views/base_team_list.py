@@ -22,10 +22,14 @@ class BaseTeamListView(TemplateView):
 
         for competes_in in competes_in_query:
             team = competes_in.team
-            team.metrics = self.get_metrics_for_team(team)
+            team.metrics = self._get_metrics_for_team(team, kwargs["regional_code"])
             teams_with_metrics.append(team)
 
         context = super(BaseTeamListView, self).get_context_data(**kwargs)
         context['teams'] = teams_with_metrics
         context['metric_fields'] = self.score_result_model.get_fields()
+
         return context
+
+    def _get_metrics_for_team(self, team, regional_code):
+        raise NotImplementedError("You need to implement the _get_metrics function!")

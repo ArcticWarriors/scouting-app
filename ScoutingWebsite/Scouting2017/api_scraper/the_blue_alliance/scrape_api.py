@@ -22,10 +22,12 @@ load_django()
 download_events_info = False
 download_teams = False
 download_matches = True
+download_competes_in = True
 
 populate_events = False
 populate_teams = False
 populate_results = True
+populate_competes_in = True
 year = 2017
 
 json_root = os.path.abspath('results')
@@ -41,28 +43,13 @@ event_codes = get_event_to_week_mapping()
 # #################
 # # Trim by event #
 # #################
-events_to_download = ["2017nyro"]
+events_to_download = ["2017nyro", "2017ohcl"]
 trimmed_events = collections.defaultdict(list)
 for week, event_list in event_codes.items():
     for code in event_list:
         if code in events_to_download:
             trimmed_events[week].append(code)
 event_codes = trimmed_events
-
-
-
-#if True:
-#    scraper = ApiDownloader(json_root)
-#    scraper.download_competes_in_data(year, "nyro")
-
-#    matches_file = os.path.join(json_root, r'week%s/2017%s_teams.json' % (3, "nyro"))
-#    print matches_file
-    
-#    populater = PopulateResultsFromApi2017()
-#    populater.populate_competes_in(matches_file, "NYRO")
-      
-#    import sys
-#    sys.exit(0)
 
 
 if download_events_info:
@@ -73,6 +60,12 @@ if download_teams:
     scraper = ApiDownloader(json_root)
     scraper.download_team_data()
 
+if download_competes_in:
+    for week, events_list in event_codes.items():
+        for event_code in events_list:
+            print event_code
+            scraper = ApiDownloader(os.path.join(json_root, "week%s" % week))
+            scraper.download_competes_in_data(event_code)
 
 if download_matches:
     for week, events_list in event_codes.items():
@@ -87,6 +80,14 @@ if populate_events:
 if populate_teams:
     populater = PopulateResultsFromApi2017()
     populater.populate_teams(json_root)
+
+if populate_competes_in:
+
+    for week, events_list in event_codes.items():
+        for event_code in events_list:
+            populater = PopulateResultsFromApi2017()
+            competes_in_files = os.path.join(json_root, r'week%s/%s_teams.json' % (week, event_code))
+            populater.populate_competes_in(competes_in_files, event_code)
 
 if populate_results:
     populater = PopulateResultsFromApi2017()

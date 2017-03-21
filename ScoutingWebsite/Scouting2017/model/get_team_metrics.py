@@ -7,8 +7,9 @@ from django.db.models.aggregates import Avg, Sum
 from django.db.models.expressions import Case, When
 
 
-def get_team_metrics(team):
-    metrics = team.scoreresult_set.aggregate(Avg("auto_fuel_high_score"),
+def get_team_metrics(team, regional_code):
+    metrics = team.scoreresult_set.filter(competition__code=regional_code).aggregate(
+                                             Avg("auto_fuel_high_score"),
                                              Avg("auto_fuel_high_shots"),
                                              Avg("auto_fuel_low_score"),
                                              Avg("auto_fuel_low_shots"),

@@ -64,15 +64,11 @@ class ApiDownloader():
 
         return json_data
 
-
-
-    def download_competes_in_data(self, year, event):
-        url = self.__api_website + "event/%s%s/teams" % (year, event)
-        local_file = self.json_path + '/%s_teams.json' % (event)
+    def download_competes_in_data(self, event_code):
+        url = self.__api_website + "event/%s/teams" % event_code
+        local_file = self.json_path + '/%s_teams.json' % event_code
 
         return self.read_url_and_dump(url, local_file)
-
-
 
     def __dump_week_to_event_mappings(self, json_data):
 
@@ -102,44 +98,3 @@ def get_event_to_week_mapping():
                 f.write("    output[%s].append('%s')\n" % (mapping[0], mapping[1]))
 
             f.write("\n    return output\n")
-# 
-#     def calculate_event_to_week_mapping(self, first_week):
-#         local_file = self.json_path + 'events/event_query.json'
-# 
-#         with open(local_file, 'r') as f:
-#             event_list = json.loads(f.read())['Events']
-# 
-#         competitions = []
-#         min_week = 1000
-#         for event_json in event_list:
-#             code = event_json["code"]
-#             start_date = event_json["dateStart"]
-#             start_week = datetime.datetime.strptime(start_date, '%Y-%m-%dT00:00:00').isocalendar()[1]
-#             competitions.append((code, start_week))
-#             if start_week < min_week:
-#                 min_week = start_week
-# 
-#         if first_week != None:
-#             min_week = first_week
-#             print "Overriding first week..."
-# 
-#         sorted_comp = []
-#         for x in sorted(competitions, key=lambda pair: pair[1]):
-#             sorted_comp.append((x[0], x[1] - min_week + 1))
-# 
-#         event_dump = self.json_path + 'events/event_week_mapping.json'
-#         with open(event_dump, 'w') as f:
-#             json.dump(sorted_comp, f, indent=4)
-# 
-# 
-#     def download_matchresult_info(self, event_code, competition_week, tourny_level="Qualification"):
-#         url = self.__api_website + "/{0}/scores/{1}/{2}".format(self.season, event_code, tourny_level)
-#         local_file = self.json_path + '/week{0}/{1}_scoreresult_query.json'.format(competition_week, event_code)
-#         try:
-#             json_struct = self.read_url_and_dump(url, local_file)
-# 
-#             if len(json_struct["MatchScores"]) == 0:
-#                 print("Event %s does not have any match results" % event_code)
-#                 os.remove(local_file)
-#         except urllib2.HTTPError:
-#             print("Event %s has invalid match results" % event_code)
