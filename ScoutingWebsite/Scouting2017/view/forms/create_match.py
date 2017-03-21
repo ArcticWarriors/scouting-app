@@ -15,7 +15,7 @@ class MatchEntryView2017(BaseMatchEntryView):
 
     def has_scouted_info(self, team, match):
 
-        return len(ScoreResult.objects.filter(team=team, match=match)) == 1
+        return len(ScoreResult.objects.filter(team=team, match=match)) >= 1
 
     def get_context_data(self, **kwargs):
         context = super(BaseMatchEntryView, self).get_context_data(**kwargs)
@@ -23,7 +23,8 @@ class MatchEntryView2017(BaseMatchEntryView):
         competition = Competition.objects.get(code=kwargs['regional_code'])
         matches = Match.objects.filter(competition=competition)
 
-        matches_context = {}
+        match_to_scouted_teams = {}
+        match_to_unscouted_teams = {}
 
         team_pair = TeamCompetesIn.objects.filter(competition=competition)
         context["teams"] = {pair.team.teamNumber: 0 for pair in team_pair}
@@ -32,38 +33,23 @@ class MatchEntryView2017(BaseMatchEntryView):
             scouted = []
             unscouted = []
 
-            if self.has_scouted_info(match.red1, match):
-                scouted.append(match.red1.teamNumber)
-            else:
-                unscouted.append(match.red1.teamNumber)
+            self.__add_to_scouted_list(match, match.red1, scouted, unscouted)
+            self.__add_to_scouted_list(match, match.red2, scouted, unscouted)
+            self.__add_to_scouted_list(match, match.red3, scouted, unscouted)
 
-            if self.has_scouted_info(match.red2, match):
-                scouted.append(match.red2.teamNumber)
-            else:
-                unscouted.append(match.red2.teamNumber)
+            self.__add_to_scouted_list(match, match.blue1, scouted, unscouted)
+            self.__add_to_scouted_list(match, match.blue2, scouted, unscouted)
+            self.__add_to_scouted_list(match, match.blue3, scouted, unscouted)
 
-            if self.has_scouted_info(match.red3, match):
-                scouted.append(match.red3.teamNumber)
-            else:
-                unscouted.append(match.red3.teamNumber)
+            match_to_scouted_teams[match.matchNumber] = scouted
+            match_to_unscouted_teams[match.matchNumber] = unscouted
 
-            if self.has_scouted_info(match.blue1, match):
-                scouted.append(match.blue1.teamNumber)
-            else:
-                unscouted.append(match.blue1.teamNumber)
-
-            if self.has_scouted_info(match.blue2, match):
-                scouted.append(match.blue2.teamNumber)
-            else:
-                unscouted.append(match.blue2.teamNumber)
-
-            if self.has_scouted_info(match.blue3, match):
-                scouted.append(match.blue3.teamNumber)
-            else:
-                unscouted.append(match.blue3.teamNumber)
-
-            matches_context[match.matchNumber] = unscouted
-
-        context["matches"] = matches_context
+        context["matches"] = {'scouted': match_to_scouted_teams, 'unscouted': match_to_unscouted_teams}
 
         return context
+
+    def __add_to_scouted_list(self, match, team, out_scouted, out_unscouted):
+        if self.has_scouted_info(team, match):
+            out_scouted.append(team.teamNumber)
+        else:
+            out_unscouted.append(team.teamNumber)

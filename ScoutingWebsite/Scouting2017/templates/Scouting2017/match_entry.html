@@ -74,7 +74,9 @@
 	<script type="text/javascript">
 
 	available_teams = {{ teams|safe }};
-	competition_matches = {{ matches|safe }};
+	match_information = {{ matches|safe }};
+	matches_to_scouted_teams = match_information['scouted']
+	matches_to_unscouted_teams = match_information['unscouted']
 	
 	function validate_combination(i){
 
@@ -83,8 +85,7 @@
 		error_column = $(".error_message-" + i)
 
 		team_number = parseInt(team_input.val());
-		match_number = parseInt(match_input.val());
-		
+		match_number = parseInt(match_input.val());		
 		
 		if (isNaN(team_number) || isNaN(match_number))
 		{
@@ -98,26 +99,37 @@
 			error_column.html("Invalid Team Number")
 			good_inputs = false
 		}
-		else if (match_number in competition_matches)
+		else if (match_number in matches_to_scouted_teams)
 		{
-			unscouted_teams = competition_matches[match_number]
-			if(jQuery.inArray(team_number, unscouted_teams) !== -1)
+			unscouted_teams = matches_to_unscouted_teams[match_number]
+			scouted_teams = matches_to_scouted_teams[match_number]			
+			
+			in_scouted = jQuery.inArray(team_number, scouted_teams) !== -1
+			in_unscouted = jQuery.inArray(team_number, unscouted_teams) !== -1
+
+			if(in_scouted)
 			{
-				error_column.css('background','transparent');
-				error_column.html("")
-				good_inputs = true
+				error_column.css('background-color','yellow');
+				error_column.html("Team " + team_number + ", Match" + match_number + " has already been scouted")
+				good_inputs = false
 			}
-			else
+			else if(!in_unscouted)
 			{
 				error_column.css('background-color','red');
 				error_column.html("Team " + team_number + " is not in match " + match_number)
 				good_inputs = false
 			}
+			else
+			{
+				error_column.css('background','transparent');
+				error_column.html("")
+				good_inputs = true
+			}
 		}
 		else
 		{
 			error_column.css('background-color','red');
-			error_column.html("Error")
+			error_column.html("Unknown error, team=" + team_number + ", match: " + match_number)
 			good_inputs = false
 		}
 		
