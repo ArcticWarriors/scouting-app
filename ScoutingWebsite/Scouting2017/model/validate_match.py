@@ -130,18 +130,7 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
     if official_baseline_sum != basline_sum:
         error_messages.append((alliance_color + "Baseline", official_baseline_sum, basline_sum))
 
-#     if len(error_messages) != 0:
-#         print error_messages
-#
-#     print warning_messages
-#     print error_messages
-
     return warning_messages, error_messages
-
-
-#     if (auto_fuel_low_sum / 3.0 + tele_fuel_low_sum) !=  official_sr.
-
-#     print auto_fuel_low_sum, auto_fuel_high_sum, tele_fuel_low_sum, tele_fuel_high_sum
 
 
 def calculate_match_scouting_validity(match, official_match, official_match_srs):

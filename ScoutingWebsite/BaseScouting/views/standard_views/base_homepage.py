@@ -42,7 +42,6 @@ class BaseHomepageView(TemplateView):
                 break
 
         if next_match != None:
-            print self._predict_match(next_match, competition)
             return self._predict_match(next_match, competition)
 
         return None

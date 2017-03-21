@@ -47,7 +47,6 @@ class SingleMatchView2017(BaseSingleMatchView):
         official_sr_search = official_match.officialmatchscoreresult_set.all()
         if len(official_sr_search) == 2:
             _, warnings, errors = calculate_match_scouting_validity(match, official_match, official_sr_search)
-            print warnings, errors
 
             return True, warnings, errors
 

@@ -140,6 +140,15 @@ $(function() {
             {% endfor %}
         </ul>
     {% endif %}
+    
+    {% if user.is_authenticated %}
+    <form action="{% url 'Scouting2017:add_team_comments' regional_code team_number %}" method="POST">
+    {% csrf_token %}
+   
+        <textarea rows="4" cols="75" wrap="soft" name="team_comments" placeholder="Add Team Comments"></textarea>
+        <br> <br> <input type="submit" value="Submit">
+    </form>
+    {% endif %}
 
     {% block pit_scouting %}
     {% endblock pit_scouting %}

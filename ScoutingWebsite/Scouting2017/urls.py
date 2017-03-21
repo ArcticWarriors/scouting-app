@@ -23,6 +23,7 @@ from Scouting2017.view.user_auth.log_user_out import log_user_out
 from Scouting2017.view.user_auth.authorize_login import auth_login
 from Scouting2017.view.forms.add_team_pics import AddTeamPictureView2017
 from Scouting2017.view.standard_views.match_prediction import MatchPredictionView2017
+from Scouting2017.view.submissions.submit_team_comments import AddTeamCommentsView2017
 
 
 app_name = 'Scouting2017'
@@ -48,6 +49,7 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/update_bookmark$', UpdateBookmarks2017.as_view(), name='update_bookmark'),
                url(r'^(?P<regional_code>\w+)/submit_match_edit$', SubmitMatchEdit2017.as_view(), name='submit_match_edit'),
                url(r'^(?P<regional_code>\w+)/submit_pick_list$', SubmitPickList2017.as_view(), name='submit_pick_list'),
+               url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', AddTeamCommentsView2017.as_view(), name='add_team_comments'),
 
                # User Auth
                url(r'^(?P<regional_code>\w+)/show_login$', show_login, name='show_login'),

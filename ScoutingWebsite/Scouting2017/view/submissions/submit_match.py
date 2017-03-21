@@ -11,7 +11,6 @@ from django.http.response import HttpResponseRedirect
 
 def add_match(request, regional_code):
 
-    print regional_code
     post = request.POST
     num_rows = int(post['rowCounter'])
     for i in range(num_rows):

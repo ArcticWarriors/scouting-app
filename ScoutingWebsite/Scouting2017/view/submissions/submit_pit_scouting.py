@@ -32,6 +32,6 @@ def submit_pit_scouting(request, **kargs):
         team_pit_scouting.save()
         success = True
     except Exception as e:
-        print e
+        print "Error %s" % e
 
     return HttpResponse(json.dumps({"success": success}), content_type='application/json')

@@ -63,7 +63,7 @@ def get_statistics(regional_code, teams_at_competition, team=0):
 
     # This part of the function (above) obtains overall standard deviations for all score results
     teams = team if bool(team) else teams_at_competition
-    print teams
+
     for team in teams:
         teams_srs = team.scoreresult_set.filter(competition__code=regional_code)
         team_avgs = teams_srs.aggregate(Avg('tele_gears'),

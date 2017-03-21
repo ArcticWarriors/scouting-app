@@ -18,9 +18,7 @@ def auth_login(request, **kargs):
         User.objects.get(username=username)
 
         user = authenticate(username=username, password=password)
-#         print user, user.is_active
         if user is not None:
-            print user.is_active
             if user.is_active:
                 login(request, user)
                 success = True
@@ -29,7 +27,7 @@ def auth_login(request, **kargs):
 #                 return HttpResponseRedirect(reverse(bad_redirect, args=kargs.values()))
 
     except Exception as e:
-        print e
+        print "Exception %s" % e
         messages.add_message(request, messages.ERROR, "Username %s was not found" % username)
 
     if success:

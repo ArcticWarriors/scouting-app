@@ -52,7 +52,7 @@ class BaseSubmitMatchEdit(View):
             print "ERROR %s" % e
 
         output = {}
-        print "Got here"
+
         if success:
             try:
                 official_match_search = self.official_match_model.objects.filter(competition=competition, matchNumber=match.matchNumber)
@@ -71,7 +71,6 @@ class BaseSubmitMatchEdit(View):
                 success = False
 
         output["success"] = success
-        print output
 
         return HttpResponse(json.dumps(output), content_type='application/json')
 

@@ -63,7 +63,6 @@ if download_teams:
 if download_competes_in:
     for week, events_list in event_codes.items():
         for event_code in events_list:
-            print event_code
             scraper = ApiDownloader(os.path.join(json_root, "week%s" % week))
             scraper.download_competes_in_data(event_code)
 
@@ -100,5 +99,4 @@ if populate_results:
                     json_results = json.load(f)
                     populater.populate_schedule_match(json_results)
             else:
-                print matches_file
                 print "Ignoring event %s since it has no updates" % event_code
