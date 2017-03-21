@@ -160,6 +160,15 @@
               }
           })
           
+          if(failed)
+          {
+              var submit = confirm("You have errors in your data, submit anyway?");
+              if(submit)
+              {
+            	  failed = false
+              }
+          }
+          
           return !failed
           
 		};

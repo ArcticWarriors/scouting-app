@@ -14,6 +14,8 @@ class SingleMatchView2017(BaseSingleMatchView):
         sr_search = team.scoreresult_set.filter(match=match)
         if len(sr_search) == 1:
             return sr_search[0]
+        elif len(sr_search) > 1:
+            print "More than one received for team %s..." % team
 
         return None
 
