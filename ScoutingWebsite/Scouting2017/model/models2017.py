@@ -128,5 +128,6 @@ class ScoreResult(models.Model):
 class Scout(models.Model):
 
     user = models.OneToOneField(User)
+    team = models.ForeignKey(Team)
     bookmarked_teams = models.ManyToManyField(Team, related_name="bookmarks")
     do_not_pick_teams = models.ManyToManyField(Team, related_name="do_not_picks")

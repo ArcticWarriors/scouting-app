@@ -23,7 +23,7 @@ from Scouting2017.view.forms.add_team_pics import AddTeamPictureView2017
 from Scouting2017.view.standard_views.match_prediction import MatchPredictionView2017
 from Scouting2017.view.submissions.submit_team_comments import AddTeamCommentsView2017
 from django.contrib.auth.decorators import permission_required
-from Scouting2017.view.submissions import submit_match
+from Scouting2017.view.submissions import submit_match, submit_pit_scouting
 
 
 app_name = 'Scouting2017'
@@ -46,7 +46,7 @@ urlpatterns = [
 
                # Submission backends
                url(r'^(?P<regional_code>\w+)/submit_new_match$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(submit_match.BulkSubmitMatch.as_view()), name='submit_new_match'),
-               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(submit_match.BulkSubmitMatch.as_view()), name='submit_pit_scouting'),
+               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(submit_pit_scouting.SubmitPitScouting.as_view()), name='submit_pit_scouting'),
                url(r'^(?P<regional_code>\w+)/upload_image$', permission_required('Scouting2017.add_teampictures', raise_exception=True)(AddTeamPictureView2017.as_view()), name='upload_image'),
                url(r'^(?P<regional_code>\w+)/update_bookmark$', UpdateBookmarks2017.as_view(), name='update_bookmark'),
                url(r'^(?P<regional_code>\w+)/submit_match_edit$', permission_required('Scouting2017.change_scoreresult', raise_exception=True)(SubmitMatchEdit2017.as_view()), name='submit_match_edit'),
