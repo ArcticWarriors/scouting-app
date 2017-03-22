@@ -37,7 +37,7 @@ class MatchListView2017(BaseMatchListView):
                 else:
                     output.winning_alliance = "Tie"
 
-            output.match_error_level, output.match_error_warning_messages, output.match_error_error_messages = calculate_match_scouting_validity(match, official_match, official_sr_search)
+            output.match_error_level, _, _, _, _, output.match_error_warning_messages, output.match_error_error_messages = calculate_match_scouting_validity(match, official_match, official_sr_search)
 
         return output
 
@@ -50,8 +50,8 @@ class MatchListView2017(BaseMatchListView):
 
         if len(official_match_search) == 0 or not official_match_search[0].hasOfficialData:
             output.isPrediction = True
-            output.redScore = "{0:.2f}".format(match_prediction["red_prediction"]["total_score"])
-            output.blueScore = "{0:.2f}".format(match_prediction["blue_prediction"]["total_score"])
+            output.redScore = "{0:.2f}".format(match_prediction["red_prediction"]["total_score"] if "total_score" in match_prediction["red_prediction"] else 0)
+            output.blueScore = "{0:.2f}".format(match_prediction["blue_prediction"]["total_score"] if "total_score" in match_prediction["blue_prediction"] else 0)
         else:
             official_match = official_match_search[0]
             official_sr_search = official_match.officialmatchscoreresult_set.all()

@@ -48,8 +48,18 @@ class SingleMatchView2017(BaseSingleMatchView):
         official_match = OfficialMatch.objects.get(matchNumber=match.matchNumber, competition__code=regional_code)
         official_sr_search = official_match.officialmatchscoreresult_set.all()
         if len(official_sr_search) == 2:
-            _, warnings, errors = calculate_match_scouting_validity(match, official_match, official_sr_search)
+            _, red_missing, blue_missing, duplicate_teams, extra_teams, warning_messages, error_messages = calculate_match_scouting_validity(match, official_match, official_sr_search)
 
-            return True, warnings, errors
+            missing_teams = red_missing.union(blue_missing)
+            if len(missing_teams) != 0:
+                error_messages.append(("Missing Teams", ", ".join([str(team.teamNumber) for team in missing_teams]), ""))
+
+            if len(duplicate_teams) != 0:
+                error_messages.append(("Duplicate Teams", ", ".join([str(team.teamNumber) for team in duplicate_teams]), ""))
+
+            if len(extra_teams) != 0:
+                error_messages.append(("Extra Teams", ", ".join([str(team.teamNumber) for team in extra_teams]), ""))
+
+            return True, warning_messages, error_messages
 
         return False, [], []

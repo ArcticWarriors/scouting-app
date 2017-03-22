@@ -3,9 +3,12 @@ Created on Mar 1, 2017
 
 @author: PJ
 '''
+import collections
 
 
-def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
+def get_teams_sr(alliance_color, match, team1, team2, team3, official_sr):
+
+
     team1sr = None
     team2sr = None
     team3sr = None
@@ -26,11 +29,25 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
             team3sr = sr
             break
 
-    warning_messages = []
-    error_messages = []
-
     team_srs = [team1sr, team2sr, team3sr]
     team_srs = [sr for sr in team_srs if sr != None]
+
+    teams_scouted = set([sr.team for sr in team_srs])
+
+    if alliance_color == "Red":
+        teams_required = set([match.red1, match.red2, match.red3])
+    elif alliance_color == "Blue":
+        teams_required = set([match.blue1, match.blue2, match.blue3])
+
+    missing_teams = teams_required.difference(teams_scouted)
+
+    return team_srs, missing_teams
+
+
+def validate_alliance_score(alliance_color, team_srs, official_sr):
+
+    warning_messages = []
+    error_messages = []
 
     auto_fuel_low_sum = 0
     auto_fuel_high_sum = 0
@@ -133,33 +150,59 @@ def validate_alliance_score(alliance_color, team1, team2, team3, official_sr):
     return warning_messages, error_messages
 
 
+def validate_teams(match, official_match_srs):
+
+    extra_teams = []
+    missing_teams = []
+
+#     match_srs = match.scoreresult_set.all()
+#
+#     if len(official_match_srs) == 2:
+#         red_official = official_match_srs[0]
+#         blue_official = official_match_srs[1]
+#
+#         for sr in match_srs:
+#             if sr.team == red_official.team1:
+#                 print "Got it!"
+#         pass
+
+    return extra_teams, missing_teams
+
+
 def calculate_match_scouting_validity(match, official_match, official_match_srs):
 
     error_level = 0
     warning_messages = []
     error_messages = []
 
-    sr_count = match.scoreresult_set.count()
-    if sr_count != 6:
-        error_level = 2
-        error_messages.append(("Num Teams", 6, sr_count))
-    elif len(official_match_srs) == 2:
+    validate_teams(match, official_match_srs)
+
+    if len(official_match_srs) == 2:
         red_official = official_match_srs[0]
         blue_official = official_match_srs[1]
 
-        red_warning, red_error = validate_alliance_score("Red", match.red1, match.red2, match.red3, red_official)
-        blue_warning, blue_error = validate_alliance_score("Blue", match.blue1, match.blue2, match.blue3, blue_official)
+        red_teams, red_missing = get_teams_sr("Red", match, match.red1, match.red2, match.red3, red_official)
+        blue_teams, blue_missing = get_teams_sr("Blue", match, match.blue1, match.blue2, match.blue3, blue_official)
+
+        match_srs = [sr.team for sr in match.scoreresult_set.all()]
+        teams_required = set([match.red1, match.red2, match.red3, match.blue1, match.blue2, match.blue3])
+
+        duplicate_teams = [item for item, count in collections.Counter(match_srs).items() if count > 1]
+        extra_teams = set(match_srs).difference(teams_required)
+
+        red_warning, red_error = validate_alliance_score("Red", red_teams, red_official)
+        blue_warning, blue_error = validate_alliance_score("Blue", blue_teams, blue_official)
 
         warning_messages.extend(red_warning)
         warning_messages.extend(blue_warning)
         error_messages.extend(red_error)
         error_messages.extend(blue_error)
 
-        if len(error_messages) != 0:
-            error_level = 2
-        elif len(warning_messages) != 0:
-            error_level = 1
-    else:
+    if len(red_missing) != 0 or len(blue_missing) != 0 or len(duplicate_teams) != 0 or len(extra_teams) != 0:
+        error_level = 3
+    elif len(error_messages) != 0:
+        error_level = 2
+    elif len(warning_messages) != 0:
         error_level = 1
 
-    return error_level, warning_messages, error_messages
+    return error_level, red_missing, blue_missing, duplicate_teams, extra_teams, warning_messages, error_messages

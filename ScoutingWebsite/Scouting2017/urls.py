@@ -24,6 +24,7 @@ from Scouting2017.view.standard_views.match_prediction import MatchPredictionVie
 from Scouting2017.view.submissions.submit_team_comments import AddTeamCommentsView2017
 from django.contrib.auth.decorators import permission_required
 from Scouting2017.view.submissions import submit_match, submit_pit_scouting
+from Scouting2017.view.standard_views.download_match_inconsistancies import download_match_inconsistancies
 
 
 app_name = 'Scouting2017'
@@ -57,5 +58,8 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/login/$', show_login, name='show_login'),
                url(r'^(?P<regional_code>\w+)/log_user_out$', log_user_out, name='log_user_out'),
                url(r'^(?P<regional_code>\w+)/auth_login$', auth_login, name='auth_login'),
+
+               url(r'^(?P<regional_code>\w+)/download_match_inconsistancies', download_match_inconsistancies, name='download_match_inconsistancies'),
+
 
                ]
