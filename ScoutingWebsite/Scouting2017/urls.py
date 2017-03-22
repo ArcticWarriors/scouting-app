@@ -7,8 +7,6 @@ from django.conf.urls import url
 from django.views.generic.base import RedirectView
 from Scouting2017.view.forms import create_match
 from Scouting2017.api_scraper.the_blue_alliance import tba_webook
-from Scouting2017.view.submissions.submit_pit_scouting import submit_pit_scouting
-from Scouting2017.view.submissions.submit_match import add_match
 from Scouting2017.view.submissions.submit_bookmark import UpdateBookmarks2017
 from Scouting2017.view.submissions.submit_match_edit import SubmitMatchEdit2017
 from Scouting2017.view.submissions.submit_pick_list import SubmitPickList2017
@@ -24,6 +22,8 @@ from Scouting2017.view.user_auth.authorize_login import auth_login
 from Scouting2017.view.forms.add_team_pics import AddTeamPictureView2017
 from Scouting2017.view.standard_views.match_prediction import MatchPredictionView2017
 from Scouting2017.view.submissions.submit_team_comments import AddTeamCommentsView2017
+from django.contrib.auth.decorators import permission_required
+from Scouting2017.view.submissions import submit_match
 
 
 app_name = 'Scouting2017'
@@ -42,17 +42,19 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/pick_list$', PickListView2017.as_view(), name='pick_list'),
 
                # Forms
-               url(r'^(?P<regional_code>\w+)/match_entry$', create_match.MatchEntryView2017.as_view(), name='match_entry'),
-               url(r'^(?P<regional_code>\w+)/submit_new_match$', add_match, name='submit_new_match'),
-               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', submit_pit_scouting, name='submit_pit_scouting'),
-               url(r'^(?P<regional_code>\w+)/upload_image$', AddTeamPictureView2017.as_view(), name='upload_image'),
+               url(r'^(?P<regional_code>\w+)/match_entry$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(create_match.MatchEntryView2017.as_view()), name='match_entry'),
+
+               # Submission backends
+               url(r'^(?P<regional_code>\w+)/submit_new_match$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(submit_match.BulkSubmitMatch.as_view()), name='submit_new_match'),
+               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(submit_match.BulkSubmitMatch.as_view()), name='submit_pit_scouting'),
+               url(r'^(?P<regional_code>\w+)/upload_image$', permission_required('Scouting2017.add_teampictures', raise_exception=True)(AddTeamPictureView2017.as_view()), name='upload_image'),
                url(r'^(?P<regional_code>\w+)/update_bookmark$', UpdateBookmarks2017.as_view(), name='update_bookmark'),
-               url(r'^(?P<regional_code>\w+)/submit_match_edit$', SubmitMatchEdit2017.as_view(), name='submit_match_edit'),
-               url(r'^(?P<regional_code>\w+)/submit_pick_list$', SubmitPickList2017.as_view(), name='submit_pick_list'),
-               url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', AddTeamCommentsView2017.as_view(), name='add_team_comments'),
+               url(r'^(?P<regional_code>\w+)/submit_match_edit$', permission_required('Scouting2017.change_scoreresult', raise_exception=True)(SubmitMatchEdit2017.as_view()), name='submit_match_edit'),
+               url(r'^(?P<regional_code>\w+)/submit_pick_list$', permission_required('Scouting2017.change_picklist', raise_exception=True)(SubmitPickList2017.as_view()), name='submit_pick_list'),
+               url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', permission_required('Scouting2017.add_teamcomments', raise_exception=True)(AddTeamCommentsView2017.as_view()), name='add_team_comments'),
 
                # User Auth
-               url(r'^(?P<regional_code>\w+)/show_login$', show_login, name='show_login'),
+               url(r'^(?P<regional_code>\w+)/login/$', show_login, name='show_login'),
                url(r'^(?P<regional_code>\w+)/log_user_out$', log_user_out, name='log_user_out'),
                url(r'^(?P<regional_code>\w+)/auth_login$', auth_login, name='auth_login'),
 
