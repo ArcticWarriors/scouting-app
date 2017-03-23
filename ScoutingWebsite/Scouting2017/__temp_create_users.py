@@ -6,42 +6,47 @@ Created on Feb 25, 2017
 
 import sys
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User, Group, Permission
 sys.path.append("..")
 
 from BaseScouting.load_django import load_django
 load_django()
 
-from django.contrib.auth.models import User, Group, Permission
-from BaseScouting.load_django import load_django
-
 
 def create_groups():
 
-    abilities = {}
-    abilities["picklist"] = {"app_label": "Scouting2017", "model": "picklist", "abilities": ["add", "change"]}
-    abilities["teamcomments"] = {"app_label": "Scouting2017", "model": "teamcomments", "abilities": ["add", "change"]}
-    abilities["teampictures"] = {"app_label": "Scouting2017", "model": "teampictures", "abilities": ["add", "change"]}
-    abilities["teampitscouting"] = {"app_label": "Scouting2017", "model": "teampitscouting", "abilities": ["add", "change"]}
-    abilities["scoreresult"] = {"app_label": "Scouting2017", "model": "scoreresult", "abilities": ["add", "change"]}
-    all_abilities = [x for x in abilities.values()]
+    permissions_info = {}
+    permissions_info["AddScoreResult"] = {"model": "scoreresult", "abilities": "add"}
+    permissions_info["AddTeamComments"] = {"model": "teamcomments", "abilities": "add"}
+    permissions_info["AddTeamPicture"] = {"model": "teampictures", "abilities": "add"}
+    permissions_info["ModifyPitScouting"] = {"model": "teampitscouting", "abilities": "change"}
+    permissions_info["ModifyScoreResult"] = {"model": "scoreresult", "abilities": "change"}
+    permissions_info["ModifyPickList"] = {"model": "picklist", "abilities": "change"}
+
+    permissions = {}
+
+    for permission_name, permission_info in permissions_info.items():
+
+        content_types = ContentType.objects.filter(model=permission_info['model'])
+
+        permissions[permission_name] = []
+        for content_type in content_types:
+            permission, _ = Permission.objects.get_or_create(codename=permission_name, content_type=content_type)
+            permissions[permission_name].append(permission)
+
+    all_permissions = [x for x in permissions.values()]
 
     groups_permissions = {}
-    groups_permissions["scout"] = [abilities["teamcomments"], abilities["scoreresult"], abilities["teampitscouting"], abilities["teampictures"]]
-    groups_permissions["driver"] = [abilities["teamcomments"]]
-    groups_permissions["scout_master"] = all_abilities
-    groups_permissions["admin"] = all_abilities
-
+    groups_permissions["scout"] = [permissions["AddScoreResult"], permissions["AddTeamComments"], permissions["AddTeamPicture"], permissions["ModifyPitScouting"], permissions["ModifyScoreResult"]]
+    groups_permissions["driver"] = [permissions["AddTeamComments"]]
+    groups_permissions["scout_master"] = all_permissions
+    groups_permissions["admin"] = all_permissions
+#
     for group_name in groups_permissions:
-        group_abilities = groups_permissions[group_name]
-
         group, _ = Group.objects.get_or_create(name=group_name)
-
-        for ability in group_abilities:
-            model = ability['model']
-            content_type = ContentType.objects.get(app_label=ability['app_label'], model=model)
-
-            for ability_type in ability["abilities"]:
-                permission = Permission.objects.get(content_type=content_type, codename=ability_type + "_" + model)
+#
+        for permissions in groups_permissions[group_name]:
+            for permission in permissions:
                 group.permissions.add(permission)
 
 

@@ -21,6 +21,10 @@ def download_match_inconsistancies(request, regional_code):
     matches = sorted(matches, key=operator.attrgetter('matchNumber'))
 
     for match in matches:
+
+        if match.scoreresult_set.count() == 0:
+            continue
+
         official_match_search = OfficialMatch.objects.filter(competition__code=regional_code, matchNumber=match.matchNumber)
         if len(official_match_search) == 1:
             official_match = official_match_search[0]
