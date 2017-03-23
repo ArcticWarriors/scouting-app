@@ -7,7 +7,7 @@ import collections
 class SingleMatchView2017(BaseSingleMatchView):
 
     def __init__(self):
-        BaseSingleMatchView.__init__(self, Match, 'Scouting2017/match.html')
+        BaseSingleMatchView.__init__(self, 2017, Match, 'Scouting2017/match.html')
 
     def get_sr(self, team, match):
 

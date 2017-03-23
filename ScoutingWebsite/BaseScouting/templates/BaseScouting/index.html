@@ -11,12 +11,17 @@
         h2 {
             text-align: center;
         }
+        
+        h3 {
+            text-align: center;
+        }
     </style>
 {% endblock head %}
 
 {% block content %}
     <h1> WELCOME TO TEAM 174 SCOUTING WEBSITE </h1>
     <h2> For the {{ competition.name }} Competition</h2>
+    <h3><a href='https://www.thebluealliance.com/event/{{tba_code}}' target="_blank">The Blue Alliance Coverage</a></h3>
     
     {% block upcoming_match %}
 

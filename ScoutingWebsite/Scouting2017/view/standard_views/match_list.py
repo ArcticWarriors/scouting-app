@@ -6,7 +6,7 @@ from Scouting2017.model.predict_match import predict_match
 
 class MatchListView2017(BaseMatchListView):
     def __init__(self):
-        BaseMatchListView.__init__(self, Match)
+        BaseMatchListView.__init__(self, 2017, Match)
 
     def _append_scouted_info(self, match, regional_code):
 

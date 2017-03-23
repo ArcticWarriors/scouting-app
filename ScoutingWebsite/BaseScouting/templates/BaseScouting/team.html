@@ -43,6 +43,7 @@ $(function() {
 {% block content %}
     <h1>Team {{ team.teamNumber }}</h1>
     Team Website: <a href="{{team.homepage}}" target="_blank">{{team.homepage}}</a><br>
+    <a href='https://www.thebluealliance.com/team/{{team.teamNumber}}' target="_blank">TBA Information</a>
     
     {% if other_competitions|length != 0 %}
     <h2>Other Competitions</h2>

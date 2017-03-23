@@ -1,10 +1,12 @@
 
 from django.db.models import Q
 from django.views.generic.base import TemplateView
+from Scouting2017.model.reusable_models import Competition
 
 
 class BaseHomepageView(TemplateView):
-    def __init__(self, compition_model, team_model, match_model, official_match_model, template_name='BaseScouting/index.html'):
+    def __init__(self, year, compition_model, team_model, match_model, official_match_model, template_name='BaseScouting/index.html'):
+        self.year = year
         self.compition_model = compition_model
         self.team_model = team_model
         self.match_model = match_model
@@ -20,8 +22,12 @@ class BaseHomepageView(TemplateView):
         context['our_metrics'] = self._get_our_metrics(competition)
         context['competition_metrics'] = self._get_competition_metrics(competition)
         context['our_next_match_prediction'] = self._get_next_match_prediction(competition)
+        context['tba_code'] = self._get_tba_event_code(competition)
 
         return context
+
+    def _get_tba_event_code(self, competition):
+        return "%s%s" % (self.year, competition.code.lower())
 
     def _get_next_match_prediction(self, competition):
 

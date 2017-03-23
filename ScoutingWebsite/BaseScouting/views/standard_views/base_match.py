@@ -12,9 +12,10 @@ class BaseSingleMatchView(TemplateView):
     during just that match, not the overall average or sum as team in view_team
     """
 
-    def __init__(self, match_model, template_name):
+    def __init__(self, year, match_model, template_name):
         self.match_model = match_model
         self.template_name = template_name
+        self.year = year
 
     def get_context_data(self, **kwargs):
         the_match = get_object_or_404(self.match_model, matchNumber=kwargs["match_number"], competition__code=kwargs["regional_code"])
@@ -39,6 +40,7 @@ class BaseSingleMatchView(TemplateView):
         context['official_result_errors'] = errors
         context['has_official_data'] = has_official_data
         context['score_result_list'] = score_results
+        context['tba_code'] = self._get_tba_event_code(kwargs["regional_code"])
 
         metrics = []
         for sr in the_match.scoreresult_set.all():
@@ -46,6 +48,9 @@ class BaseSingleMatchView(TemplateView):
         context['metrics'] = metrics
 
         return context
+
+    def _get_tba_event_code(self, competition_code):
+        return "%s%s" % (self.year, competition_code.lower())
 
     def get_match_validation(self, regional_code, match):
         raise NotImplementedError("You need to implement the get_match_validation function")
