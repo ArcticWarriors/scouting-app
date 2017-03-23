@@ -115,6 +115,7 @@ class ScoreResult(models.Model):
     def __str__(self):
         output = "Score Result:{"
 
+        output += "Team: %s, Match %s" % (self.team.teamNumber, self.match.matchNumber)
         attributes = sorted(self.get_fields().keys())
         for attr_name in attributes:
             value = getattr(self, attr_name)
@@ -131,3 +132,6 @@ class Scout(models.Model):
     team = models.ForeignKey(Team)
     bookmarked_teams = models.ManyToManyField(Team, related_name="bookmarks")
     do_not_pick_teams = models.ManyToManyField(Team, related_name="do_not_picks")
+
+    def __str__(self):
+        return self.user.username

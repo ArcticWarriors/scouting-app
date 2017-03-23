@@ -86,6 +86,10 @@ class TeamPictures(models.Model):
 
     team = models.ForeignKey(Team)
 
+    def __str__(self):
+
+        return "%s - %s" % (self.team, self.path)
+
 
 class OfficialMatch(models.Model):
 
