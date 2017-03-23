@@ -270,7 +270,7 @@ function enterEditMode(e){
     </div>
     
 
-{% if user.is_authenticated %}
+{% if perms.auth.ModifyScoreResult %}
     <button id="enter_edit_mode" onclick="enterEditMode();">Enter Edit Mode</button>
     <button id="save_edit_mode" onclick="saveEdits();" hidden=true>Save Edit Mode</button>
 {% endif %}

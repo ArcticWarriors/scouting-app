@@ -40,19 +40,19 @@ urlpatterns = [
                url(r'^(?P<regional_code>\w+)/matches/(?P<match_number>[0-9]+)$', SingleMatchView2017.as_view(), name='view_match'),
                url(r'^(?P<regional_code>\w+)/teams/(?P<team_number>[0-9]+)$', SingleTeamView2017.as_view(), name='view_team'),
                url(r'^(?P<regional_code>\w+)/match_prediction/(?P<match_number>[0-9]+)$', MatchPredictionView2017.as_view(), name='match_prediction'),
-               url(r'^(?P<regional_code>\w+)/pick_list$', PickListView2017.as_view(), name='pick_list'),
 
                # Forms
-               url(r'^(?P<regional_code>\w+)/match_entry$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(create_match.MatchEntryView2017.as_view()), name='match_entry'),
+               url(r'^(?P<regional_code>\w+)/match_entry$', permission_required('auth.AddScoreResult', raise_exception=True)(create_match.MatchEntryView2017.as_view()), name='match_entry'),
+               url(r'^(?P<regional_code>\w+)/pick_list$', permission_required('auth.ModifyPickList', raise_exception=True)(PickListView2017.as_view()), name='pick_list'),
 
                # Submission backends
-               url(r'^(?P<regional_code>\w+)/submit_new_match$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(submit_match.BulkSubmitMatch.as_view()), name='submit_new_match'),
-               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', permission_required('Scouting2017.add_scoreresult', raise_exception=True)(submit_pit_scouting.SubmitPitScouting.as_view()), name='submit_pit_scouting'),
-               url(r'^(?P<regional_code>\w+)/upload_image$', permission_required('Scouting2017.add_teampictures', raise_exception=True)(AddTeamPictureView2017.as_view()), name='upload_image'),
+               url(r'^(?P<regional_code>\w+)/submit_new_match$', permission_required('auth.AddScoreResult', raise_exception=True)(submit_match.BulkSubmitMatch.as_view()), name='submit_new_match'),
+               url(r'^(?P<regional_code>\w+)/submit_pit_scouting$', permission_required('auth.ModifyPitScouting', raise_exception=True)(submit_pit_scouting.SubmitPitScouting.as_view()), name='submit_pit_scouting'),
+               url(r'^(?P<regional_code>\w+)/upload_image$', permission_required('auth.AddTeamPicture', raise_exception=True)(AddTeamPictureView2017.as_view()), name='upload_image'),
                url(r'^(?P<regional_code>\w+)/update_bookmark$', UpdateBookmarks2017.as_view(), name='update_bookmark'),
-               url(r'^(?P<regional_code>\w+)/submit_match_edit$', permission_required('Scouting2017.change_scoreresult', raise_exception=True)(SubmitMatchEdit2017.as_view()), name='submit_match_edit'),
-               url(r'^(?P<regional_code>\w+)/submit_pick_list$', permission_required('Scouting2017.change_picklist', raise_exception=True)(SubmitPickList2017.as_view()), name='submit_pick_list'),
-               url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', permission_required('Scouting2017.add_teamcomments', raise_exception=True)(AddTeamCommentsView2017.as_view()), name='add_team_comments'),
+               url(r'^(?P<regional_code>\w+)/submit_match_edit$', permission_required('auth.ModifyScoreResult', raise_exception=True)(SubmitMatchEdit2017.as_view()), name='submit_match_edit'),
+               url(r'^(?P<regional_code>\w+)/submit_pick_list$', permission_required('auth.ModifyPickList', raise_exception=True)(SubmitPickList2017.as_view()), name='submit_pick_list'),
+               url(r'^(?P<regional_code>\w+)/add_team_comments/(?P<team_number>[0-9]+)$', permission_required('auth.AddTeamComments', raise_exception=True)(AddTeamCommentsView2017.as_view()), name='add_team_comments'),
 
                # User Auth
                url(r'^(?P<regional_code>\w+)/login/$', show_login, name='show_login'),

@@ -50,13 +50,14 @@ def create_groups():
                 group.permissions.add(permission)
 
 
-def get_or_create_user(username, password, groups, favorites, dnps):
+def get_or_create_user(username, password, team_number, groups, favorites, dnps):
     if len(User.objects.filter(username=username)) == 0:
         User.objects.create_user(username, password=password)
 
     from Scouting2017.model import Scout, Team
     user = User.objects.get(username=username)
-    scout, _ = Scout.objects.get_or_create(user=user)
+    scouts_team = Team.objects.get(teamNumber=team_number)
+    scout, _ = Scout.objects.get_or_create(user=user, team=scouts_team)
 
     for team_number in favorites:
         scout.bookmarked_teams.add(Team.objects.get(teamNumber=team_number))
@@ -74,21 +75,23 @@ def get_or_create_user(username, password, groups, favorites, dnps):
 create_groups()
 
 load_django()
-user = get_or_create_user('pjreiniger', 'pjreiniger', ["admin", "scout_master"], [174, 191], [1450])
-user = get_or_create_user('starke', 'starke', ["scout_master"], [174, 1126, 340], [1450])
-user = get_or_create_user('lee', 'lee', ["scout_master"], [174, 20, 1507], [])
+user = get_or_create_user('pjreiniger', 'pjreiniger', 174, ["admin", "scout_master"], [174, 191], [1450])
+user = get_or_create_user('starke', 'starke', 174, ["scout_master"], [174, 1126, 340], [1450])
+user = get_or_create_user('lee', 'lee', 174, ["scout_master"], [174, 20, 1507], [])
 
-user = get_or_create_user('progbot', 'progbot', ["admin", "scout", "scout_master"], [174, 1126, 1507], [])
-user = get_or_create_user('wilson', 'wilson', ["scout"], [], [])
-user = get_or_create_user('wong', 'wong', ["scout"], [], [])
-user = get_or_create_user('dromms', 'dromms', ["scout", "scout_master"], [], [])
-user = get_or_create_user('larham', 'larham', ["scout"], [], [])
+user = get_or_create_user('progbot', 'progbot', 174, ["admin", "scout", "scout_master"], [174, 1126, 1507], [])
+user = get_or_create_user('wilson', 'wilson', 174, ["scout"], [], [])
+user = get_or_create_user('wong', 'wong', 174, ["scout"], [], [])
+user = get_or_create_user('dromms', 'dromms', 174, ["scout", "scout_master"], [], [])
+user = get_or_create_user('larham', 'larham', 174, ["scout"], [], [])
 
-user = get_or_create_user('goel', 'goel', ["driver"], [], [])
-user = get_or_create_user('hussak', 'hussak', ["driver"], [], [])
-user = get_or_create_user('taskovski', 'taskovski', ["driver"], [], [])
-user = get_or_create_user('williams', 'williams', ["driver"], [], [])
-user = get_or_create_user('nguyen', 'nguyen', ["driver"], [], [])
-user = get_or_create_user('perrotta', 'perrotta', ["scout"], [], [])
-user = get_or_create_user('johnson', 'johnson', ["scout"], [], [])
-user = get_or_create_user('fenner', 'fenner', ["scout"], [], [])
+user = get_or_create_user('goel', 'goel', 174, ["driver"], [], [])
+user = get_or_create_user('hussak', 'hussak', 174, ["driver"], [], [])
+user = get_or_create_user('taskovski', 'taskovski', 174, ["driver"], [], [])
+user = get_or_create_user('williams', 'williams', 174, ["driver"], [], [])
+user = get_or_create_user('nguyen', 'nguyen', 174, ["driver"], [], [])
+user = get_or_create_user('perrotta', 'perrotta', 174, ["scout"], [], [])
+user = get_or_create_user('johnson', 'johnson', 174, ["scout"], [], [])
+user = get_or_create_user('fenner', 'fenner', 174, ["scout"], [], [])
+
+#user = get_or_create_user('guest', 'guest', 174, [], [], [])

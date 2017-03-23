@@ -2,7 +2,7 @@
 <h2> Pit Scouting </h2>
 
 
-{% if user.is_authenticated %}
+{% if perms.auth.ModifyPitScouting %}
 <form action="" class="pitscouting_form">
   <fieldset>
 	{% csrf_token %}

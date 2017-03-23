@@ -55,7 +55,7 @@ $(function() {
     {% block pictures %}
     <h2>Pictures</h2>
     
-    {% if user.is_authenticated %}
+    {% if perms.auth.AddTeamPicture %}
  <form action="{% url request.resolver_match.namespace|add:':upload_image' regional_code %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name='team_number' value={{team_number}}>
@@ -141,7 +141,7 @@ $(function() {
         </ul>
     {% endif %}
     
-    {% if user.is_authenticated %}
+    {% if perms.auth.AddTeamComments %}
     <form action="{% url 'Scouting2017:add_team_comments' regional_code team_number %}" method="POST">
     {% csrf_token %}
    
