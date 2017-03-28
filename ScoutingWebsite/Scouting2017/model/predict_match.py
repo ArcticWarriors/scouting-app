@@ -18,19 +18,15 @@ def __get_team_average_for_match_prediction(team, competition):
 
     sr_results = score_results.aggregate(
         auto_fuel_high=Avg("auto_fuel_high_score"),
-        auto_fuel_low=Avg("auto_fuel_low_score"),
         auto_gears=Avg("auto_gears"),
         tele_fuel_high=Avg("tele_fuel_high_score"),
-        tele_fuel_low=Avg("tele_fuel_low_score"),
         tele_gears=Avg("tele_gears"),
         baseline=Avg(Case(When(auto_baseline=True, then=1), When(auto_baseline=False, then=0))),
         rope=Avg(Case(When(rope=True, then=1), When(rope=False, then=0))))
     output.update(sr_results)
 
     fuel_total = output['auto_fuel_high'] + \
-                 output['auto_fuel_low'] / 3.0 + \
-                 output['tele_fuel_high'] / 3.0 + \
-                 output['tele_fuel_low'] / 9.0
+                 output['tele_fuel_high'] / 3.0 
 
     output["fuel_total"] = fuel_total
     output["gear_total"] = output['auto_gears'] + output['tele_gears']
