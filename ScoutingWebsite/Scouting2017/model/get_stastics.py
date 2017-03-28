@@ -10,7 +10,7 @@ def get_statistics(regional_code, teams_at_competition, team=0):
     '''
     The get_statistics function() returns two lists of metrics.
     The first thing it returns, stats, is a dictionary containing the values of overall averages for all score results, along with standard deviations for those same score results along the mean.
-    The function also returns a list called skills, which contains data for each team including their z-scores, calculated fuel scores for both hi, low, autonomous, teleop, and overall, and their accuracy in climbing the rope.
+    The function also returns a list called skills, which contains data for each team including their z-scores, calculated fuel scores for autonomous, teleop, and overall, and their accuracy in climbing the rope.
     '''
 
     skills = []
