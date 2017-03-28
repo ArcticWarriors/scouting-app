@@ -12,9 +12,6 @@
                 <tr>
                     <th scope="col">Gears</th>
                     <th scope="col">High Scores</th>
-                    <th scope="col">High Misses</th>
-                    <th scope="col">Low Scores</th>
-                    <th scope="col">Low Misses</th>
                     <th scope="col">Baseline</th>
                 </tr>
             </thead>
@@ -22,9 +19,6 @@
                 <tr>
                     <td>{{ metrics.auto_gears__avg }}</td>
                     <td>{{ metrics.auto_fuel_high_score__avg }}</td>
-                    <td>{{ metrics.auto_fuel_high_misses__avg }}</td>
-                    <td>{{ metrics.auto_fuel_low_score__avg }}</td>
-                    <td>{{ metrics.auto_fuel_low_misses__avg }}</td>
                     <td>{{ metrics.baseline__avg }}</td>
                 </tr>
             </tbody>
@@ -40,9 +34,6 @@
                 <tr>
                     <th scope="col">Gears</th>
                     <th scope="col">High Scores</th>
-                    <th scope="col">High Misses</th>
-                    <th scope="col">Low Scores</th>
-                    <th scope="col">Low Misses</th>
                     <th scope="col">Climb</th>
                 </tr>
             </thead>
@@ -50,9 +41,6 @@
                 <tr>
                     <td>{{ metrics.tele_gears__avg }}</td>
                     <td>{{ metrics.tele_fuel_high_score__avg }}</td>
-                    <td>{{ metrics.tele_fuel_high_misses__avg }}</td>
-                    <td>{{ metrics.tele_fuel_low_score__avg }}</td>
-                    <td>{{ metrics.tele_fuel_low_misses__avg }}</td>
                     {# http://stackoverflow.com/questions/19588160/multiply-in-django-template #}
                     <td>{% widthratio metrics.rope__avg 1 100  %}%</td>
                 </tr>
