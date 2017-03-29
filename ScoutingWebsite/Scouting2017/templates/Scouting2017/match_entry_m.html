@@ -1,4 +1,6 @@
-
+{% if flavour == mobile %}
+{% include 'Scouting2017/match_entry_m.html' %} {# mobile template will show if you're on mobile}
+{% else %}
 {% extends 'BaseScouting/base.html' %}
 {% load staticfiles %}
 
@@ -271,3 +273,4 @@
 		<!-- Stuff goes here -->
   </div>
 {% endblock content %}
+{% endif %} {# This if is the one for mobile flavor.
