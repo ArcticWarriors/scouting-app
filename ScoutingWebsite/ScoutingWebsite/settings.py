@@ -62,15 +62,13 @@ MIDDLEWARE_CLASSES = (
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
 )
-
 ROOT_URLCONF = 'ScoutingWebsite.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
-        'LOADERS': 'django_mobile.loader.Loader'
+        'LOADERS': 'django_mobile.loader.Loader',
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -82,9 +80,8 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'ScoutingWebsite.wsgi.application'
-
+TEMPLATE_LOADERS = TEMPLATES[0]['LOADERS']
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

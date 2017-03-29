@@ -56,10 +56,14 @@ def __get_alliance_average_for_match_prediction(team1, team2, team3, competition
         auto_gear_alliance = team1_metrics[auto_gears] + team2_metrics[auto_gears] + team3_metrics[auto_gears]
         kpa_alliance = team1_metrics[fuel_total] + team2_metrics[fuel_total] + team3_metrics[fuel_total]
         gear_score = 40
-        if auto_gear_alliance >= 1 gear_score += 20
-        if gear_alliance_total >= 2 gear_score += 40
-        if gear_alliance_total >= 6 gear_score += 40
-        if gear_alliance_total >= 12 gear_score += 40
+        if auto_gear_alliance >= 1 :
+          gear_score += 20
+        if gear_alliance_total >= 2: 
+          gear_score += 40
+        if gear_alliance_total >= 6:
+          gear_score += 40
+        if gear_alliance_total >= 12:
+          gear_score += 40
 
     output = {}
     output['team1'] = team1_metrics

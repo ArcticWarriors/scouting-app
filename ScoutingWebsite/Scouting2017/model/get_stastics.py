@@ -24,7 +24,7 @@ def get_statistics(regional_code, teams_at_competition, team=0):
     rope_avg = competition_averages['rope__avg']
     gear_avg = competition_averages['tele_gears__avg']
 
-    if competition_averages['auto_fuel_high_score__avg'] and competition_averages['tele_fuel_high_score__avg']
+    if competition_averages['auto_fuel_high_score__avg'] and competition_averages['tele_fuel_high_score__avg']:
 
         fuel_avg = competition_averages['auto_fuel_high_score__avg'] + (competition_averages['tele_fuel_high_score__avg'] / 3)
     else:
