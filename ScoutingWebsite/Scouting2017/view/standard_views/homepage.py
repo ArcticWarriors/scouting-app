@@ -10,8 +10,10 @@ class HomepageView2017(BaseHomepageView):
         BaseHomepageView.__init__(self, 2017, Competition, Team, Match, OfficialMatch, 'BaseScouting/index.html')
 
     def _get_our_team_number(self):
-        if self.request.user:
+        if self.request.user.is_authenticated():
             return self.request.user.scout.team.teamNumber
+
+
 
         return 174
 

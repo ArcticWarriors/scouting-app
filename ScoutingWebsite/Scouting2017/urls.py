@@ -33,7 +33,7 @@ urlpatterns = [
                url(r'^tba_webhook$', tba_webook.tba_webook, name='tba_webhook'),
 
                # Standard Views
-               url(r'^$', RedirectView.as_view(url='/2017/NYRO', permanent=False)),
+               url(r'^$', RedirectView.as_view(url='/2017/OHCL', permanent=False)),
                url(r'^(?P<regional_code>\w+)$', HomepageView2017.as_view(), name='index'),
                url(r'^(?P<regional_code>\w+)/teams$', TeamListView2017.as_view(), name='teams'),
                url(r'^(?P<regional_code>\w+)/matches$', MatchListView2017.as_view(), name='matches'),
