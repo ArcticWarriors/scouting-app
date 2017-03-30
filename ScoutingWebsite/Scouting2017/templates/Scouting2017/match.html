@@ -15,11 +15,9 @@
                 <tr>
                     <th>Teams</th>
                     <th> Auto Gear </th>
-                    <th> Auto Fuel High</th>
-                    <th> Auto Fuel Low </th>
+                    <th> Auto Fuel</th>
                     <th> Tele Gear </th>
-                    <th> Tele Fuel High</th>
-                    <th> Tele Fuel Low</th>
+                    <th> Tele Fuel</th>
                     <th> Climbed</th>
                 </tr>
             </thead>
@@ -30,10 +28,8 @@
                 <td><a href="{% url 'Scouting2017:view_team' regional_code sr.team.teamNumber %}">{{ sr.team.teamNumber }}</a></td>
                 <td id="edit_{{ sr.team.teamNumber }}_auto_gears">{{ sr.auto_gears }}</td>
                 <td id="edit_{{ sr.team.teamNumber }}_auto_fuel_high_score">{{ sr.auto_fuel_high_score }}</td>
-                <td id="edit_{{ sr.team.teamNumber }}_auto_fuel_low_score">{{ sr.auto_fuel_low_score }}</td>
                 <td id="edit_{{ sr.team.teamNumber }}_tele_gears">{{ sr.tele_gears }}</td>
                 <td id="edit_{{ sr.team.teamNumber }}_tele_fuel_high_score">{{ sr.tele_fuel_high_score }}</td>
-                <td id="edit_{{ sr.team.teamNumber }}_tele_fuel_low_score">{{ sr.tele_fuel_low_score }}</td>
                 <td id="edit_{{ sr.team.teamNumber }}_rope">{{ sr.rope }}</td>
             </tr>
             

@@ -10,15 +10,9 @@ from django.db.models.expressions import Case, When
 def get_team_metrics(team, regional_code):
     metrics = team.scoreresult_set.filter(competition__code=regional_code).aggregate(
                                              Avg("auto_fuel_high_score"),
-                                             Avg("auto_fuel_high_shots"),
-                                             Avg("auto_fuel_low_score"),
-                                             Avg("auto_fuel_low_shots"),
                                              Avg("auto_gears"),
 
                                              Avg("tele_fuel_high_score"),
-                                             Avg("tele_fuel_high_shots"),
-                                             Avg("tele_fuel_low_score"),
-                                             Avg("tele_fuel_low_shots"),
                                              Avg("tele_gears"),
 
                                              Sum("foul"),
@@ -40,15 +34,11 @@ def get_team_metrics(team, regional_code):
     if metrics['tele_fuel_high_score__avg'] != "NA":
 
         metrics['auto_fuel_high_misses__avg'] = float(metrics['auto_fuel_high_shots__avg']) - float(metrics['auto_fuel_high_score__avg'])
-        metrics['auto_fuel_low_misses__avg'] = float(metrics['auto_fuel_low_shots__avg']) - float(metrics['auto_fuel_low_score__avg'])
 
         metrics['tele_fuel_high_misses__avg'] = float(metrics['tele_fuel_high_shots__avg']) - float(metrics['tele_fuel_high_score__avg'])
-        metrics['tele_fuel_low_misses__avg'] = float(metrics['tele_fuel_low_shots__avg']) - float(metrics['tele_fuel_low_score__avg'])
     else:
         metrics['auto_fuel_high_misses__avg'] = "NA"
-        metrics['auto_fuel_low_misses__avg'] = "NA"
 
         metrics['tele_fuel_high_misses__avg'] = "NA"
-        metrics['fuel_shot_low_missed__avg'] = "NA"
 
     return metrics

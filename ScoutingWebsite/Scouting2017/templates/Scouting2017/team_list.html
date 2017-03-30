@@ -164,12 +164,10 @@
                         {% if user.is_authenticated %} <th data-colname="bookmarks"> Bookmarks </th> {% endif %}
 
                         <th data-colname="autoGears"> Auto Gears </th>
-                        <th data-colname="autoFuelLow"> Auto Low Fuel </th>
-                        <th data-colname="autoFuelHigh"> Auto High Fuel </th>
+                        <th data-colname="autoFuelHigh"> Auto Fuel </th>
 
                         <th data-colname="teleGears"> Tele Gears Scored </th>
-                        <th data-colname="teleFuelLow"> Tele Low Fuel </th>
-                        <th data-colname="teleFuelHigh"> Tele High Fuel </th>
+                        <th data-colname="teleFuelHigh"> Tele Fuel </th>
 
                         <th data-colname="rope"> Rope Percentage </th>
                     </tr>
@@ -199,11 +197,9 @@
                         </td>
                         {% endif %}
                         <td> {{ team.metrics.auto_gears__avg }} </td>
-                        <td> {{ team.metrics.auto_fuel_low_score__avg }} </td>
                         <td> {{ team.metrics.auto_fuel_high_score__avg }} </td>
                         
                         <td> {{ team.metrics.tele_gears__avg }} </td>
-                        <td> {{ team.metrics.tele_fuel_low_score__avg }} </td>
                         <td> {{ team.metrics.tele_fuel_high_score__avg }} </td>
                         
 
@@ -218,10 +214,8 @@
                         <td> - </td>
                         {% if user.is_authenticated %} <td> - </td> {% endif %}
                         <td> {{ stats.auto_gear_avg|floatformat:2 }} </td>
-                        <td> {{ stats.fuel_low_auto_avg|floatformat:2 }} </td>
                         <td> {{ stats.fuel_hi_auto_avg|floatformat:2 }} </td>
                         <td> {{ stats.gear_avg|floatformat:2 }} </td>
-                        <td> {{ stats.fuel_low_avg|floatformat:2 }} </td>
                         <td> {{ stats.fuel_hi_avg|floatformat:2 }} </td>
                         <td> {{ stats.rope_avg|floatformat:2 }}% </td>
                     </tr>

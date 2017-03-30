@@ -76,19 +76,12 @@ class ScoreResult(models.Model):
 
     # Auto
     auto_gears = models.IntegerField(default=0)
-    auto_fuel_high_shots = models.IntegerField(default=0)
     auto_fuel_high_score = models.IntegerField(default=0)
-    auto_fuel_low_shots = models.IntegerField(default=0)
-    auto_fuel_low_score = models.IntegerField(default=0)
     auto_baseline = models.BooleanField(default=False)
 
     # Teleop
     tele_gears = models.IntegerField(default=0)
-    tele_fuel_high_shots = models.IntegerField(default=0)
     tele_fuel_high_score = models.IntegerField(default=0)
-    tele_fuel_low_shots = models.IntegerField(default=0)
-    tele_fuel_low_score = models.IntegerField(default=0)
-
     # Endgame
     rope = models.BooleanField(default=False)
 
