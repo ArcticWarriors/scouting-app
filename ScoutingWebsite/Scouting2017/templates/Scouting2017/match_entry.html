@@ -10,12 +10,12 @@
 	
 	<script type="text/html" id="row-template"> 
 		<tr>
-			// Match Info
+			<!-- Match Info -->
 			<td class="error_message-__i__" style="white-space: nowrap;"></td>
 			<td><input type="number" id = "teamNumber" name="teamNumber-__i__" style="text-align:center;" onblur="validate_combination(__i__);"></td>
 			<td><input type="number" id = "matchNumber" name="matchNumber-__i__" style="text-align:center;" onblur="validate_combination(__i__);"></td>
 
-			// Auto
+			<!-- Auto -->
 			<td><input type="number" id = "autoGears" name="autoGears-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "autoFuelHighShot" name="autoFuelHighShot-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "autoFuelHighMade" name="autoFuelHighMade-__i__" value=0 style="text-align:center;"></td>
@@ -23,30 +23,30 @@
 			<td><input type="number" id = "autoFuelLowMade" name="autoFuelLowMade-__i__" value=0 style="text-align:center;"></td>
 			<td style="text-align:center;"><input type="checkbox" id = "autoBaseline" name="autoBaseline-__i__" ></td>		
 
-			// Tele
+			<!-- Teleop -->
 			<td><input type="number" id = "teleGears" name="teleGears-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "teleFuelHighShots" name="teleFuelHighShots-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "teleFuelHighScore" name="teleFuelHighScore-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "teleFuelLowShots" name="teleFuelLowShots-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "teleFuelLowScore" name="teleFuelLowScore-__i__" value=0 style="text-align:center;"></td>
 
-			// Endgame
+			<!-- Endgame -->
 			<td style="text-align:center;"><input type="checkbox" id = "ropeClimbed" name="ropeClimbed-__i__"></td>
 
-			// Fouls
+			<!-- Fouls -->
 			<td><input type="number" id = "fouls" name="fouls-__i__" value=0 style="text-align:center;"></td>
 			<td><input type="number" id = "techFouls" name="techFouls-__i__" value=0 style="text-align:center;"></td>
 			<td style="text-align:center;"><input type="checkbox" id = "yellowCard" name="yellowCard-__i__"></td>
 			<td style="text-align:center;"><input type="checkbox" id = "redCard" name="redCard-__i__"></td>
 
-			// General
+			<!-- General -->
 			<td style="text-align:center;"><input type="checkbox" id = "gathredGearFromGround" name="gathredGearFromGround-__i__"></td>
 			<td style="text-align:center;"><input type="checkbox" id = "gathredFuelFromGround" name="gathredFuelFromGround-__i__"></td>
 			<td><input type="number" id = "hoppersDumped" name="hoppersDumped-__i__" value=0 style="text-align:center;"></td>
 			<td style="text-align:center;"><input type="checkbox" id = "playedDefense" name="playedDefense-__i__"></td>
 			<td><textarea rows="1" cols="50" name="comments-__i__"></textarea></td>
 
-			// Maintenance
+			<!-- Maintenance -->
 			<td><button type="button" class="btn btn-default" onclick="deleteRow(this)">Delete</button></td>
 			<input type="hidden" id="rowCounter" name="rowCounter" value=__i__ style="text-align:center;">
 		</tr>
